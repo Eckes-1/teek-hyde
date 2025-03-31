@@ -136,7 +136,6 @@ const tkConfig = defineTeekConfig({
   },
   social: SocialDate, //社交信息配置
   comment: {
-    // provider: "giscus",
     provider: "twikoo",
     options: {
       // twikoo 配置，官网：https://twikoo.js.org/
@@ -167,6 +166,7 @@ const tkConfig = defineTeekConfig({
     sidebarOption: {
       initItems: false, //这条命令注释后，才会让文档和目录的样式保持一致
       collapsed: true, //打开侧边栏自动收缩功能
+      ignoreList: ["nav"], //忽略的文件夹和文件
     },
     autoFrontmatter: true, // 自动生成 frontmatter
   },
