@@ -217,13 +217,6 @@ export default defineConfig({
     //添加看板娘
     // ["script", { src: "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js" }],
     // ["script", { src: "/live2d.js" }], // 添加看板娘
-    // 在线聊天
-    [
-      "script",
-      {
-        src: "https://assets.salesmartly.com/js/project_23232_114665_1724296502.js",
-      },
-    ],
   ],
   markdown: {
     // 开启行号
