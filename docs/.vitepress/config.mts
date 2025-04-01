@@ -214,9 +214,6 @@ export default defineConfig({
         href: "//at.alicdn.com/t/font_2989306_w303erbip9.css",
       },
     ], // 阿里在线矢量库
-    //添加看板娘
-    // ["script", { src: "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js" }],
-    // ["script", { src: "/live2d.js" }], // 添加看板娘
   ],
   markdown: {
     // 开启行号
