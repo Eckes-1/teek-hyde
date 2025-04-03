@@ -13,12 +13,19 @@ import { HitokotoDate } from "./config/HitokotoDate"; // 导入HitokotoData模�
 import { Nav } from "./config/Nav"; // 导入Nav模块
 import { SocialDate } from "./config/SocialDate"; // 导入SocialDate社交信息模块
 import { Wallpaper } from "./config/Wallaper"; // 导入Wallaper模块
+import type { HeadConfig } from "vitepress"; // 在文件顶部添加类型导入
+import { HeadData } from "./config/Head"; // 修改 HeadData 导入和类型断言
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 
 const tkConfig = defineTeekConfig({
   author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
   tkTheme: true, // 是否使用tk主题
+  themeSetting: {
+    backTopDone: () => {
+      console.log("已到达顶部");
+    },
+  },
   bgColor: [
     "#e74c3c",
     "#409EFF",
@@ -195,33 +202,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true, // 显示最后更新时间
   lang: "zh-CN",
-  head: [
-    ["meta", { name: "author", content: "Tianke" }],
-    [
-      "meta",
-      {
-        name: "viewport",
-        content:
-          "width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no",
-      },
-    ],
-    [
-      "meta",
-      {
-        name: "description",
-        description,
-      },
-    ],
-    ["meta", { name: "keywords", description }],
-    ["link", { rel: "icon", href: "/favicon.ico", type: "image/png" }],
-    [
-      "link",
-      {
-        rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_2989306_w303erbip9.css",
-      },
-    ], // 阿里在线矢量库
-  ],
+  head: HeadData as HeadConfig[],
   markdown: {
     // 开启行号
     lineNumbers: true,
