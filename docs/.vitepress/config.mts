@@ -186,7 +186,7 @@ export default defineConfig({
   title: "Hyde Blog",
   description: description,
   cleanUrls: true,
-  lastUpdated: true,
+  lastUpdated: true, // 显示最后更新时间
   lang: "zh-CN",
   head: [
     ["meta", { name: "author", content: "Tianke" }],
