@@ -40,8 +40,8 @@ export const HeadData = [
     {
       type: "text/javascript",
       id: "myhk",
-      src: "https://myhkw.cn/api/player/174291586956",
-      key: "174291586956",
+      src: "https://myhkw.cn/api/player/174131850675",
+      key: "174131850675",
       m: "1",
       defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
     },
