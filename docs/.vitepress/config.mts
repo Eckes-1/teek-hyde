@@ -18,12 +18,14 @@ import { HeadData } from "./config/Head"; // 修改 HeadData 导入和类型断�
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 
-const tkConfig = defineTeekConfig({
+const teekConfig = defineTeekConfig({
   author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
-  tkTheme: true, // 是否使用tk主题
+  // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
+  // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
+  // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
   themeSetting: {
     backTopDone: () => {
-      console.log("已到达顶部");
+      alert("已到达顶部");
     },
   },
   bgColor: [
@@ -41,7 +43,7 @@ const tkConfig = defineTeekConfig({
   blogger: {
     // 博主信息，显示在首页侧边栏
     avatar: "/img/touxiang.webp",
-    avatarStyle: "full",
+    shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
     name: "Hyde",
     slogan: "人心中的成见是一座大山~",
   },
@@ -59,11 +61,12 @@ const tkConfig = defineTeekConfig({
       },
       { key: "totalPosts", label: "文章总数目" },
     ],
-    appendInfo: [{ key: "index", label: "序号", value: "天客 99" }],
+    appendInfo: [{ key: "index", label: "序号", value: "Hyde" }],
   },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块
-    enabled: true,
+    enabled: true, // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg", // Banner 背景风格：pure 为纯色背景，partImg 为局部图片背景，fullImg 为全屏图片背景
     imgInterval: 8000, // 轮播时间
     imgShuffle: true, // 当多张大图时（imgSrc 为数组），设置切换时间，单位：毫秒
@@ -194,7 +197,7 @@ const tkConfig = defineTeekConfig({
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  extends: tkConfig,
+  extends: teekConfig,
   base: "/",
   title: "Hyde Blog",
   description: description,

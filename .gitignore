@@ -32,6 +32,3 @@ coverage
 
 #忽略shell文件夹
 Shell
-
-#忽略文章推送到gitee
-03.技术专栏

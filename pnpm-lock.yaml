@@ -34,8 +34,8 @@ importers:
         specifier: ^1.3.8
         version: 1.3.8
       vitepress-theme-teek:
-        specifier: 1.0.0-alpha.6
-        version: 1.0.0-alpha.6(element-plus@2.9.7(vue@3.5.13))(vitepress@1.6.3(@algolia/client-search@5.23.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3))
+        specifier: 1.0.0-alpha.8
+        version: 1.0.0-alpha.8(element-plus@2.9.7(vue@3.5.13))(vitepress@1.6.3(@algolia/client-search@5.23.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3))
 
 packages:
 
@@ -1182,8 +1182,8 @@ packages:
     peerDependencies:
       vitepress: ^1.6.3
 
-  vitepress-theme-teek@1.0.0-alpha.6:
-    resolution: {integrity: sha512-cZ2noklLxUYHmU3YGtQEXrlM8dIm4HQsqCHvJBeqKDXyjH/0QZ9flY3OtFVsD7kJ0YvTFYNfGBxp78dJqHdtnw==}
+  vitepress-theme-teek@1.0.0-alpha.8:
+    resolution: {integrity: sha512-nOTp8TVXfqkwanDMpgIWBqKl2EzeYxiJZf0eM+eqxHyypHtb5ZWhs7CYjcbxyKOcKXzF90FV194UjuAMUkK35Q==}
     peerDependencies:
       element-plus: ^2.9.3
       vitepress: ^1.6.3
@@ -2375,7 +2375,7 @@ snapshots:
       picocolors: 1.1.1
       vitepress: 1.6.3(@algolia/client-search@5.23.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)
 
-  vitepress-theme-teek@1.0.0-alpha.6(element-plus@2.9.7(vue@3.5.13))(vitepress@1.6.3(@algolia/client-search@5.23.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)):
+  vitepress-theme-teek@1.0.0-alpha.8(element-plus@2.9.7(vue@3.5.13))(vitepress@1.6.3(@algolia/client-search@5.23.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)):
     dependencies:
       element-plus: 2.9.7(vue@3.5.13)
       gray-matter: 4.0.3

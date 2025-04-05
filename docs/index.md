@@ -3,7 +3,7 @@
 layout: home
 
 tk:
-  # tkHome: false  # 是否启用tk主题
+  # teekHome: false  # 是否启用tk主题
   # bgColor:  #主题背景色
   #   -  #409EFF
   # features:
