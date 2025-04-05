@@ -1,21 +1,21 @@
-import { modhost, modstore, modxpro, telegram } from "../theme/icon/icons";
+import { gitee, email, WhatsApp, telegram } from "../theme/icon/icons";
 
 export const SocialLinks = [
   {
-    icon: { svg: modhost },
+    icon: { svg: gitee },
     link: "https://modhost.pro",
   },
   {
-    icon: { svg: modstore },
-    link: "https://modstore.pro",
+    icon: { svg: email },
+    link: "mailto:seasir666@gmail.com",
   },
   {
-    icon: { svg: modxpro },
-    link: "https://modx.pro",
+    icon: { svg: WhatsApp },
+    link: "https://api.whatsapp.com/send/?phone=13527063419&text=Hello",
   },
   {
     icon: { svg: telegram },
-    link: "https://t.me/ru_modx",
+    link: "https://t.me/SeasirHyde",
   },
   {
     icon: "github",
