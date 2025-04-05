@@ -50,14 +50,17 @@ export const HeadData = [
   [
     "script",
     {
-      src: "/mouse/clickanime.js",
+      type: "text/javascript",
+      src: "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/animejs/3.2.1/anime.min.js", //字节cdn
+      id: "anime.min.js-js",
       defer: "defer",
     },
   ],
   [
     "script",
     {
-      src: "/mouse/clickfireworks.js",
+      // src: "https://cpython666.github.io/js/clickjs/fireworks.js",
+      src: "https://live2d-hyde.netlify.app/Clickfireworks.js",
       defer: "defer",
     },
   ],
