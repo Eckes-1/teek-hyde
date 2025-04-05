@@ -46,4 +46,19 @@ export const HeadData = [
       defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
     },
   ],
+  // 鼠标爆炸效果
+  [
+    "script",
+    {
+      src: "/mouse/clickanime.js",
+      defer: "defer",
+    },
+  ],
+  [
+    "script",
+    {
+      src: "/mouse/clickfireworks.js",
+      defer: "defer",
+    },
+  ],
 ];

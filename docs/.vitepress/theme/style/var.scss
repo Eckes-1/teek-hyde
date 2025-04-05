@@ -3,12 +3,23 @@
   --vp-c-brand-1: #5da8ff;
   --vp-c-brand-2: #faad14;
   --vp-c-brand-3: #646cff;
+  
 }
 
 .dark {
   --vp-c-brand-1: #5da8ff;
   --vp-c-brand-2: #faad14;
   --vp-c-brand-3: #646cff;
+}
+
+/* 鼠标样式 */
+body {
+  font-family: MiSans, sans-serif;
+  cursor: url(/mouse/default.cur), auto;
+}
+
+a,button,img, svg,input,textarea,select,option,label,span {
+  cursor: url(/mouse/pointer.cur), auto !important;
 }
 /* 以前的vp-c-brand已弃用 */
 

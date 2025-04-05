@@ -31,7 +31,7 @@ import "./styles/index.scss"; //群主自定义的全局样式
 
 import { useFooterRuntime } from "./helper/useFooterRuntime"; // 首页底部添加运行时间
 
-import "./style/index.scss"; // 引入Demo\docs-base\.vitepress\theme\style\index.scss全局样式
+import "./style/index.scss"; // 引入.vitepress\theme\style\index.scss全局样式
 import "virtual:group-icons.css"; //代码组图标样式
 import googleAnalytics from "vitepress-plugin-google-analytics"; // 引入谷歌统计插件
 import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
