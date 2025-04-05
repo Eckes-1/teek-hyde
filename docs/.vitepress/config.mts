@@ -6,6 +6,7 @@ import {
   groupIconVitePlugin,
 } from "vitepress-plugin-group-icons"; // 导入代码组图标插件
 import timeline from "vitepress-markdown-timeline"; // 导入时间线插件
+import { La51Plugin } from "vitepress-plugin-51la"; // 导入51la统计插件
 
 import { Features } from "./config/Features"; // 导入Features模块
 import { FriendLink } from "./config/FriendLink"; // 导入FriendLink模块
@@ -251,6 +252,12 @@ export default defineConfig({
   vite: {
     plugins: [
       groupIconVitePlugin(), //代码组图标
+      // 51La统计插件
+      La51Plugin({
+        id: "539005",
+        ck: "3LmDV843SgGyC2Zp",
+        apply: "all",
+      }),
     ],
     server: {
       open: true, // 运行后自动打开网页
