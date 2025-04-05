@@ -64,4 +64,23 @@ export const HeadData = [
       defer: "defer",
     },
   ],
+  // 彩带效果，不生效，待研究
+  [
+    "script",
+    {
+      src: "/mouuse/canvas-ribbon.min.js",
+      defer: "defer",
+    },
+  ],
+  [
+    "script",
+    {
+      id: "ribbon",
+      size: "150",
+      alpha: '0.3',
+      zIndex: "9999999999", // 背景的层级
+      src: "/mouuse/ribbon.js",
+      defer: "defer",
+    },
+  ],
 ];

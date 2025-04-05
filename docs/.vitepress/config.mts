@@ -14,12 +14,12 @@ import { Nav } from "./config/Nav"; // 导入Nav模块
 import { SocialDate } from "./config/SocialDate"; // 导入SocialDate社交信息模块
 import { Wallpaper } from "./config/Wallaper"; // 导入Wallaper模块
 import type { HeadConfig } from "vitepress"; // 在文件顶部添加类型导入
-import { HeadData } from "./config/Head"; // 修改 HeadData 导入和类型断言
+import { HeadData } from "./config/Head"; // 导入 HeadData 导入和类型断言
+import { SocialLinks } from "./config/SocialLinks"; //导入社交链接配置
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 
 const teekConfig = defineTeekConfig({
-  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
   // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
@@ -104,7 +104,7 @@ const teekConfig = defineTeekConfig({
     coverImgMode: "full", // 封面大图
     imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭}
   },
-
+  author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
   article: {
     imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭}
     showIcon: true, // 作者、日期、分类、标签、字数、阅读时长、浏览量等文章信息的图标是否显示
@@ -237,13 +237,7 @@ export default defineConfig({
       next: "下一页",
     },
     nav: Nav, // 导航栏配置
-    socialLinks: [
-      {
-        icon: "github",
-        link: "https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/dev",
-      },
-    ],
-
+    socialLinks: SocialLinks, // 社交链接配置
     search: {
       provider: "local",
     },
