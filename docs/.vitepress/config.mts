@@ -254,7 +254,7 @@ export default defineConfig({
       groupIconVitePlugin(), //代码组图标
       // 51La统计插件
       La51Plugin({
-        id: "539005",
+        id: "3LmDV843SgGyC2Zp",
         ck: "3LmDV843SgGyC2Zp",
         apply: "all",
       }),
