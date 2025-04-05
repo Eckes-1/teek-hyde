@@ -43,7 +43,7 @@ const teekConfig = defineTeekConfig({
   blogger: {
     // 博主信息，显示在首页侧边栏
     avatar: "/img/touxiang.webp",
-    shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
+    shape: "square", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
     name: "Hyde",
     slogan: "人心中的成见是一座大山~",
   },
