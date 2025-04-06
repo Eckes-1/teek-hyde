@@ -3,7 +3,7 @@
 layout: home
 
 tk:
-teekHome:false  #是否启用 Teek 的首页风格，如果为 false，则还原到 Vitepress 的默认首页，其他功能不变。
+  teekHome:false #是否启用 Teek 的首页风格，如果为 false，则还原到 Vitepress 的默认首页，其他功能不变。
   # teekHome: false  # 是否启用tk主题
   # bgColor:  #主题背景色
   #   -  #409EFF
