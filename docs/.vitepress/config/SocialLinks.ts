@@ -3,7 +3,7 @@ import { gitee, email, WhatsApp, telegram } from "../theme/icon/icons";
 export const SocialLinks = [
   {
     icon: { svg: gitee },
-    link: "https://modhost.pro",
+    link: "https://gitee.com/SeasirHyde/teek-hyde",
   },
   {
     icon: { svg: email },
@@ -15,7 +15,7 @@ export const SocialLinks = [
   },
   {
     icon: { svg: telegram },
-    link: "https://t.me/SeasirHyde",
+    link: "https://t.me/seasir_Bot",
   },
   {
     icon: "github",

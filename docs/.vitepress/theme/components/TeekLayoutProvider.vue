@@ -5,11 +5,11 @@ import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
 
 const ns = useNamespace("layout-provider");
 
-const teekConfig = ref(teekDocConfig);
-
-provide(teekConfigSymbol, teekConfig);
-
+// 默认文档风
 const current = ref("D");
+
+const teekConfig = ref(current.value === "D" ? teekDocConfig : teekBlogConfig);
+provide(teekConfigSymbol, teekConfig);
 
 const handleSwitch = () => {
     current.value = current.value === "D" ? "B" : "D";
@@ -29,6 +29,11 @@ const handleSwitch = () => {
                 </TkAvatar>
             </div>
         </template>
+        <!-- 不添加下面影响公告样式 -->
+        <template v-for="(_, name) in $slots" :key="name" #[name]>
+            <slot :name="name" />
+        </template>
+        <!-- 不添加上面面影响公告样式 -->
     </Teek.Layout>
 </template>
 

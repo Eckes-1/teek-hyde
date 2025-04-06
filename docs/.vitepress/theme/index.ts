@@ -8,7 +8,7 @@ import "vitepress-theme-teek/index.css";
 import NoticeContent from "./components/NoticeContent.vue";
 // import notice from "./components/notice.vue";
 import BannerImgArrow from "./components/BannerImgArrow.vue";
-
+import TeekLayoutProvider from "./components/TeekLayoutProvider.vue";
 import { defineComponent, h, nextTick, provide, watch } from "vue";
 import { useData, useRoute } from "vitepress";
 // import "vitepress-theme-teek/index.css";
@@ -96,7 +96,7 @@ export default {
       );
 
       return () =>
-        h(Teek.Layout, props, {
+        h(TeekLayoutProvider, null, {
           // "layout-top": () => h(notice), // 使用layout-top插槽
           googleAnalytics: () =>
             h(googleAnalytics, {

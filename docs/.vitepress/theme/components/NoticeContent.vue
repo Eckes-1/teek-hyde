@@ -17,6 +17,7 @@ const namespace = "notice";
     height: 120px;
     object-fit: contain;
   }
+
   p {
     text-align: center;
     font-size: 14px;

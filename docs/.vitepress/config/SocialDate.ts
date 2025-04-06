@@ -1,4 +1,4 @@
-// 社交信息
+// 卡片栏社交信息
 import { Social } from "vitepress-theme-teek/config";
 
 export const SocialDate: Social[] = [
@@ -6,7 +6,7 @@ export const SocialDate: Social[] = [
     icon: "icon-github",
     iconType: "iconfont",
     name: "GitHub",
-    link: "https://github.com/kele-bingtang",
+    link: "https://github.com/Seasir-Hyde",
   },
   {
     icon: "icon-gitee2",
