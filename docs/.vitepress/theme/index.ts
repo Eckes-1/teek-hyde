@@ -33,7 +33,7 @@ import { useFooterRuntime } from "./helper/useFooterRuntime"; // 首页底部添
 
 import "./style/index.scss"; // 引入.vitepress\theme\style\index.scss全局样式
 import "virtual:group-icons.css"; //代码组图标样式
-import googleAnalytics from "vitepress-plugin-google-analytics"; // 引入谷歌统计插件
+
 import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
 
 // import Layout from "./components/MyLayout.vue";
@@ -98,10 +98,6 @@ export default {
       return () =>
         h(TeekLayoutProvider, null, {
           // "layout-top": () => h(notice), // 使用layout-top插槽
-          googleAnalytics: () =>
-            h(googleAnalytics, {
-              id: "G-YDTSLB09YH",
-            }), // 使用googleAnalytics插槽
           confetti: () => h(confetti), // 使用confetti插槽
           "teek-notice-content": () => h(NoticeContent),
           "teek-home-banner-feature-after": () => h(BannerImgArrow),

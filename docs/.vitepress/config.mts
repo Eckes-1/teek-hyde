@@ -124,7 +124,14 @@ const teekConfig = defineTeekConfig({
         show: true,
       },
     ],
-    appendInfo: [{ key: "index", label: "序号", value: "天客 99" }],
+    appendInfo: [{ key: "index", label: "序号", value: "Hyde" }],
+  },
+  // 谷歌分析
+  siteAnalytics: {
+    provider: "google",
+    options: {
+      id: "G-YDTSLB09YH",
+    },
   },
 });
 
