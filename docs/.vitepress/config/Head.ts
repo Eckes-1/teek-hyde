@@ -64,6 +64,7 @@ export const HeadData = [
       defer: "defer",
     },
   ],
+  ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   // 彩带效果，不生效，待研究
   [
     "script",
@@ -77,7 +78,7 @@ export const HeadData = [
     {
       id: "ribbon",
       size: "150",
-      alpha: '0.3',
+      alpha: "0.3",
       zIndex: "9999999999", // 背景的层级
       src: "/mouuse/ribbon.js",
       defer: "defer",
