@@ -47,43 +47,6 @@ export const HeadData = [
       defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
     },
   ],
-  // 鼠标爆炸效果
-  [
-    "script",
-    {
-      type: "text/javascript",
-      src: "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/animejs/3.2.1/anime.min.js", //字节cdn
-      id: "anime.min.js-js",
-      defer: "defer",
-    },
-  ],
-  [
-    "script",
-    {
-      // src: "https://cpython666.github.io/js/clickjs/fireworks.js",
-      src: "https://live2d-hyde.netlify.app/Clickfireworks.js",
-      defer: "defer",
-    },
-  ],
-  // 彩带效果，不生效，待研究
-  [
-    "script",
-    {
-      src: "/mouuse/canvas-ribbon.min.js",
-      defer: "defer",
-    },
-  ],
-  [
-    "script",
-    {
-      id: "ribbon",
-      size: "150",
-      alpha: "0.3",
-      zIndex: "9999999999", // 背景的层级
-      src: "/mouuse/ribbon.js",
-      defer: "defer",
-    },
-  ],
   // 51.la数据挂件
   [
     "script",

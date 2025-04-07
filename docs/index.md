@@ -121,5 +121,3 @@ onMounted(() => {
     <!-- {{ frontmatter.hero.image?.alt }} -->
   </div>
 </template>
-<!-- 五彩纸屑组件 -->
-<confetti />
