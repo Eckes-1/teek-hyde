@@ -13,5 +13,23 @@ export const FriendLink = {
       desc: "明心静性，爱自己",
       link: "https://onedayxyy.cn/",
     },
+    {
+      avatar: "https://wiki.eryajf.net/img/logo.png",
+      name: "二丫讲梵",
+      desc: "坐而言不如起而行",
+      link: "https://wiki.eryajf.net/",
+    },
+    {
+      avatar: "https://blog.snowlinlan.com/logo.png",
+      name: "SnowLin",
+      desc: "一個溫暖的地方",
+      link: "https://blog.snowlinlan.com/",
+    },
+    {
+      avatar: "https://sinc.us.kg/favicon.ico",
+      name: "凿壁偷光不算偷",
+      desc: "",
+      link: "https://sinc.us.kg/",
+    },
   ],
 };

@@ -1,37 +1,4 @@
-/*文章标题动态小横线t*/
-$underline-height: 2px; // 下划线高度
-$transition-duration: 0.3s; // 下划线动画时长
 
-a {
-    position: relative; // 相对定位，以便于设置伪元素的位置
-
-    &::after {
-        position: absolute; // 绝对定位，以便于设置位置
-        left: 50%; // 水平居中
-        bottom: -$underline-height; // 距离底部的距离
-        width: 0; // 初始宽度为0
-        height: $underline-height; // 高度为下划线高度
-        background: var(--vp-c-brand-1); // 下划线颜色
-        transform: translateX(-50%); // 水平居中
-        transition: {
-            property: width, left; // 过渡属性为宽度和left
-            duration: $transition-duration; // 过渡时长
-            timing-function: ease-out; // 过渡函数为ease-out
-        }
-    }
-
-    &:hover {
-        &::after {
-            left: 50; // 线条从中间开始
-            width: 100%; // 线条宽度为100%
-            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); // 过渡函数为cubic-bezier
-        }
-    }
-}
-// 修复首页卡片列表出现的多余斜线
-.tk-article-info .or:not(:last-child):after {
-    content: " ";
-}
 // 文章列表卡片hover阴影圆角效果
 .tk-post-item {
     transition:

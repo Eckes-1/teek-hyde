@@ -43,7 +43,7 @@ const teekConfig = defineTeekConfig({
     "#9b59b6",
   ], // 主题背景颜色
   page: {
-    pageSize: 10, // 每页显示的文章数量
+    pageSize: 16, // 每页显示的文章数量
   },
   post: {
     coverImgMode: "full", // 封面大图
