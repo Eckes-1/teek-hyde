@@ -103,6 +103,29 @@ const teekConfig = defineTeekConfig({
       md.use(groupIconMdPlugin); // 代码组图标插件
     },
   },
+  // 站点信息卡片配置
+  docAnalysis: {
+    enabled: true,
+    createTime: "2021-10-19",
+    wordCount: true,
+    readingTime: true,
+    statistics: {
+      provider: "busuanzi",
+      siteView: true,
+      pageView: true,
+      siteIteration: 2000,
+      pageIteration: 2000,
+    },
+    overrideInfo: [
+      {
+        key: "lastActiveTime",
+        label: "活跃时间",
+        value: (_, currentValue) => (currentValue + "").replace("前", ""),
+        show: true,
+      },
+    ],
+    appendInfo: [{ key: "index", label: "序号", value: "天客 99" }],
+  },
 });
 
 // https://vitepress.dev/reference/site-config

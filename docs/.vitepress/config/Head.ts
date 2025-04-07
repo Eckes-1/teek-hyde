@@ -2,6 +2,7 @@ const description = ["Hd Security 使用文档", "认证框架"].toString();
 
 // 导出head.ts
 export const HeadData = [
+  ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   ["meta", { name: "author", content: "Tianke" }],
   [
     "meta",
@@ -64,7 +65,6 @@ export const HeadData = [
       defer: "defer",
     },
   ],
-  ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   // 彩带效果，不生效，待研究
   [
     "script",

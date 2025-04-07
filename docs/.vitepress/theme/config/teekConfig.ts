@@ -27,22 +27,6 @@ export const teekBlogConfig: TeekConfig = {
     name: "Hyde",
     slogan: "人心中的成见是一座大山~",
   },
-  docAnalysis: {
-    createTime: "2021-10-19",
-    statistics: {
-      provider: "busuanzi",
-    },
-    wordCount: true,
-    readingTime: true,
-    overrideInfo: [
-      {
-        key: "lastActiveTime",
-        value: (_, currentValue) => `${currentValue}前`,
-      },
-      { key: "totalPosts", label: "文章总数目" },
-    ],
-    appendInfo: [{ key: "index", label: "序号", value: "Hyde" }],
-  },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块
     enabled: true, // Banner 标题，默认读取 vitepress 的 title 属性
