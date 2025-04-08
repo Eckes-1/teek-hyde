@@ -12,15 +12,6 @@
   --vp-c-brand-3: #646cff;
 }
 
-/* 鼠标样式 */
-body {
-  font-family: MiSans, sans-serif;
-  cursor: url(/mouse/default.cur), auto;
-}
-
-a,button,img, svg,input,textarea,select,option,label,span {
-  cursor: url(/mouse/pointer.cur), auto !important;
-}
 /* 以前的vp-c-brand已弃用 */
 
 // :root {
@@ -63,4 +54,13 @@ a,button,img, svg,input,textarea,select,option,label,span {
 // 链接下划线
 .vp-doc a {
   text-decoration: none;
+}
+
+// /* 鼠标样式 */
+body {
+  cursor: url(/mouse/default.cur), auto;
+}
+
+a,button,img, svg,input,textarea,select,option,label,span {
+  cursor: url(/mouse/pointer.cur), auto !important;
 }

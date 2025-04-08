@@ -133,6 +133,28 @@ const teekConfig = defineTeekConfig({
       id: "G-YDTSLB09YH",
     },
   },
+  // 文章页的样式风格
+  pageStyle: "segment-nav",
+  // 赞赏在文章下方
+  appreciation: {
+    position: "doc-after",
+    options: {
+      // buttonHtml: `<button>测试按钮</button>`,
+      icon: "weChatPay", // 赞赏图标，内置 weChatPay 和 alipay
+      expandTitle: "打赏支持", // 展开标题，支持 HTML
+      collapseTitle: "下次一定", // 折叠标题，支持 HTML
+      content: `<img src='/appreciation/WeChatPay.jpg'><img src='/appreciation/Alipay.jpg'>`, // 赞赏内容，支持 HTML
+      expand: false, // 是否默认展开，默认 false
+    },
+  },
+  // 赞赏在 文章导航栏下侧
+  // appreciation: {
+  //   position: "aside-bottom",
+  //   options: {
+  //     title: `<span style="color: var(--tk-theme-color)">欢迎打赏支持</span>`, // 赞赏标题，支持 HTML
+  //     content: `<img src='/appreciation/WeChatPay.jpg'><img src='/appreciation/Alipay.jpg'>`, // 赞赏内容，支持 HTML
+  //   },
+  // },
 });
 
 // https://vitepress.dev/reference/site-config
