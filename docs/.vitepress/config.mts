@@ -155,6 +155,7 @@ const teekConfig = defineTeekConfig({
   //     content: `<img src='/appreciation/WeChatPay.jpg'><img src='/appreciation/Alipay.jpg'>`, // 赞赏内容，支持 HTML
   //   },
   // },
+  articleShare: { enabled: true }, // 文章分享
 });
 
 // https://vitepress.dev/reference/site-config
