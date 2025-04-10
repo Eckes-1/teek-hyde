@@ -8,17 +8,17 @@ import {
 import timeline from "vitepress-markdown-timeline"; // 导入时间线插件
 import { La51Plugin } from "vitepress-plugin-51la"; // 导入51la统计插件
 
-import { Features } from "./config/Features"; // 导入Features模块
-import { FriendLink } from "./config/FriendLink"; // 导入FriendLink模块
-import { HitokotoDate } from "./config/HitokotoDate"; // 导入HitokotoData模块
-import { Nav } from "./config/Nav"; // 导入Nav模块
-import { SocialDate } from "./config/SocialDate"; // 导入SocialDate社交信息模块
-import { Wallpaper } from "./config/Wallaper"; // 导入Wallaper模块
+import { Features } from "./ConfigHyde/Features"; // 导入Features模块
+import { FriendLink } from "./ConfigHyde/FriendLink"; // 导入FriendLink模块
+import { HitokotoDate } from "./ConfigHyde/HitokotoDate"; // 导入HitokotoData模块
+import { Nav } from "./ConfigHyde/Nav"; // 导入Nav模块
+import { SocialDate } from "./ConfigHyde/SocialDate"; // 导入SocialDate社交信息模块
+import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import type { HeadConfig } from "vitepress"; // 在文件顶部添加类型导入
-import { HeadData } from "./config/Head"; // 导入 HeadData 导入和类型断言
-import { SocialLinks } from "./config/SocialLinks"; //导入社交链接配置
-import { FooterInfo } from "./config/FooterInfo"; //导入底部信息配置
-import { CommentData } from "./config/Comment"; //导入底部信息配置
+import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型断言
+import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
+import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
+import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 

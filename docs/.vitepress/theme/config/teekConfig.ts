@@ -1,9 +1,9 @@
 import type { TeekConfig } from "vitepress-theme-teek/config";
-import { Features } from "../../config/Features"; // 导入Features模块
-import { FriendLink } from "../../config/FriendLink"; // 导入FriendLink模块
-import { HitokotoDate } from "../../config/HitokotoDate"; // 导入HitokotoData模块
-import { SocialDate } from "../../config/SocialDate"; // 导入SocialDate社交信息模块
-import { Wallpaper } from "../../config/Wallaper"; // 导入Wallaper模块
+import { Features } from "../../ConfigHyde/Features"; // 导入Features模块
+import { FriendLink } from "../../ConfigHyde/FriendLink"; // 导入FriendLink模块
+import { HitokotoDate } from "../../ConfigHyde/HitokotoDate"; // 导入HitokotoData模块
+import { SocialDate } from "../../ConfigHyde/SocialDate"; // 导入SocialDate社交信息模块
+import { Wallpaper } from "../../ConfigHyde/Wallaper"; // 导入Wallaper模块
 
 // 文档配置
 export const teekDocConfig: TeekConfig = {
