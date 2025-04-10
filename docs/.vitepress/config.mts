@@ -27,8 +27,8 @@ const teekConfig = defineTeekConfig({
   // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
   themeSetting: {
-    backTopDone: () => {
-      alert("已到达顶部");
+    backTopDone: (TKMessage) => {
+      TKMessage.success("返回顶部成功");
     },
   },
   bgColor: [
