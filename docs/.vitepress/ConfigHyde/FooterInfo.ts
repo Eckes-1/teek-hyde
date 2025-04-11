@@ -21,9 +21,8 @@ export const FooterInfo = {
     </span>
     </span>
     <span>|</span>
-    <div>
-      <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=2&f=12&display=0,1,1,1,1,1,1,1"></script>
-    </div>
+    <br>
+      <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=0&f=12&display=0,0,1,1,1,1,1,1"></script>
   </div>
   `, // 搭配 ./theme/helper/useFooterRuntime.ts 使用才有效果
 };
