@@ -60,4 +60,18 @@ $namespace: tk-layout-provider;
         }
     }
 }
+
+// 修复 twikoo 样式影响头像
+.tk-avatar {
+    width: 24px;
+    height: 24px;
+}
+</style>
+
+<style lang="scss">
+// 修复 twikoo 样式影响头像
+.tk-my__avatar .tk-avatar {
+    width: 100%;
+    height: 100%;
+}
 </style>

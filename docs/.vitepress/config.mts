@@ -47,7 +47,7 @@ const teekConfig = defineTeekConfig({
   },
   post: {
     coverImgMode: "full", // 封面大图
-    imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭}
+    imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭
   },
   author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
   article: {

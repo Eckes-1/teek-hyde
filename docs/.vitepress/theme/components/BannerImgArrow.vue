@@ -27,14 +27,9 @@ const isMobile = ref(false);
 </script>
 
 <template>
-  <div v-if="theme.banner?.bgStyle === 'fullImg' && !isMobile" :class="`${namespace}-arrow tk-wallpaper-outside`">
-    <TkIcon
-      :icon="arrowSvg"
-      size="50px"
-      color="#ffffff"
-      :class="`${namespace}-arrow__icon`"
-      @click="handleClickArrow"
-    />
+  <div v-if="!isMobile" :class="`${namespace}-arrow tk-wallpaper-outside`">
+    <TkIcon :icon="arrowSvg" size="50px" color="#ffffff" :class="`${namespace}-arrow__icon`"
+      @click="handleClickArrow" />
   </div>
 </template>
 
