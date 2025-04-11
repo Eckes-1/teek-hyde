@@ -15,5 +15,13 @@ export const FooterInfo = {
     name: "甘公网安备62102702000211号",
     link: "https://beian.mps.gov.cn/",
   },
-  customHtml: `<p>小破站已运行了 <span id="footer-runtime"></span></p>`, // 搭配 ./theme/helper/useFooterRuntime.ts 使用才有效果
+  customHtml: `
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <span>| 小破站已运行了 <span id="footer-runtime"></span></span>
+    <span>|</span>
+    <div>
+      <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=0&f=12&display=0,1,1,1,1,1,1,1"></script>
+    </div>
+  </div>
+  `, // 搭配 ./theme/helper/useFooterRuntime.ts 使用才有效果
 };
