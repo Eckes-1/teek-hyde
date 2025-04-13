@@ -1,88 +1,9 @@
 import type { NavData } from "./types.ts";
-
+import { VitepressData } from "./Data/Vitepress";
 export const NAV_DATA: NavData[] = [
   {
-    title: "Vitepress",
-    items: [
-      {
-        icon: "https://cdn.chenyingshuang.cn/index/labixiaoxin.png",
-        title: "野宁新之助",
-        desc: "说说我的生活",
-        link: "https://www.sanghangning.cn/",
-      },
-      {
-        icon: "https://vitepress.yiov.top/logo.png",
-        title: "VitePress",
-        desc: "VitePress 中文网",
-        link: "https://vitepress.yiov.top/",
-      },
-      {
-        icon: "https://yuanshen.site/docs/imgs/common/logo/logo_256.png",
-        title: "原神地图",
-        desc: "空荧酒馆制作的原神全资源攻略地图",
-        link: "https://yuanshen.site/docs/",
-      },
-      {
-        icon: "https://yuque-vitepress.vercel.app/favicon.ico",
-        title: "Yuque-VitePress",
-        desc: "文档站点解决方案",
-        link: "https://yuque-vitepress.vercel.app/",
-      },
-      {
-        icon: "https://vitepress-theme-bluearchive.vercel.app/favicon.ico",
-        title: "bluearchive",
-        desc: "Blue Archive主题博客，基于VitePress",
-        link: "https://vitepress-theme-bluearchive.vercel.app/",
-      },
-      {
-        icon: "https://vitepress-sidebar.cdget.com/logo-32.png",
-        title: "VitePress 侧边栏",
-        desc: "强大的自动侧边栏生成器",
-        link: "https://vitepress-sidebar.cdget.com/",
-      },
-      {
-        icon: "https://github.com/flaribbit/vitepress-theme-sakura/raw/master/preview.webp",
-        title: "vitepress-theme-sakura",
-        desc: "可爱又轻量的二次元博客主题！",
-        link: "https://github.com/flaribbit/vitepress-theme-sakura",
-      },
-      {
-        icon: "https://s.nmxc.ltd/sakurairo_vision/@2.7/series/login_logo.webp",
-        title: "Theme-Sakurairo",
-        desc: " WordPress主题",
-        link: "https://docs.fuukei.org/demo/",
-      },
-      {
-        icon: "https://vitepress-demo.fe-dev.cn/logo.svg",
-        title: "Vitepress Demo",
-        desc: "实时预览你的DEM",
-        link: "https://vitepress-demo.fe-dev.cn/",
-      },
-      {
-        icon: "https://avatars.githubusercontent.com/u/82024018?s=48&v=4",
-        title: "vite-plugin-vitepress",
-        desc: "自动侧边栏插件",
-        link: "https://github.com/QC2168/vite-plugin-vitepress-auto-sidebar",
-      },
-      {
-        icon: "https://cdn.upyun.sugarat.top/avatar/blog/zlyst-avatar.jpeg-wh100",
-        title: "粥里有勺糖",
-        desc: "你的指尖,拥有改变世界的力量",
-        link: "https://sugarat.top/",
-      },
-      {
-        icon: "https://v6.51.la//favicon.ico",
-        title: "",
-        desc: "为 VitePress 站点引入 51.la 的网站数据统计能力。",
-        link: "https://github.com/ATQQ/sugar-blog/tree/master/packages/vitepress-plugin-51la",
-      },
-      {
-        icon: "",
-        title: "",
-        desc: "",
-        link: "",
-      },
-    ],
+    title: VitepressData.title,
+    items: VitepressData.items
   },
   {
     title: "常用工具",

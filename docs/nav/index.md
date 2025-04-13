@@ -1,18 +1,23 @@
 ---
-date: 2025-03-25 10:21:52
-title: index
+title: 网站导航
+date: 2025-03-25 18:21:52
 layout: doc
 layoutClass: m-nav-layout
-sidebar: false
-themeSize: large
+sidebar: true
+themeSize: wide
 themeStyle: el-yellow
 prev: false
 next: false
 categories:
   - nav
 permalink: /pages/5dc884
-article: false # 不显示在首页的文章列表和归档页
+article: false
+outline:
+  - 2
+  - 3
+  - 4
 ---
+
 
 <style src="/.vitepress/theme/style/nav.scss"></style>
 

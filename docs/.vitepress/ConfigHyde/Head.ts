@@ -48,16 +48,16 @@ export const HeadData = [
     },
   ],
   // 51.la数据挂件
-  [
-    "script",
-    {
-      id: "LA-DATA-WIDGET",
-      crossorigin: "anonymous",
-      charset: "UTF-8",
-      src: "https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=#1690FF,#333333,#999999,#333333,#FFFFFF,#1690FF,14&w=210&h=226&col=true&f=14",
-      defer: "defer",
-    },
-  ],
+  // [
+  //   "script",
+  //   {
+  //     id: "LA-DATA-WIDGET",
+  //     crossorigin: "anonymous",
+  //     charset: "UTF-8",
+  //     src: "https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=#1690FF,#333333,#999999,#333333,#FFFFFF,#1690FF,14&w=210&h=226&col=true&f=14",
+  //     defer: "defer",
+  //   },
+  // ],
   // 鼠标爆炸效果
   [
     'script',

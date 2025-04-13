@@ -16,13 +16,8 @@ export const FooterInfo = {
     link: "https://beian.mps.gov.cn/",
   },
   customHtml: `
-  <div style="display: flex; align-items: center; gap: 8px;">
     <span> 小破站已运行了 <span id="footer-runtime">
     </span>
-    </span>
     <span>|</span>
-    <br>
-      <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=0&f=12&display=0,0,1,1,1,1,1,1"></script>
-  </div>
-  `, // 搭配 ./theme/helper/useFooterRuntime.ts 使用才有效果
+      <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=0&f=12&display=0,0,1,1,1,1,1,1"></script>`, // 搭配 ./theme/helper/useFooterRuntime.ts 使用才有效果
 };

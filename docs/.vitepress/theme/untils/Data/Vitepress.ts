@@ -1,0 +1,175 @@
+import type { NavData } from "../types.ts";
+
+export const VitepressData = {
+  title: "Vitepress",
+  items: [
+    {
+      icon: "https://cdn.chenyingshuang.cn/index/labixiaoxin.png",
+      title: "野宁新之助",
+      desc: "说说我的生活",
+      link: "https://www.sanghangning.cn/",
+    },
+    {
+      icon: "https://vitepress.yiov.top/logo.png",
+      title: "VitePress",
+      desc: "VitePress 中文网",
+      link: "https://vitepress.yiov.top/",
+    },
+    {
+      icon: "https://yuanshen.site/docs/imgs/common/logo/logo_256.png",
+      title: "原神地图",
+      desc: "空荧酒馆制作的原神全资源攻略地图",
+      link: "https://yuanshen.site/docs/",
+    },
+    {
+      icon: "https://yuque-vitepress.vercel.app/favicon.ico",
+      title: "Yuque-VitePress",
+      desc: "文档站点解决方案",
+      link: "https://yuque-vitepress.vercel.app/",
+    },
+    {
+      icon: "https://vitepress-theme-bluearchive.vercel.app/favicon.ico",
+      title: "bluearchive",
+      desc: "Blue Archive主题博客，基于VitePress",
+      link: "https://vitepress-theme-bluearchive.vercel.app/",
+    },
+    {
+      icon: "https://vitepress-sidebar.cdget.com/logo-32.png",
+      title: "VitePress 侧边栏",
+      desc: "强大的自动侧边栏生成器",
+      link: "https://vitepress-sidebar.cdget.com/",
+    },
+    {
+      icon: "https://github.com/flaribbit/vitepress-theme-sakura/raw/master/preview.webp",
+      title: "vitepress-theme-sakura",
+      desc: "可爱又轻量的二次元博客主题！",
+      link: "https://github.com/flaribbit/vitepress-theme-sakura",
+    },
+    {
+      icon: "https://s.nmxc.ltd/sakurairo_vision/@2.7/series/login_logo.webp",
+      title: "Theme-Sakurairo",
+      desc: " WordPress主题",
+      link: "https://docs.fuukei.org/demo/",
+    },
+    {
+      icon: "https://vitepress-demo.fe-dev.cn/logo.svg",
+      title: "Vitepress Demo",
+      desc: "实时预览你的DEM",
+      link: "https://vitepress-demo.fe-dev.cn/",
+    },
+    {
+      icon: "https://avatars.githubusercontent.com/u/82024018?s=48&v=4",
+      title: "vite-plugin-vitepress",
+      desc: "自动侧边栏插件",
+      link: "https://github.com/QC2168/vite-plugin-vitepress-auto-sidebar",
+    },
+    {
+      icon: "https://cdn.upyun.sugarat.top/avatar/blog/zlyst-avatar.jpeg-wh100",
+      title: "粥里有勺糖",
+      desc: "你的指尖,拥有改变世界的力量",
+      link: "https://sugarat.top/",
+    },
+    {
+      icon: "https://v6.51.la//favicon.ico",
+      title: "",
+      desc: "为 VitePress 站点引入 51.la 的网站数据统计能力。",
+      link: "https://github.com/ATQQ/sugar-blog/tree/master/packages/vitepress-plugin-51la",
+    },
+    {
+      icon: "https://api.xasome.com/xa.svg",
+      title: "xa小破站-api",
+      desc: "提供各种API接口列表",
+      link: "https://api.xasome.com/",
+    },
+    {
+      icon: "https://elog.1874.cool/logo.png",
+      title: "Elog",
+      desc: "开放式跨平台博客解决方案",
+      link: "https://elog.1874.cool/",
+    },
+    {
+      icon: "https://documate.site/site-logo-light.svg",
+      title: "documate",
+      desc: "将 AI 聊天对话嵌入到您的文档网站，以根据您自己的内容回答用户的问题。",
+      link: "https://documate.site/",
+    },
+    {
+      icon: "https://nolebase.ayaka.io/logo.svg",
+      title: "nolebase",
+      desc: "记录回忆，知识和畅想的地方",
+      link: "https://nolebase.ayaka.io/zh-CN/",
+    },
+    {
+      icon: "https://lumen.theojs.cn/Logo.webp",
+      title: "Lumen",
+      desc: "集成 Vue 功能组件和主题美化的 VitePress 插件",
+      link: "https://lumen.theojs.cn/",
+    },
+    {
+      icon: "https://blog.charles7c.top/logo.png",
+      title: "查尔斯的知识库",
+      desc: "专注 & 洞察 & 分享",
+      link: "https://blog.charles7c.top/",
+    },
+    {
+      icon: "https://dddssw.github.io/blog/images.jfif",
+      title: "dddssw'blog",
+      desc: "由 Vitepress，Vue，Gsap，Canvas 提供支持，集成 Algolia 等......",
+      link: "https://dddssw.github.io/blog/",
+    },
+    {
+      icon: "https://www.appbeebee.com/logo.png",
+      title: "APP比比",
+      desc: "基于 vitepress+vercel搭建的前端资源分享博客主题，适合搭建vitepress blog主题",
+      link: "https://www.appbeebee.com/",
+    },
+    {
+      icon: "https://example.zbwer.work/logo.png",
+      title: "easy-vitepress-blog",
+      desc: "轻松构建你的个人博客",
+      link: "https://example.zbwer.work/",
+    },
+    {
+      icon: "https://vitepress.open17.vip/vitepress-logo.png",
+      title: "Vitepress Open17",
+      desc: "将 Markdown 变成美观的博客，只需几分钟",
+      link: "https://vitepress.open17.vip/",
+    },
+    {
+      icon: "https://ftyszyx.github.io/feishu-vitepress/logo.png",
+      title: "星辰起点",
+      desc: "用飞书写博客,并自动部署",
+      link: "https://ftyszyx.github.io/feishu-vitepress/",
+    },
+    {
+      icon: "https://avatars.githubusercontent.com/u/58973207?s=48&v=4",
+      title: "vite-plugin-vitepress-auto-nav",
+      desc: "自动生成vitepress的nav与sidebar",
+      link: "https://github.com/Xaviw/vite-plugin-vitepress-auto-nav",
+    },
+    {
+      icon: "https://avatars.githubusercontent.com/u/23462440?s=48&v=4",
+      title: "vitepress-plugin-lightbox",
+      desc: "VitePress 插件增加了对在灯箱中查看图像的支持。",
+      link: "https://github.com/BadgerHobbs/vitepress-plugin-lightbox",
+    },
+    {
+      icon: "https://avatars.githubusercontent.com/u/105111493?s=48&v=44",
+      title: "markdown-it-link-to-card",
+      desc: "一个markdown-it插件，用于将页面链接转换为链接卡（其中包含有关链接的简要信息）。 插件增加了对在灯箱中查看图像的支持。",
+      link: "https://github.com/luckrya/markdown-it-link-to-card?tab=readme-ov-file",
+    },
+    {
+      icon: "https://avatars.githubusercontent.com/u/61051874?s=48&v=4",
+      title: "vitepress-auto-nav-sidebar",
+      desc: "自动生成vitepress导航栏和侧边栏配置",
+      link: "https://github.com/Merlin218/vitepress-auto-nav-sidebar",
+    },
+    {
+      icon: "https://ziuchen.github.io/logo.png",
+      title: "ZiuChen",
+      desc: "无限进步.",
+      link: "https://ziuchen.github.io/",
+    },
+  ]
+} as NavData;

@@ -1,3 +1,4 @@
+// 茂茂导航样式
 .m-nav-layout {
   /* 覆盖全局的 vp-layout-max-width（仅当前页面使用） */
   --vp-layout-max-width: 1660px;
@@ -43,9 +44,14 @@
   --m-nav-box-gap: 12px;
 }
 
+// 因为安装 medium-zoom 的时候引入了一个样式，导致手机端导航被这个图片样式给遮盖了,那么我们直接在样式中禁用即可
 .m-nav-layout {
   .medium-zoom-overlay,
   .medium-zoom-image {
     z-index: 0 !important;
   }
+}
+
+.tk-segment-nav .VPContent:not(.is-home) .VPDoc:not(.has-sidebar) .container>.content {
+  max-width: 1480px ;
 }
