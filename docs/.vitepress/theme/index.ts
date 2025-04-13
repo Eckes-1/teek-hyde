@@ -58,9 +58,9 @@ export default {
   Layout: defineComponent({
     name: "LayoutProvider",
     setup() {
-      const { frontmatter, isDark, page } = useData();
       const { start, stop } = useFooterRuntime();
       const props: Record<string, any> = {};
+      const { frontmatter, isDark, page } = useData();
 
       // 添加自定义 class 逻辑
       if (frontmatter.value?.layoutClass) {
@@ -96,7 +96,7 @@ export default {
       );
 
       return () =>
-        h(TeekLayoutProvider, null, {
+        h(TeekLayoutProvider, props, {
           // "layout-top": () => h(notice), // 使用layout-top插槽
           confetti: () => h(confetti), // 使用confetti插槽
           "teek-notice-content": () => h(NoticeContent),
