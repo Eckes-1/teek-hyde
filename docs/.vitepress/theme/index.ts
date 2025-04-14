@@ -39,6 +39,7 @@ import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
 // import Layout from "./components/MyLayout.vue";
 import DefaultTheme from "vitepress/theme";
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
+import NotFound from "./components/NotFound.vue"; // 导入404组件
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
 
 // 评论组件
@@ -101,6 +102,10 @@ export default {
           confetti: () => h(confetti), // 使用confetti插槽
           "teek-notice-content": () => h(NoticeContent),
           "teek-home-banner-feature-after": () => h(BannerImgArrow),
+          // 自定义文档底部
+          // "doc-after": () => h(siteFooter),
+          // 自定义404页面内容
+          "not-found": () => h(NotFound),
           // "teek-home-before": () => h("div", null, "teek-home-before"),
           // "teek-home-after": () => h("div", null, "teek-home-after"),
           // "teek-home-banner-before": () => h("div", null, "teek-home-banner-before"),

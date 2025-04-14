@@ -218,7 +218,7 @@ export default defineConfig({
       La51Plugin({
         id: "3LmDV843SgGyC2Zp",
         ck: "3LmDV843SgGyC2Zp",
-        apply: "all",
+        apply: "build",
       }),
     ],
     server: {
