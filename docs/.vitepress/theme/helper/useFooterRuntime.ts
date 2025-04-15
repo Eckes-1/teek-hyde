@@ -16,7 +16,7 @@ export const useFooterRuntime = () => {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    runtimeElement.innerHTML = `<span style="color: #FFA500">${days}</span> 天 <span style="color: #1DBF97">${hours}</span> 时 <span style="color: #8A2BE2">${minutes}</span> 分 <span style="color: #007EC6">${seconds}</span> 秒`;
+    runtimeElement.innerHTML = `<span style="color: #FFA500">${days}</span> 天 <span style="color: #1DBF97">${hours}</span> 时 <span style="color: #8A2BE2">${minutes}</span> 分 <span style="color: #007EC6">${seconds}</span> 秒(●'◡'●)`;
   };
 
   const start = () => {

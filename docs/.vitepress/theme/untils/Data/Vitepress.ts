@@ -171,5 +171,17 @@ export const VitepressData = {
       desc: "无限进步.",
       link: "https://ziuchen.github.io/",
     },
-  ]
+    {
+      icon: "https://valaxy.site/assets/valaxy-logo.DPa8-qbg.png",
+      title: "VALAXY",
+      desc: "下一代静态博客框架",
+      link: "https://valaxy.site/",
+    },
+    {
+      icon: "https://www.yunyoujun.cn/images/avatar.jpg",
+      title: "云游君",
+      desc: "自定义博客名称，基于VALAXY",
+      link: "https://yun.valaxy.site/",
+    },
+  ],
 } as NavData;
