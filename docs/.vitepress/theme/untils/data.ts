@@ -3,7 +3,7 @@ import { VitepressData } from "./Data/Vitepress";
 export const NAV_DATA: NavData[] = [
   {
     title: VitepressData.title,
-    items: VitepressData.items
+    items: VitepressData.items,
   },
   {
     title: "常用工具",
@@ -300,6 +300,12 @@ export const NAV_DATA: NavData[] = [
         title: "TailwindCSS 中文网",
         desc: "一个功能类优先的 CSS 框架",
         link: "https://www.tailwindcss.cn",
+      },
+      {
+        icon: "https://glassgenerator.netlify.app/assets/images/favicon.png",
+        title: "Glass Morphism",
+        desc: "在线制作 CSS 玻璃风格神器",
+        link: "htthttps://glassgenerator.netlify.app/",
       },
     ],
   },

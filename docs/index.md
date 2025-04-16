@@ -37,7 +37,10 @@ hero:
       text: 配置
       link: /reference/config
   image:
-    src: /teek-logo-large.png
+    # src: /teek-logo-large.png
+    # alt: Teek
+    light: /teek-logo-large.png
+    dark: /teek-logo-large.png
     alt: Teek
 
 features:

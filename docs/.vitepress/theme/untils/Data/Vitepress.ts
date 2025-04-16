@@ -4,7 +4,7 @@ export const VitepressData = {
   title: "Vitepress",
   items: [
     {
-      icon: "https://cdn.chenyingshuang.cn/index/labixiaoxin.png",
+      icon: "https://www.sanghangning.cn/favicon.ico",
       title: "野宁新之助",
       desc: "说说我的生活",
       link: "https://www.sanghangning.cn/",
@@ -70,7 +70,7 @@ export const VitepressData = {
       link: "https://sugarat.top/",
     },
     {
-      icon: "https://v6.51.la//favicon.ico",
+      icon: "https://v6.51.la/favicon.ico",
       title: "",
       desc: "为 VitePress 站点引入 51.la 的网站数据统计能力。",
       link: "https://github.com/ATQQ/sugar-blog/tree/master/packages/vitepress-plugin-51la",
@@ -172,7 +172,7 @@ export const VitepressData = {
       link: "https://ziuchen.github.io/",
     },
     {
-      icon: "https://valaxy.site/assets/valaxy-logo.DPa8-qbg.png",
+      icon: "https://valaxy.site/favicon.svg",
       title: "VALAXY",
       desc: "下一代静态博客框架",
       link: "https://valaxy.site/",
@@ -182,6 +182,18 @@ export const VitepressData = {
       title: "云游君",
       desc: "自定义博客名称，基于VALAXY",
       link: "https://yun.valaxy.site/",
+    },
+    {
+      icon: "https://zhouyu2156.cn/rabbit.svg",
+      title: "极客兔 - 笔记站",
+      desc: "一心创作优质内容",
+      link: "https://zhouyu2156.cn/",
+    },
+    {
+      avatar: "https://cpython666.github.io/logo_super.svg",
+      name: "星梦启航",
+      desc: "星梦启航为万万同行者少走弯路,助力千万逐梦者向梦启航~ 漫漫星程,你我同行！",
+      link: "https://cpython666.github.io/",
     },
   ],
 } as NavData;

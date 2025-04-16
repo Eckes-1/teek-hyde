@@ -47,7 +47,7 @@ export const Nav = [
     text: "🏙️生活娱乐",
     items: [
       { text: "相册", link: "https://photo.seasir.top/" },
-      { text: "音乐", link: "/go-cata/" },
+      { text: "音乐", link: "https://www.zhouyu2156.cn:5173/music" },
       { text: "电影", link: "/go-cata/" },
     ],
   },
