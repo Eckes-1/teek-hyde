@@ -34,6 +34,7 @@ export const HeadData = [
     {
       type: "text/javascript",
       src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js",
+      defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
     },
   ], // 插入自定义脚本
   [
@@ -60,23 +61,5 @@ export const HeadData = [
     "script",
     {},
     `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
-  ],
-  // 鼠标爆炸效果
-  [
-    "script",
-    {
-      type: "text/javascript",
-      src: "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/animejs/3.2.1/anime.min.js", //字节cdn
-      id: "anime.min.js-js",
-      defer: "defer",
-    },
-  ],
-  [
-    "script",
-    {
-      // src: "https://cpython666.github.io/js/clickjs/fireworks.js",
-      src: "https://live2d-hyde.netlify.app/Clickfireworks.js",
-      defer: "defer",
-    },
   ],
 ];

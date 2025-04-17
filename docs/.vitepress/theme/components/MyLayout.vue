@@ -1,16 +1,14 @@
 <template>
-  <Layout>
-    <template #layout-top>
-      <MouseFollower />
-      <MouseClick />
+  <Teek.Layout>
+    <template #nav-bar-content-after>
+      <MusicPlayer />
     </template>
-  </Layout>
+  </Teek.Layout>
 </template>
 
 <script lang="ts" setup>
-import MouseClick from "./MouseClick.vue";
-import MouseFollower from "./MouseFollower.vue";
 import Teek from "vitepress-theme-teek";
+import MusicPlayer from './MusicPlayer.vue'
 
 const Layout = Teek.Layout;
 </script>

@@ -195,5 +195,17 @@ export const VitepressData = {
       desc: "星梦启航为万万同行者少走弯路,助力千万逐梦者向梦启航~ 漫漫星程,你我同行！",
       link: "https://cpython666.github.io/",
     },
+    {
+      avatar: "https://oml2d.hacxy.cn/logo-white.png",
+      name: "OhMyLive2D",
+      desc: "高可自定义且开箱即用的 Live2D For Web 组件, 快速为您的个人网站加入Live2D看板娘",
+      link: "https://oml2d.hacxy.cn/",
+    },
+    {
+      avatar: "https://s.panlai.com/images/favicon.ico",
+      name: "壁纸汇",
+      desc: "免费壁纸_电脑壁纸_手机壁纸_4K壁纸_8K高清壁纸图片免费下载",
+      link: "https://www.bizhihui.com/",
+    },
   ],
 } as NavData;
