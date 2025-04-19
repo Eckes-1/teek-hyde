@@ -2,9 +2,7 @@
 @font-face {
   font-family: "筑紫A丸";
   src:
-    url("/fonts/TsukuARdGothicStd-Bold.ttf") format("truetype"),
-    url("/fonts/TsukuARdGothicStd-Bold.ttf") format("woff2"),
-    url("/fonts/TsukuARdGothicStd-Bold.ttf") format("woff");
+    url("/fonts/TsukuARdGothicStd-Bold.ttf") format("truetype");
   font-weight: 300; //定义字体的粗细程度，300 表示相对较细的字体
   font-style: normal; //定义字体的样式，normal 表示正常样式，无倾斜效果
   font-display: swap; //字体显示策略，swap 表示在字体加载完成前使用系统默认字体，加载完成后替换为自定义字体

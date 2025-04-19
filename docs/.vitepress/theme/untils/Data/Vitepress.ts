@@ -207,5 +207,29 @@ export const VitepressData = {
       desc: "免费壁纸_电脑壁纸_手机壁纸_4K壁纸_8K高清壁纸图片免费下载",
       link: "https://www.bizhihui.com/",
     },
+    {
+      avatar: "https://avatars.githubusercontent.com/u/42485491?s=48&v=4",
+      name: "vitepress-plugin-pagefind",
+      desc: "离线搜索插件",
+      link: "https://github.com/ATQQ/sugar-blog/tree/master/packages/vitepress-plugin-pagefind",
+    },
+    {
+      avatar: "https://avatars.githubusercontent.com/u/12377432?v=4&size=40",
+      name: "vitepress-plugin-search",
+      desc: "为您的文档站点提供本地搜索",
+      link: "https://github.com/emersonbottero/vitepress-plugin-search",
+    },
+    {
+      avatar: "https://github.com/luciozhang/vitepress-plugin-autobar",
+      name: "vitepress-plugin-autobar",
+      desc: "基于文件和目录结构的Vitepress生成器侧边栏。",
+      link: "https://github.com/luciozhang/vitepress-plugin-autobar",
+    },
+    {
+      avatar: "https://vp.yuy1n.io/logo.svg",
+      name: "vitepress 代码组图标",
+      desc: "增强 VitePress 的代码块功能。",
+      link: "https://vp.yuy1n.io/",
+    },
   ],
 } as NavData;

@@ -21,33 +21,26 @@ export const HeadData = [
   ],
   ["meta", { name: "keywords", description }],
   ["link", { rel: "icon", href: "/favicon.ico", type: "image/png" }],
-  [
-    "link",
-    {
-      rel: "stylesheet",
-      href: "//at.alicdn.com/t/font_2989306_w303erbip9.css",
-    },
-  ], // 阿里在线矢量库
   //免费的音乐播放器
-  [
-    "script",
-    {
-      type: "text/javascript",
-      src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js",
-      defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
-    },
-  ], // 插入自定义脚本
-  [
-    "script",
-    {
-      type: "text/javascript",
-      id: "myhk",
-      src: "https://myhkw.cn/api/player/174131850675",
-      key: "174131850675",
-      m: "1",
-      defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
-    },
-  ],
+  // [
+  //   "script",
+  //   {
+  //     type: "text/javascript",
+  //     src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js",
+  //     defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
+  //   },
+  // ], // 插入自定义脚本
+  // [
+  //   "script",
+  //   {
+  //     type: "text/javascript",
+  //     id: "myhk",
+  //     src: "https://myhkw.cn/api/player/174131850675",
+  //     key: "174131850675",
+  //     m: "",
+  //     defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
+  //   },
+  // ],
   // 51.la数据挂件
   [
     "script",

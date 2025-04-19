@@ -2,6 +2,7 @@
 import Teek, { TkAvatar, teekConfigSymbol, useNamespace } from "vitepress-theme-teek";
 import { provide, ref } from "vue";
 import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
+import MusicPlayer from './MusicPlayer.vue'
 
 const ns = useNamespace("layout-provider");
 
@@ -28,6 +29,8 @@ const handleSwitch = () => {
                     <span class="name">{{ current }}</span>
                 </TkAvatar>
             </div>
+
+            <MusicPlayer />
         </template>
         <!-- 不添加下面影响公告样式 -->
         <template v-for="(_, name) in $slots" :key="name" #[name]>

@@ -42,7 +42,7 @@ const contactMe = () => {
 
         <nav>
             <div class="menu">
-                <p class="website_name"><a href="https://haiyongcsdn.gitee.io/">LOGO</a></p>
+                <p class="website_name"><a href="https://teek.seasir.top/">首页</a></p>
                 <div class="menu_links">
                     <a href="https://juejin.cn/post/7474038290216779788?searchId=20250414011044ECD152E18DDFB55D0E97"
                         class="link">自定义404教程</a>
@@ -113,7 +113,6 @@ const contactMe = () => {
 </template>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,600,700,800,900|Barlow:300,400,500,600,700,800,900&display=swap");
 
 .about {
     position: fixed;

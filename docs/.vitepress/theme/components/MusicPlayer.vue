@@ -2,6 +2,8 @@
 // import '../../lib/iconfont/iconfont';    // vitepress 基于 nodejs 的项目，无法引入需要window对象的模块
 
 import { onMounted, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import 'element-plus/dist/index.css'
 import PauseMusicController from './PauseMusicController.vue'
 import PlayingMusicController from './PlayingMusicController.vue'
 /**
@@ -9,26 +11,24 @@ import PlayingMusicController from './PlayingMusicController.vue'
  * 音乐播放器
  */
 const musics = [
-  '游子梦-纯音乐.mp3',
-  '离别开出花.mp3',
-  '江语晨-最后一页.mp3',
-  '虎二-窗.mp3',
-  '不甘.mp3',
-  '忘了.mp3',
-  '下个路口见.mp3',
-  '回不去的从前-以南兮.mp3',
-  '游子梦.mp3',
-  '老鼠MM.mp3',
-  '虞兮叹.mp3',
-  '卜卦dj.mp3',
-  '不变的音乐-王绎龙.mp3',
-  '老人与海dj.mp3',
-  '面具dj.mp3',
-  'Everytime-we-touch-dj.mp3',
-  'Stronger.mp3',
+  '周杰伦-搁浅.mp3',
+  '林俊杰-不潮不用花钱.mp3',
+  '林俊杰-可惜没如果.mp3',
+  '林俊杰-美人鱼.mp3',
+  '林俊杰-修炼爱情.mp3',
+  '周杰伦-安静.mp3',
+  '周杰伦-不能说的秘密.mp3',
+  '周杰伦-彩虹.mp3',
+  '周杰伦-断了的弦.mp3',
+  '周杰伦-搁浅.mp3',
+  '周杰伦-轨迹.mp3',
+  '周杰伦-回到过去.mp3',
+  '周杰伦-借口.mp3',
+  '周杰伦-晴天.mp3',
+  '周杰伦-退后.mp3',
 ]
 // 当前音乐
-const currentMusic = ref('/music/游子梦-纯音乐.mp3')
+const currentMusic = ref('/music/周杰伦-搁浅.mp3')
 // 播放器元素
 const audio = ref<HTMLAudioElement | null>()
 // 是否播放音乐: 默认: false
@@ -36,14 +36,19 @@ const isPlayed = ref(false)
 // 播放音乐的随机数字
 let random = ref(0)
 // 开一个定时器，什么时候需要销毁播放器可以直接清除该查询定时器
-let music_palyer_timer = ref<NodeJS.Timeout | null>()
-
+let music_palyer_timer = ref<ReturnType<typeof setInterval> | null>()
 const playMusic = () => {
   /**
    * 浏览器为什么不能直接播放音乐参考博客：
    * https://blog.csdn.net/s18813688772/article/details/121103802
    */
   isPlayed.value = !isPlayed.value
+  const musicName = currentMusic.value.split('/').pop()?.replace(/\.mp3$/, '') ?? '未知歌曲'
+  ElMessage({
+    message: isPlayed.value ? `正在播放: ${musicName}` : `已暂停: ${musicName}`,
+    type: isPlayed.value ? 'success' : 'warning',
+    duration: 2000
+  })
   console.log('播放状态: ', isPlayed.value ? '播放' : '不播放')
 
   if (isPlayed.value) {
@@ -52,6 +57,10 @@ const playMusic = () => {
   } else {
     // 如果是暂停状态，则暂停音乐
     audio.value?.pause()
+
+    const handleLoadError = () => {
+      ElMessage.error('音乐加载失败，请重试')
+    }
   }
 }
 const generateRandom = () => {
