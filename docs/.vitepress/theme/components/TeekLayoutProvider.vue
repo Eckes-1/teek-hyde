@@ -2,9 +2,14 @@
 import Teek, { TkAvatar, teekConfigSymbol, useNamespace } from "vitepress-theme-teek";
 import { provide, ref } from "vue";
 import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
+// @ts-ignore
 import MusicPlayer from './MusicPlayer.vue'
+import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘
+import { useTitleChange } from "./titleChange" //导入动态标题
 
 const ns = useNamespace("layout-provider");
+
+useTitleChange();//动态标题函数
 
 // 默认博客风
 const current = ref("B");
@@ -37,6 +42,10 @@ const handleSwitch = () => {
             <slot :name="name" />
         </template>
         <!-- 不添加上面面影响公告样式 -->
+
+        <template #layout-top>
+            <OhMyLive2D />
+        </template>
     </Teek.Layout>
 </template>
 

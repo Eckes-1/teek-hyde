@@ -28,7 +28,7 @@ export const FriendLink = {
     {
       avatar: "https://sinc.us.kg/favicon.ico",
       name: "凿壁偷光不算偷",
-      desc: "",
+      desc: "tk 道友",
       link: "https://sinc.us.kg/",
     },
     {
@@ -36,6 +36,12 @@ export const FriendLink = {
       name: "极客兔 - 笔记站",
       desc: "一心创作优质内容",
       link: "https://zhouyu2156.github.io/",
+    },
+    {
+      avatar: "https://pic1.imgdb.cn/item/6804b1be58cb8da5c8b8ffa0.jpg ",
+      name: "兔白白",
+      desc: "牛马",
+      link: "https://ydbsq123.top/",
     },
   ],
 };

@@ -626,6 +626,12 @@ export const NAV_DATA: NavData[] = [
         // desc: '',
         link: "https://www.pixiv.net",
       },
+      {
+        icon: "http://wan55.cn/favicon.ico",
+        title: "好玩的代码大全",
+        desc: '好玩的代码大全',
+        link: "http://wan55.cn/wan19#1845",
+      },
     ],
   },
 ];

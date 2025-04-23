@@ -1,15 +1,25 @@
 /* 定义自定义中文字体 */
 @font-face {
-  font-family: "筑紫A丸";
-  src:
+  font-family: "筑紫A丸-子集";
+  src: 
+    url("/fonts/TsukuARdGothicStd-Bold.woff2") format("woff2"),
     url("/fonts/TsukuARdGothicStd-Bold.ttf") format("truetype");
-  font-weight: 300; //定义字体的粗细程度，300 表示相对较细的字体
-  font-style: normal; //定义字体的样式，normal 表示正常样式，无倾斜效果
-  font-display: swap; //字体显示策略，swap 表示在字体加载完成前使用系统默认字体，加载完成后替换为自定义字体
+  font-weight: 700; /* 与实际字体匹配 */
+  font-display: swap;
 }
 
 /* 应用字体 */
 :root {
-  --vp-font-family-base: "筑紫A丸", "筑紫A丸", sans-serif; /* base：影响正文、标题等文本。 */
-  --vp-font-family-mono: "JetBrains Mono", "Cascadia Mono", "Not Sans SC", monospace; /* mono：影响代码块的等宽字体。 */
+  --vp-font-family-base: 
+    "筑紫A丸-子集", 
+    "Hiragino Sans GB", 
+    "Microsoft YaHei", 
+    system-ui,
+    sans-serif;
+
+    --vp-font-family-mono: 
+    "JetBrains Mono", 
+    "Cascadia Mono", 
+    "Not Sans SC", 
+    monospace; /* mono：影响代码块的等宽字体。 */
 }

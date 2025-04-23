@@ -21,6 +21,23 @@ export const HeadData = [
   ],
   ["meta", { name: "keywords", description }],
   ["link", { rel: "icon", href: "/favicon.ico", type: "image/png" }],
+  // 阿里在线矢量库
+  [
+    "link",
+    {
+      rel: "stylesheet",
+      href: "//at.alicdn.com/t/font_2989306_w303erbip9.css",
+      defer: "defer",
+    },
+  ],
+  [
+    // 阿里图标库symbol 引用
+    "script",
+    {
+      src: "https://at.alicdn.com/t/c/font_4899452_xj7acblxpxj.js",
+      defer: "defer",
+    },
+  ],
   //免费的音乐播放器
   // [
   //   "script",

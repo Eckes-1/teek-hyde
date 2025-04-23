@@ -231,5 +231,17 @@ export const VitepressData = {
       desc: "增强 VitePress 的代码块功能。",
       link: "https://vp.yuy1n.io/",
     },
+    {
+      avatar: "https://res.u-tools.cn/website5/assets/logo.png",
+      name: "uTools 是一种高效工作方式",
+      desc: "里面很多插件，比如图床。",
+      link: "https://www.u-tools.cn/index.html",
+    },
+    {
+      avatar: "https://doc.sun-panel.top/images/introduce/main-dark.png",
+      name: "Sun-Panel",
+      desc: "一个NAS、服务器导航面板、简易docker管理器、Homepage、浏览器首页",
+      link: "https://doc.sun-panel.top/zh_cn/",
+    },
   ],
 } as NavData;
