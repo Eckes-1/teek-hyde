@@ -1,51 +1,38 @@
-<template>
-    <div class="title-changer" />
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { ref, onBeforeUnmount } from 'vue'
 import { useEventListener } from '@vueuse/core'
 
-export default defineComponent({
-    props: {
-        hiddenTitle: {
-            type: String,
-            default: 'w(ﾟДﾟ)w 不要走！再看看嘛！'
-        },
-        returnTitle: {
-            type: String,
-            default: '♪(^∇^*)欢迎回来！'
-        }
+const props = defineProps({
+    hiddenTitle: {
+        type: String,
+        default: 'w(ﾟДﾟ)w 不要走！再看看嘛！'
     },
-
-    setup(props) {
-        let originTitle = document.title
-        let titleTimer: ReturnType<typeof setTimeout>
-        let stopListener: () => void
-
-        const handleVisibilityChange = () => {
-            if (document.hidden) {
-                document.title = props.hiddenTitle
-                clearTimeout(titleTimer)
-            } else {
-                document.title = props.returnTitle
-                titleTimer = setTimeout(() => {
-                    document.title = originTitle
-                }, 2000)
-            }
-        }
-
-        stopListener = useEventListener(document, 'visibilitychange', handleVisibilityChange)
-
-        return {
-            originTitle,
-            stopListener
-        }
-    },
-
-    beforeUnmount() {
-        this.stopListener()
-        clearTimeout(this.titleTimer)
+    returnTitle: {
+        type: String,
+        default: '♪(^∇^*)欢迎回来！'
     }
+})
+
+const originTitle = ref(document.title)
+const titleTimer = ref<ReturnType<typeof setTimeout>>()
+const stopListener = ref<() => void>()
+
+const handleVisibilityChange = () => {
+    if (document.hidden) {
+        document.title = props.hiddenTitle
+        clearTimeout(titleTimer.value)
+    } else {
+        document.title = props.returnTitle
+        titleTimer.value = setTimeout(() => {
+            document.title = originTitle.value
+        }, 2000)
+    }
+}
+
+stopListener.value = useEventListener(document, 'visibilitychange', handleVisibilityChange)
+
+onBeforeUnmount(() => {
+    stopListener.value?.()
+    clearTimeout(titleTimer.value)
 })
 </script>

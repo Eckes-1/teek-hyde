@@ -5,7 +5,8 @@ import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
 // @ts-ignore
 import MusicPlayer from './MusicPlayer.vue'
 import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘
-import TitleChanger from "./TitleChange.vue";//导入网页标题变化
+// @ts-ignore
+import TitleChange from "./TitleChange.vue";//导入网页标题变化
 
 const ns = useNamespace("layout-provider");
 
@@ -25,7 +26,7 @@ const handleSwitch = () => {
 
 <template>
     <!--网页标题变化组件  -->
-    <TitleChanger />
+    <TitleChange />
     <Teek.Layout>
         <template #nav-bar-content-after>
             <div :class="ns.b('appearance')">
