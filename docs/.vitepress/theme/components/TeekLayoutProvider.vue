@@ -5,11 +5,9 @@ import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
 // @ts-ignore
 import MusicPlayer from './MusicPlayer.vue'
 import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘
-import { useTitleChange } from "./titleChange" //导入动态标题
+import TitleChanger from "./TitleChange.vue";//导入网页标题变化
 
 const ns = useNamespace("layout-provider");
-
-useTitleChange();//动态标题函数
 
 // 默认博客风
 const current = ref("B");
@@ -26,6 +24,8 @@ const handleSwitch = () => {
 </script>
 
 <template>
+    <!--网页标题变化组件  -->
+    <TitleChanger />
     <Teek.Layout>
         <template #nav-bar-content-after>
             <div :class="ns.b('appearance')">

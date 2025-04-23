@@ -59,17 +59,17 @@ export const HeadData = [
   //   },
   // ],
   // 51.la数据挂件
-  [
-    "script",
-    {
-      charset: "UTF-8",
-      id: "LA_COLLECT",
-      src: "//sdk.51.la/js-sdk-pro.min.js",
-    },
-  ],
-  [
-    "script",
-    {},
-    `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
-  ],
+  // [
+  //   "script",
+  //   {
+  //     charset: "UTF-8",
+  //     id: "LA_COLLECT",
+  //     src: "//sdk.51.la/js-sdk-pro.min.js",
+  //   },
+  // ],
+  // [
+  //   "script",
+  //   {},
+  //   `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
+  // ],
 ];
