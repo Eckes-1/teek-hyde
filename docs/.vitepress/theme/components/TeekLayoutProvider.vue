@@ -4,9 +4,11 @@ import { provide, ref } from "vue";
 import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
 // @ts-ignore
 import MusicPlayer from './MusicPlayer.vue'
-import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘
+import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘组件
 // @ts-ignore
-import TitleChange from "./TitleChange.vue";//导入网页标题变化
+import TitleChange from "./TitleChange.vue" //导入网页标题变化
+// @ts-ignore
+import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
 
 const ns = useNamespace("layout-provider");
 
@@ -45,7 +47,10 @@ const handleSwitch = () => {
         <!-- 不添加上面面影响公告样式 -->
 
         <template #layout-top>
+            <!-- 看板娘组件 -->
             <OhMyLive2D />
+            <!-- 顶部滚动条组件 -->
+            <ScrollProgressBar />
         </template>
     </Teek.Layout>
 </template>

@@ -179,8 +179,8 @@ onMounted(async () => {
                 ], // 提示框内容
                 priority: 10, //优先级，值越大，优先级越高
                 wordTheDay: (wordTheDayData) => {
-                    // 一言
-                    return `${wordTheDayData.hitokoto}    by.${wordTheDayData.from}`;
+                    // return wordTheDayData.hitokoto;  // 一言文本
+                    return `${wordTheDayData.hitokoto}${wordTheDayData.from}`; // 一言+作者来源
                 },
             },
             messageLine: 2, // 提示消息最大显示行数
@@ -286,7 +286,7 @@ onMounted(async () => {
         oml2d.stopTipsIdle(); //停止空闲消息播放器
 
         oml2d.tipsMessage(
-            `欢迎访问Hyde Blog，当前版本:${oml2d.version}`, 5000, 10
+            `欢迎访问Hyde Blog  当前版本:${oml2d.version}`, 5000, 10
         );
     })
 

@@ -35,10 +35,6 @@ import "./style/index.scss"; // 引入.vitepress\theme\style\index.scss全局样
 import "virtual:group-icons.css"; //代码组图标样式
 
 import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
-import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
-import "nprogress-v2/dist/index.css"; // 进度条样式
-// import Layout from "./components/MyLayout.vue";
-import DefaultTheme from "vitepress/theme";
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import NotFound from "./components/NotFound.vue"; // 导入404组件
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
@@ -56,17 +52,6 @@ export default {
     // 注册组件
     app.component("MNavLinks", MNavLinks);
     app.component("confetti", confetti);
-
-    // 非SSR环境下配置路由进度条
-    // @ts-ignore-error
-    if (!import.meta.env.SSR) {
-      NProgress.configure({ showSpinner: false });
-      router.onBeforeRouteChange = () => NProgress.start();
-      router.onAfterRouteChanged = () => {
-        NProgress.done();
-        setTimeout(NProgress.remove, 200); // 双重保障清除进度条
-      };
-    }
   },
   Layout: defineComponent({
     name: "LayoutProvider",
