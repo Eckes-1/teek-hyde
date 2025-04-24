@@ -2,6 +2,20 @@ const description = ["Hd Security 使用文档", "认证框架"].toString();
 
 // 导出head.ts
 export const HeadData = [
+  // 51.la数据挂件
+  [
+    "script",
+    {
+      charset: "UTF-8",
+      id: "LA_COLLECT",
+      src: "//sdk.51.la/js-sdk-pro.min.js",
+    },
+  ],
+  [
+    "script",
+    {},
+    `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
+  ],
   ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   ["meta", { name: "author", content: "Tianke" }],
   [
@@ -57,19 +71,5 @@ export const HeadData = [
   //     m: "",
   //     defer: "defer", // 添加defer属性，确保脚本在DOM加载完成后执行
   //   },
-  // ],
-  // 51.la数据挂件
-  // [
-  //   "script",
-  //   {
-  //     charset: "UTF-8",
-  //     id: "LA_COLLECT",
-  //     src: "//sdk.51.la/js-sdk-pro.min.js",
-  //   },
-  // ],
-  // [
-  //   "script",
-  //   {},
-  //   `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
   // ],
 ];

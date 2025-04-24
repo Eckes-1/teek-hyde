@@ -26,9 +26,6 @@ importers:
       parallax-js:
         specifier: ^3.1.0
         version: 3.1.0
-      vitepress-plugin-51la:
-        specifier: ^0.1.0
-        version: 0.1.0(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
       vue:
         specifier: ^3.5.13
         version: 3.5.13
@@ -1574,11 +1571,6 @@ packages:
   vitepress-markdown-timeline@1.2.2:
     resolution: {integrity: sha512-eDFcvudmTW33pI7XdT+ZeUPvpc4CPXI0LZbsZZ54j36G56AN6qYEBiwZpDHl77E4QvqAIJMc8phXXvm7P/Lc+Q==}
 
-  vitepress-plugin-51la@0.1.0:
-    resolution: {integrity: sha512-jV5w7sgqGFuum70wpIY9hggFio4H1C3+MayeeP/b55Cf+lRiFVNMrQQvWjw7UjT0bO1eiJYq4DiLsxzXt7r+QA==}
-    peerDependencies:
-      vitepress: ^1
-
   vitepress-plugin-auto-frontmatter@1.0.7:
     resolution: {integrity: sha512-vYnzrEtJcHgUgnGq4qboIGdG9eUlYTVXQoZw+fv8RyK/Hfi3Vfky0sIHtPYUAyatGnasK3DgbkgCdI0xYAMuFQ==}
 
@@ -3067,10 +3059,6 @@ snapshots:
   vitepress-markdown-timeline@1.2.2:
     dependencies:
       dayjs: 1.11.13
-
-  vitepress-plugin-51la@0.1.0(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
-    dependencies:
-      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
 
   vitepress-plugin-auto-frontmatter@1.0.7:
     dependencies:

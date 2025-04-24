@@ -12,7 +12,6 @@ import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
 import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
 import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
-import { La51Plugin } from "vitepress-plugin-51la"; // 导入51la插件
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 
@@ -208,12 +207,6 @@ export default defineConfig({
   vite: {
     plugins: [
       groupIconVitePlugin(), //代码组图标
-      // 51La统计插件
-      La51Plugin({
-        id: "3LmDV843SgGyC2Zp",
-        ck: "3LmDV843SgGyC2Zp",
-        apply: "build",
-      }),
     ],
     server: {
       open: true, // 运行后自动打开网页
