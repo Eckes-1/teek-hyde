@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { slugify } from '@mdit-vue/shared'
-
+// @ts-ignore
 import MNavLink from './MNavLink.vue'
 import type { NavLink } from '../untils/types'
 
@@ -22,7 +22,7 @@ const formatTitle = computed(() => {
     <a class="header-anchor" :href="`#${formatTitle}`" aria-hidden="true"></a>
   </h2>
   <div class="m-nav-links">
-    <MNavLink v-for="item in items" :noIcon="noIcon" v-bind="item" />
+    <MNavLink v-for="item in items" :key="item.link" :noIcon="noIcon" v-bind="item" />
   </div>
 </template>
 
