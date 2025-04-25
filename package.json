@@ -26,6 +26,7 @@
     "l2d": "^0.1.1",
     "oh-my-live2d": "^0.19.3",
     "parallax-js": "^3.1.0",
+    "vite-plugin-imagemin": "^0.6.1",
     "vue": "^3.5.13"
   }
 }

@@ -9,11 +9,12 @@ export const HeadData = [
       charset: "UTF-8",
       id: "LA_COLLECT",
       src: "//sdk.51.la/js-sdk-pro.min.js",
+      defer: "defer",
     },
   ],
   [
     "script",
-    {},
+    { defer: "defer" },
     `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
   ],
   ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
@@ -41,7 +42,6 @@ export const HeadData = [
     {
       rel: "stylesheet",
       href: "//at.alicdn.com/t/font_2989306_w303erbip9.css",
-      defer: "defer",
     },
   ],
   [
@@ -49,7 +49,8 @@ export const HeadData = [
     "script",
     {
       src: "https://at.alicdn.com/t/c/font_4899452_xj7acblxpxj.js",
-      defer: "defer",
+      media: "print",
+      onload: "this.media='all'",
     },
   ],
   //免费的音乐播放器

@@ -12,6 +12,9 @@ import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
 import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
 import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
+import viteCompression from "vite-plugin-compression"; //导入压缩插件
+import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
+import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 
@@ -206,14 +209,68 @@ export default defineConfig({
 
   vite: {
     plugins: [
-      groupIconVitePlugin(), //代码组图标
+      groupIconVitePlugin(),
+      viteCompression({
+        threshold: 10240,
+        algorithm: "brotliCompress",
+        ext: ".br",
+      }),
+      viteImagemin({
+        gifsicle: { optimizationLevel: 7 },
+        mozjpeg: { quality: 70 },
+        pngquant: { quality: [0.7, 0.8] },
+        svgo: {
+          plugins: [
+            { name: "removeViewBox" },
+            { name: "removeEmptyAttrs", active: false },
+          ],
+        },
+      }),
     ],
     server: {
       open: true, // 运行后自动打开网页
     },
     build: {
+      rollupOptions: {
+        plugins: [
+          visualizer({
+            filename: "../stats.html",
+            open: true,
+            gzipSize: true,
+            brotliSize: true,
+          }),
+        ],
+        output: {
+          manualChunks: {
+            theme: ["vitepress-theme-teek"],
+            icons: ["@iconify/json"],
+          },
+        },
+      },
       chunkSizeWarningLimit: 1500, // 限制警告的块大小
       assetsInlineLimit: 4096, // 小于 4KB 的字体转为 base64
+      minify: "terser", // 使用 Terser 进行代码压缩
+      terserOptions: {
+        compress: {
+          drop_console: true, // 移除所有 console.* 调用（生产环境建议开启）
+          drop_debugger: true, // 移除 debugger 语句（生产环境必备）
+          pure_funcs: ["console.info"], // 保留 console.info 调用（白名单机制）
+          dead_code: true, // 移除不可达代码（消除死代码）
+          arrows: true, // 将 function 转换为箭头函数（优化代码体积）
+          unused: true, // 移除未使用的变量/函数（需确保不影响程序逻辑）
+          join_vars: true, // 合并连续 var 声明（优化作用域）
+          collapse_vars: true, // 内联单次使用的变量（体积优化）
+        },
+        format: {
+          comments: false, // 移除所有注释（保留版权声明需使用正则表达式）
+          beautify: false, // 禁用代码美化（进一步减小体积）
+          preamble: "/* 项目版本 1.0.0 */", // 文件头部添加版权声明（需遵守 MIT 协议）
+        },
+        mangle: {
+          toplevel: true, // 混淆顶级作用域变量名（保留 class/function 名称）
+          properties: false, // 保留对象属性名（防止破坏 DOM 属性绑定）
+        },
+      },
     },
   },
 });
