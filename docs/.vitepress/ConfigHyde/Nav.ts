@@ -70,7 +70,7 @@ export const Nav = [
       { text: "开源项目", link: "/opensource-project/" },
       {
         text: "网站统计",
-        link: "https://umami.seasir.top/websites/aa519ead-42bb-4f0c-96b5-0ccf630f82be",
+        link: "https://umami.seasir.top/share/rvVBNZWa0sUCN6wG/teek.seasir.top",
       },
     ],
   },

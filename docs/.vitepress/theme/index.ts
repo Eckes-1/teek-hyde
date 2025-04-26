@@ -38,20 +38,16 @@ import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import NotFound from "./components/NotFound.vue"; // 导入404组件
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
-
-// 评论组件
-// import { init } from "@waline/client";
-// import "@waline/client/style";
-// import Giscus from "@giscus/vue";
-// import "artalk/Artalk.css";
-// import Artalk from "artalk";
+import vitepressNprogress from "vitepress-plugin-nprogress"; // 引入路由进度条插件
+import "vitepress-plugin-nprogress/lib/css/index.css"; // 引入nprogress样式
 
 export default {
   extends: Teek,
   async enhanceApp({ app, router }) {
     // 注册组件
-    app.component("MNavLinks", MNavLinks);
-    app.component("confetti", confetti);
+    app.component("MNavLinks", MNavLinks); // 注册导航组件
+    app.component("confetti", confetti); // 注册五彩纸屑组件
+    vitepressNprogress({ app, router }); //调用nprogress插件
   },
   Layout: defineComponent({
     name: "LayoutProvider",
