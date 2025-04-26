@@ -68,6 +68,10 @@ export const Nav = [
       { text: "友链链接", link: "/friends/" },
       { text: "网站导航", link: "/nav/" },
       { text: "开源项目", link: "/opensource-project/" },
+      {
+        text: "网站统计",
+        link: "https://umami.seasir.top/websites/aa519ead-42bb-4f0c-96b5-0ccf630f82be",
+      },
     ],
   },
 ];

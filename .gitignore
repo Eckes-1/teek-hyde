@@ -32,3 +32,5 @@ coverage
 
 #忽略shell文件夹
 Shell
+
+stats.html

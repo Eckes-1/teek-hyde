@@ -53,6 +53,15 @@ export const HeadData = [
       onload: "this.media='all'",
     },
   ],
+  // umami统计
+  [
+    "script",
+    {
+      src: "https://umami.seasir.top/script.js",
+      "data-website-id": "aa519ead-42bb-4f0c-96b5-0ccf630f82be",
+      defer: "defer",
+    },
+  ],
   //免费的音乐播放器
   // [
   //   "script",

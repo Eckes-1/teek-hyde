@@ -243,5 +243,11 @@ export const VitepressData = {
       desc: "一个NAS、服务器导航面板、简易docker管理器、Homepage、浏览器首页",
       link: "https://doc.sun-panel.top/zh_cn/",
     },
+    {
+      avatar: "https://umami.is/favicon.ico",
+      name: "umami",
+      desc: "博客访问流量统计分析工具",
+      link: "https://umami.is/",
+    },
   ],
 } as NavData;
