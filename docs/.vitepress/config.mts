@@ -12,7 +12,6 @@ import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
 import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
 import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
-import viteCompression from "vite-plugin-compression"; //导入压缩插件
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
 
@@ -210,12 +209,6 @@ export default defineConfig({
   vite: {
     plugins: [
       groupIconVitePlugin(),
-      viteCompression({
-        verbose: true, // 是否在控制台中输出压缩结果，默认为 false
-        threshold: 10240, // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
-        algorithm: "gzip", // 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
-        ext: ".gz",
-      }),
       viteImagemin({
         gifsicle: { optimizationLevel: 7 },
         mozjpeg: { quality: 70 },
@@ -242,7 +235,7 @@ export default defineConfig({
         plugins: [
           visualizer({
             filename: "../stats.html",
-            open: true,
+            open: false, // 打包后自动打开报告
             gzipSize: true, // 压缩大小
             brotliSize: true,
           }),

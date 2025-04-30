@@ -249,5 +249,11 @@ export const VitepressData = {
       desc: "博客访问流量统计分析工具",
       link: "https://umami.is/",
     },
+    {
+      avatar: "https://note.weizwz.com/logo.png",
+      name: "唯知笔记",
+      desc: "探索知识的无限可能",
+      link: "https://note.weizwz.com/",
+    },
   ],
 } as NavData;
