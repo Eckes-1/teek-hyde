@@ -3,7 +3,7 @@ export const FriendLink = {
   list: [
     {
       avatar: "https://teek.tianke99.cn/teek-logo-large.png",
-      name: "vitepress-theme-teek",
+      name: "https://vp.teek.top",
       desc: "Teek Vitepress主题",
       link: "https://teek.tianke99.cn/",
     },

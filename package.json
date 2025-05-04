@@ -12,7 +12,7 @@
     "vitepress-markdown-timeline": "^1.2.2",
     "vitepress-plugin-group-icons": "^1.5.2",
     "vitepress-plugin-nprogress": "^0.0.4",
-    "vitepress-theme-teek": "1.0.2"
+    "vitepress-theme-teek": "1.1.0"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",

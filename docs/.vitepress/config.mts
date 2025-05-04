@@ -12,6 +12,7 @@ import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
 import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
 import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
+import { footerGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组配置
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
 
@@ -21,10 +22,13 @@ const teekConfig = defineTeekConfig({
   // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
-  themeSetting: {
-    backTopDone: (TKMessage) => {
-      TKMessage.success("返回顶部成功");
-    },
+  backTopDone: (TkMessage) => TkMessage.success("返回顶部成功"),
+  toCommentDone: (TkMessage) => TkMessage.success("已抵达评论区"),
+  // 新版代码块配置
+  codeBlock: {
+    disabled: false, // 是否禁用新版代码块
+    collapseHeight: 700, // 超出高度后自动折叠，设置 true 则默认折叠，false 则默认不折叠
+    copiedDone: (TkMessage) => TkMessage.success("复制成功！"),
   },
   bgColor: [
     "#e74c3c",
@@ -75,13 +79,15 @@ const teekConfig = defineTeekConfig({
     },
   },
   footerInfo: FooterInfo, // 底部信息配置,
+  // 评论配置
   comment: {
     provider: "twikoo",
-    options: CommentData, // 评论配置
-  }, // 评论配置,
+    options: CommentData,
+  },
+  // 公告
   notice: {
-    enabled: true,
-    position: "center",
+    enabled: true, // 是否启用公告功能
+    position: "center", // 公告弹框出现位置，可选值：top、center、bottom
   },
   vitePlugins: {
     sidebarOption: {
@@ -105,9 +111,11 @@ const teekConfig = defineTeekConfig({
     wordCount: true,
     readingTime: true,
     statistics: {
-      provider: "busuanzi",
-      siteView: true,
-      pageView: true,
+      provider: "busuanzi", //是否开启首页的访问量和排名统计，仅当 provider 存在生效
+      siteView: true, //是否开启文章页的浏览量统计，仅当 provider 存在生效
+      pageView: true, //如果请求不蒜子接口失败，是否重试，类型 boolean
+      tryRequest: true, //重试次数，仅当 tryRequest 为 true 时有效
+      tryCount: 2000, //重试间隔时间，单位毫秒，仅当 tryRequest 为 true 时有效目录链接
       siteIteration: 2000,
       pageIteration: 2000,
     },
@@ -121,13 +129,28 @@ const teekConfig = defineTeekConfig({
     ],
     appendInfo: [{ key: "index", label: "序号", value: "Hyde" }],
   },
-  // 谷歌分析
-  siteAnalytics: {
-    provider: "google",
-    options: {
-      id: "G-YDTSLB09YH",
+  // 站点分析
+  siteAnalytics: [
+    {
+      provider: "google",
+      options: {
+        id: "G-YDTSLB09YH",
+      },
     },
-  },
+    // {
+    //   provider: "baidu",
+    //   options: {
+    //     id: "******",
+    //   },
+    // },
+    // {
+    //   provider: "umami",
+    //   options: {
+    //     id: "******",
+    //     src: "**",
+    //   },
+    // },
+  ],
   // 文章页的样式风格
   pageStyle: "segment-nav",
   // 赞赏在文章下方
@@ -151,6 +174,7 @@ const teekConfig = defineTeekConfig({
   //   },
   // },
   articleShare: { enabled: true }, // 文章分享
+  footerGroup: footerGroup, // 页脚信息组配置
 });
 
 // https://vitepress.dev/reference/site-config
