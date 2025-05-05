@@ -35,5 +35,3 @@ pnpm docs:dev
 - 瀑布相册页
 - 双线链接
 - 归档页添加 commit 图标风格，如：`http://niubin.site/archive.html`
-
-![1746381424622.png](https://tkimg.seasir.top/2025-05/1746381424622_1746381424660.png)

@@ -27,12 +27,6 @@ const handleSwitch = () => {
 </script>
 
 <template>
-    <!-- 看板娘组件 -->
-    <OhMyLive2D />
-    <!--网页标题变化组件  -->
-    <TitleChange />
-    <!-- 顶部滚动条组件 -->
-    <ScrollProgressBar />
     <Teek.Layout>
         <template #nav-bar-content-after>
             <div :class="ns.b('appearance')">
@@ -49,6 +43,14 @@ const handleSwitch = () => {
             <slot :name="name" />
         </template>
         <!-- 不添加上面面影响公告样式 -->
+        <template #layout-top>
+            <!-- 看板娘组件 -->
+            <OhMyLive2D />
+            <!--网页标题切换组件  -->
+            <TitleChange />
+            <!-- 顶部滚动条组件 -->
+            <ScrollProgressBar />
+        </template>
     </Teek.Layout>
 </template>
 

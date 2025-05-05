@@ -22,7 +22,7 @@ const teekConfig = defineTeekConfig({
   // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
-  backTopDone: (TkMessage) => TkMessage.success("返回顶部成功"),
+  backTopDone: (TkMessage) => TkMessage.success("已回到顶部"),
   toCommentDone: (TkMessage) => TkMessage.success("已抵达评论区"),
   // 新版代码块配置
   codeBlock: {
@@ -116,8 +116,6 @@ const teekConfig = defineTeekConfig({
       pageView: true, //如果请求不蒜子接口失败，是否重试，类型 boolean
       tryRequest: true, //重试次数，仅当 tryRequest 为 true 时有效
       tryCount: 2000, //重试间隔时间，单位毫秒，仅当 tryRequest 为 true 时有效目录链接
-      siteIteration: 2000,
-      pageIteration: 2000,
     },
     overrideInfo: [
       {
