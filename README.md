@@ -1,0 +1,39 @@
+# vitepress-theme-teek
+
+在线主题文档：[Teek](http://vp.teek.top/)。
+
+## 本地运行
+
+项目拉取
+
+```bash
+git clone https://gitee.com/SeasirHyde/teek-hyde.git
+```
+
+依赖安装（只能用 pnpm 安装依赖）
+
+```bash
+pnpm install
+```
+
+引用包构建
+
+```bash
+pnpm stub
+```
+
+## 项目启动
+
+文档项目启动
+
+```bash
+pnpm docs:dev
+```
+
+## TODO
+
+- 瀑布相册页
+- 双线链接
+- 归档页添加 commit 图标风格，如：`http://niubin.site/archive.html`
+
+![1746381424622.png](https://tkimg.seasir.top/2025-05/1746381424622_1746381424660.png)

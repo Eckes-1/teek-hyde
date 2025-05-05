@@ -6,6 +6,75 @@ export const NAV_DATA: NavData[] = [
     items: VitepressData.items,
   },
   {
+    title: "图床",
+    items: [
+      {
+        icon: "https://res.u-tools.cn/website5/assets/logo.png",
+        title: "uTools 是一种高效工作方式",
+        desc: "里面很多插件，比如图床",
+        link: "https://www.u-tools.cn/index.html",
+      },
+    ],
+  },
+  {
+    title: "导航网站",
+    items: [
+      {
+        icon: "https://doc.sun-panel.top/images/introduce/main-dark.png",
+        title: "Sun-Panel",
+        desc: "一个NAS、服务器导航面板、简易docker管理器、Homepage、浏览器首页",
+        link: "https://doc.sun-panel.top/zh_cn/",
+      },
+      {
+        icon: "https://onedayxyy.cn/img/website/iiikun.png",
+        title: "暮冬浅夏の资源站 ",
+        desc: "资源分享站.",
+        link: "https://iiikun.zone.id/",
+      },
+      {
+        icon: "https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg",
+        title: "发现导航",
+        desc: "精选实用导航网站",
+        link: "https://nav3.cn/#/",
+      },
+      {
+        icon: "https://linkqiu.com/images/icons/logo.svg",
+        title: "爱达网址聚合页",
+        desc: "爱达杂货铺，收集互联网上用的东西",
+        link: "https://linkqiu.com/",
+      },
+      {
+        icon: "https://openi.cn/wp-content/uploads/2023/04/logo-pic.png",
+        title: "openi",
+        desc: "OpenI AI网址导航开启您的AI时代",
+        link: "https://openi.cn/",
+      },
+    ],
+  },
+  {
+    title: "精美壁纸",
+    items: [
+      {
+        icon: "https://s.panlai.com/images/favicon.ico",
+        title: "壁纸汇",
+        desc: "免费壁纸_电脑壁纸_手机壁纸_4K壁纸_8K高清壁纸图片免费下载",
+        link: "https://www.bizhihui.com/",
+      },
+      {
+        icon: "https://pic.netbian.com/favicon.ico",
+        title: "彼岸图网",
+        desc: "4K壁纸_4K高清壁纸大全_4K手机壁纸_电脑壁纸_4K,5K,6K,7K,8K壁纸图片素材",
+        link: "https://pic.netbian.com/",
+      },
+      {
+        icon: "https://hdqwalls.com/icons/favicon.ico",
+        title: "Hdqwalls",
+        desc: "hdqwalls.com Best Source For HD,4k,5k,8k Wallpapers",
+        link: "https://hdqwalls.com/",
+      },
+    ],
+  },
+  {
     title: "常用工具",
     items: [
       {
