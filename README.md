@@ -16,22 +16,24 @@ git clone https://gitee.com/SeasirHyde/teek-hyde.git
 pnpm install
 ```
 
-引用包构建
-
-```bash
-pnpm stub
-```
-
 ## 项目启动
-
-文档项目启动
 
 ```bash
 pnpm docs:dev
 ```
 
-## TODO
+## 项目打包
 
-- 瀑布相册页
-- 双线链接
-- 归档页添加 commit 图标风格，如：`http://niubin.site/archive.html`
+```bash
+pnpm docs:build
+```
+
+## 升级
+
+```bash
+pnpm add vitepress-theme-teek@latest -D
+```
+
+## 效果
+
+访问：[https://teek.seasir.top/](https://teek.seasir.top/)

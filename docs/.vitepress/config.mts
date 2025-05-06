@@ -150,7 +150,7 @@ const teekConfig = defineTeekConfig({
     // },
   ],
   // 文章页的样式风格
-  pageStyle: "segment-nav",
+  // pageStyle: "segment-nav", //有bug左侧目录箭头样式就会偏移，暂时注释
   // 赞赏在文章下方
   appreciation: {
     position: "doc-after",
