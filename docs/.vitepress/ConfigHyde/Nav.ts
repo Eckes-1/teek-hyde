@@ -8,7 +8,7 @@ export const Nav = [
     ],
   },
   {
-    text: "🖥️技术专栏",
+    text: "📖笔记专栏",
     items: [
       {
         text: "博客搭建",
@@ -22,15 +22,6 @@ export const Nav = [
         text: "Teek主题",
         link: "/TeeK",
       },
-    ],
-  },
-  {
-    text: "✍️随笔记录",
-    items: [
-      { text: "生活感悟", link: "/life/" },
-      { text: "读书笔记", link: "/reading/" },
-      { text: "年度总结", link: "/summary/" },
-      { text: "学习路线", link: "/learning-path/" },
     ],
   },
   {
@@ -55,9 +46,14 @@ export const Nav = [
   {
     text: "👏文章索引",
     items: [
-      { text: "分类", link: "/categories/" },
-      { text: "标签", link: "/tags/" },
-      { text: "归档", link: "/archives/" },
+      {
+        text: "本站",
+        items: [
+          { text: "分类", link: "/categories/" },
+          { text: "标签", link: "/tags/" },
+          { text: "归档", link: "/archives/" },
+        ],
+      },
     ],
   },
   {

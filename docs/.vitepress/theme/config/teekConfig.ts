@@ -6,20 +6,13 @@ import { SocialDate } from "../../ConfigHyde/SocialDate"; // 导入SocialDate社
 import { Wallpaper } from "../../ConfigHyde/Wallaper"; // 导入Wallaper模块
 
 // 文档配置
-export const teekDocConfig: TeekConfig = {
-  themeSetting: {
-    themeStyle: "vp-default", // 设置当前主题风格
-    themeSize: "large", //设置当前主题尺寸
-  },
-};
+export const teekDocConfig: TeekConfig = {};
 
 // 博客配置
 export const teekBlogConfig: TeekConfig = {
   teekHome: true,
   vpHome: false,
-  themeSetting: {
-    themeSize: "Wide",
-  },
+
   blogger: {
     // 博主信息，显示在首页侧边栏
     avatar: "/avatar/avatar.webp",

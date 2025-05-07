@@ -28,7 +28,7 @@ const teekConfig = defineTeekConfig({
   codeBlock: {
     disabled: false, // 是否禁用新版代码块
     collapseHeight: 700, // 超出高度后自动折叠，设置 true 则默认折叠，false 则默认不折叠
-    copiedDone: (TkMessage) => TkMessage.success("复制成功！"),
+    copiedDone: (TkMessage) => TkMessage.success("代码已复制 🎉"),
   },
   bgColor: [
     "#e74c3c",

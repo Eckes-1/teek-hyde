@@ -1,7 +1,9 @@
 <script setup lang="ts" name="TeekLayoutProvider">
-import Teek, { TkAvatar, teekConfigContext, useNamespace } from "vitepress-theme-teek";
-import { provide, ref } from "vue";
+import Teek, { TkAvatar, teekConfigContext, useNamespace, clockIcon } from "vitepress-theme-teek";
+import { provide, ref, watch, nextTick } from "vue";
 import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
+import { useData } from "vitepress";
+import { useRuntime } from "../hooks/useRuntime";
 // @ts-ignore
 import MusicPlayer from './MusicPlayer.vue'
 import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘组件
@@ -9,9 +11,13 @@ import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘组件
 import TitleChange from "./TitleChange.vue" //导入网页标题变化
 // @ts-ignore
 import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
+// @ts-ignore
+import RouteChangeMessage from "./RouteChangeMessage.vue" //导入路由变化消息组件
+// @ts-ignore
+import ContributeChart from "./ContributeChart.vue";  //导入贡献图组件
 
 const ns = useNamespace("layout-provider");
-
+const { frontmatter } = useData();
 // 默认博客风
 const current = ref("B");
 
@@ -24,9 +30,26 @@ const handleSwitch = () => {
     if (current.value === "D") teekConfig.value = teekDocConfig;
     else teekConfig.value = teekBlogConfig;
 };
+
+// 页脚运行时间
+const { start, stop } = useRuntime("2021-10-19 00:00:00", {
+    prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>本站已在地球上苟活了`,
+});
+
+watch(
+    frontmatter,
+    async newVal => {
+        await nextTick();
+        if (newVal.layout === "home") start();
+        else stop();
+    },
+    { immediate: true }
+);
 </script>
 
 <template>
+    <!-- 路由变化消息组件 -->
+    <RouteChangeMessage />
     <Teek.Layout>
         <template #nav-bar-content-after>
             <div :class="ns.b('appearance')">
@@ -35,7 +58,7 @@ const handleSwitch = () => {
                     <span class="name">{{ current }}</span>
                 </TkAvatar>
             </div>
-
+            <!-- 音乐播放器组件 -->
             <MusicPlayer />
         </template>
         <!-- 不添加下面影响公告样式 -->
@@ -50,6 +73,10 @@ const handleSwitch = () => {
             <TitleChange />
             <!-- 顶部滚动条组件 -->
             <ScrollProgressBar />
+        </template>
+        <template #teek-archives-top-before>
+            <!-- 贡献图组件 -->
+            <ContributeChart />
         </template>
     </Teek.Layout>
 </template>

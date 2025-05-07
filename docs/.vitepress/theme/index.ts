@@ -1,16 +1,18 @@
-import Teek, {
-  artalkSymbol,
-  giscusSymbol,
-  walineSymbol,
-} from "vitepress-theme-teek";
-import "vitepress-theme-teek/index.css";
-
+// 组件导入
+import Teek from "vitepress-theme-teek";
+import { defineComponent, h } from "vue";
+import { useData } from "vitepress";
 import NoticeContent from "./components/NoticeContent.vue";
 // import notice from "./components/notice.vue";
 import BannerImgArrow from "./components/BannerImgArrow.vue";
 import TeekLayoutProvider from "./components/TeekLayoutProvider.vue";
-import { defineComponent, h, nextTick, provide, watch } from "vue";
-import { useData, useRoute } from "vitepress";
+import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
+import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
+import vitepressNprogress from "vitepress-plugin-nprogress"; // 引入路由进度条插件
+import NotFound from "./components/NotFound.vue"; // 导入404组件
+
+// 样式导入
+import "vitepress-theme-teek/index.css";
 // import "vitepress-theme-teek/index.css";
 import "vitepress-theme-teek/vp-plus/code-block-mobile.scss"; // 移动端代码块样式加 padding
 import "vitepress-theme-teek/vp-plus/sidebar.scss"; // 侧边栏字体样式
@@ -19,27 +21,18 @@ import "vitepress-theme-teek/vp-plus/nav-blur.scss"; // 导航栏毛玻璃样式
 import "vitepress-theme-teek/vp-plus/aside.scss"; // 文章目录样式
 import "vitepress-theme-teek/vp-plus/doc-h1-gradient.scss"; // 文档以及标题样式
 import "vitepress-theme-teek/vp-plus/mark.scss"; // 文章 mark 标签样式
-import "vitepress-theme-teek/vp-plus/container.scss"; // Markdown 容器样式
+// import "vitepress-theme-teek/vp-plus/container.scss"; // Markdown 容器样式
 // import "vitepress-theme-teek/vp-plus/container-left.scss"; // Markdown 容器左框样式
 // import "vitepress-theme-teek/vp-plus/container-flow.scss"; // Markdown 容器流体样式
 // import "vitepress-theme-teek/vp-plus/blockquote.scss"; // 引用样式
 import "vitepress-theme-teek/vp-plus/index-rainbow.scss"; // Vitepress 首页彩虹渐变样式
 import "vitepress-theme-teek/tk-plus/banner-desc-gradient.scss"; // Banner 描述渐变样式
 import "vitepress-theme-teek/tk-plus/banner-full-img-scale.scss"; // Banner 全屏图片放大样式
-
 import "./styles/index.scss"; //群主自定义的全局样式
-
-import { useFooterRuntime } from "./helper/useFooterRuntime"; // 首页底部添加运行时间
-
 import "./style/index.scss"; // 引入.vitepress\theme\style\index.scss全局样式
 import "virtual:group-icons.css"; //代码组图标样式
-
-import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
-import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
-import vitepressNprogress from "vitepress-plugin-nprogress"; // 引入路由进度条插件
 import "vitepress-plugin-nprogress/lib/css/index.css"; // 引入nprogress样式
-import NotFound from "./components/NotFound.vue"; // 导入404组件
 
 export default {
   extends: Teek,
@@ -52,15 +45,13 @@ export default {
   Layout: defineComponent({
     name: "LayoutProvider",
     setup() {
-      const { start, stop } = useFooterRuntime();
       const props: Record<string, any> = {};
-      const { frontmatter, isDark, page } = useData();
+      const { frontmatter } = useData();
 
       // 添加自定义 class 逻辑
       if (frontmatter.value?.layoutClass) {
         props.class = frontmatter.value.layoutClass;
       }
-      const route = useRoute();
 
       // 注入评论区实例
       // provide(walineSymbol, (options, el) =>
@@ -78,23 +69,13 @@ export default {
       //   })
       // );
 
-      watch(
-        frontmatter,
-        () => {
-          nextTick(() => {
-            if (frontmatter.value.layout === "home") start();
-            else stop();
-          });
-        },
-        { immediate: true }
-      );
       return () =>
         h(TeekLayoutProvider, props, {
           // "layout-top": () => h(notice), // 使用layout-top插槽
           confetti: () => h(confetti), // 使用confetti插槽
           "teek-notice-content": () => h(NoticeContent),
           "teek-home-banner-feature-after": () => h(BannerImgArrow),
-          "not-found": () => h(NotFound), 
+          "not-found": () => h(NotFound),
           // 自定义文档底部
           // "doc-after": () => h(siteFooter),
           // "teek-home-before": () => h("div", null, "teek-home-before"),
