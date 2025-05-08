@@ -42,7 +42,7 @@ export const Nav = [
       { text: "电影", link: "/go-cata/" },
     ],
   },
-  { text: "👂留言板块", link: "/message-area/" },
+  { text: "👂畅所欲言", link: "/message-area/" },
   {
     text: "👏文章索引",
     items: [
