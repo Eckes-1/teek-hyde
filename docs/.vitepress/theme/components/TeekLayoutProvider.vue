@@ -12,9 +12,9 @@ import TitleChange from "./TitleChange.vue" //导入网页标题变化
 // @ts-ignore
 import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
 // @ts-ignore
-import RouteChangeMessage from "./RouteChangeMessage.vue" //导入路由变化消息组件
-// @ts-ignore
 import ContributeChart from "./ContributeChart.vue";  //导入贡献图组件
+// @ts-ignore
+import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
 
 const ns = useNamespace("layout-provider");
 const { frontmatter } = useData();
@@ -32,7 +32,7 @@ const handleSwitch = () => {
 };
 
 // 页脚运行时间
-const { start, stop } = useRuntime("2021-10-19 00:00:00", {
+const { start, stop } = useRuntime("2025-03-14 00:00:00", {
     prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>本站已在地球上苟活了`,
 });
 
@@ -48,8 +48,14 @@ watch(
 </script>
 
 <template>
-    <!-- 路由变化消息组件 -->
-    <RouteChangeMessage />
+    <!--网页标题切换组件  -->
+    <TitleChange />
+    <!-- 看板娘组件 -->
+    <OhMyLive2D />
+    <!-- 顶部滚动条组件 -->
+    <ScrollProgressBar />
+    <!-- 全局问候组件 -->
+    <GlobalGreet />
     <Teek.Layout>
         <template #nav-bar-content-after>
             <div :class="ns.b('appearance')">
@@ -66,14 +72,6 @@ watch(
             <slot :name="name" />
         </template>
         <!-- 不添加上面面影响公告样式 -->
-        <template #layout-top>
-            <!-- 看板娘组件 -->
-            <OhMyLive2D />
-            <!--网页标题切换组件  -->
-            <TitleChange />
-            <!-- 顶部滚动条组件 -->
-            <ScrollProgressBar />
-        </template>
         <template #teek-archives-top-before>
             <!-- 贡献图组件 -->
             <ContributeChart />

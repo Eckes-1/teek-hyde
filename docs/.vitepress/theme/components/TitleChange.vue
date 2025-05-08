@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from 'vue'
-import { useEventListener } from '@vueuse/core'
+import { useEventListener } from 'vitepress-theme-teek'
 
 const props = defineProps({
     hiddenTitle: {
