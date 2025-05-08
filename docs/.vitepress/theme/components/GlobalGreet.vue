@@ -28,7 +28,7 @@ const greet = () => {
   )}`;
   const message = getGreetingMessage(hours, timeStr);
 
-  TkMessage.info({ message, duration, plain: true });
+  TkMessage.info({ message, duration:5000, plain: true });
 };
 
 const getGreetingMessage = (hours: number, timeStr: string) => {

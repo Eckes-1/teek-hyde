@@ -15,7 +15,8 @@ import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条�
 import ContributeChart from "./ContributeChart.vue";  //导入贡献图组件
 // @ts-ignore
 import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
-
+// @ts-ignore
+import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
 const ns = useNamespace("layout-provider");
 const { frontmatter } = useData();
 // 默认博客风
@@ -56,6 +57,7 @@ watch(
     <ScrollProgressBar />
     <!-- 全局问候组件 -->
     <GlobalGreet />
+    <BackToTop />
     <Teek.Layout>
         <template #nav-bar-content-after>
             <div :class="ns.b('appearance')">

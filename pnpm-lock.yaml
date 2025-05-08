@@ -25,7 +25,7 @@ importers:
         version: 3.1.0
       vite-plugin-imagemin:
         specifier: ^0.6.1
-        version: 0.6.1(vite@6.3.2(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0))
+        version: 0.6.1(vite@6.3.2(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0))
       vue:
         specifier: ^3.5.13
         version: 3.5.13
@@ -47,10 +47,10 @@ importers:
         version: 5.39.0
       vite:
         specifier: ^6.3.2
-        version: 6.3.2(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0)
+        version: 6.3.2(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0)
       vitepress:
         specifier: ^1.6.3
-        version: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
+        version: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
       vitepress-markdown-timeline:
         specifier: ^1.2.2
         version: 1.2.2
@@ -65,7 +65,7 @@ importers:
         version: 0.0.4
       vitepress-theme-teek:
         specifier: 1.1.4
-        version: 1.1.4(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))(vue@3.5.13)
+        version: 1.1.4(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))(vue@3.5.13)
 
 packages:
 
@@ -1169,6 +1169,9 @@ packages:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
     engines: {node: '>= 0.6'}
 
+  copy-anything@2.0.6:
+    resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
+
   copy-anything@3.0.5:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
@@ -1328,6 +1331,10 @@ packages:
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
+
+  errno@0.1.8:
+    resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==}
+    hasBin: true
 
   error-ex@1.3.2:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
@@ -1749,12 +1756,21 @@ packages:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
 
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+    engines: {node: '>=0.10.0'}
+
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
+
+  image-size@0.5.5:
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
 
   imagemin-gifsicle@7.0.0:
     resolution: {integrity: sha512-LaP38xhxAwS3W8PFh4y5iQ6feoTSF+dTAXFRUEYQWYst6Xd+9L/iPk34QGgK/VO/objmIlmq9TStGfVY2IcHIA==}
@@ -1897,6 +1913,9 @@ packages:
   is-utf8@0.2.1:
     resolution: {integrity: sha512-rMYPYvCzsXywIsldgLaSoPlw5PfoB/ssr7hY4pLfcodrA5M/eArza1a9VmTiNIBNMjOGr1Ow9mTyU2o69U6U9Q==}
 
+  is-what@3.14.1:
+    resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==}
+
   is-what@4.1.16:
     resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
     engines: {node: '>=12.13'}
@@ -1952,6 +1971,11 @@ packages:
 
   kolorist@1.8.0:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
+
+  less@4.3.0:
+    resolution: {integrity: sha512-X9RyH9fvemArzfdP8Pi3irr7lor2Ok4rOttDXBhlwDg+wKQsXOXgHWduAJE1EsF7JJx0w0bcO6BC6tCKKYnXKA==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
@@ -2014,6 +2038,10 @@ packages:
   make-dir@1.3.0:
     resolution: {integrity: sha512-2w31R7SJtieJJnQtGc7RVL2StM2vGYVfqUOvUDxH6bC6aJTxPxTF0GnIgCyu7tjockiUWAYQRbxa7vKn34s5sQ==}
     engines: {node: '>=4'}
+
+  make-dir@2.1.0:
+    resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
+    engines: {node: '>=6'}
 
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -2153,6 +2181,11 @@ packages:
     resolution: {integrity: sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==}
     engines: {node: '>= 0.6'}
 
+  mime@1.6.0:
+    resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==}
+    engines: {node: '>=4'}
+    hasBin: true
+
   mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
@@ -2191,6 +2224,11 @@ packages:
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  needle@3.3.1:
+    resolution: {integrity: sha512-6k0YULvhpw+RoLNiQCRKOl09Rv1dPLr8hHnVjHqdolKwDrdNyk+Hmrthi4lIGPPz3r39dLx0hsF5s40sZ3Us4Q==}
+    engines: {node: '>= 4.4.x'}
     hasBin: true
 
   nice-try@1.0.5:
@@ -2318,6 +2356,10 @@ packages:
     resolution: {integrity: sha512-QR/GGaKCkhwk1ePQNYDRKYZ3mwU9ypsKhB0XyFnLQdomyEqk3e8wpW3V5Jp88zbxK4n5ST1nqo+g9juTpownhQ==}
     engines: {node: '>=0.10.0'}
 
+  parse-node-version@1.0.1:
+    resolution: {integrity: sha512-3YHlOa/JgH6Mnpr05jP9eDG254US9ek25LyIxZlDItp2iJtwyaXQb57lBYLdT3MowkUFYEV2XXNAYIPlESvJlA==}
+    engines: {node: '>= 0.10'}
+
   path-exists@2.1.0:
     resolution: {integrity: sha512-yTltuKuhtNeFJKa1PiRzfLAU5182q1y4Eb4XCJ3PBqyzEDkAZRzBrKKBct682ls9reBVHf9udYLN5Nd+K1B9BQ==}
     engines: {node: '>=0.10.0'}
@@ -2425,6 +2467,9 @@ packages:
 
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
+
+  prr@1.0.1:
+    resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
 
   pseudomap@1.0.2:
     resolution: {integrity: sha512-b/YwNhb8lk1Zz2+bXXpS/LK9OisiZZ1SNsSLxN1x2OXVEhW2Ckr/7mWE5vrC1ZTiJlD9g19jWszTmJsB+oEpFQ==}
@@ -2548,10 +2593,16 @@ packages:
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
+  safer-buffer@2.1.2:
+    resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
   sass@1.86.2:
     resolution: {integrity: sha512-Rpfn0zAIDqvnSb2DihJTDFjbhqLHu91Wqac9rxontWk7R+2txcPjuujMqu1eeoezh5kAblVCS5EdFdyr0Jmu+w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
   search-insights@2.17.3:
     resolution: {integrity: sha512-RQPdCYTa8A68uM2jwxoY842xDhvx3E5LFL1LxvxCNMev4o5mLuokczhzjAgGwUZBAmOKZknArSxLKmXtIi2AxQ==}
@@ -3713,9 +3764,9 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-vue@5.2.3(vite@5.4.15(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0))(vue@3.5.13)':
+  '@vitejs/plugin-vue@5.2.3(vite@5.4.15(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0))(vue@3.5.13)':
     dependencies:
-      vite: 5.4.15(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0)
+      vite: 5.4.15(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0)
       vue: 3.5.13
 
   '@vue/compiler-core@3.5.13':
@@ -4056,6 +4107,11 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
+  copy-anything@2.0.6:
+    dependencies:
+      is-what: 3.14.1
+    optional: true
+
   copy-anything@3.0.5:
     dependencies:
       is-what: 4.1.16
@@ -4269,6 +4325,11 @@ snapshots:
   entities@2.2.0: {}
 
   entities@4.5.0: {}
+
+  errno@0.1.8:
+    dependencies:
+      prr: 1.0.1
+    optional: true
 
   error-ex@1.3.2:
     dependencies:
@@ -4745,9 +4806,17 @@ snapshots:
 
   human-signals@2.1.0: {}
 
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
+    optional: true
+
   ieee754@1.2.1: {}
 
   ignore@5.3.2: {}
+
+  image-size@0.5.5:
+    optional: true
 
   imagemin-gifsicle@7.0.0:
     dependencies:
@@ -4879,6 +4948,9 @@ snapshots:
 
   is-utf8@0.2.1: {}
 
+  is-what@3.14.1:
+    optional: true
+
   is-what@4.1.16: {}
 
   is-wsl@2.2.0:
@@ -4931,6 +5003,21 @@ snapshots:
   kind-of@6.0.3: {}
 
   kolorist@1.8.0: {}
+
+  less@4.3.0:
+    dependencies:
+      copy-anything: 2.0.6
+      parse-node-version: 1.0.1
+      tslib: 2.3.0
+    optionalDependencies:
+      errno: 0.1.8
+      graceful-fs: 4.2.11
+      image-size: 0.5.5
+      make-dir: 2.1.0
+      mime: 1.6.0
+      needle: 3.3.1
+      source-map: 0.6.1
+    optional: true
 
   linkify-it@5.0.0:
     dependencies:
@@ -4997,6 +5084,12 @@ snapshots:
   make-dir@1.3.0:
     dependencies:
       pify: 3.0.0
+
+  make-dir@2.1.0:
+    dependencies:
+      pify: 4.0.1
+      semver: 5.7.2
+    optional: true
 
   make-dir@3.1.0:
     dependencies:
@@ -5254,6 +5347,9 @@ snapshots:
 
   mime-db@1.54.0: {}
 
+  mime@1.6.0:
+    optional: true
+
   mimic-fn@2.1.0: {}
 
   mimic-response@1.0.1: {}
@@ -5287,6 +5383,12 @@ snapshots:
   ms@2.1.3: {}
 
   nanoid@3.3.11: {}
+
+  needle@3.3.1:
+    dependencies:
+      iconv-lite: 0.6.3
+      sax: 1.4.1
+    optional: true
 
   nice-try@1.0.5: {}
 
@@ -5411,6 +5513,9 @@ snapshots:
     dependencies:
       error-ex: 1.3.2
 
+  parse-node-version@1.0.1:
+    optional: true
+
   path-exists@2.1.0:
     dependencies:
       pinkie-promise: 2.0.1
@@ -5494,6 +5599,9 @@ snapshots:
   property-information@7.0.0: {}
 
   proto-list@1.2.4: {}
+
+  prr@1.0.1:
+    optional: true
 
   pseudomap@1.0.2: {}
 
@@ -5659,6 +5767,9 @@ snapshots:
 
   safe-buffer@5.2.1: {}
 
+  safer-buffer@2.1.2:
+    optional: true
+
   sass@1.86.2:
     dependencies:
       chokidar: 4.0.3
@@ -5666,6 +5777,9 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.1
+    optional: true
+
+  sax@1.4.1:
     optional: true
 
   search-insights@2.17.3: {}
@@ -5982,7 +6096,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-plugin-imagemin@0.6.1(vite@6.3.2(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0)):
+  vite-plugin-imagemin@0.6.1(vite@6.3.2(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0)):
     dependencies:
       '@types/imagemin': 7.0.1
       '@types/imagemin-gifsicle': 7.0.4
@@ -6007,11 +6121,11 @@ snapshots:
       imagemin-webp: 6.1.0
       jpegtran-bin: 6.0.1
       pathe: 0.2.0
-      vite: 6.3.2(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0)
+      vite: 6.3.2(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0)
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.4.15(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0):
+  vite@5.4.15(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.3
@@ -6019,10 +6133,11 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.14.1
       fsevents: 2.3.3
+      less: 4.3.0
       sass: 1.86.2
       terser: 5.39.0
 
-  vite@6.3.2(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0):
+  vite@6.3.2(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0):
     dependencies:
       esbuild: 0.25.2
       fdir: 6.4.3(picomatch@4.0.2)
@@ -6033,6 +6148,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.14.1
       fsevents: 2.3.3
+      less: 4.3.0
       sass: 1.86.2
       terser: 5.39.0
 
@@ -6056,12 +6172,12 @@ snapshots:
       gray-matter: 4.0.3
       picocolors: 1.1.1
 
-  vitepress-plugin-file-content-loader@1.0.12(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
+  vitepress-plugin-file-content-loader@1.0.12(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
       tinyglobby: 0.2.12
-      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
+      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
 
   vitepress-plugin-group-icons@1.5.2:
     dependencies:
@@ -6095,36 +6211,36 @@ snapshots:
     dependencies:
       nprogress: 0.2.0
 
-  vitepress-plugin-permalink@1.1.1(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
+  vitepress-plugin-permalink@1.1.1(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
-      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
+      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
 
-  vitepress-plugin-sidebar-resolve@1.0.9(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
+  vitepress-plugin-sidebar-resolve@1.0.9(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
-      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
+      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
 
-  vitepress-theme-teek@1.1.4(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))(vue@3.5.13):
+  vitepress-theme-teek@1.1.4(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))(vue@3.5.13):
     dependencies:
       '@iconify/vue': 4.3.0(vue@3.5.13)
       gray-matter: 4.0.3
       js-yaml: 4.1.0
       markdown-it-container: 4.0.0
-      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
+      vitepress: 1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0)
       vitepress-plugin-auto-frontmatter: 1.0.8
       vitepress-plugin-catalogue: 1.0.15
       vitepress-plugin-doc-analysis: 1.0.11
-      vitepress-plugin-file-content-loader: 1.0.12(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
+      vitepress-plugin-file-content-loader: 1.0.12(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
       vitepress-plugin-md-h1: 1.0.9
-      vitepress-plugin-permalink: 1.1.1(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
-      vitepress-plugin-sidebar-resolve: 1.0.9(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
+      vitepress-plugin-permalink: 1.1.1(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
+      vitepress-plugin-sidebar-resolve: 1.0.9(vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0))
     transitivePeerDependencies:
       - vue
 
-  vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0):
+  vitepress@1.6.3(@algolia/client-search@5.23.0)(@types/node@22.14.1)(async-validator@4.2.5)(less@4.3.0)(nprogress@0.2.0)(postcss@8.5.3)(sass@1.86.2)(search-insights@2.17.3)(terser@5.39.0):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.23.0)(search-insights@2.17.3)
@@ -6133,7 +6249,7 @@ snapshots:
       '@shikijs/transformers': 2.5.0
       '@shikijs/types': 2.5.0
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 5.2.3(vite@5.4.15(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0))(vue@3.5.13)
+      '@vitejs/plugin-vue': 5.2.3(vite@5.4.15(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0))(vue@3.5.13)
       '@vue/devtools-api': 7.7.2
       '@vue/shared': 3.5.13
       '@vueuse/core': 12.8.2
@@ -6142,7 +6258,7 @@ snapshots:
       mark.js: 8.11.1
       minisearch: 7.1.2
       shiki: 2.5.0
-      vite: 5.4.15(@types/node@22.14.1)(sass@1.86.2)(terser@5.39.0)
+      vite: 5.4.15(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0)
       vue: 3.5.13
     optionalDependencies:
       postcss: 8.5.3

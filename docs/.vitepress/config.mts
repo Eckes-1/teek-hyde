@@ -23,8 +23,15 @@ const teekConfig = defineTeekConfig({
   // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
-  backTopDone: (TkMessage) => TkMessage.success("已回到顶部"),
-  toCommentDone: (TkMessage) => TkMessage.success("已抵达评论区"),
+  backTopDone: (TkMessage) =>
+    TkMessage.success({
+      message: "已达到顶部🎉",
+      duration: 3000,
+    }),
+  toCommentDone: (TkMessage) => TkMessage.success({
+    message: "已达到评论区✨",
+    duration: 3000,
+  }),
   // 新版代码块配置
   codeBlock: {
     disabled: false, // 是否禁用新版代码块
