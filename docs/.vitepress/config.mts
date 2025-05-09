@@ -28,10 +28,11 @@ const teekConfig = defineTeekConfig({
       message: "已达到顶部🎉",
       duration: 3000,
     }),
-  toCommentDone: (TkMessage) => TkMessage.success({
-    message: "已达到评论区✨",
-    duration: 3000,
-  }),
+  toCommentDone: (TkMessage) =>
+    TkMessage.success({
+      message: "已达到评论区✨",
+      duration: 3000,
+    }),
   // 新版代码块配置
   codeBlock: {
     disabled: false, // 是否禁用新版代码块
@@ -158,7 +159,7 @@ const teekConfig = defineTeekConfig({
     // },
   ],
   // 文章页的样式风格
-  pageStyle: "card", 
+  pageStyle: "segment-nav",
   // 赞赏在文章下方
   appreciation: {
     position: "doc-after",
@@ -181,6 +182,15 @@ const teekConfig = defineTeekConfig({
   // },
   articleShare: { enabled: true }, // 文章分享
   footerGroup: footerGroup, // 页脚信息组配置
+  // 精选文章卡片
+  topArticle: {
+    enabled: true, // 是否启用精选文章卡片
+    limit: 5, // 一页显示的数量
+    autoPage: false, // 是否自动翻页
+    pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
+    dateFormat: "yyyy-MM-dd hh:mm:ss", // 精选文章的日期格式
+  },
+  themeSize: "wide", 
 });
 
 // https://vitepress.dev/reference/site-config
