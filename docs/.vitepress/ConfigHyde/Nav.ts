@@ -65,8 +65,12 @@ export const Nav = [
       { text: "网站导航", link: "/nav/" },
       { text: "开源项目", link: "/opensource-project/" },
       {
-        text: "网站统计",
+        text: "站点统计",
         link: "https://umami.seasir.top/share/rvVBNZWa0sUCN6wG/teek.seasir.top",
+      },
+      {
+        text: "站点状态",
+        link: "https://status.seasir.top/",
       },
     ],
   },
