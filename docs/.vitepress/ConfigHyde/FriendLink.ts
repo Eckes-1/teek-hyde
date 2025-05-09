@@ -1,11 +1,26 @@
 // FriendLink用于在首页展示一些友链
 export const FriendLink = {
+  enabled: true, // 是否启用友情链接卡片
+  limit: 5, // 一页显示的数量
+  autoScroll: true, // 是否自动滚动
+  scrollSpeed: 2500, // 滚动间隔时间，单位：毫秒。autoScroll 为 true 时生效
+  autoPage: true, // 是否自动翻页
+  pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
+  titleClick: (router) => router.go("/websites"), // 查看更多友链
+  // 友情链接数据列表
   list: [
     {
       avatar: "https://vp.teek.top/teek-logo-large.png",
       name: "https://vp.teek.top",
       desc: "Teek Vitepress主题",
       link: "https://vp.teek.top/",
+    },
+    {
+      name: "Teeker",
+      desc: "朝圣的使徒，正在走向编程的至高殿堂！",
+      link: "http://notes.teek.top/",
+      avatar:
+        "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar2.png",
     },
     {
       avatar: "https://onedayxyy.cn/favicon.ico",
@@ -26,7 +41,7 @@ export const FriendLink = {
       link: "https://blog.snowlinlan.com/",
     },
     {
-      avatar: "https://sinc.us.kg/favicon.ico",
+      avatar: "https://sinc.us.kg/avatar/avatar.webp",
       name: "凿壁偷光不算偷",
       desc: "tk 道友",
       link: "https://sinc.us.kg/",
@@ -42,6 +57,24 @@ export const FriendLink = {
       name: "兔白白",
       desc: "牛马",
       link: "https://ydbsq123.top/",
+    },
+    {
+      avatar: "https://cdn.upyun.sugarat.top/avatar/blog/zlyst-avatar.jpeg-wh100",
+      name: "粥里有勺糖",
+      desc: "你的指尖,拥有改变世界的力量",
+      link: "https://sugarat.top/",
+    },
+    {
+      avatar: "https://onedayxyy.cn/images/POETIZE-logo.jpg",
+      name: "POETIZE",
+      desc: "最美博客",
+      link: "https://poetize.cn/",
+    },
+    {
+      avatar: "https://q1.qlogo.cn/g?b=qq&nk=3311118881&s=640",
+      name: "宇阳",
+      desc: "记录所学知识，缩短和大神的差距！",
+      link: "https://liuyuyang.net",
     },
   ],
 };
