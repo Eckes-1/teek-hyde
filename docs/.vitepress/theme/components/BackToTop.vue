@@ -3,7 +3,7 @@
         top: top + 'px',
     }" @click="topTop"></div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" name="BackToTop">
 import { useRoute } from "vitepress";
 import { nextTick, onUnmounted, ref, watch } from "vue";
 import { TkMessage } from "vitepress-theme-teek";
@@ -91,6 +91,11 @@ watch(
     background: url("/backToTop/scroll.gif");
     transition: all 0.5s ease-in-out;
     opacity: 1;
+
+    // 新增移动端隐藏
+    @media (max-width: 768px) {
+        background: none;
+    }
 
     &:hover {
         animation: float 2s linear infinite;

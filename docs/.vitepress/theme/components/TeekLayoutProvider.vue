@@ -17,6 +17,8 @@ import ContributeChart from "./ContributeChart.vue";  //导入贡献图组件
 import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
 // @ts-ignore
 import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
+import { useRibbon } from "../hooks/useRibbon";  //导入彩带背景
+
 const ns = useNamespace("layout-provider");
 const { frontmatter } = useData();
 // 默认博客风
@@ -46,6 +48,9 @@ watch(
     },
     { immediate: true }
 );
+
+// 彩带背景
+const { start: startRibbon, stop: stopRibbon } = useRibbon({ clickReRender: true });
 </script>
 
 <template>
@@ -57,6 +62,7 @@ watch(
     <ScrollProgressBar />
     <!-- 全局问候组件 -->
     <GlobalGreet />
+    <!-- 返回顶部组件 -->
     <BackToTop />
     <Teek.Layout>
         <template #nav-bar-content-after>
