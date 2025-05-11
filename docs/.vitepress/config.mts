@@ -39,17 +39,6 @@ const teekConfig = defineTeekConfig({
     collapseHeight: 700, // 超出高度后自动折叠，设置 true 则默认折叠，false 则默认不折叠
     copiedDone: (TkMessage) => TkMessage.success("代码已复制 🎉"),
   },
-  bgColor: [
-    "#e74c3c",
-    "#409EFF",
-    "#DAA96E",
-    "#0C819F",
-    "#27ae60",
-    "#ff5c93",
-    "#fd726d",
-    "#f39c12",
-    "#9b59b6",
-  ], // 主题背景颜色
   page: {
     pageSize: 16, // 每页显示的文章数量
   },
@@ -190,7 +179,7 @@ const teekConfig = defineTeekConfig({
     pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
     dateFormat: "yyyy-MM-dd hh:mm:ss", // 精选文章的日期格式
   },
-  themeSize: "wide", 
+  themeSize: "large", 
 });
 
 // https://vitepress.dev/reference/site-config

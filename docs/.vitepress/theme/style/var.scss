@@ -110,3 +110,13 @@ a,button,img, svg,input,textarea,select,option,label,span {
 .tk-footer-info p img {
   margin-left: 10px;
 }
+
+.tk-post-item {
+  border-radius: 10px;
+  // 阴影效果
+  box-shadow: 0 0 20px #ccc;
+}
+
+.tk-home-card {
+  border-radius: 10px;
+}
