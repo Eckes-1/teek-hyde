@@ -1,13 +1,27 @@
+@mixin card-hover-effect {
+  border-radius: 10px;
+  box-shadow: 0 0 16px var(--vp-home-list-box-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-// 文章列表卡片hover阴影圆角效果
+  &:hover {
+    box-shadow: 0 10px 16px -4px var(--vp-c-indigo-1);
+    transform: translateY(-3px);
+    border-radius: 8px;
+  }
+}
+
+:root {
+  --vp-home-list-box-shadow: #ccc;
+}
+
+.dark {
+  --vp-home-list-box-shadow: #c3c3c3;
+}
+
 .tk-post-item {
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease; // 过渡属性为transform和box-shadow
+  @include card-hover-effect;
+}
 
-    &:hover {
-        box-shadow: 0 10px 16px -4px var(--vp-c-brand-1); // 首页卡片阴影效果
-        transform: translateY(-3px); // 首页卡片向上移动3px
-        border-radius: 8px; // 首页卡片圆角效果
-    }
+.tk-home-card {
+  @include card-hover-effect;
 }
