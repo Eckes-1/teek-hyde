@@ -26,6 +26,9 @@ importers:
       vite-plugin-imagemin:
         specifier: ^0.6.1
         version: 0.6.1(vite@6.3.2(@types/node@22.14.1)(less@4.3.0)(sass@1.86.2)(terser@5.39.0))
+      vitepress-plugin-auto-frontmatter:
+        specifier: ^1.0.8
+        version: 1.0.8
       vue:
         specifier: ^3.5.13
         version: 3.5.13

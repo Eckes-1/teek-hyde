@@ -1,5 +1,17 @@
 // 首页壁纸
 export const Wallpaper = [
+  "/card/bg1.webp",
+  "/card/bg2.webp",
+  "/card/bg3.webp",
+  "/bolg/bg3.webp",
+  "/card/bg4.webp",
+  "/card/bg5.webp",
+  "/card/bg6.webp",
+  "/card/bg7.webp",
+  "/card/bg8.webp",
+  "/card/bg9.webp",
+  "/card/bg10.webp",
+
   "/img/bg1.webp",
   "/img/bg2.webp",
   "/img/bg3.webp",
