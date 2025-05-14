@@ -1,3 +1,4 @@
+// 返回顶部挂件
 <template>
     <div class="back_to_top" ref="toTop" :style="{
         top: top + 'px',
@@ -83,7 +84,7 @@ watch(
 .back_to_top {
     cursor: pointer;
     position: fixed;
-    right: 80px;
+    right: 40px;
     top: -900px;
     z-index: 1000;
     width: 70px;

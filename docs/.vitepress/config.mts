@@ -12,7 +12,7 @@ import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
 import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
 import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
-import { footerGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组配置
+import { FooterGroup } from "./ConfigHyde/FooterGroup"; //导入页脚信息组配置
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
 import llmstxt from "vitepress-plugin-llms"; // 导入llms插件
@@ -43,7 +43,7 @@ const teekConfig = defineTeekConfig({
     pageSize: 16, // 每页显示的文章数量
   },
   post: {
-    coverImgMode: "full", // 封面大图
+    coverImgMode: "full", // 封面图模式，default 为默认，full 为全图
     imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭
   },
   author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
@@ -94,6 +94,9 @@ const teekConfig = defineTeekConfig({
       ignoreList: ["nav"], //忽略的文件夹和文件
     },
     autoFrontmatter: true, // 自动生成 frontmatter
+    permalinkOption: {
+      notFoundDelayLoad: 1000, // 1秒后加载
+    },
   },
 
   markdown: {
@@ -147,8 +150,6 @@ const teekConfig = defineTeekConfig({
     //   },
     // },
   ],
-  // 文章页的样式风格
-  pageStyle: "segment-nav",
   // 赞赏在文章下方
   appreciation: {
     position: "doc-after",
@@ -170,7 +171,7 @@ const teekConfig = defineTeekConfig({
   //   },
   // },
   articleShare: { enabled: true }, // 文章分享
-  footerGroup: footerGroup, // 页脚信息组配置
+  footerGroup: FooterGroup, // 页脚信息组配置
   // 精选文章卡片
   topArticle: {
     enabled: true, // 是否启用精选文章卡片
@@ -179,7 +180,7 @@ const teekConfig = defineTeekConfig({
     pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
     dateFormat: "yyyy-MM-dd hh:mm:ss", // 精选文章的日期格式
   },
-  themeSize: "large", 
+  themeSize: "large",
 });
 
 // https://vitepress.dev/reference/site-config

@@ -6,10 +6,16 @@ import { SocialDate } from "../../ConfigHyde/SocialDate"; // 导入SocialDate社
 import { Wallpaper } from "../../ConfigHyde/Wallaper"; // 导入Wallaper模块
 
 // 文档配置
-export const teekDocConfig: TeekConfig = {};
+export const teekDocConfig: TeekConfig = {
+  themeEnhance: {
+    layoutSwitch: {
+      defaultMode: "bothWidthAdjustable",
+    },
+  },
+};
 
-// 博客配置
-export const teekBlogConfig: TeekConfig = {
+// 博客基础配置
+export const teekBlogCommonConfig: TeekConfig = {
   teekHome: true,
   vpHome: false,
 
@@ -34,7 +40,6 @@ export const teekBlogConfig: TeekConfig = {
     textColor: "#ffffff", // Banner 字体颜色，bgStyle 为 default 时为 '#000000'，其他为 '#ffffff'
     titleFontSize: "3.2rem", // 标题字体大小
     descFontSize: "1.4rem", // 描述字体大小
-    // descStyle: "types", // 描述信息风格：default 为纯文字渲染风格（如果 description 为数组，则取第一个），types 为文字打印风格，switch 为文字切换风格
     description: HitokotoDate, // 打字机描述信息
     switchTime: 4000, // 描述信息切换间隔时间，单位：毫秒。descStyle 为 switch 时生效
     switchShuffle: false, // 描述信息是否随机切换，为 false 时按顺序切换。descStyle 为 switch 时生效
@@ -53,4 +58,72 @@ export const teekBlogConfig: TeekConfig = {
 
   friendLink: FriendLink, // 友链配置
   social: SocialDate, //社交信息配置
+};
+
+// 博客默认配置
+export const teekBlogConfig: TeekConfig = {
+  ...teekBlogCommonConfig,
+  banner: {
+    pureBgColor: "#28282d", // Banner 背景色。bgStyle 为 pure 时生效
+    imgSrc: Wallpaper,
+    descStyle: "types",
+    description: HitokotoDate, // 打字机描述信息,
+    bgStyle: "pure",
+  },
+};
+
+// 博客小图配置
+export const teekBlogParkConfig: TeekConfig = {
+  ...teekBlogCommonConfig,
+  banner: {
+    bgStyle: "partImg",
+    imgSrc: Wallpaper,
+    description: HitokotoDate, // 打字机描述信息,
+    descStyle: "types",
+  },
+};
+
+// 博客大图配置
+export const teekBlogFullConfig: TeekConfig = {
+  ...teekBlogCommonConfig,
+  post: {
+    imageViewer: { hideOnClickModal: true },
+    coverImgMode: "full",
+  },
+  banner: {
+    bgStyle: "fullImg",
+    imgSrc: Wallpaper,
+    description: HitokotoDate, // 打字机描述信息,
+    descStyle: "types",
+  },
+};
+
+// 博客全图配置
+export const teekBlogBodyConfig: TeekConfig = {
+  ...teekBlogCommonConfig,
+  pageStyle: "segment-nav",
+  bodyBgImg: {
+    imgSrc: ["/img/bg2.webp", "/blog/bg3.webp"],
+  },
+  banner: {
+    bgStyle: "fullImg",
+    description: HitokotoDate, // 打字机描述信息,
+    descStyle: "types",
+  },
+};
+
+// 博客卡片配置
+export const teekBlogCardConfig: TeekConfig = {
+  ...teekBlogCommonConfig,
+  post: {
+    imageViewer: { hideOnClickModal: true }, //图片预览是否点击遮罩层关闭
+    postStyle: "card", //文章模板风格，list 为列表风格，card 为卡片风格
+  },
+  homeCardListPosition: "left", //卡片模式下的标题标签位置
+  banner: {
+    bgStyle: "fullImg",
+    imgSrc: Wallpaper,
+    description: HitokotoDate, // 打字机描述信息,
+    descStyle: "types",
+  },
 };

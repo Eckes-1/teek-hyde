@@ -1,5 +1,5 @@
 // 页脚信息组配置
-export const footerGroup = [
+export const FooterGroup = [
   {
     title: "博客",
     links: [
