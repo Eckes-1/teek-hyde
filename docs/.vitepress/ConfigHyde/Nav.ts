@@ -10,18 +10,10 @@ export const Nav = [
   {
     text: "📖笔记专栏",
     items: [
-      {
-        text: "博客搭建",
-        items: [{ text: "小张的个人博客", link: "/Column/" }],
-      },
-      {
-        text: "vuepress-theme-vdoing",
-        items: [{ text: "vdoing折腾", link: "/Vdoing-cata/" }],
-      },
-      {
-        text: "Teek主题",
-        link: "/TeeK",
-      },
+      {text: "Teek主题",link: "/Teek",},
+      { text: "Vdoing主题", link: "/Vdoing/" },
+      { text: "SSL证书", link: "/SSL", },
+      { text: "博客搭建", link: "/Column/", },
     ],
   },
   {
@@ -30,7 +22,7 @@ export const Nav = [
       { text: "开发工具", link: "/tools/" },
       { text: "VSCode配置", link: "/vscode/" },
       { text: "Git教程", link: "/git/" },
-      { text: "Docker笔记", link: "/docker/" },
+      { text: "Docker", link: "/Docker/" },
       { text: "实用软件", link: "/software/" },
     ],
   },

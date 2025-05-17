@@ -6,12 +6,16 @@ export const FooterGroup = [
       { name: "全部分类", link: "/categories" },
       { name: "全部标签", link: "/tags" },
       { name: "文章归档", link: "/archivesPage" },
+      { name: "全部清单", link: "/articleOverview" },
+
     ],
   },
   {
     title: "专栏",
     links: [
-      { name: "TeeK 主题", link: "/TeeK" },
+      { name: "TeeK 主题", link: "/Teek" },
+      { name: "Vdoing主题", link: "/Vdoing/" },
+      { name: "SSL证书", link: "/SSL" },
     ],
   },
   {
