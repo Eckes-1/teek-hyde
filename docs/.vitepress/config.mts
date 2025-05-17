@@ -20,6 +20,7 @@ import llmstxt from "vitepress-plugin-llms"; // 导入llms插件
 // import AutoFrontmatter from "vitepress-plugin-auto-frontmatter";
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
+const CoverImgList = Wallpaper; // 获取壁纸列表
 
 const teekConfig = defineTeekConfig({
   // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
@@ -101,11 +102,12 @@ const teekConfig = defineTeekConfig({
     },
 
     autoFrontmatterOption: {
+      exclude: { title: true, date: true }, // 排除自动生成字段
       transform: (frontmatter) => {
         // 如果文件本身存在了 coverImg，则不生成
         if (frontmatter.coverImg) return; // 随机获取 coverImg
 
-        const list = Wallpaper;
+        const list = CoverImgList;
 
         const coverImg = list[Math.floor(Math.random() * list.length)];
 
