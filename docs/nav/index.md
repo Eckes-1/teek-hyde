@@ -17,6 +17,7 @@ outline:
   - 2
   - 3
   - 4
+coverImg: /home/bg18.webp
 ---
 
 <style src="/.vitepress/theme/style/nav.scss"></style>

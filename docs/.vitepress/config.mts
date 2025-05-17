@@ -13,6 +13,7 @@ import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配�
 import { FooterInfo } from "./ConfigHyde/FooterInfo"; //导入底部信息配置
 import { CommentData } from "./ConfigHyde/Comment"; //导入底部信息配置
 import { FooterGroup } from "./ConfigHyde/FooterGroup"; //导入页脚信息组配置
+import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
 import llmstxt from "vitepress-plugin-llms"; // 导入llms插件
@@ -99,24 +100,22 @@ const teekConfig = defineTeekConfig({
       notFoundDelayLoad: 1000, // 1秒后加载
     },
 
-    // autoFrontmatterOption: {
-    //   transform: (frontmatter) => {
-    //     // 如果文件本身存在了 coverImg，则不生成
-    //     if (frontmatter.coverImg) return; // 随机获取 coverImg
+    autoFrontmatterOption: {
+      transform: (frontmatter) => {
+        // 如果文件本身存在了 coverImg，则不生成
+        if (frontmatter.coverImg) return; // 随机获取 coverImg
 
-    //     const list = [
-    //       "https://pic.netbian.com/uploads/allimg/250418/092900-174493974032aa.jpg",
-    //     ];
+        const list = Wallpaper;
 
-    //     const coverImg = list[Math.floor(Math.random() * list.length)];
+        const coverImg = list[Math.floor(Math.random() * list.length)];
 
-    //     const transformResult = { ...frontmatter, coverImg };
+        const transformResult = { ...frontmatter, coverImg };
 
-    //     return Object.keys(transformResult).length
-    //       ? transformResult
-    //       : undefined;
-    //   },
-    // },
+        return Object.keys(transformResult).length
+          ? transformResult
+          : undefined;
+      },
+    },
   },
 
   markdown: {

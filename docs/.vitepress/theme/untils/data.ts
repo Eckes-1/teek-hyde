@@ -72,6 +72,18 @@ export const NAV_DATA: NavData[] = [
         desc: "hdqwalls.com Best Source For HD,4k,5k,8k Wallpapers",
         link: "https://hdqwalls.com/",
       },
+      {
+        icon: "https://www.freeconvert.com/favicon.ico",
+        title: "文件转换器",
+        desc: "轻松在线将文件从一种格式转换为另一种格式",
+        link: "https://www.freeconvert.com/zh",
+      },
+      {
+        icon: "https://www.21zui.com/favicon.ico",
+        title: "在线改图",
+        desc: "简便、安全、免费的在线图片工具",
+        link: "https://www.21zui.com/",
+      },
     ],
   },
   {

@@ -25,7 +25,7 @@ export const teekBlogCommonConfig: TeekConfig = {
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
     name: "Hyde",
     slogan: "人心中的成见是一座大山~",
-    circleBgImg: "/avatar/circleBgImg.webp", // 头像圆形背景图
+    circleBgImg: "/avatar/circleBgImg2.webp", // 头像圆形背景图
   },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块
@@ -64,6 +64,7 @@ export const teekBlogCommonConfig: TeekConfig = {
 export const teekBlogConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   banner: {
+    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     pureBgColor: "#28282d", // Banner 背景色。bgStyle 为 pure 时生效
     imgSrc: Wallpaper,
     descStyle: "types",
@@ -76,6 +77,7 @@ export const teekBlogConfig: TeekConfig = {
 export const teekBlogParkConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   banner: {
+    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "partImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
@@ -91,6 +93,7 @@ export const teekBlogFullConfig: TeekConfig = {
     coverImgMode: "full",
   },
   banner: {
+    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
@@ -103,9 +106,10 @@ export const teekBlogBodyConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   pageStyle: "segment-nav",
   bodyBgImg: {
-    imgSrc: ["/img/bg2.webp", "/blog/bg3.webp"],
+    imgSrc: Wallpaper,
   },
   banner: {
+    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     description: HitokotoDate, // 打字机描述信息,
     descStyle: "types",
@@ -115,12 +119,17 @@ export const teekBlogBodyConfig: TeekConfig = {
 // 博客卡片配置
 export const teekBlogCardConfig: TeekConfig = {
   ...teekBlogCommonConfig,
+  pageStyle: "segment", //主题面板需要选择第四个选项，否则彩带是透明的
+  page: {
+    pageSize: 18, // 每页显示的文章数量
+  },
   post: {
     imageViewer: { hideOnClickModal: true }, //图片预览是否点击遮罩层关闭
     postStyle: "card", //文章模板风格，list 为列表风格，card 为卡片风格
   },
   homeCardListPosition: "left", //卡片模式下的标题标签位置
   banner: {
+    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,

@@ -11,8 +11,8 @@ export const FriendLink = {
   list: [
     {
       avatar: "https://vp.teek.top/teek-logo-large.png",
-      name: "https://vp.teek.top",
-      desc: "Teek Vitepress主题",
+      name: "Teek VitePress主题",
+      desc: "✨一个轻量、简洁高效、灵活配置，易于扩展的 VitePress 主题",
       link: "https://vp.teek.top/",
     },
     {
@@ -41,7 +41,7 @@ export const FriendLink = {
       link: "https://blog.snowlinlan.com/",
     },
     {
-      avatar: "https://sinc.us.kg/avatar/avatar.webp",
+      avatar: "https://sinc.us.kg/favicon.ico",
       name: "凿壁偷光不算偷",
       desc: "tk 道友",
       link: "https://sinc.us.kg/",
