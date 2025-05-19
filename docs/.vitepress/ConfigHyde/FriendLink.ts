@@ -47,7 +47,7 @@ export const FriendLink = {
       link: "https://sinc.us.kg/",
     },
     {
-      avatar: "https://zhouyu2156.cn/rabbit.svg",
+      avatar: "https://zhouyu2156.github.io/favicon.png",
       name: "极客兔 - 笔记站",
       desc: "一心创作优质内容",
       link: "https://zhouyu2156.github.io/",

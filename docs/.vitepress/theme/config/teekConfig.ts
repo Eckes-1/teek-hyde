@@ -121,7 +121,7 @@ export const teekBlogCardConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   pageStyle: "segment", //主题面板需要选择第四个选项，否则彩带是透明的
   page: {
-    pageSize: 18, // 每页显示的文章数量
+    pageSize: 15, // 每页显示的文章数量,这里先暂时设置为15，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
   },
   post: {
     imageViewer: { hideOnClickModal: true }, //图片预览是否点击遮罩层关闭
