@@ -49,6 +49,12 @@ export const NAV_DATA: NavData[] = [
         desc: "OpenI AI网址导航开启您的AI时代",
         link: "https://openi.cn/",
       },
+      {
+        icon: "https://d1tools.com/favicon.ico",
+        title: "在线工具",
+        desc: "一个免费的在线工具集合，持续开发各种好用的工具",
+        link: "https://d1tools.com/tools/",
+      },
     ],
   },
   {
@@ -710,8 +716,42 @@ export const NAV_DATA: NavData[] = [
       {
         icon: "http://wan55.cn/favicon.ico",
         title: "好玩的代码大全",
-        desc: '好玩的代码大全',
+        desc: "好玩的代码大全",
         link: "http://wan55.cn/wan19#1845",
+      },
+    ],
+  },
+  {
+    title: "Axios",
+    items: [
+      {
+        icon: "https://norm-axios-press.pages.dev/logo.png",
+        title: "Norm Axios",
+        desc: "约定式请求库上手简单、高效开发，极致体验",
+        link: "https://norm-axios-press.pages.dev/",
+      },
+      {
+        icon: "https://www.axios-http.cn/img/favicon.ico",
+        title: "Axios 中文文档",
+        desc: "Axios 是一个基于 promise 的网络请求库，可以用于浏览器和 node.js",
+        link: "https://www.axios-http.cn/",
+      },
+    ],
+  },
+  {
+    title: "音乐网站",
+    items: [
+      {
+        icon: "https://avatars.githubusercontent.com/u/45055748?s=48&v=4",
+        title: "AlgerMusicPlayer",
+        desc: "一个第三方音乐播放器，支持本地服务、桌面歌词、主题切换",
+        link: "http://music.alger.fun/#/",
+      },
+      {
+        icon: "https://blog.hzyo.cn/music/favicon.ico",
+        title: "Music丨用音乐愉悦心情",
+        desc: "一款开源的基于网易云音乐api的在线音乐播放器。具有音乐搜索、播放、歌词同步显示、个人音乐播放列表同步等功能。",
+        link: "https://blog.hzyo.cn/music/",
       },
     ],
   },
