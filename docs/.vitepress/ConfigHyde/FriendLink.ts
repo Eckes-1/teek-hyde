@@ -12,7 +12,7 @@ export const FriendLink = {
     {
       avatar: "https://vp.teek.top/teek-logo-large.png",
       name: "Teek VitePress主题",
-      desc: "✨一个轻量、简洁高效、灵活配置，易于扩展的 VitePress 主题",
+      desc: "✨一个轻量、简洁高效、灵活配置、易于扩展的 VitePress 主题。",
       link: "https://vp.teek.top/",
     },
     {
