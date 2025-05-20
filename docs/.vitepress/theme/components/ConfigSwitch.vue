@@ -1,6 +1,6 @@
 // 配置切换
 <script setup lang="ts" name="ConfigSwitch">
-import { TkSegmented, TkMessage, magicIcon, isClient } from "vitepress-theme-teek";
+import { TkSegmented, TkMessage, magicIcon, isClient, useMediaQuery } from "vitepress-theme-teek";
 import BaseTemplate from "vitepress-theme-teek/es/components/theme/ThemeEnhance/src/components/BaseTemplate.vue";
 import { nextTick, ref, watch } from "vue";
 import { useClipboard } from "vitepress-theme-teek";
@@ -39,11 +39,16 @@ const segmentedOptions = [
     { value: "blog-card", label: "博客卡片", title: "首页卡片文章列表 + 左侧卡片栏列表" },
 ];
 
+const emit = defineEmits<{
+    switch: [config: typeof teekDocConfig, style: string];
+}>();
+
 // 默认文档风格
 const themeStyle = ref("blog-card");
 const teekConfig = ref(teekBlogCardConfig);
 
 const { copy, copied } = useClipboard();
+const isMobile = useMediaQuery("(max-width: 768px)"); // 判断是否为移动端
 
 const update = async (style: string) => {
     if (style === "doc") teekConfig.value = teekDocConfig;
@@ -52,7 +57,7 @@ const update = async (style: string) => {
     if (style === "blog-full") teekConfig.value = teekBlogFullConfig;
     if (style === "blog-body") teekConfig.value = teekBlogBodyConfig;
     if (style === "blog-card") teekConfig.value = teekBlogCardConfig;
-
+    emit("switch", teekConfig.value, style);
     await nextTick();
     if (!isClient) return;
 
@@ -76,7 +81,7 @@ defineExpose({ themeStyle, teekConfig });
 </script>
 
 <template>
-    <BaseTemplate :class="ns" :icon="magicIcon" :title="tipInfo.title" helper :helper-desc="tipInfo.desc"
+    <BaseTemplate :class="ns" :icon="magicIcon" :title="tipInfo.title" :helper="!isMobile" :helper-desc="tipInfo.desc"
         :tips="tipInfo.tips">
         <template #title>
             <div class="flx-justify-between flx-1">
@@ -93,6 +98,10 @@ defineExpose({ themeStyle, teekConfig });
 $namespace: config-switch;
 
 .#{$namespace} {
+    @media (max-width: 768px) {
+        margin-top: 10px;
+    }
+
     h3 {
         display: inline-block;
         font-size: 12px;

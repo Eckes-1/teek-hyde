@@ -1,11 +1,9 @@
 <script setup lang="ts" name="TeekLayoutProvider">
-// import Teek, { TkAvatar, teekConfigContext, useNamespace, clockIcon } from "vitepress-theme-teek";
-// import { provide, ref, watch, nextTick } from "vue";
-// import { teekDocConfig, teekBlogConfig } from "../config/teekConfig";
+import type { TeekConfig } from "vitepress-theme-teek";
 import Teek, { teekConfigContext, clockIcon } from "vitepress-theme-teek";
 import { useData } from "vitepress";
-import { watch, nextTick, useTemplateRef, ref, provide } from "vue";
-import { teekDocConfig } from "../config/teekConfig";
+import { watch, nextTick, ref, provide } from "vue";
+import { teekBlogCardConfig } from "../config/teekConfig";
 // @ts-ignore
 import ConfigSwitch from "./ConfigSwitch.vue";
 
@@ -28,18 +26,24 @@ import { useRibbon } from "../hooks/useRibbon";  //导入彩带背景
 const ns = "layout-provider";
 const { frontmatter } = useData();
 
-const teekConfig = ref(teekDocConfig);
+const teekConfig = ref(teekBlogCardConfig);  // 博客类风格的配置,默认卡片风格
 provide(teekConfigContext, teekConfig);
 
 // 页脚运行时间
-const { start, stop } = useRuntime("2025-03-14 00:00:00", {
+const { start: startRuntime, stop: stopRuntime } = useRuntime("2025-03-14 00:00:00", {
     prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>本站已在地球上苟活了`,
 });
 
 const watchRuntime = async (condition: boolean) => {
-  await nextTick();
-  if (condition) start();
-  else stop();
+    await nextTick();
+    if (condition) startRuntime();
+    else stopRuntime();
+};
+
+const watchRibbon = async (condition: boolean) => {
+    await nextTick();
+    if (condition) start();
+    else stop();
 };
 
 // 为configSwitchRef添加类型定义来明确teekConfig属性
@@ -47,23 +51,25 @@ interface ConfigSwitchExpose {
     teekConfig?: unknown
     themeStyle?: string
 }
-// 为configSwitchRef添加类型定义来明确teekConfig属性
-const configSwitchRef = useTemplateRef<ConfigSwitchExpose>("configSwitchRef");
 
-watch(frontmatter, async newVal => watchRuntime(newVal.layout === "home"), { immediate: true });
+const watchRuntimeAndRibbon = (layout: string, style: string) => {
+    watchRuntime(layout === "home" && style.startsWith("blog"));
+    watchRibbon(
+        (layout === "home" && style.startsWith("blog") && style !== "blog-body") ||
+        ([undefined, "doc"].includes(layout) && !!teekConfig.value.pageStyle)
+    );
+};
 
-watch(
-  () => configSwitchRef.value?.themeStyle,
-  async newVal => watchRuntime(newVal === "blog"),
-  { immediate: true }
-);
+const currentStyle = ref("");
 
-watch(
-  () => configSwitchRef.value?.teekConfig,
-  async newVal => {
-    if (newVal) teekConfig.value = newVal;
-  }
-)
+watch(frontmatter, async newVal => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), { immediate: true });
+
+const handleConfigSwitch = (config: TeekConfig, style: string) => {
+    teekConfig.value = config;
+    currentStyle.value = style;
+
+    watchRuntimeAndRibbon(frontmatter.value.layout, currentStyle.value);
+};
 
 watch(
     frontmatter,
@@ -76,7 +82,7 @@ watch(
 );
 
 // 彩带背景
-const { start: startRibbon, stop: stopRibbon } = useRibbon({ clickReRender: true });
+const { start, stop } = useRibbon({ immediate: false, clickReRender: true });
 </script>
 
 <template>
@@ -97,8 +103,11 @@ const { start: startRibbon, stop: stopRibbon } = useRibbon({ clickReRender: true
         </template>
         <template #teek-theme-enhance-bottom>
             <div :class="[ns, 'flx-align-center']">
-                <ConfigSwitch ref="configSwitchRef" />
+                <ConfigSwitch @switch="handleConfigSwitch" />
             </div>
+        </template>
+        <template #nav-screen-content-after>
+            <ConfigSwitch @switch="handleConfigSwitch" />
         </template>
         <!-- 不添加下面影响公告样式 -->
         <template v-for="(_, name) in $slots" :key="name" #[name]>
@@ -111,3 +120,13 @@ const { start: startRibbon, stop: stopRibbon } = useRibbon({ clickReRender: true
         </template>
     </Teek.Layout>
 </template>
+
+<style lang="scss">
+.tk-my.is-circle-bg {
+    margin-bottom: 20px;
+
+    .tk-my__avatar.circle-rotate {
+        margin-top: 200px;
+    }
+}
+</style>
