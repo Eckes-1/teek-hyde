@@ -16,10 +16,10 @@ export const VitepressData = {
       link: "https://51.la/",
     },
     {
-      icon: "https://www.tongjiniao.com/favicon.ico",
-      title: "统计鸟",
-      desc: "站长必备！网站数据统计，流量监测平台",
-      link: "https://www.tongjiniao.com/",
+      icon: "https://claritystatic.azureedge.net/images/logo.ico",
+      title: "Clarity",
+      desc: "Clarity 是一款免费产品，可捕获用户使用网站的方式。安装非常简单，只需几分钟时间即可开始获取数据。",
+      link: "https://clarity.microsoft.com/",
     },
     {
       icon: "https://avatars.githubusercontent.com/u/42232682?s=48&v=4",
@@ -176,6 +176,12 @@ export const VitepressData = {
       title: "网费很贵",
       desc: "最好用的上网时间记录工具",
       link: "https://www.wfhg.cc/zh_CN/",
+    },
+    {
+      icon: "https://bitiful-contents.butterix.com/cHJvLTQ/images/U0bMDyAe4YIaUxSbYf1vJs4rg.png",
+      title: "缤纷云 Bitiful",
+      desc: "强大低成本的对象存储和CDN服务",
+      link: "https://www.bitiful.com/",
     },
   ],
 } as NavData;

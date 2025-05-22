@@ -67,6 +67,7 @@ export const HeadData = [
       defer: "defer",
     },
   ],
+  ["noscript", {}, '<meta http-equiv="refresh" content="0; url={https://www.baidu.com/}">'], // 禁用js跳转
   //免费的音乐播放器
   // [
   //   "script",

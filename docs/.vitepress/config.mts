@@ -69,9 +69,8 @@ const teekConfig = defineTeekConfig({
   },
   // 超过半年的文章自动提示文章内容可能已过时
   articleTopTip: (frontmatter) => {
-    const tip = {
+    const tip: Record<string, string> = {
       type: "warning",
-      title: "注意",
       text: "文章发布较早，内容可能过时，阅读注意甄别。",
     };
 
@@ -98,7 +97,8 @@ const teekConfig = defineTeekConfig({
     sidebarOption: {
       initItems: false, //这条命令注释后，才会让文档和目录的样式保持一致
       collapsed: true, //打开侧边栏自动收缩功能
-      ignoreList: ["nav"], //忽略的文件夹和文件
+      // ignoreList: ["nav"], //忽略的文件夹和文件
+      ignoreWarn: true, // 忽略警告
     },
     autoFrontmatter: true, // 自动生成 frontmatter
     permalinkOption: {
@@ -215,6 +215,83 @@ const teekConfig = defineTeekConfig({
   // 私密文章（登录页）
   private: {
     enabled: true,
+    expire: "1d",
+    session: true,
+    siteLogin: true,
+    site: [
+      {
+        username: "teek", //用户名
+        password: "teek", //密码
+        role: "common", // 角色，common为普通用户，admin为管理员
+        expire: "1d", // 过期时间，单位：天
+        session: true, // 可选，开启是否在网页关闭或刷新后，清除登录状态，这样再次访问网页，需要重新登录，默认为 false
+        strategy: "always", //可选，登录策略，once 代表一次登录，always 代表每次访问都登录，默认为 once
+      },
+      // {
+      //   username: "teek-site-2",
+      //   password: "teek",
+      //   role: "admin",
+      //   expire: "1d",
+      //   session: false,
+      //   strategy: "always",
+      // },
+    ],
+    pages: [
+      {
+        username: "teek",
+        password: "teek",
+        expire: "1d",
+        session: true,
+        strategy: "once",
+      },
+      {
+        username: "teek-pages-2",
+        password: "teek",
+        expire: "1d",
+        session: false,
+        strategy: "always",
+      },
+    ],
+    // realm: {
+    //   blog: [
+    //     {
+    //       username: "teek-blog-1",
+    //       password: "teek",
+    //       expire: "1d",
+    //       session: true,
+    //       strategy: "once",
+    //     },
+    //     {
+    //       username: "teek-blog-2",
+    //       password: "teek",
+    //       expire: "1d",
+    //       session: false,
+    //       strategy: "always",
+    //     },
+    //   ],
+    //   comment: [
+    //     {
+    //       username: "teek-comment-1",
+    //       password: "teek",
+    //       expire: "1d",
+    //       session: true,
+    //       strategy: "always",
+    //     },
+    //     {
+    //       username: "teek-comment-2",
+    //       password: "teek",
+    //       expire: "1d",
+    //       session: false,
+    //       strategy: "always",
+    //     },
+    //   ],
+    // },
+    // onFocus: (value, formName) => {},
+    // onBlur: (value, formName) => {},
+    // doLogin: (loginInfo, type, nativeExecLogin) => true,
+    // doValidate: (type, frontmatter, nativeExecLogin) => true,
+    // encrypt: (value, frontmatter) => value,
+    // decrypt: (value, frontmatter) => value,
   },
 });
 
@@ -290,8 +367,8 @@ export default defineConfig({
     server: {
       // host: "127.0.0.1", // 指定服务器应该监听哪个 IP 地址
       // port: 5173, // 指定开发服务器端口
-      strictPort: true, // 若端口已被占用则会直接退出
-      open: true, // 运行后自动打开网页
+      // strictPort: true, // 若端口已被占用则会直接退出
+      // open: true, // 运行后自动打开网页
     },
     build: {
       chunkSizeWarningLimit: 1500, // 限制警告的块大小

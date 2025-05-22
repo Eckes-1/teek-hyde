@@ -25,7 +25,7 @@ export const teekBlogCommonConfig: TeekConfig = {
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
     name: "Hyde",
     slogan: "人心中的成见是一座大山~",
-    circleBgImg: "/avatar/circleBgImg2.webp", // 头像圆形背景图
+    circleBgImg: "/avatar/circleBgImg.webp", // 头像圆形背景图
   },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块
