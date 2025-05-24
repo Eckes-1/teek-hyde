@@ -1,6 +1,6 @@
 ---
 date: 2025-05-19 18:07:44
-title: 风险页测试
+title: 跳转提示
 permalink: /risk-link
 categories:
   - 笔记专栏

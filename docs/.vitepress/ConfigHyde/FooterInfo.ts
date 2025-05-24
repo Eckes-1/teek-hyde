@@ -16,7 +16,7 @@ export const FooterInfo = {
     <a target="_blank" href="https://nginx.org/" title="本站Nginx反向代理服务 Nginx"><img alt="Nginx" src="https://img.shields.io/badge/Nginx-Proxy?logo=Nginx&label=Proxy"></a>`,
   ],
   theme: {
-    name: `Theme By Teek@${version}-2025.5.7`,
+    name: `Theme By Teek@${version}-2025.5.23`,
   },
   bottomMessage: [
     `<script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=0&f=12&display=0,1,1,1,1,1,1,1"></script>`,

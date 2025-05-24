@@ -1,4 +1,5 @@
 // nav导航栏配置
+import { TeekIcon, VdoingIcon, SSLIcon, BlogIcon } from "./icon/NavIcon";
 export const Nav = [
   {
     text: "🏡首页",
@@ -10,10 +11,22 @@ export const Nav = [
   {
     text: "📖笔记专栏",
     items: [
-      {text: "Teek主题",link: "/Teek",},
-      { text: "Vdoing主题", link: "/Vdoing/" },
-      { text: "SSL证书", link: "/SSL", },
-      { text: "博客搭建", link: "/Column/", },
+      {
+        component: "NavIcon",
+        props: TeekIcon,
+      },
+      {
+        component: "NavIcon",
+        props: VdoingIcon,
+      },
+      {
+        component: "NavIcon",
+        props: SSLIcon,
+      },
+      {
+        component: "NavIcon",
+        props: BlogIcon,
+      },
     ],
   },
   {
@@ -45,7 +58,10 @@ export const Nav = [
           { text: "标签", link: "/tags/" },
           { text: "归档", link: "/archives/" },
           { text: "清单", link: "/articleOverview/" },
-          { text: "风险提示页", link: "/risk-link?target=http://localhost:5173/" },
+          {
+            text: "风险提示页",
+            link: "/risk-link?target=http://localhost:5173/",
+          },
         ],
       },
     ],

@@ -1,9 +1,49 @@
 import type { NavData } from "./types.ts";
-import { VitepressData } from "./Data/Vitepress";
+import { SiteAnalytics } from "./Data/SiteAnalytics";
 export const NAV_DATA: NavData[] = [
   {
-    title: VitepressData.title,
-    items: VitepressData.items,
+    title: SiteAnalytics.title,
+    items: SiteAnalytics.items,
+  },
+  {
+    title: "网站状态",
+    items: [
+      {
+        icon: "https://avatars.githubusercontent.com/u/42232682?s=48&v=4",
+        title: "site-status",
+        desc: "📺 一个基于 UptimeRobot API 的在线状态面板 | 站点监测 | 状态检测",
+        link: "https://github.com/imsyy/site-status",
+      },
+      {
+        icon: "https://uptime.kuma.pet/img/icon.svg",
+        title: "Uptime-Kuma",
+        desc: "一款开源的 自托管监控工具，专为个人、团队或中小型企业设计，用于实时监测网站、服务器、API 及各类网络服务的运行状态",
+        link: "https://uptime.kuma.pet/",
+      },
+    ],
+  },
+  {
+    title: "图像处理",
+    items: [
+      {
+        icon: "https://compressjpg.io/favicon.ico",
+        title: "Compress JPG",
+        desc: "一个免费在线的图片压缩工具",
+        link: "https://compressjpg.io/zh-CN",
+      },
+      {
+        icon: "https://www.21zui.com/favicon.ico",
+        title: "在线改图",
+        desc: "简便、安全、免费的在线图片工具",
+        link: "https://www.21zui.com/",
+      },
+      {
+        icon: "https://www.freeconvert.com/favicon.ico",
+        title: "文件转换器",
+        desc: "轻松在线将文件从一种格式转换为另一种格式",
+        link: "https://www.freeconvert.com/zh",
+      },
+    ],
   },
   {
     title: "图床",
@@ -78,17 +118,88 @@ export const NAV_DATA: NavData[] = [
         desc: "hdqwalls.com Best Source For HD,4k,5k,8k Wallpapers",
         link: "https://hdqwalls.com/",
       },
+    ],
+  },
+  {
+    title: "临时邮件",
+    items: [
       {
-        icon: "https://www.freeconvert.com/favicon.ico",
-        title: "文件转换器",
-        desc: "轻松在线将文件从一种格式转换为另一种格式",
-        link: "https://www.freeconvert.com/zh",
+        icon: "https://i.52112.com/icon/jpg/256/20210201/109466/4372976.jpg",
+        title: "个人邮箱 - 来发信",
+        desc: "常见个人邮箱登录方式教程",
+        link: "https://www.laifa.xin/category/yx/gryx/",
       },
       {
-        icon: "https://www.21zui.com/favicon.ico",
-        title: "在线改图",
-        desc: "简便、安全、免费的在线图片工具",
-        link: "https://www.21zui.com/",
+        icon: "https://i.postimg.cc/hv2hwd83/331a5669-90e6-4b76-b2f8-ce0397879a4a-1.jpg",
+        title: "企业邮箱 - 来发信",
+        desc: "常见企业邮箱登录方式教程",
+        link: "https://www.laifa.xin/category/yx/qyyx/",
+      },
+      {
+        icon: "https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png",
+        title: "临时邮箱",
+        desc: "12款常用的临时邮箱汇总",
+        link: "https://zhuanlan.zhihu.com/p/690640067",
+      },
+      {
+        icon: "https://inboxes.com/images/favicon.png",
+        title: "Inboxes - Disposable Temporary email",
+        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
+        link: "https://inboxes.com/",
+      },
+      {
+        icon: "https://fviainboxes.com/favicon.ico",
+        title: "Fviainboxes",
+        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
+        link: "https://fviainboxes.com/",
+      },
+      {
+        icon: "https://www.moakt.com/favicon.ico",
+        title: "moakt",
+        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
+        link: "https://www.moakt.com/en",
+      },
+      {
+        icon: "https://generator.email/favicon.ico",
+        title: "generator",
+        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
+        link: "https://generator.email",
+      },
+      {
+        icon: "https://www.1secmail.com/img/favicon.ico",
+        title: "1secmail",
+        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
+        link: "https://www.1secmail.com/",
+      },
+      {
+        icon: "https://snovio.cn/blog/wp-content/themes/blog/assets/img/favicon/favicon.png",
+        title: "全球各大邮箱服务商邮件发送限制详情",
+        desc: "全球各大邮箱服务商邮件发送限制详情",
+        link: "https://snovio.cn/blog/email-sending-limits-of-major-email-service-providers/",
+      },
+      {
+        icon: "https://tempmailpro.org/favicon.ico",
+        title: "Temp Mail Pro",
+        desc: "立即获取您的专属临时邮箱。安全发送信息，到期自动销毁——让隐私保护变得简单快捷。",
+        link: "https://tempmailpro.org/zh",
+      },
+      {
+        icon: "https://etempmail.com/assets/img/fav/apple-icon-57x57.png",
+        title: "Temp Mail",
+        desc: "一个免实名的邮箱工具，帮你保护隐私。还能用教育邮箱，享学生折扣。",
+        link: "https://etempmail.com/zh",
+      },
+      {
+        icon: "https://mr.email/logo.png",
+        title: "MR.email",
+        desc: "一次性邮箱，适合注册一些临时用来，顺手就丢的东西，也不会自己的常用邮箱接收太多杂乱的信息",
+        link: "https://mr.email/",
+      },
+      {
+        icon: "https://swapco.de/logo.png",
+        title: "SwapCode",
+        desc: "一个在线临时邮箱和虚拟信息生成器，可以用来一些临时帐号，还支持虚拟信息生成，包括地址，邮箱，手机，人名等。",
+        link: "https://swapco.de/faker",
       },
     ],
   },
@@ -752,6 +863,182 @@ export const NAV_DATA: NavData[] = [
         title: "Music丨用音乐愉悦心情",
         desc: "一款开源的基于网易云音乐api的在线音乐播放器。具有音乐搜索、播放、歌词同步显示、个人音乐播放列表同步等功能。",
         link: "https://blog.hzyo.cn/music/",
+      },
+    ],
+  },
+  {
+    title: "其他",
+    items: [
+      {
+        icon: "https://yibao.233h.com/logo.png",
+        title: "医保政策导航",
+        desc: "一站式医保政策查询平台，让医保使用更简单",
+        link: "https://yibao.233h.com/",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/17945115?s=48&v=4",
+        title: "Picseal",
+        desc: "模仿小米照片风格，生成莱卡水印照片。同时支持佳能、尼康、苹果、华为、小米、DJI 等水印。可自动识别，也可自定义处理。",
+        link: "https://picseal.vercel.app/",
+      },
+      {
+        icon: "https://cdnn.mmtool.cn/favicon.svg",
+        title: "手写体文稿生成器",
+        desc: "在线手写模拟器，一键生成手写字体文稿。可将文本转换为手写体，并下载为图片或PDF 格式",
+        link: "https://vtool.pro/handwriting/index.html",
+      },
+      {
+        icon: "https://font.sucai999.com//statics/default/images/favicon.png",
+        title: "字体搬运工",
+        desc: "一个专门收集整理”免费商用字体的网站，无需登录，自由下载。",
+        link: "https://font.sucai999.com/search/0_1_1.html",
+      },
+      {
+        icon: "https://www.ysdaima.com/assets/img/favicon.png",
+        title: "颜色代码表",
+        desc: "为设计师和开发者提供专业的色彩工具，让设计更出色。",
+        link: "https://www.ysdaima.com/",
+      },
+      {
+        icon: "https://abdownloadmanager.com/assets/app_icon_with_background-DacKa0NY.svg",
+        title: "AB 下载管理器",
+        desc: "通过与浏览器的无缝集成从任何地方轻松下载文件，享受快速、免费的下载体验，可以平替idm，一个开源产品，还在初期，问题还有不少",
+        link: "AB 下载管理器",
+      },
+      {
+        icon: "https://fuun.fun/apple-touch-icon.png",
+        title: "奇趣网站收藏夹",
+        desc: "有各种有意思的小网页，小游戏，汲取灵感，感受不一样的网页世界。",
+        link: "https://fuun.fun/",
+      },
+      {
+        icon: "https://ray.so/favicon.ico",
+        title: "ray.so",
+        desc: "一款高颜值的 Icon 制作工具，操作简单",
+        link: "https://ray.so/icon",
+      },
+      {
+        icon: "https://lookscanned.io/favicon.ico",
+        title: "Look Scanned",
+        desc: "能够让 PDF 看起来就像是扫描件一样的纯前端网站。你再也不需要麻烦地打印之后扫描了，你所需要的就是鼠标点几下。",
+        link: "https://ray.so/icon",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/86941555?s=48&v=4",
+        title: "MouseClick",
+        desc: "一款功能强大的鼠标控制和管理软件，软件界面美观 ，操作直观，支持鼠标行为模拟、鼠标动作记录  和宏命令创建 ，让用户在工作和游戏中实现高效自动化 。",
+        link: "https://github.com/SeaYJ/MouseClick",
+      },
+      {
+        icon: "https://www.spacedrive.com/favicon.ico",
+        title: "spacedrive",
+        desc: "一个资源管理器，所有文件",
+        link: "https://www.spacedrive.com/",
+      },
+      {
+        icon: "https://relationship.ohevan.com/icon.png",
+        title: "一个自以为是的情感指南",
+        desc: "一个由 Evan 亲自撰写，收集，总结的情感指南，希望能帮助你解决一些情感问题。",
+        link: "https://relationship.ohevan.com/",
+      },
+      {
+        icon: "https://wificard.io/static/media/wifi.98ef7bb3bdae68a308b3.png",
+        title: "WiFi 连接卡",
+        desc: "打印一张带有 WiFi 详细信息的登录卡片，把它贴到冰箱上、放到你的钱包里...让客人扫一扫连接",
+        link: "https://wificard.io/",
+      },
+      {
+        icon: "https://www.jianlisheji.com/favicon.ico",
+        title: "简历设计网",
+        desc: "简单好用的在线简历制作工具",
+        link: "https://www.jianlisheji.com/",
+      },
+      {
+        icon: "https://zufang.ababtools.com/logo-big.svg",
+        title: "城市租房生存指南",
+        desc: "租房小白修炼手册，掌握租房硬核知识，找到理想住所！",
+        link: "https://zufang.ababtools.com/",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/25154432?s=48&v=4",
+        title: "食用手册",
+        desc: "选择食材，为你推荐菜谱和做菜教程，让生活更有烟火味。",
+        link: "https://cook.yunyoujun.cn/",
+      },
+      {
+        icon: "https://www.wfhg.cc/favicon.ico",
+        title: "网费很贵",
+        desc: "最好用的上网时间记录工具",
+        link: "https://www.wfhg.cc/zh_CN/",
+      },
+    ],
+  },
+  {
+    title: "Markdown编辑器",
+    items: [
+      {
+        icon: "https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/gh/doocs/md/images/favicon.png",
+        title: "微信 Markdown 编辑器",
+        desc: "一款高度简洁的微信 Markdown 编辑器",
+        link: "https://md.doocs.org",
+      },
+      {
+        icon: "https://cardify.godsbee.com/favicon.ico",
+        title: "Markdown精美知识卡片",
+        desc: "高效使用Markdown创建视觉精美的知识卡片，可切换30+种主题样式。",
+        link: "https://cardify.godsbee.com/",
+      },
+    ],
+  },
+  {
+    title: "代理软件",
+    items: [
+      {
+        icon: "https://flclash.cc/index-image-src.png",
+        title: "FlClash",
+        desc: "基于ClashMeta的多平台代理客户端，简单易用，开源且无广告",
+        link: "https://flclash.cc/",
+      },
+      {
+        icon: "https://www.clashverge.dev/assets/logo.png",
+        title: "Clash Verge",
+        desc: "基于 Tauri 的 Mihomo GUI",
+        link: "https://www.clashverge.dev/",
+      },
+      {
+        icon: "https://karing.app/img/favicon.ico",
+        title: "karing(IOS,需美区ID)",
+        desc: "兼容Clash的通用网络代理工具, 支持clash/v2ray/ss订阅",
+        link: "https://karing.app/",
+      },
+      {
+        icon: "https://web.telegram.org/a/icon-192x192.png",
+        title: "小羽VPN_0.7.7-去广告版.apk",
+        desc: "安卓免费VPN，速度不错,需外网下载",
+        link: "https://t.me/OJBK2333/2615",
+      },
+      {
+        icon: "https://mihomo.party/logo.png",
+        title: "Mihomo-Party",
+        desc: "一个更易用的代理客户端",
+        link: "https://mihomo.party/",
+      },
+    ],
+  },
+  {
+    title: "CDN加速",
+    items: [
+      {
+        icon: "https://bitiful-contents.butterix.com/cHJvLTQ/images/U0bMDyAe4YIaUxSbYf1vJs4rg.png",
+        title: "缤纷云 Bitiful",
+        desc: "强大低成本的对象存储和CDN服务",
+        link: "https://www.bitiful.com/",
+      },
+      {
+        icon: "https://www.dogecloud.com/favicon.png",
+        title: "多吉云",
+        desc: "一站式视频云点播平台，轻量级的用户能够无需了解任何技术就轻而易举地展示和播放视频，而以视频为主要产品的用户能通过强大的 API 和 SDK 完成对视频的高级处理。",
+        link: "https://www.dogecloud.com/",
       },
     ],
   },

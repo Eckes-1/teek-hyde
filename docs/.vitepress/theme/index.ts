@@ -10,6 +10,7 @@ import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import vitepressNprogress from "vitepress-plugin-nprogress"; // 引入路由进度条插件
 import NotFound from "./components/NotFound.vue"; // 导入404组件
+import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
 
 // 样式导入
 import "vitepress-theme-teek/index.css";
@@ -41,6 +42,7 @@ export default {
     app.component("MNavLinks", MNavLinks); // 注册导航组件
     app.component("confetti", confetti); // 注册五彩纸屑组件
     vitepressNprogress({ app, router }); //调用nprogress插件
+    app.component("NavIcon", NavIcon); //导航栏图标
   },
   Layout: defineComponent({
     name: "LayoutProvider",
@@ -53,22 +55,6 @@ export default {
         props.class = frontmatter.value.layoutClass;
       }
 
-      // 注入评论区实例
-      // provide(walineSymbol, (options, el) =>
-      //   init({ serverURL: options.serverURL!, dark: options.dark, el })
-      // );
-      // provide(giscusSymbol, () => Giscus);
-      // provide(artalkSymbol, (options, el) =>
-      //   Artalk.init({
-      //     el,
-      //     darkMode: isDark.value,
-      //     pageKey: route.path,
-      //     pageTitle: page.value.title,
-      //     server: options.server,
-      //     site: options.site,
-      //   })
-      // );
-
       return () =>
         h(TeekLayoutProvider, props, {
           // "layout-top": () => h(notice), // 使用layout-top插槽
@@ -76,48 +62,6 @@ export default {
           "teek-notice-content": () => h(NoticeContent),
           "teek-home-banner-feature-after": () => h(BannerImgArrow),
           "not-found": () => h(NotFound),
-          // 自定义文档底部
-          // "doc-after": () => h(siteFooter),
-          // "teek-home-before": () => h("div", null, "teek-home-before"),
-          // "teek-home-after": () => h("div", null, "teek-home-after"),
-          // "teek-home-banner-before": () => h("div", null, "teek-home-banner-before"),
-          // "teek-home-banner-after": () => h("div", null, "teek-home-banner-after"),
-          // "teek-home-banner-content-before": () => h("div", null, "teek-home-banner-content-before"),
-          // "teek-home-banner-content-after": () => h("div", null, "teek-home-banner-content-after"),
-          // "teek-home-banner-feature-after": () => h("div", null, "teek-home-banner-feature-after"),
-          // "teek-home-post-before": () => h("div", null, "teek-home-post-before"),
-          // "teek-home-post-after": () => h("div", null, "teek-home-post-after"),
-          // "teek-home-info-before": () => h("div", null, "teek-home-info-before"),
-          // "teek-home-info-after": () => h("div", null, "teek-home-info-after"),
-          // "teek-home-my-before": () => h("div", null, "teek-home-my-before"),
-          // "teek-home-my-after": () => h("div", null, "teek-home-my-after"),
-          // "teek-home-top-article-before": () => h("div", null, "teek-home-top-article-before"),
-          // "teek-home-top-article-after": () => h("div", null, "teek-home-top-article-after"),
-          // "teek-home-category-before": () => h("div", null, "teek-home-category-before"),
-          // "teek-home-category-after": () => h("div", null, "teek-home-category-after"),
-          // "teek-home-tag-before": () => h("div", null, "teek-home-tag-before"),
-          // "teek-home-tag-after": () => h("div", null, "teek-home-tag-after"),
-          // "teek-home-friend-link-before": () => h("div", null, "teek-home-friend-link-before"),
-          // "teek-home-friend-link-after": () => h("div", null, "teek-home-friend-link-after"),
-          // "teek-home-doc-analysis-before": () => h("div", null, "teek-home-doc-analysis-before"),
-          // "teek-home-doc-analysis-after": () => h("div", null, "teek-home-doc-analysis-after"),
-          // "teek-footer-before": () => h("div", null, "teek-footer-before"),
-          // "teek-footer-after": () => h("div", null, "teek-footer-after"),
-
-          // "teek-article-analyze-before": () => h("div", null, "teek-article-analyze-before"),
-          // "teek-article-analyze-after": () => h("div", null, "teek-article-analyze-after"),
-          // "teek-comment-before": () => h("div", null, "teek-comment-before"),
-          // "teek-comment-after": () => h("div", null, "teek-comment-after"),
-          // "teek-page-top-before": () => h("div", null, "teek-page-top-before"),
-          // "teek-page-top-after": () => h("div", null, "teek-page-top-after"),
-
-          // "teek-archives-top-before": () => h("div", null, "teek-archives-top-before"),
-          // "teek-archives-top-after": () => h("div", null, "teek-archives-top-after"),
-          // "teek-catalogue-top-before": () => h("div", null, "teek-catalogue-top-before"),
-          // "teek-catalogue-top-after": () => h("div", null, "teek-catalogue-top-after"),
-
-          // "teek-right-bottom-before": () => h("div", null, "teek-right-bottom-before"),
-          // "teek-right-bottom-after": () => h("div", null, "teek-right-bottom-after"),
         });
     },
   }),

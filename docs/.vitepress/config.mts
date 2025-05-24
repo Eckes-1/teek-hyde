@@ -209,15 +209,15 @@ const teekConfig = defineTeekConfig({
   // 风险链接提示页
   riskLink: {
     enabled: true, //是否启用风险链接提示功能
-    whitelist: ["https://teek.seasir.top/", /https:\/\/github.com/],
-    blacklist: [],
+    whitelist: ["https://teek.seasir.top/", /https:\/\/github.com/], // 白名单，匹配到的链接不提示风险
+    blacklist: [], // 黑名单，匹配到的链接提示风险
   },
   // 私密文章（登录页）
   private: {
-    enabled: true,
-    expire: "1d",
-    session: true,
-    siteLogin: true,
+    enabled: true, // 是否启用私密文章功能
+    expire: "1d", //可选，登录失效时间，如果不填则以全局配置为准，全局设置默认为 1d
+    session: true, //可选，开启是否在网页关闭或刷新后，清除登录状态，这样再次访问网页，需要重新登录，默认为 false
+    siteLogin: false, //可选，是否使用站点级别登录功能，即第一次进入网站需要验证，默认为 false
     site: [
       {
         username: "teek", //用户名
@@ -227,14 +227,14 @@ const teekConfig = defineTeekConfig({
         session: true, // 可选，开启是否在网页关闭或刷新后，清除登录状态，这样再次访问网页，需要重新登录，默认为 false
         strategy: "always", //可选，登录策略，once 代表一次登录，always 代表每次访问都登录，默认为 once
       },
-      // {
-      //   username: "teek-site-2",
-      //   password: "teek",
-      //   role: "admin",
-      //   expire: "1d",
-      //   session: false,
-      //   strategy: "always",
-      // },
+      {
+        username: "teek-site-2",
+        password: "teek",
+        role: "admin",
+        expire: "1d",
+        session: false,
+        strategy: "always",
+      },
     ],
     pages: [
       {
