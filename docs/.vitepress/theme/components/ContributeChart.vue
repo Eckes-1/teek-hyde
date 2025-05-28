@@ -7,14 +7,18 @@ import { formatDate, usePosts } from "vitepress-theme-teek";
 const { isDark } = useData();
 const posts = usePosts();
 
+// 今天
 const today = formatDate(new Date(), "yyyy-MM-dd");
 // 获取一年前的时间
 const beforeOnYear = formatDate(new Date(new Date().getTime() - 365 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
 
+// 贡献图数据
 const contributeList = computed(() => {
   const contributeObject = ref({});
 
   posts.value.sortPostsByDate.forEach(item => {
+    if (!item.date) return;
+
     const date = item.date.substring(0, 10);
     if (contributeObject.value[date]) contributeObject.value[date]++;
     else contributeObject.value[date] = 1;
@@ -28,6 +32,7 @@ const contributeList = computed(() => {
 const chartRef = useTemplateRef("chartRef");
 const contributeChart = ref();
 
+// Echarts 配置项
 const option = {
   tooltip: {
     formatter: function (params) {
@@ -76,15 +81,16 @@ const option = {
   },
 };
 
+// 渲染贡献图
 const renderChart = (data: any) => {
   option.calendar.itemStyle.borderColor = isDark.value ? "#1b1b1f" : "#fff";
   option.calendar.itemStyle.color = isDark.value ? "#787878" : "#ebedf0";
 
   if (contributeChart.value) echarts.dispose(contributeChart.value);
-  if (chartRef.value) contributeChart.value = echarts.init(chartRef.value as HTMLElement);
+  if (chartRef.value) contributeChart.value = echarts.init(chartRef.value);
 
   option.series.data = data;
-  contributeChart.value.setOption(option);
+  contributeChart.value?.setOption(option);
 };
 
 watch(
@@ -108,8 +114,8 @@ watch(isDark, () => {
 </template>
 
 <style>
-.tk-page.tk-archives {
-  max-width: 1220px;
+.tk-article-page.tk-archives {
+  width: 1220px;
 }
 
 .tk-archives .contribute__chart {

@@ -29,7 +29,7 @@ const greet = () => {
   )}`;
   const message = getGreetingMessage(hours, timeStr);
 
-  TkMessage.primary({ message, duration:5000, plain: true,offset: 80 });
+  TkMessage.primary({ message, duration, plain: true,offset: 80 });
 };
 
 const getGreetingMessage = (hours: number, timeStr: string) => {

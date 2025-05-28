@@ -39,5 +39,11 @@ export const SiteAnalytics = {
       desc: "Clarity 是一款免费产品，可捕获用户使用网站的方式。安装非常简单，只需几分钟时间即可开始获取数据。",
       link: "https://clarity.microsoft.com/",
     },
+    {
+      icon: "https://www.rybbit.io/icon.ico?e5caf3051b11d9c2",
+      title: "Rybbit",
+      desc: "适合所有人的下一代、开源、轻量级、无 cookie 的网络和产品分析。",
+      link: "https://www.rybbit.io/",
+    },
   ],
 } as NavData;

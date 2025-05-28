@@ -8,6 +8,7 @@
 import { useRoute } from "vitepress";
 import { nextTick, onUnmounted, ref, watch } from "vue";
 import { TkMessage } from "vitepress-theme-teek";
+import { onMounted } from 'vue'
 
 const route = useRoute();
 const toTop = ref();
@@ -45,20 +46,29 @@ const backToTop = () => {
     }
 };
 
-window.addEventListener("scroll", backToTop);
-
 onUnmounted(() => {
     window.removeEventListener("scroll", backToTop);
 });
 
-watch(
-    () => route.path,
-    () => {
-        nextTick(() => {
-            offsetHeight.value = document.querySelector("html")!.offsetHeight;
-        });
-    }
-);
+
+onMounted(() => {
+    // 初始化DOM相关操作
+    offsetHeight.value = document.documentElement.offsetHeight;
+
+    // 路由变化时更新高度
+    watch(
+        () => route.path,
+        () => {
+            nextTick(() => {
+                offsetHeight.value = document.querySelector("html")!.offsetHeight;
+            });
+        },
+        { immediate: true }
+    );
+
+    // 添加滚动事件监听
+    window.addEventListener("scroll", backToTop);
+})
 </script>
 <style lang="scss" scoped>
 @keyframes float {

@@ -1,5 +1,23 @@
 // nav导航栏配置
-import { TeekIcon, VdoingIcon, SSLIcon, BlogIcon } from "./icon/NavIcon";
+import {
+  TeekIcon,
+  VdoingIcon,
+  SSLIcon,
+  BlogIcon,
+  LinuxIcon,
+  NginxIcon,
+  GitIcon,
+  DockerIcon,
+  AppstoreIcon,
+  PhotoIcon,
+  MusicIcon,
+  FilmIcon,
+  AboutIcon,
+  LinkIcon,
+  NavIcon,
+  SiteAnalyticsIcon,
+  StatusIcon,
+} from "./icon/NavIcon";
 export const Nav = [
   {
     text: "🏡首页",
@@ -32,19 +50,43 @@ export const Nav = [
   {
     text: "🧰工具资源", // 目录页链接，此处 link 是 vdoing 主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
     items: [
-      { text: "开发工具", link: "/tools/" },
-      { text: "VSCode配置", link: "/vscode/" },
-      { text: "Git教程", link: "/git/" },
-      { text: "Docker", link: "/Docker/" },
-      { text: "实用软件", link: "/software/" },
+      {
+        component: "NavIcon",
+        props: LinuxIcon,
+      },
+      {
+        component: "NavIcon",
+        props: NginxIcon,
+      },
+      {
+        component: "NavIcon",
+        props: GitIcon,
+      },
+      {
+        component: "NavIcon",
+        props: DockerIcon,
+      },
+      {
+        component: "NavIcon",
+        props: AppstoreIcon,
+      },
     ],
   },
   {
     text: "🏙️生活娱乐",
     items: [
-      { text: "相册", link: "https://photo.seasir.top/" },
-      { text: "音乐", link: "http://music.alger.fun/#/" },
-      { text: "电影", link: "/go-cata/" },
+      {
+        component: "NavIcon",
+        props: PhotoIcon,
+      },
+      {
+        component: "NavIcon",
+        props: MusicIcon,
+      },
+      {
+        component: "NavIcon",
+        props: FilmIcon,
+      },
     ],
   },
   { text: "👂畅所欲言", link: "/message-area/" },
@@ -54,13 +96,14 @@ export const Nav = [
       {
         text: "本站",
         items: [
-          { text: "分类", link: "/categories/" },
-          { text: "标签", link: "/tags/" },
-          { text: "归档", link: "/archives/" },
-          { text: "清单", link: "/articleOverview/" },
+          { text: "文章分类", link: "/categories/" },
+          { text: "文章标签", link: "/tags/" },
+          { text: "文章归档", link: "/archives/" },
+          { text: "文章清单", link: "/articleOverview/" },
+          { text: "站点登录", link: "/login/" },
           {
-            text: "风险提示页",
-            link: "/risk-link?target=http://localhost:5173/",
+            text: "风险提示",
+            link: "/risk-link?target=https://teek.seasir.top/",
           },
         ],
       },
@@ -69,18 +112,25 @@ export const Nav = [
   {
     text: "🌐站点信息",
     items: [
-      { text: "关于博主", link: "/about-me/" },
-      { text: "关于本站", link: "/about-website/" },
-      { text: "友链链接", link: "/friends/" },
-      { text: "网站导航", link: "/nav/" },
-      { text: "开源项目", link: "/opensource-project/" },
       {
-        text: "站点统计",
-        link: "https://umami.seasir.top/share/rvVBNZWa0sUCN6wG/teek.seasir.top",
+        component: "NavIcon",
+        props: AboutIcon,
       },
       {
-        text: "站点状态",
-        link: "https://status.seasir.top/",
+        component: "NavIcon",
+        props: LinkIcon,
+      },
+      {
+        component: "NavIcon",
+        props: NavIcon,
+      },
+      {
+        component: "NavIcon",
+        props: SiteAnalyticsIcon,
+      },
+      {
+        component: "NavIcon",
+        props: StatusIcon,
       },
     ],
   },

@@ -6,7 +6,7 @@ export const NAV_DATA: NavData[] = [
     items: SiteAnalytics.items,
   },
   {
-    title: "网站状态",
+    title: "网站监控",
     items: [
       {
         icon: "https://avatars.githubusercontent.com/u/42232682?s=48&v=4",
@@ -19,6 +19,30 @@ export const NAV_DATA: NavData[] = [
         title: "Uptime-Kuma",
         desc: "一款开源的 自托管监控工具，专为个人、团队或中小型企业设计，用于实时监测网站、服务器、API 及各类网络服务的运行状态",
         link: "https://uptime.kuma.pet/",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/2200494?s=48&v=4",
+        title: "酷监控（Coolmonitor ）",
+        desc: "一个高颜值的监控工具，支持网站监控/接口监控/HTTPS证书监控等",
+        link: "https://github.com/star7th/coolmonitor",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/186249805?s=48&v=4",
+        title: "Flutter Server Box",
+        desc: " Linux 服务器工具箱，提供服务器状态图表和管理工具。",
+        link: "https://github.com/vecnathewhisperd0/flutter_server_box",
+      },
+      {
+        icon: "https://checkcle.io/favicon.ico",
+        title: "CheckCle",
+        desc: " CheckCle 是一个开源监控平台，提供有关服务器和服务健康状况、事件管理和运营透明度的实时洞察。",
+        link: "https://checkcle.io/",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/26519165?s=48&v=4",
+        title: "webfunny",
+        desc: " 一款轻量级的前端性能监控和埋点系统，私有化部署，简单易用",
+        link: "https://github.com/a597873885/webfunny_monitor?tab=readme-ov-file",
       },
     ],
   },
@@ -49,9 +73,9 @@ export const NAV_DATA: NavData[] = [
     title: "图床",
     items: [
       {
-        icon: "https://res.u-tools.cn/website5/assets/logo.png",
-        title: "uTools 是一种高效工作方式",
-        desc: "里面很多插件，比如图床",
+        icon: "https://res.u-tools.cn/website5/static/assets/favicon.png",
+        title: "UTools",
+        desc: "AI 加持的超级助手，一个入口，无限能力",
         link: "https://www.u-tools.cn/index.html",
       },
     ],
@@ -121,7 +145,7 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
-    title: "临时邮件",
+    title: "邮件相关",
     items: [
       {
         icon: "https://i.52112.com/icon/jpg/256/20210201/109466/4372976.jpg",
@@ -200,6 +224,12 @@ export const NAV_DATA: NavData[] = [
         title: "SwapCode",
         desc: "一个在线临时邮箱和虚拟信息生成器，可以用来一些临时帐号，还支持虚拟信息生成，包括地址，邮箱，手机，人名等。",
         link: "https://swapco.de/faker",
+      },
+      {
+        icon: "https://www.billionmail.com/logo.png",
+        title: "BillionMail",
+        desc: "开源邮件服务器、邮件订阅与邮件营销解决方案",
+        link: "https://www.billionmail.com/zh_CN/",
       },
     ],
   },
@@ -458,6 +488,12 @@ export const NAV_DATA: NavData[] = [
         desc: "京东风格的轻量级移动端组件库",
         link: "https://nutui.jd.com",
       },
+      {
+        icon: "https://devtools.vuejs.org/logo.svg",
+        title: "Vue DevTools",
+        desc: "Vue 开发者工具,进适用于开发环境",
+        link: "https://devtools.vuejs.org/",
+      },
     ],
   },
   {
@@ -709,6 +745,42 @@ export const NAV_DATA: NavData[] = [
         title: "Emoji searcher",
         desc: "Emoji 表情大全",
         link: "",
+      },
+      {
+        icon: "https://icon-sets.iconify.design/favicon.svg",
+        title: "iconify",
+        desc: "通用图标框架。单一语法即可兼容 FontAwesome、Material Design Icons、DashIcons、Feather Icons、EmojiOne、Noto Emoji 以及众多其他开源图标集（超过 150 个图标集和 20 万个图标）。此外，还支持 SVG 框架、React、Vue 和 Svelte 组件！",
+        link: "https://icon-sets.iconify.design/",
+      },
+      {
+        icon: "https://icones.js.org/favicon-dark.svg",
+        title: "icones",
+        desc: "一个图标资源管理器，提供即时模糊搜索、图标字体打包、SVG下载等功能。",
+        link: "https://icones.js.org/",
+      },
+      {
+        icon: "https://feathericons.com/favicon-32x32.png",
+        title: "feathericons",
+        desc: "Feather 是一系列简洁美观的开源图标。每个图标均采用 24x24 网格设计，注重简洁性、一致性和灵活性。",
+        link: "https://feathericons.com/",
+      },
+      {
+        icon: "https://undraw.co/apple-touch-icon.png",
+        title: "unDraw",
+        desc: "免费可商用向量插图图库",
+        link: "https://undraw.co/",
+      },
+      {
+        icon: "https://maxst.icons8.com/vue-static/landings/primary-landings/favs/icons8_fav_32%C3%9732.png",
+        title: "icons8",
+        desc: "免费的图标、剪贴画插图、照片和音乐",
+        link: "https://igoutu.cn/",
+      },
+      {
+        icon: "https://shields.io/img/favicon.ico",
+        title: "Shields.io",
+        desc: "网站微标生成",
+        link: "https://shields.io/",
       },
     ],
   },
@@ -1039,6 +1111,34 @@ export const NAV_DATA: NavData[] = [
         title: "多吉云",
         desc: "一站式视频云点播平台，轻量级的用户能够无需了解任何技术就轻而易举地展示和播放视频，而以视频为主要产品的用户能通过强大的 API 和 SDK 完成对视频的高级处理。",
         link: "https://www.dogecloud.com/",
+      },
+    ],
+  },
+  {
+    title: "数据库",
+    items: [
+      {
+        icon: "https://www.dblab.top/logo.png",
+        title: "DBLAB.AI",
+        desc: "DBLAB是一款功能齐全的数据库管理工具,多平台支持，与AI协作，探索全新的数据库管理体验",
+        link: "https://www.dblab.top/",
+      },
+    ],
+  },
+  {
+    title: "笔记软件",
+    items: [
+      {
+        icon: "https://typoraio.cn/img/favicon-128.png",
+        title: "Typora",
+        desc: " 一款 Markdown 编辑器和阅读器",
+        link: "https://www.x6g.com/i-wz-24216.html",
+      },
+      {
+        icon: "https://app.vnote.fun/zh_cn/css/vnote_white.svg",
+        title: "vnote",
+        desc: " 一个舒适的笔记平台",
+        link: "https://app.vnote.fun/zh_cn/",
       },
     ],
   },

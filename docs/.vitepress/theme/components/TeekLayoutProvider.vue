@@ -26,77 +26,50 @@ import { useRibbon } from "../hooks/useRibbon";  //导入彩带背景
 const ns = "layout-provider";
 const { frontmatter } = useData();
 
-const teekConfig = ref(teekBlogCardConfig);  // 博客类风格的配置,默认卡片风格
+// 默认卡片风
+const currentStyle = ref("");
+const teekConfig = ref(teekBlogCardConfig);  // 博客类风格的配置
 provide(teekConfigContext, teekConfig);
 
+// 彩带背景
+const { start: startRibbon, stop: stopRibbon } = useRibbon({ immediate: false, clickReRender: true }); // 点击页面重新渲染彩带
 // 页脚运行时间
 const { start: startRuntime, stop: stopRuntime } = useRuntime("2025-03-14 00:00:00", {
     prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>本站已在地球上苟活了`,
 });
 
-const watchRuntime = async (condition: boolean) => {
+const watchRuntimeAndRibbon = async (layout: string, style: string) => {
+
+    // 所有风格都显示运行时间
     await nextTick();
-    if (condition) startRuntime();
-    else stopRuntime();
+    startRuntime();
+
+    startRibbon();
 };
-
-const watchRibbon = async (condition: boolean) => {
-    await nextTick();
-    if (condition) start();
-    else stop();
-};
-
-// 为configSwitchRef添加类型定义来明确teekConfig属性
-interface ConfigSwitchExpose {
-    teekConfig?: unknown
-    themeStyle?: string
-}
-
-const watchRuntimeAndRibbon = (layout: string, style: string) => {
-    watchRuntime(layout === "home" && style.startsWith("blog"));
-    watchRibbon(
-        (layout === "home" && style.startsWith("blog") && style !== "blog-body") ||
-        ([undefined, "doc"].includes(layout) && !!teekConfig.value.pageStyle)
-    );
-};
-
-const currentStyle = ref("");
 
 watch(frontmatter, async newVal => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), { immediate: true });
 
 const handleConfigSwitch = (config: TeekConfig, style: string) => {
     teekConfig.value = config;
-    currentStyle.value = style;
 
-    watchRuntimeAndRibbon(frontmatter.value.layout, currentStyle.value);
+    watchRuntimeAndRibbon(frontmatter.value.layout, style);
 };
-
-watch(
-    frontmatter,
-    async newVal => {
-        await nextTick();
-        if (newVal.layout === "home") start();
-        else stop();
-    },
-    { immediate: true }
-);
-
-// 彩带背景
-const { start, stop } = useRibbon({ immediate: false, clickReRender: true });
 </script>
 
 <template>
-    <!--网页标题切换组件  -->
-    <TitleChange />
-    <!-- 看板娘组件 -->
-    <OhMyLive2D />
-    <!-- 顶部滚动条组件 -->
-    <ScrollProgressBar />
-    <!-- 全局问候组件 -->
-    <GlobalGreet />
-    <!-- 返回顶部组件 -->
-    <BackToTop />
     <Teek.Layout>
+        <template #layout-top>
+            <!-- 全局问候组件 -->
+            <GlobalGreet />
+            <!--网页标题切换组件  -->
+            <TitleChange />
+            <!-- 看板娘组件 -->
+            <OhMyLive2D />
+            <!-- 顶部滚动条组件 -->
+            <ScrollProgressBar />
+            <!-- 返回顶部组件 -->
+            <BackToTop />
+        </template>
         <template #nav-bar-content-after>
             <!-- 音乐播放器组件 -->
             <MusicPlayer />
