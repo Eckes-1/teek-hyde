@@ -8,7 +8,6 @@ import BannerImgArrow from "./components/BannerImgArrow.vue";
 import TeekLayoutProvider from "./components/TeekLayoutProvider.vue";
 import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
-import vitepressNprogress from "vitepress-plugin-nprogress"; // 引入路由进度条插件
 import NotFound from "./components/NotFound.vue"; // 导入404组件
 import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
 
@@ -33,7 +32,9 @@ import "./styles/index.scss"; //群主自定义的全局样式
 import "./style/index.scss"; // 引入.vitepress\theme\style\index.scss全局样式
 import "virtual:group-icons.css"; //代码组图标样式
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
-import "vitepress-plugin-nprogress/lib/css/index.css"; // 引入nprogress样式
+
+import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
+import "nprogress-v2/dist/index.css"; // 进度条样式
 
 export default {
   extends: Teek,
@@ -41,8 +42,19 @@ export default {
     // 注册组件
     app.component("MNavLinks", MNavLinks); // 注册导航组件
     app.component("confetti", confetti); // 注册五彩纸屑组件
-    vitepressNprogress({ app, router }); //调用nprogress插件
     app.component("NavIcon", NavIcon); //导航栏图标
+
+    // 非SSR环境下配置路由进度条
+    // @ts-ignore-error
+    if (!import.meta.env.SSR) {
+      NProgress.configure({ showSpinner: false });
+      router.onBeforeRouteChange = () => NProgress.start();
+      router.onAfterRouteChange = () => {
+        setTimeout(() => {
+          NProgress.done();
+        }, 100);
+      };
+    }
   },
   Layout: defineComponent({
     name: "LayoutProvider",
