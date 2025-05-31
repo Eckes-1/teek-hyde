@@ -15,8 +15,6 @@ import { FooterGroup } from "./ConfigHyde/FooterGroup"; //导入页脚信息组�
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
-import llmstxt from "vitepress-plugin-llms"; // 导入llms插件
-// import AutoFrontmatter from "vitepress-plugin-auto-frontmatter";
 
 const description = ["Hd Security 使用文档", "认证框架"].toString();
 const CoverImgList = Wallpaper; // 获取壁纸列表
@@ -336,7 +334,6 @@ export default defineConfig({
 
   vite: {
     plugins: [
-      llmstxt(), //llms插件
       groupIconVitePlugin(),
       viteImagemin({
         gifsicle: { optimizationLevel: 7 },

@@ -21,6 +21,8 @@ import ContributeChart from "./ContributeChart.vue";  //导入贡献图组件
 import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
 // @ts-ignore
 import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
+// @ts-ignore
+import ContextMenu from "./ContextMenu.vue";  //导入右键菜单组件
 import { useRibbon } from "../hooks/useRibbon";  //导入彩带背景
 
 const ns = "layout-provider";
@@ -69,6 +71,8 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
             <ScrollProgressBar />
             <!-- 返回顶部组件 -->
             <BackToTop />
+            <!-- 右键菜单组件 -->
+            <ContextMenu />
         </template>
         <template #nav-bar-content-after>
             <!-- 音乐播放器组件 -->

@@ -114,6 +114,18 @@ export const NAV_DATA: NavData[] = [
         link: "https://openi.cn/",
       },
       {
+        icon: "https://github.com/Y80/bmm/raw/main/doc/images/logo.svg",
+        title: "BMM 导航",
+        desc: "BMM，你的专属书签管家 🤵",
+        link: "https://bmm.lccl.cc/",
+      },
+      {
+        icon: "https://xtainav.cn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo2.57627e6e.png&w=48&q=75",
+        title: "星途 AI 导航",
+        desc: "发现优质 AI 应用网站资源",
+        link: "https://xtainav.cn/",
+      },
+      {
         icon: "https://d1tools.com/favicon.ico",
         title: "在线工具",
         desc: "一个免费的在线工具集合，持续开发各种好用的工具",
@@ -285,6 +297,12 @@ export const NAV_DATA: NavData[] = [
         },
         desc: "JSON 在线解析及格式化验证",
         link: "https://www.json.cn",
+      },
+      {
+        icon: "https://jsonhero.io/favicon.ico",
+        title: "JSON Hero",
+        desc: "一个简单实用的 JSON 工具，通过简洁美观的 UI 及增强的额外功能，使得阅读和理解 JSON 文档变得更容易、直观",
+        link: "https://jsonhero.io/",
       },
     ],
   },
@@ -966,6 +984,12 @@ export const NAV_DATA: NavData[] = [
         link: "https://font.sucai999.com/search/0_1_1.html",
       },
       {
+        icon: "https://transfonter.org/favicon.ico",
+        title: "transfonter",
+        desc: "现代而简单的 CSS @font-face 生成器",
+        link: "https://transfonter.org/",
+      },
+      {
         icon: "https://www.ysdaima.com/assets/img/favicon.png",
         title: "颜色代码表",
         desc: "为设计师和开发者提供专业的色彩工具，让设计更出色。",
@@ -1042,6 +1066,12 @@ export const NAV_DATA: NavData[] = [
         title: "网费很贵",
         desc: "最好用的上网时间记录工具",
         link: "https://www.wfhg.cc/zh_CN/",
+      },
+      {
+        icon: "https://wanglin2.github.io/mind-map-docs/logo.png",
+        title: "SimpleMindMap",
+        desc: "一个强大的Web思维导图",
+        link: "https://wanglin2.github.io/mind-map-docs/",
       },
     ],
   },
