@@ -272,7 +272,7 @@ const teekConfig = defineTeekConfig({
       type: "tip",
       title: "声明",
       text: `<p>作者：Hyde</p>
-             <p>版权：此文章版权归 Teek 所有，如有转载，请注明出处!</p>
+             <p>版权：此文章版权归 Hyde 所有，如有转载，请注明出处!</p>
              <p style="margin-bottom: 0">链接：可点击右上角分享此页面复制文章链接</p>
             `,
     };

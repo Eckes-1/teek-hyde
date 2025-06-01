@@ -59,43 +59,45 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 </script>
 
 <template>
-    <Teek.Layout>
-        <template #layout-top>
-            <!-- 全局问候组件 -->
-            <GlobalGreet />
-            <!--网页标题切换组件  -->
-            <TitleChange />
-            <!-- 看板娘组件 -->
-            <OhMyLive2D />
-            <!-- 顶部滚动条组件 -->
-            <ScrollProgressBar />
-            <!-- 返回顶部组件 -->
-            <BackToTop />
-            <!-- 右键菜单组件 -->
-            <ContextMenu />
-        </template>
-        <template #nav-bar-content-after>
-            <!-- 音乐播放器组件 -->
-            <MusicPlayer />
-        </template>
-        <template #teek-theme-enhance-bottom>
-            <div :class="[ns, 'flx-align-center']">
+    <ClientOnly>
+        <Teek.Layout>
+            <template #layout-top>
+                <!-- 全局问候组件 -->
+                <GlobalGreet />
+                <!--网页标题切换组件  -->
+                <TitleChange />
+                <!-- 看板娘组件 -->
+                <OhMyLive2D />
+                <!-- 顶部滚动条组件 -->
+                <ScrollProgressBar />
+                <!-- 返回顶部组件 -->
+                <BackToTop />
+                <!-- 右键菜单组件 -->
+                <ContextMenu />
+            </template>
+            <template #nav-bar-content-after>
+                <!-- 音乐播放器组件 -->
+                <MusicPlayer />
+            </template>
+            <template #teek-theme-enhance-bottom>
+                <div :class="[ns, 'flx-align-center']">
+                    <ConfigSwitch @switch="handleConfigSwitch" />
+                </div>
+            </template>
+            <template #nav-screen-content-after>
                 <ConfigSwitch @switch="handleConfigSwitch" />
-            </div>
-        </template>
-        <template #nav-screen-content-after>
-            <ConfigSwitch @switch="handleConfigSwitch" />
-        </template>
-        <!-- 不添加下面影响公告样式 -->
-        <template v-for="(_, name) in $slots" :key="name" #[name]>
-            <slot :name="name" />
-        </template>
-        <!-- 不添加上面面影响公告样式 -->
-        <template #teek-archives-top-before>
-            <!-- 贡献图组件 -->
-            <ContributeChart />
-        </template>
-    </Teek.Layout>
+            </template>
+            <!-- 不添加下面影响公告样式 -->
+            <template v-for="(_, name) in $slots" :key="name" #[name]>
+                <slot :name="name" />
+            </template>
+            <!-- 不添加上面面影响公告样式 -->
+            <template #teek-archives-top-before>
+                <!-- 贡献图组件 -->
+                <ContributeChart />
+            </template>
+        </Teek.Layout>
+    </ClientOnly>
 </template>
 
 <style lang="scss">
