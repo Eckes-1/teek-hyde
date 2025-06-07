@@ -1,9 +1,15 @@
 // 配置切换
 <script setup lang="ts" name="ConfigSwitch">
-import { TkSegmented, TkMessage, magicIcon, isClient, useMediaQuery } from "vitepress-theme-teek";
-import BaseTemplate from "vitepress-theme-teek/es/components/theme/ThemeEnhance/src/components/BaseTemplate.vue";
+import {
+    TkSegmented,
+    TkMessage,
+    magicIcon,
+    isClient,
+    useMediaQuery,
+    TkThemeEnhanceBaseTemplate,
+    useClipboard,
+} from "vitepress-theme-teek";
 import { nextTick, ref, watch } from "vue";
-import { useClipboard } from "vitepress-theme-teek";
 import {
     teekDocConfig,
     teekBlogConfig,
@@ -18,10 +24,14 @@ const tipInfo = {
     title: "配置切换",
     desc: "配置切换是 Teek 文档项目通过插槽额外实现的功能，并非是 Teek 增强面板自带的功能。",
     tips: [
-        { title: "说明 1", content: "这里预设了一些 Teek 的配置模板，点击可快速切换查看效果" },
+        {
+            title: "说明 1",
+            content: "这里预设了一些 Teek 的配置模板，点击可快速切换查看效果",
+        },
         {
             title: "说明 2",
-            content: "您可以点击 Copy 按钮来复制配置项到您的项目 config.mts 文件里，这给第一次使用 Teek 的用户提供开箱帮助",
+            content:
+                "您可以点击 Copy 按钮来复制配置项到您的项目 config.mts 文件里，这给第一次使用 Teek 的用户提供开箱帮助",
         },
         {
             title: "说明 3",
@@ -31,24 +41,28 @@ const tipInfo = {
     ],
 };
 const segmentedOptions = [
-    { value: "doc", label: "文档默认", title: "默认风格" },
-    { value: "blog", label: "博客默认", title: "首页默认风格" },
+    { value: "doc", label: "文档预设", title: "文档默认风格" },
+    { value: "blog", label: "博客预设", title: "首页默认风格" },
     { value: "blog-part", label: "博客小图", title: "首页 Banner 小图" },
     { value: "blog-full", label: "博客大图", title: "首页 Banner 大图 + 评论" },
-    { value: "blog-body", label: "博客全图", title: "全站背景图" },
-    { value: "blog-card", label: "博客卡片", title: "首页卡片文章列表 + 左侧卡片栏列表" },
+    { value: "blog-body", label: "博客全图", title: "全站背景图 + 碎片化文章页" },
+    {
+        value: "blog-card",
+        label: "博客卡片",
+        title: "首页卡片文章列表 + 左侧卡片栏列表",
+    },
 ];
 
 const emit = defineEmits<{
-    switch: [config: typeof teekDocConfig, style: string];
+    switch: [config: typeof teekBlogCardConfig, style: string];
 }>();
 
 // 默认文档风格
-const themeStyle = ref("blog-card");
+const themeStyle = defineModel({ default: "blog-card" });
 const teekConfig = ref(teekBlogCardConfig);
 
 const { copy, copied } = useClipboard();
-const isMobile = useMediaQuery("(max-width: 768px)"); // 判断是否为移动端
+const isMobile = useMediaQuery("(max-width: 768px)");
 
 const update = async (style: string) => {
     if (style === "doc") teekConfig.value = teekDocConfig;
@@ -57,14 +71,17 @@ const update = async (style: string) => {
     if (style === "blog-full") teekConfig.value = teekBlogFullConfig;
     if (style === "blog-body") teekConfig.value = teekBlogBodyConfig;
     if (style === "blog-card") teekConfig.value = teekBlogCardConfig;
-    emit("switch", teekConfig.value, style);
-    await nextTick();
-    if (!isClient) return;
 
+    emit("switch", teekConfig.value, style);
+
+    await nextTick();
+
+    if (!isClient) return;
     const navDom = document.querySelector(".VPNavBar") as HTMLElement;
 
     // 兼容 Teek Banner 样式
-    if (["blog-full", "blog-body"].includes(style)) navDom?.classList.add("full-img-nav-bar");
+    if (["blog-full", "blog-body", "blog-card"].includes(style))
+        navDom?.classList.add("full-img-nav-bar");
     else navDom?.classList.remove("full-img-nav-bar");
 };
 
@@ -76,22 +93,19 @@ const handleCopy = async () => {
         ? TkMessage.success({ message: "复制成功！", plain: true })
         : TkMessage.error({ message: "复制失败！", plain: true });
 };
-
-defineExpose({ themeStyle, teekConfig });
 </script>
 
 <template>
-    <BaseTemplate :class="ns" :icon="magicIcon" :title="tipInfo.title" :helper="!isMobile" :helper-desc="tipInfo.desc"
-        :tips="tipInfo.tips">
+    <TkThemeEnhanceBaseTemplate :class="ns" :icon="magicIcon" :title="tipInfo.title" :helper="!isMobile"
+        :helper-desc="tipInfo.desc" :tips="tipInfo.tips">
         <template #title>
             <div class="flx-justify-between flx-1">
                 {{ tipInfo.title }}
                 <button @click="handleCopy">Copy</button>
             </div>
         </template>
-
         <TkSegmented v-model="themeStyle" :options="segmentedOptions" />
-    </BaseTemplate>
+    </TkThemeEnhanceBaseTemplate>
 </template>
 
 <style lang="scss">

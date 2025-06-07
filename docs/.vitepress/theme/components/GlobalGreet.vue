@@ -1,7 +1,7 @@
 // 全局问候提示
 <script setup lang="ts" name="GlobalGreet">
 import { TkMessage } from "vitepress-theme-teek";
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRoute } from "vitepress";
 
 const route = useRoute();
@@ -29,7 +29,7 @@ const greet = () => {
   )}`;
   const message = getGreetingMessage(hours, timeStr);
 
-  TkMessage.primary({ message, duration, plain: true,offset: 80 });
+  TkMessage.primary({ message, duration, plain: true, offset: 80 });
 };
 
 const getGreetingMessage = (hours: number, timeStr: string) => {
@@ -59,7 +59,9 @@ const getGreetingMessage = (hours: number, timeStr: string) => {
   return `你好呀！现在是 ${timeStr}。`;
 };
 
-watch(route, greet, { immediate: true });
+onMounted(() => {
+  watch(route, greet, { immediate: true });
+});
 </script>
 
 <template></template>

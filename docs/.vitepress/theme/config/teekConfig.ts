@@ -107,7 +107,7 @@ export const teekBlogParkConfig: TeekConfig = {
     bgStyle: "partImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
-    descStyle: "types",
+    descStyle: "switch",
   },
 };
 
@@ -115,7 +115,6 @@ export const teekBlogParkConfig: TeekConfig = {
 export const teekBlogFullConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   post: {
-    imageViewer: { hideOnClickModal: true },
     coverImgMode: "full",
   },
   banner: {
@@ -134,6 +133,11 @@ export const teekBlogBodyConfig: TeekConfig = {
   bodyBgImg: {
     imgSrc: Wallpaper,
   },
+  themeEnhance: {
+    layoutSwitch: {
+      defaultMode: "bothWidthAdjustable",
+    },
+  },
   banner: {
     name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
@@ -150,7 +154,6 @@ export const teekBlogCardConfig: TeekConfig = {
     pageSize: 15, // 每页显示的文章数量,这里先暂时设置为15，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
   },
   post: {
-    imageViewer: { hideOnClickModal: true }, //图片预览是否点击遮罩层关闭
     postStyle: "card", //文章模板风格，list 为列表风格，card 为卡片风格
   },
   homeCardListPosition: "left", //卡片模式下的标题标签位置

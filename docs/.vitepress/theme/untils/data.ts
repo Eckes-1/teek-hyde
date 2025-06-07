@@ -304,6 +304,12 @@ export const NAV_DATA: NavData[] = [
         desc: "一个简单实用的 JSON 工具，通过简洁美观的 UI 及增强的额外功能，使得阅读和理解 JSON 文档变得更容易、直观",
         link: "https://jsonhero.io/",
       },
+      {
+        icon: "https://json4u.com/apple-icon.png",
+        title: "json4u",
+        desc: "JSON 工具包提高效率 – 以前所未有的方式可视化、格式化和比较您的数据！",
+        link: "https://json4u.com/",
+      },
     ],
   },
   {

@@ -1,3 +1,4 @@
+// 贡献图组件
 <script setup lang="ts" name="ContributeChart">
 import * as echarts from "echarts";
 import { ref, watch, nextTick, computed, useTemplateRef } from "vue";
@@ -87,7 +88,8 @@ const renderChart = (data: any) => {
   option.calendar.itemStyle.color = isDark.value ? "#787878" : "#ebedf0";
 
   if (contributeChart.value) echarts.dispose(contributeChart.value);
-  if (chartRef.value) contributeChart.value = echarts.init(chartRef.value);
+  // if (chartRef.value) contributeChart.value = echarts.init(chartRef.value);
+  if (chartRef.value) contributeChart.value = echarts.init(chartRef.value as HTMLElement);
 
   option.series.data = data;
   contributeChart.value?.setOption(option);

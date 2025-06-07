@@ -5,11 +5,11 @@ import { useData } from "vitepress";
 import { watch, nextTick, ref, provide } from "vue";
 import { teekBlogCardConfig } from "../config/teekConfig";
 // @ts-ignore
-import ConfigSwitch from "./ConfigSwitch.vue";
+import ConfigSwitch from "./ConfigSwitch.vue"; //导入配置切换组件
 
-import { useRuntime } from "../hooks/useRuntime";
+import { useRuntime } from "../composables/useRuntime"; //导入自定义hook
 // @ts-ignore
-import MusicPlayer from './MusicPlayer.vue'
+import MusicPlayer from './MusicPlayer.vue' //导入音乐播放器组件
 import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘组件
 // @ts-ignore
 import TitleChange from "./TitleChange.vue" //导入网页标题变化
@@ -23,7 +23,7 @@ import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
 import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
 // @ts-ignore
 import ContextMenu from "./ContextMenu.vue";  //导入右键菜单组件
-import { useRibbon } from "../hooks/useRibbon";  //导入彩带背景
+import { useRibbon } from "../composables/useRibbon";  //导入彩带背景
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -59,7 +59,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 </script>
 
 <template>
-    <ClientOnly>
         <Teek.Layout>
             <template #layout-top>
                 <!-- 全局问候组件 -->
@@ -97,7 +96,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
                 <ContributeChart />
             </template>
         </Teek.Layout>
-    </ClientOnly>
 </template>
 
 <style lang="scss">

@@ -44,7 +44,6 @@ const teekConfig = defineTeekConfig({
   },
   post: {
     coverImgMode: "full", // 封面图模式，default 为默认，full 为全图
-    imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭
   },
   author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
   articleAnalyze: {
@@ -87,7 +86,15 @@ const teekConfig = defineTeekConfig({
   // 公告
   notice: {
     enabled: true, // 是否启用公告功能
-    position: "center", // 公告弹框出现位置，可选值：top、center、bottom
+    title: "公告", // 公告标题，支持函数式：需要和国际化搭配使用，根据不同语言环境返回不同标题
+    initOpen: true,
+    duration: 0, // 弹框定时自动关闭，0 不自动消失
+    mobileMinify: false, // 移动端自动最小化
+    reopen: true,
+    useStorage: false, // 是是否使用 localStorage 存储公告状态，如：当打开公告弹框后，下次进来则自动打开弹框
+    twinkle: false, // 公告图标是否打开闪烁提示
+    position: "top", // 公告弹框出现位置
+    // ...
   },
   vitePlugins: {
     sidebarOption: {
