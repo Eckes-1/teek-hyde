@@ -16,11 +16,11 @@ export const FooterInfo = {
     <a target="_blank" href="https://nginx.org/" title="本站Nginx反向代理服务 Nginx"><img alt="Nginx" src="https://img.shields.io/badge/Nginx-Proxy?logo=Nginx&label=Proxy"></a>`,
   ],
   theme: {
-    name: `Theme By Teek@${version}-2025.5.23`,
+    name: `Theme By Teek@${version}-2025-06-03`,
   },
   bottomMessage: [
-    `<script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3LmDV843SgGyC2Zp/quote.js?theme=0&f=12"></script>`,
-    `<span id="runtime"></span>`,
+    `<script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3MQCwI1AgSSiVg37/quote.js?theme=0&f=12"></script>`,
+    `<span id="runtime"></span>(●'◡'●)`,
     `<a href="https://51.la/" target="_blank" style="display:flex;align-items:center;justify-content:center;">本网站由51.LA <img src="https://51.la/favicon.ico" style="width:16px;height:16px;" alt="51.LA"> 提供数据统计服务</a>`,
     "人心中的成见是一座大山~",
   ],
@@ -37,5 +37,5 @@ export const FooterInfo = {
     name: "甘公网安备62102702000211号",
     link: "https://beian.mps.gov.cn/",
   },
-  customHtml: ``, // 搭配 ./theme/hooks/useRuntime.ts
+  customHtml: ``, // 搭配 ./theme/composables/useRuntime.ts
 };

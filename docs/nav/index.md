@@ -18,7 +18,7 @@ outline:
   - 3
   - 4
 coverImg: /home/bg18.webp
-private: true #开启文章私密
+editLink: false #是否显示编辑按钮
 ---
 
 <style src="/.vitepress/theme/style/nav.scss"></style>

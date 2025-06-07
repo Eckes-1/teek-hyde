@@ -1,4 +1,3 @@
-// 背景彩带
 import { isClient, useMounted, useScopeDispose } from "vitepress-theme-teek";
 
 interface UseRibbonOptions {
@@ -27,16 +26,6 @@ interface UseRibbonOptions {
    */
   immediate?: boolean;
   /**
-   * 插入的元素选择器
-   */
-  insertSelector?: string;
-  /**
-   * 插入方式
-   *
-   * @default append
-   */
-  insertWay?: "prepend" | "append" | "after" | "before";
-  /**
    * 点击页面时是否重新渲染彩带
    *
    * @default false
@@ -63,8 +52,6 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
     alpha = 0.6,
     size = 90,
     zIndex = -1,
-    insertSelector,
-    insertWay = "append",
     clickReRender = false,
     ribbonDomBindClick = false,
     immediate = true,
@@ -78,11 +65,7 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
     canvas = document.createElement("canvas");
     canvas.id = "ribbon";
     canvas.style.cssText = `position:fixed;top:0;left:0;z-index:${zIndex}`;
-
-    // 插入 canvas 的元素选择和方式
-    if (insertSelector)
-      document.querySelector(insertSelector)?.[insertWay](canvas);
-    document.body[insertWay](canvas);
+    document.body.append(canvas);
 
     const dpr = window.devicePixelRatio || 1;
     const width = window.innerWidth;
@@ -117,10 +100,7 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
       }
     }
 
-    function draw(
-      start: { x: number; y: number },
-      end: { x: number; y: number }
-    ) {
+    function draw(start: { x: number; y: number }, end: { x: number; y: number }) {
       if (!ctx) return fn;
       ctx.beginPath();
       ctx.moveTo(start.x, start.y);

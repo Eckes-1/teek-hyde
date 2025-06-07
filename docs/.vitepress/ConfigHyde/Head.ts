@@ -1,4 +1,8 @@
-const description = ["Hd Security 使用文档", "认证框架"].toString();
+const description = [
+  "欢迎来到 vitepress-theme-teek 使用文档",
+  "Teek 是一个基于 VitePress 构建的主题，是在默认主题的基础上进行拓展，支持 VitePress 的所有功能、配置",
+  "Teek 拥有三种典型的知识管理形态：结构化、碎片化、体系化，可以轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
+].toString();
 
 // 导出head.ts
 export const HeadData = [
@@ -11,11 +15,7 @@ export const HeadData = [
       src: "//sdk.51.la/js-sdk-pro.min.js",
       defer: "defer",
     },
-  ],
-  [
-    "script",
-    { defer: "defer" },
-    `LA.init({id:"3LmDV843SgGyC2Zp",ck:"3LmDV843SgGyC2Zp",autoTrack:true,hashMode:true,screenRecord:true})`,
+    `LA.init({id:"3MQCwI1AgSSiVg37",ck:"3MQCwI1AgSSiVg37",autoTrack:true,hashMode:true,screenRecord:true})`,
   ],
   ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   ["meta", { name: "author", content: "Tianke" }],
@@ -67,7 +67,11 @@ export const HeadData = [
       defer: "defer",
     },
   ],
-  ["noscript", {}, '<meta http-equiv="refresh" content="0; url={https://www.baidu.com/}">'], // 禁用js跳转
+  [
+    "noscript",
+    {},
+    '<meta http-equiv="refresh" content="0; url={https://www.baidu.com/}">',
+  ], // 禁用js跳转
   //免费的音乐播放器
   // [
   //   "script",

@@ -1,7 +1,5 @@
-// 运行时间统计
 import { computed, type MaybeRef, toValue } from "vue";
-import { isClient } from "vitepress-theme-teek";
-import { useScopeDispose } from "vitepress-theme-teek";
+import { isClient, useScopeDispose } from "vitepress-theme-teek";
 
 export interface UseRuntimeOptions {
   /**
@@ -50,10 +48,7 @@ export interface UseRuntimeOptions {
   secondColor?: string;
 }
 
-export const useRuntime = (
-  initDate: MaybeRef<string>,
-  options: UseRuntimeOptions = {}
-) => {
+export const useRuntime = (initDate: MaybeRef<string>, options: UseRuntimeOptions = {}) => {
   const {
     selector = "#runtime",
     immediate = false,

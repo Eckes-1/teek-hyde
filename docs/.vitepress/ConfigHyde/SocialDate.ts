@@ -18,12 +18,12 @@ export const SocialDate: Social[] = [
     icon: "icon-qq",
     iconType: "iconfont",
     name: "QQ",
-    link: "http://wpa.qq.com/msgrd?v=3&uin=28761025&site=qq&menu=yes",
+    link: "http://wpa.qq.com/msgrd?v=3&uin=2429016980&site=qq&menu=yes",
   },
   {
     icon: "icon-mobile",
     iconType: "iconfont",
     name: "联系我",
-    link: "https://www.youngkbt.cn/?contact=true",
+    link: "https://teek.seasir.top",
   },
 ];

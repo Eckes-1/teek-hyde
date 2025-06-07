@@ -41,7 +41,7 @@ export const FriendLink = {
       link: "https://blog.snowlinlan.com/",
     },
     {
-      avatar: "https://sinc.us.kg/favicon.ico",
+      avatar: "https://sinc.us.kg/avatar/avatar.webp",
       name: "凿壁偷光不算偷",
       desc: "tk 道友",
       link: "https://sinc.us.kg/",

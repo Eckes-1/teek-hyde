@@ -1,4 +1,3 @@
-// 贡献图组件
 <script setup lang="ts" name="ContributeChart">
 import * as echarts from "echarts";
 import { ref, watch, nextTick, computed, useTemplateRef } from "vue";

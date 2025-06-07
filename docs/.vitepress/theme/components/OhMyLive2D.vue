@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import {onMounted } from "vue";
 
 onMounted(async () => {
     if (import.meta.env.SSR) return;
