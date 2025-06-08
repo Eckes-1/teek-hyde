@@ -15,7 +15,8 @@ import { FooterGroup } from "./ConfigHyde/FooterGroup"; //导入页脚信息组�
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
-import llmstxt from 'vitepress-plugin-llms'
+import llmstxt from "vitepress-plugin-llms"; // 导入llmstxt插件
+import { La51Plugin } from "vitepress-plugin-51la"; // 导入51la统计插件
 
 const description = [
   "欢迎来到 vitepress-theme-teek 使用文档",
@@ -339,8 +340,7 @@ export default defineConfig({
     },
     editLink: {
       text: "在 GitHub 上编辑此页",
-      pattern:
-        "https://gitee.com/SeasirHyde/teek-hyde/edit/main/docs/:path",
+      pattern: "https://gitee.com/SeasirHyde/teek-hyde/edit/main/docs/:path",
     },
   },
 
@@ -359,6 +359,12 @@ export default defineConfig({
         },
       }),
       llmstxt(),
+      La51Plugin({
+        id: "3MQCwI1AgSSiVg37",
+        ck: "3MQCwI1AgSSiVg37",
+        apply: "all",
+        importMode: 'async'
+      }),
     ],
     server: {
       // host: "127.0.0.1", // 指定服务器应该监听哪个 IP 地址
