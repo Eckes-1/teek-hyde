@@ -360,10 +360,13 @@ export default defineConfig({
       }),
       llmstxt(),
       La51Plugin({
-        id: "3MQCwI1AgSSiVg37",
-        ck: "3MQCwI1AgSSiVg37",
-        apply: "all",
-        importMode: 'async'
+        id: "3MQCwI1AgSSiVg37", //动态掩码，防止 SDK 被盗刷
+        ck: "3MQCwI1AgSSiVg37", //一个网站多个统计 ID 的数据分离标识
+        autoTrack: true, //开启事件分析功能,用于定义和追踪用户在产品（网站/APP等）上的各类行为，如点击、浏览、停留等。默认为false
+        hashMode: true, // 开启单页面应用模式,如使用了Vue / React等框架构建的单页面应用网站，默认为true
+        screenRecord: true, //开启屏幕录制功能,默认为false
+        apply: "build", //'build' 构建时生效，'serve' 开发时生效，'all' 所有阶段生效
+        importMode: "sync", //sync' 同步加载，'async' 异步加载，'old' 旧式安装
       }),
     ],
     server: {

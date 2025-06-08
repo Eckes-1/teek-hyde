@@ -6,17 +6,6 @@ const description = [
 
 // 导出head.ts
 export const HeadData = [
-  // 51.la数据挂件
-  [
-    "script",
-    {
-      charset: "UTF-8",
-      id: "LA_COLLECT",
-      src: "//sdk.51.la/js-sdk-pro.min.js",
-      defer: "defer",
-    },
-    `LA.init({id:"3MQCwI1AgSSiVg37",ck:"3MQCwI1AgSSiVg37",autoTrack:true,hashMode:true,screenRecord:true})`,
-  ],
   ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   ["meta", { name: "author", content: "Tianke" }],
   [
