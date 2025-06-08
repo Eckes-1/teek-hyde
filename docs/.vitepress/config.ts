@@ -16,7 +16,14 @@ import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
 import llmstxt from "vitepress-plugin-llms"; // 导入llmstxt插件
-import { La51Plugin } from "vitepress-plugin-51la"; // 导入51la统计插件
+import { RSSOptions, RssPlugin } from "vitepress-plugin-rss"; // 导入RSS插件
+
+const baseUrl = "https://teek.seasir.top";
+const RSS: RSSOptions = {
+  title: "Hyde Blog",
+  baseUrl,
+  copyright: "Copyright 2021-2025 Hyde Blog",
+};
 
 const description = [
   "欢迎来到 vitepress-theme-teek 使用文档",
@@ -358,16 +365,8 @@ export default defineConfig({
           ],
         },
       }),
-      llmstxt(),
-      // La51Plugin({
-      //   id: "3MQCwI1AgSSiVg37", //动态掩码，防止 SDK 被盗刷
-      //   ck: "3MQCwI1AgSSiVg37", //一个网站多个统计 ID 的数据分离标识
-      //   autoTrack: true, //开启事件分析功能,用于定义和追踪用户在产品（网站/APP等）上的各类行为，如点击、浏览、停留等。默认为false
-      //   hashMode: true, // 开启单页面应用模式,如使用了Vue / React等框架构建的单页面应用网站，默认为true
-      //   screenRecord: true, //开启屏幕录制功能,默认为false
-      //   apply: "build", //'build' 构建时生效，'serve' 开发时生效，'all' 所有阶段生效
-      //   importMode: "sync", //sync' 同步加载，'async' 异步加载，'old' 旧式安装
-      // }),
+      llmstxt(), // 插入llmstxt
+      RssPlugin(RSS), //开启RSS功能
     ],
     server: {
       // host: "127.0.0.1", // 指定服务器应该监听哪个 IP 地址
