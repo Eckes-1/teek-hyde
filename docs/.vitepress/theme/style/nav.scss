@@ -51,13 +51,3 @@
     z-index: 0 !important;
   }
 }
-
-// wide尺寸宽度
-.tk-segment-nav .VPContent:not(.is-home) .VPDoc:not(.has-sidebar) .container>.content {
-  max-width: 1480px ;
-}
-
-// 导航容器距离左右的距离
-.VPDoc .container>.content .content-container {
- padding: 10px; 
-}

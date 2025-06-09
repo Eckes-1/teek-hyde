@@ -6,7 +6,6 @@ import { useData } from "vitepress";
 // import notice from "./components/notice.vue";
 import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
-// import NotFound from "./components/NotFound.vue"; // 导入404组件
 import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
 
 // Teek 在线主题包引用（需安装 Teek 在线版本）

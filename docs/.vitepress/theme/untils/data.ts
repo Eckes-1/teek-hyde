@@ -943,6 +943,12 @@ export const NAV_DATA: NavData[] = [
         desc: "Axios 是一个基于 promise 的网络请求库，可以用于浏览器和 node.js",
         link: "https://www.axios-http.cn/",
       },
+      {
+        icon: "https://alova.js.org/zh-CN/img/favicon.ico",
+        title: "Alova",
+        desc: "下一代请求工具",
+        link: "https://alova.js.org/zh-CN/",
+      },
     ],
   },
   {
@@ -1078,6 +1084,12 @@ export const NAV_DATA: NavData[] = [
         title: "SimpleMindMap",
         desc: "一个强大的Web思维导图",
         link: "https://wanglin2.github.io/mind-map-docs/",
+      },
+      {
+        icon: "https://mycolor.space/favicon5.png",
+        title: "colorspace",
+        desc: "根据你选择的主色，一键生成配色方案",
+        link: "https://mycolor.space/",
       },
     ],
   },

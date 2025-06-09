@@ -15,7 +15,7 @@ import NoticeContent from "./NoticeContent.vue"; //导入公告组件
 // @ts-ignore
 import BannerImgArrow from "./BannerImgArrow.vue"; //导入横幅图片箭头组件
 // @ts-ignore
-import NotFound from "./NotFound.vue";
+import NotFound from "./NotFound.vue";//导入404组件
 // @ts-ignore
 import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
 // @ts-ignore
