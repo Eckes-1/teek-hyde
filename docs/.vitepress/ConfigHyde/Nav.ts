@@ -103,7 +103,7 @@ export const Nav = [
           { text: "站点登录", link: "/login/" },
           {
             text: "风险提示",
-            link: "/risk-link?target=https://teek.seasir.top/",
+            link: "/risk-link?target=https://teek.seasir.top/guide/quickstart",
           },
         ],
       },
