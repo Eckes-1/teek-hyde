@@ -131,6 +131,18 @@ export const NAV_DATA: NavData[] = [
         desc: "一个免费的在线工具集合，持续开发各种好用的工具",
         link: "https://d1tools.com/tools/",
       },
+      {
+        icon: "https://fmhy.net/test.png",
+        title: "fmhy",
+        desc: "互联网上最大的免费物品集合！",
+        link: "https://fmhy.net/",
+      },
+      {
+        icon: "https://inspector.fe-dev.cn/logo.svg",
+        title: "Code Inspector",
+        desc: "页面开发提效的神器",
+        link: "https://inspector.fe-dev.cn/",
+      },
     ],
   },
   {
@@ -310,6 +322,12 @@ export const NAV_DATA: NavData[] = [
         desc: "JSON 工具包提高效率 – 以前所未有的方式可视化、格式化和比较您的数据！",
         link: "https://json4u.com/",
       },
+      {
+        icon: "https://cpwebassets.codepen.io/assets/favicon/favicon-touch-de50acbf5d634ec6791894eba4ba9cf490f709b3d742597c6fc4b734e6492a5a.png",
+        title: "codepen",
+        desc: "CodePen是一个在线的前端开发环境和社区平台,全球180万前端设计师的灵感社区它为开发人员提供了一个可以编写、分享和调试HTML、CSS和JavaScript代码的交互式编辑器",
+        link: "https://codepen.io/",
+      },
     ],
   },
   {
@@ -334,6 +352,45 @@ export const NAV_DATA: NavData[] = [
         icon: "https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png",
         title: "Beautiful.ai（PPT）",
         link: "https://www.beautiful.ai",
+      },
+    ],
+  },
+  {
+    title: "AI编程",
+    items: [
+      {
+        icon: "https://www.cursor.com/favicon-48x48.png",
+        title: "Cursor-free-everyday",
+        desc: "完全免费, 自动获取新账号,一键重置新额度, 解决机器码问题, 自动满额度",
+        link: "https://github.com/agentcodee/cursor-free-everyday",
+        badge: {
+          text: "强烈推荐",
+          type: "danger",
+        },
+      },
+      {
+        icon: "https://www.cursor.com/favicon-48x48.png",
+        title: "Cursor Auto Free",
+        desc: "动注册账号，自动刷新本地token，解放双手",
+        link: "https://cursor-auto-free-doc.vercel.app/zh/",
+      },
+      {
+        icon: "https://www.cursor.com/favicon-48x48.png",
+        title: "Cursor Auto Free",
+        desc: "AI 代码编辑器,Cursor 是使用 AI 编写代码的最佳方式。",
+        link: "https://www.cursor.com/cn",
+      },
+      {
+        icon: "https://lf-cdn.trae.ai/obj/trae-ai-sg/trae_website_prod/static/image/icon.ico",
+        title: "Trae",
+        desc: "字节跳动旗下的AI编程Trae IDE",
+        link: "https://www.trae.ai/",
+      },
+      {
+        icon: "https://cloudcache.tencent-cloud.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png",
+        title: "腾讯云代码助手",
+        desc: "腾讯云自研的一款编程提效辅助工具，以插件形式安装到编辑器（VS Code 或者 JetBrains 系列 IDE）中辅助编程",
+        link: "https://cloud.tencent.com/document/product/1749",
       },
     ],
   },
@@ -1091,6 +1148,12 @@ export const NAV_DATA: NavData[] = [
         desc: "根据你选择的主色，一键生成配色方案",
         link: "https://mycolor.space/",
       },
+      {
+        icon: "https://v.png.pub/imgs/2024/06/08/495e6235c59ead29.png",
+        title: "Zdir Pro",
+        desc: "一款集文件索引、在线预览与分享于一体的多功能私有存储程序，支持WebDAV和离线下载。",
+        link: "https://www.zdir.pro/zh/",
+      },
     ],
   },
   {
@@ -1187,6 +1250,34 @@ export const NAV_DATA: NavData[] = [
         title: "vnote",
         desc: " 一个舒适的笔记平台",
         link: "https://app.vnote.fun/zh_cn/",
+      },
+      {
+        icon: "https://www.zettlr.com/themes/zettlr/assets/img/256x256.png",
+        title: "Zettlr ",
+        desc: " 一个开源的多功能写作工具，它被称为“全能的出版工作台”",
+        link: "https://www.zettlr.com/",
+      },
+      {
+        icon: "https://www.mindforger.com/favicon.ico",
+        title: "MindForger",
+        desc: "一个适合个人和专业用户的知识管理神器",
+        link: "https://www.mindforger.com/",
+      },
+    ],
+  },{
+    title: "运维服务",
+    items: [
+      {
+        icon: "https://chmlfrp.cn/favicon.ico",
+        title: "ChmlFrp | 端口映射",
+        desc: "完全重构，全面升级！免费.高速.稳定.不限流量的端口映射工具",
+        link: "https://chmlfrp.cn/",
+      },
+      {
+        icon: "https://avatars.githubusercontent.com/u/7346661?s=48&v=4",
+        title: "frp",
+        desc: "一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。",
+        link: "https://github.com/fatedier/frp",
       },
     ],
   },

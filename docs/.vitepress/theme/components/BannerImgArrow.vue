@@ -1,6 +1,6 @@
 <script setup lang="ts" name="BannerImgArrow">
 import { TkIcon } from "vitepress-theme-teek";
-import arrowSvg from "../svg/arrow";
+import arrowSvg from "../icon/arrow";
 import { useData } from "vitepress";
 import { ref } from "vue";
 
