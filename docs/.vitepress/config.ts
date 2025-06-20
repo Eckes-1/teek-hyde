@@ -101,7 +101,7 @@ const teekConfig = defineTeekConfig({
   notice: {
     enabled: true, // 是否启用公告功能
     title: "公告", // 公告标题，支持函数式：需要和国际化搭配使用，根据不同语言环境返回不同标题
-    initOpen: true,
+    initOpen: false, // 公告是否默认打开
     duration: 3000, // 弹框定时自动关闭，0 不自动消失
     mobileMinify: false, // 移动端自动最小化
     reopen: true, // 关闭公告弹框后，是否支持重新打开，如果为 false，则代表公告只显示一次

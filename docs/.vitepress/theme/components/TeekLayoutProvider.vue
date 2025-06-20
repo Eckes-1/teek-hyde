@@ -26,6 +26,8 @@ import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘组件
 import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
 // @ts-ignore
 import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
+// @ts-ignore
+import InformationCard from "./InformationCard.vue"; 
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -111,13 +113,15 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <!-- 横幅图片箭头组件 -->
       <BannerImgArrow />
     </template>
+
+    <template #teek-home-banner-after>
+      <InformationCard />
+    </template>
   </Teek.Layout>
 </template>
 
 <style lang="scss">
 .tk-my.is-circle-bg {
-  margin-bottom: 20px;
-
   .tk-my__avatar.circle-rotate {
     margin-top: 200px;
   }

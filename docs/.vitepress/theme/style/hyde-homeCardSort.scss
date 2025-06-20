@@ -58,6 +58,11 @@ $icons-margin-top: 10px;
 }
 
 .tk-my__avatar {
+  // 首页卡片栏博主信息头像
   margin-top: 220px;
   margin-bottom: 20px;
+}
+
+.tk-post-item-card__cover-img {
+  height: 185px; // 封面图高度
 }

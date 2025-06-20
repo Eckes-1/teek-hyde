@@ -1,50 +1,14 @@
 import type { NavData } from "./types.ts";
-import { SiteAnalytics } from "./Data/SiteAnalytics";
+import { SiteAnalytics } from "./Data/SiteAnalytics"; // 网站分析
+import { Status } from "./Data/Status"; // 网站监控
 export const NAV_DATA: NavData[] = [
   {
-    title: SiteAnalytics.title,
+    title: SiteAnalytics.title, // 网站分析
     items: SiteAnalytics.items,
   },
   {
-    title: "网站监控",
-    items: [
-      {
-        icon: "https://avatars.githubusercontent.com/u/42232682?s=48&v=4",
-        title: "site-status",
-        desc: "📺 一个基于 UptimeRobot API 的在线状态面板 | 站点监测 | 状态检测",
-        link: "https://github.com/imsyy/site-status",
-      },
-      {
-        icon: "https://uptime.kuma.pet/img/icon.svg",
-        title: "Uptime-Kuma",
-        desc: "一款开源的 自托管监控工具，专为个人、团队或中小型企业设计，用于实时监测网站、服务器、API 及各类网络服务的运行状态",
-        link: "https://uptime.kuma.pet/",
-      },
-      {
-        icon: "https://avatars.githubusercontent.com/u/2200494?s=48&v=4",
-        title: "酷监控（Coolmonitor ）",
-        desc: "一个高颜值的监控工具，支持网站监控/接口监控/HTTPS证书监控等",
-        link: "https://github.com/star7th/coolmonitor",
-      },
-      {
-        icon: "https://avatars.githubusercontent.com/u/186249805?s=48&v=4",
-        title: "Flutter Server Box",
-        desc: " Linux 服务器工具箱，提供服务器状态图表和管理工具。",
-        link: "https://github.com/vecnathewhisperd0/flutter_server_box",
-      },
-      {
-        icon: "https://checkcle.io/favicon.ico",
-        title: "CheckCle",
-        desc: " CheckCle 是一个开源监控平台，提供有关服务器和服务健康状况、事件管理和运营透明度的实时洞察。",
-        link: "https://checkcle.io/",
-      },
-      {
-        icon: "https://avatars.githubusercontent.com/u/26519165?s=48&v=4",
-        title: "webfunny",
-        desc: " 一款轻量级的前端性能监控和埋点系统，私有化部署，简单易用",
-        link: "https://github.com/a597873885/webfunny_monitor?tab=readme-ov-file",
-      },
-    ],
+    title: Status.title, // 网站监控
+    items: Status.items,
   },
   {
     title: "图像处理",
@@ -66,6 +30,12 @@ export const NAV_DATA: NavData[] = [
         title: "文件转换器",
         desc: "轻松在线将文件从一种格式转换为另一种格式",
         link: "https://www.freeconvert.com/zh",
+      },
+      {
+        icon: "https://vert.sh/favicon.png",
+        title: "Vert",
+        desc: "一款开源的文件转换工具，完全本地化，无文件大小限制，支持多种文件格式，无广告",
+        link: "https://vert.sh/",
       },
     ],
   },
@@ -353,6 +323,12 @@ export const NAV_DATA: NavData[] = [
         title: "Beautiful.ai（PPT）",
         link: "https://www.beautiful.ai",
       },
+      {
+        icon: "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/common/images/dreamina-v1.ico",
+        title: "即梦AI ",
+        desc: "即刻造梦",
+        link: "https://jimeng.jianying.com/",
+      },
     ],
   },
   {
@@ -385,6 +361,12 @@ export const NAV_DATA: NavData[] = [
         title: "Trae",
         desc: "字节跳动旗下的AI编程Trae IDE",
         link: "https://www.trae.ai/",
+      },
+      {
+        icon: "https://voideditor.com/void/slice_of_void.png",
+        title: "Void ",
+        desc: "Void 是 Cursor 的开源替代方案。您可以使用最优秀的 AI 工具编写代码，使用任何模型，并完全掌控您的数据。",
+        link: "https://voideditor.com/",
       },
       {
         icon: "https://cloudcache.tencent-cloud.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png",
@@ -574,6 +556,12 @@ export const NAV_DATA: NavData[] = [
         title: "Vue DevTools",
         desc: "Vue 开发者工具,进适用于开发环境",
         link: "https://devtools.vuejs.org/",
+      },
+      {
+        icon: "https://ppofficial.pages.dev/pplogo.png",
+        title: "PakePlus",
+        desc: "何必是网站，秒变桌面应用和手机应用",
+        link: "https://ppofficial.pages.dev/",
       },
     ],
   },
@@ -768,6 +756,18 @@ export const NAV_DATA: NavData[] = [
         title: "SWC",
         desc: "Rust-based platform for the Web",
         link: "https://swc.rs",
+      },
+      {
+        icon: "https://tsdown.dev/tsdown.svg",
+        title: "Tsdown",
+        desc: "优雅的库打包工具",
+        link: "https://tsdown.dev/",
+      },
+      {
+        icon: "https://rolldown.rs/rolldown-round.svg",
+        title: "Rolldown",
+        desc: "基于 Rust 的 JavaScript 打包工具",
+        link: "https://rolldown.rs/",
       },
     ],
   },
@@ -1234,6 +1234,12 @@ export const NAV_DATA: NavData[] = [
         desc: "DBLAB是一款功能齐全的数据库管理工具,多平台支持，与AI协作，探索全新的数据库管理体验",
         link: "https://www.dblab.top/",
       },
+      {
+        icon: "https://jookdb.com/img/logo.png",
+        title: "JookDB",
+        desc: "一个跨平台的数据库工具，支持 Windows、Linux、MacOS。",
+        link: "https://jookdb.com/",
+      },
     ],
   },
   {
@@ -1263,8 +1269,37 @@ export const NAV_DATA: NavData[] = [
         desc: "一个适合个人和专业用户的知识管理神器",
         link: "https://www.mindforger.com/",
       },
+      {
+        icon: "https://blinko.space/favicon.ico",
+        title: "Blinko",
+        desc: "下一代开源的 AI 驱动卡片笔记，旨在帮助您迅速捕捉和组织灵感，确保创意永不枯竭。",
+        link: "https://blinko.space/",
+      },
+      {
+        icon: "https://notegen.top/app-icon.png",
+        title: "NoteGen",
+        desc: "一款跨平台的 Markdown AI 笔记软件",
+        link: "https://notegen.top/",
+      },
+      {
+        icon: "https://notegen.top/app-icon.png",
+        title: "Open Notebook",
+        desc: "PDF/EPUB/视频/音频等20+格式一键转文字分析，变成你的笔记。",
+        link: "https://www.open-notebook.ai/",
+      },
+      {
+        icon: "https://deeplang-frontend.oss-cn-zhangjiakou.aliyuncs.com/shenyan-dayi/logos/logo-color.png",
+        title: "语鲸",
+        desc: "聚合信息收集、分发、消费全链路",
+        link: "https://lingowhale.com/",
+        badge: {
+          text: "RSS软件",
+          type: "danger",
+        },
+      },
     ],
-  },{
+  },
+  {
     title: "运维服务",
     items: [
       {
@@ -1278,6 +1313,51 @@ export const NAV_DATA: NavData[] = [
         title: "frp",
         desc: "一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。",
         link: "https://github.com/fatedier/frp",
+      },
+      {
+        icon: "https://om.uusec.com/logo.png",
+        title: "OpenResty Manager",
+        desc: "一个基于 OpenResty 构建的开源 Web 管理平台。提供了一个用户友好的界面，用于管理 Nginx 配置、反向代理、SSL 证书等功能，适合需要简化 Web 服务器操作的管理员和开发者。",
+        link: "https://om.uusec.com/zh-cn/",
+      },
+      {
+        icon: "https://ehang-io.github.io/nps/logo.svg",
+        title: "NPS",
+        desc: "一款轻量级、高性能、功能强大的内网穿透代理服务器",
+        link: "https://ehang-io.github.io/nps/#/",
+      },
+    ],
+  },
+  {
+    title: "SSL证书",
+    items: [
+      {
+        icon: "https://allinssl.com/logo.svg",
+        title: "All in SSL",
+        desc: "一键自动化申请、续期、部署、监控所有 SSL/TLS 证书，支持跨云环境和多 CA (coding~)，告别繁琐配置和高昂费用。",
+        link: "https://allinssl.com/",
+        badge: {
+          text: "强烈推荐",
+          type: "danger",
+        },
+      },
+      {
+        icon: "https://certbot.eff.org/favicon.ico",
+        title: "Certbot",
+        desc: "Certbot是一款免费且开源的自动化安全证书管理工具，由电子前沿基金会（EFF）开发和维护，是在Linux、Apache和Nginx服务器上配置和管理SSL/TLS证书的一种机制。",
+        link: "https://certbot.eff.org/instructions",
+      },
+      {
+        icon: "https://demo.domain-admin.cn/favicon.ico",
+        title: "Domain Admin",
+        desc: "Domain Admin是一个基于Python + Vue3.js 技术栈实现的域名和SSL证书监测平台，支持申请证书，自动续签，到期提醒，支持独立部署 的一个轻量级监控方案，占用系统资源较少。",
+        link: "https://domain-admin.cn/",
+      },
+      {
+        icon: "https://certd.docmirror.cn/static/logo/logo.svg",
+        title: "Certd",
+        desc: "开源、免费、全自动的证书管理工具,让你的网站证书永不过期",
+        link: "https://certd.docmirror.cn/",
       },
     ],
   },
