@@ -199,7 +199,7 @@ onMounted(() => {
     }
 
     .highlight {
-      color: red;
+      color: var(--vp-c-brand-1);
     }
   }
 
@@ -216,7 +216,7 @@ onMounted(() => {
   }
 
   .highlight {
-    color: red;
+    color: var(--vp-c-brand-1);
   }
 
   .info-container {
