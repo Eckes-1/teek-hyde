@@ -15,7 +15,7 @@ import { FooterGroup } from "./ConfigHyde/FooterGroup"; //导入页脚信息组�
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
 import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
-import llmstxt from "vitepress-plugin-llms"; // 导入llmstxt插件
+// import llmstxt from "vitepress-plugin-llms"; // 导入llmstxt插件
 import { RSSOptions, RssPlugin } from "vitepress-plugin-rss"; // 导入RSS插件
 
 const baseUrl = "https://teek.seasir.top";
@@ -365,7 +365,7 @@ export default defineConfig({
           ],
         },
       }),
-      llmstxt(), // 插入llmstxt
+      // llmstxt(), // 插入llmstxt
       RssPlugin(RSS), //开启RSS功能
     ],
     server: {
