@@ -13,10 +13,10 @@
 }
 
 @mixin text-clip-common {
-  background-clip: text; /* 标准语法，裁剪背景到文字 */
-  -webkit-background-clip: text; /* Safari/Chrome 前缀兼容 */
-  color: transparent; /* 让文字透明，露出背景渐变 */
-  display: inline-block; /* 让背景仅包裹文字，而非整行 */
+  background-clip: text !important; /* 标准语法，裁剪背景到文字 */
+  -webkit-background-clip: text !important; /* Safari/Chrome 前缀兼容 */
+  color: transparent !important; /* 让文字透明，露出背景渐变 */
+  display: inline-block !important; /* 让背景仅包裹文字，而非整行 */
 }
 
 @mixin text-gradient {
@@ -30,6 +30,11 @@
     rgb(60, 112, 255) 118.97%
   );
   @include text-clip-common;
+}
+
+.VPDoc{
+  // 次配置影响文档距离侧边栏panding宽度，同时也影响nav导航移动端距离屏幕左右
+  padding: 32px 10px !important;
 }
 
 .VPDoc h1 {

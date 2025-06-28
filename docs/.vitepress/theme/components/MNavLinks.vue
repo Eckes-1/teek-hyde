@@ -70,13 +70,7 @@ const formatTitle = computed(() => {
 
 @media (min-width: 960px) {
   .m-nav-links {
-    --m-nav-gap: 20px;
-  }
-}
-
-@media (min-width: 960px) {
-  .m-nav-links {
-    --m-nav-gap: 20px;
+    --m-nav-gap: 10px;
   }
 }
 </style>

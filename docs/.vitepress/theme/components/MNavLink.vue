@@ -2,8 +2,9 @@
 import { computed } from "vue";
 import { withBase } from "vitepress";
 import { slugify } from "@mdit-vue/shared";
-
 import { NavLink } from '../untils/types'
+import { TkIcon } from "vitepress-theme-teek";
+import { NoIcon } from "../icon/NavIcon";
 
 const props = defineProps<{
   noIcon?: boolean;
@@ -43,23 +44,25 @@ const formatBadge = computed(() => {
           <div v-else-if="icon && typeof icon === 'string'" class="icon">
             <img :src="withBase(icon)" :alt="title" onerror="this.parentElement.style.display='none'" />
           </div>
+          <TkIcon v-else class="icon" :icon="NoIcon"></TkIcon>
         </template>
-        <h5 v-if="title" :id="formatTitle" class="title" :class="{ 'no-icon': noIcon }">
-          {{ title }}
-        </h5>
+        <div class="content">
+          <h5 v-if="title" :id="formatTitle" class="title" :class="{ 'no-icon': noIcon }">
+            {{ title }}
+          </h5>
+          <p v-if="desc" class="desc">{{ desc }}</p>
+        </div>
       </div>
       <Badge v-if="formatBadge" class="badge" :type="formatBadge.type" :text="formatBadge.text" />
-      <p v-if="desc" class="desc">{{ desc }}</p>
     </article>
   </a>
 </template>
 
 <style scoped>
 .m-nav-link {
-  --m-nav-icon-box-size: 50px;
-  --m-nav-icon-size: 45px;
-  --m-nav-box-gap: 12px;
-
+  --m-nav-icon-box-size: 60px;
+  --m-nav-icon-size: 60px;
+  --m-nav-box-gap: 8px;
   display: block;
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 12px;
@@ -72,15 +75,29 @@ const formatBadge = computed(() => {
   box-shadow: var(--vp-shadow-2);
   border-color: var(--vp-c-brand);
   text-decoration: initial;
-  background-color: var(--vp-c-bg-soft-up);
+  background-color: var(--vp-c-brand-1);
   transform: translateY(-5px);
+}
+
+.m-nav-link:hover .icon {
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+}
+
+.m-nav-link:hover .content {
+  margin-left: calc(-5 * var(--m-nav-box-gap));
+}
+
+.m-nav-link:hover .title,
+.m-nav-link:hover .desc {
+  color: white;
 }
 
 .m-nav-link .box {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: var(--m-nav-box-gap);
+  padding:12px 0px;
   height: 100%;
   color: var(--vp-c-text-1);
 }
@@ -92,19 +109,26 @@ const formatBadge = computed(() => {
 .m-nav-link .box-header {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 
 .m-nav-link .icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: calc(var(--m-nav-box-gap) - 2px);
-  border-radius: 6px;
+  /* margin-right: calc(var(--m-nav-box-gap) - 2px); */
+  border-radius: 50%;
+  min-width: var(--m-nav-icon-box-size);
+  min-height: var(--m-nav-icon-box-size);
   width: var(--m-nav-icon-box-size);
   height: var(--m-nav-icon-box-size);
   font-size: var(--m-nav-icon-size);
   background-color: var(--vp-c-bg-soft-down);
-  transition: background-color 0.25s;
+  /* 过度动画 */
+  transition: transform 0.6s ease-in-out, opacity 0.4s ease-in-out;
+  flex-shrink: 0;
+  transform: translateX(0) scale(1);
+  opacity: 1;
 }
 
 .m-nav-link .icon svg {
@@ -113,17 +137,34 @@ const formatBadge = computed(() => {
 }
 
 .m-nav-link .icon img {
-  border-radius: 4px;
-  width: var(--m-nav-icon-size);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.m-nav-link .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-height: var(--m-nav-icon-box-size);
+  height: 100%;
+  overflow: hidden;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
 }
 
 .m-nav-link .title {
   overflow: hidden;
-  flex-grow: 1;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 16px;
   font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .m-nav-link .badge {
@@ -139,17 +180,20 @@ const formatBadge = computed(() => {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  flex-grow: 1;
-  margin: calc(var(--m-nav-box-gap) - 2px) 0 0;
+  margin: 4px 0 0;
   line-height: 1.5;
-  font-size: 12px;
-  color: var(--vp-c-text-2)
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+  width: 100%;
+  word-wrap: break-word;
+  flex: 1;
+  min-height: 0;
 }
 
 @media (max-width: 960px) {
   .m-nav-link {
-    --m-nav-icon-box-size: 36px;
-    --m-nav-icon-size: 36px;
+    --m-nav-icon-box-size: 60px;
+    --m-nav-icon-size: 60px;
     --m-nav-box-gap: 15px;
   }
 
