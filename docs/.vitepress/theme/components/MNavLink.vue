@@ -97,7 +97,7 @@ const formatBadge = computed(() => {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding:12px 0px;
+  padding: 12px 0px;
   height: 100%;
   color: var(--vp-c-text-1);
 }
@@ -192,13 +192,39 @@ const formatBadge = computed(() => {
 
 @media (max-width: 960px) {
   .m-nav-link {
-    --m-nav-icon-box-size: 60px;
+    /* 当屏幕宽度小于960px时，应用以下样式 */
+    --m-nav-icon-box-size: 50px;
+    /* 移动端导航链接图标盒子大小 */
     --m-nav-icon-size: 60px;
+    /* 移动端导航链接图标大小 */
     --m-nav-box-gap: 15px;
+    /* 移动端导航链接盒子间距 */
+  }
+
+  .m-nav-link .icon img {
+    /* 设置图标圆角为50% */
+    border-radius: 50%;
+    /* 设置图标宽度为36px */
+    width: 36px;
+    /* 设置图标高度为36px */
+    height: 36px;
+    /*设置图标的填充方式为覆盖 */
+    object-fit: cover;
   }
 
   .m-nav-link .title {
-    font-size: 16px;
+    /* 移动端标题文字大小 */
+    font-size: 14px;
+  }
+
+  .m-nav-link .desc {
+    /* 移动端描述文字大小 */
+    font-size: 12px;
+  }
+
+  .m-nav-link:hover .content {
+    margin-left: calc(-3 * var(--m-nav-box-gap));
+    /* 移动端导航链接鼠标悬停时，内容左边距 */
   }
 }
 </style>

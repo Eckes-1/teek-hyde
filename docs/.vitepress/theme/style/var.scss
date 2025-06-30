@@ -32,11 +32,6 @@
   @include text-clip-common;
 }
 
-.VPDoc{
-  // 次配置影响文档距离侧边栏panding宽度，同时也影响nav导航移动端距离屏幕左右
-  padding: 32px 10px !important;
-}
-
 .VPDoc h1 {
   @include text-gradient;
   // 换行

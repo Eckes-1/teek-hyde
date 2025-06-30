@@ -29,13 +29,21 @@ const formatTitle = computed(() => {
 <style scoped>
 .m-nav-links {
   --m-nav-gap: 10px;
+  /* 设置导航链接的间距 */
   display: grid;
+  /* 设置导航链接的布局为网格布局 */
   grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  /* 设置网格的列数为自动填充，最小宽度为135px，最大宽度为1fr */
   grid-row-gap: var(--m-nav-gap);
+  /* 设置网格的行间距为--m-nav-gap */
   grid-column-gap: var(--m-nav-gap);
+  /* 设置网格的列间距为--m-nav-gap */
   grid-auto-flow: row dense;
+  /* 设置网格的自动填充方式为行密集 */
   justify-content: center;
+  /* 设置网格的居中对齐方式 */
   margin-top: var(--m-nav-gap);
+  /* 设置导航链接的上边距为--m-nav-gap */
 }
 
 @media (min-width: 500px) {
@@ -71,6 +79,12 @@ const formatTitle = computed(() => {
 @media (min-width: 960px) {
   .m-nav-links {
     --m-nav-gap: 10px;
+  }
+}
+
+@media (max-width: 960px) {
+  .m-nav-links {
+    padding-right: 12px;
   }
 }
 </style>

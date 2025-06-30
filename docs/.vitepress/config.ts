@@ -369,8 +369,8 @@ export default defineConfig({
       RssPlugin(RSS), //开启RSS功能
     ],
     server: {
-      // host: "127.0.0.1", // 指定服务器应该监听哪个 IP 地址
-      // port: 5173, // 指定开发服务器端口
+      host: '0.0.0.0', // 推荐使用，自动适配电脑IP
+      port: 5173, // 默认为5173端口，可保持默认
       // strictPort: true, // 若端口已被占用则会直接退出
       // open: true, // 运行后自动打开网页
     },
