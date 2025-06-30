@@ -149,7 +149,7 @@ export const teekBlogBodyConfig: TeekConfig = {
 // 博客卡片配置
 export const teekBlogCardConfig: TeekConfig = {
   ...teekBlogCommonConfig,
-  pageStyle: "segment", //主题面板需要选择第四个选项，否则彩带是透明
+  // pageStyle: "segment", //主题面板需要选择第四个选项，否则彩带是透明;230630去除该配置会影响网站导航移动端容器样式
   page: {
     pageSize: 15, // 每页显示的文章数量,这里先暂时设置为15，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
   },

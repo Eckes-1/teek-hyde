@@ -11,13 +11,13 @@ hero:
   actions:
     - theme: brand
       text: 开始
-      link: /pages/cfd18f
+      link: guide/quickstart
     - theme: alt
       text: 美化
       link: /pages/2f892c
     - theme: alt
       text: 配置
-      link: /pages/f2838b
+      link: /twikoo
   image:
     # src: /teek-logo-large.png
     # alt: Teek

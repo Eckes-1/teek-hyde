@@ -32,7 +32,7 @@ const formatTitle = computed(() => {
   /* 设置导航链接的间距 */
   display: grid;
   /* 设置导航链接的布局为网格布局 */
-  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(167px, 1fr));
   /* 设置网格的列数为自动填充，最小宽度为135px，最大宽度为1fr */
   grid-row-gap: var(--m-nav-gap);
   /* 设置网格的行间距为--m-nav-gap */
@@ -82,9 +82,4 @@ const formatTitle = computed(() => {
   }
 }
 
-@media (max-width: 960px) {
-  .m-nav-links {
-    padding-right: 12px;
-  }
-}
 </style>

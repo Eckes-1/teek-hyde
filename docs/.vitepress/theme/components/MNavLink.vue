@@ -97,7 +97,7 @@ const formatBadge = computed(() => {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 12px 0px;
+  padding: 18px 2px;
   height: 100%;
   color: var(--vp-c-text-1);
 }
@@ -159,19 +159,12 @@ const formatBadge = computed(() => {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   margin: 0;
   line-height: 1.4;
   width: 100%;
   flex-shrink: 0;
-}
-
-.m-nav-link .badge {
-  position: absolute;
-  top: 2px;
-  right: 0;
-  transform: scale(0.8);
 }
 
 .m-nav-link .desc {
@@ -182,12 +175,19 @@ const formatBadge = computed(() => {
   text-overflow: ellipsis;
   margin: 4px 0 0;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--vp-c-text-2);
   width: 100%;
   word-wrap: break-word;
   flex: 1;
   min-height: 0;
+}
+
+.m-nav-link .badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  transform: scale(0.8);
 }
 
 @media (max-width: 960px) {
@@ -201,6 +201,11 @@ const formatBadge = computed(() => {
     /* 移动端导航链接盒子间距 */
   }
 
+  .m-nav-link .box {
+  /* 在移动端时设置内边距为上下12px,左右0 */
+  padding: 12px 0;
+  }
+  
   .m-nav-link .icon img {
     /* 设置图标圆角为50% */
     border-radius: 50%;
