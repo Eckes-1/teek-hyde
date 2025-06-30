@@ -28,8 +28,7 @@ import "vitepress-theme-teek/theme-chalk/tk-nav-blur.css"; // 导航栏毛玻璃
 // import "vitepress-theme-teek/theme-chalk/tk-container-left.css"; // Markdown 容器左框样式
 // import "vitepress-theme-teek/theme-chalk/tk-container-flow.css"; // Markdown 容器流体样式
 import "vitepress-theme-teek/tk-plus/banner-full-img-scale.scss"; // Banner 全屏图片放大样式
-import "./styles/index.scss"; //群主自定义的全局样式
-import "./style/index.scss"; // 引入Hyde全局样式
+import "./styles/index.scss"; // 引入Hyde全局自定义样式
 import "virtual:group-icons.css"; //代码组图标样式
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
 import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
@@ -38,10 +37,16 @@ import "nprogress-v2/dist/index.css"; // 进度条样式
 export default {
   extends: Teek,
   async enhanceApp({ app, router }) {
-    // 注册组件
-    app.component("MNavLinks", MNavLinks); // 注册导航组件
-    app.component("confetti", confetti); // 注册五彩纸屑组件
-    app.component("NavIcon", NavIcon); //导航栏图标
+    // 使用数组统一注册组件，减少重复代码
+    const globalComponents = [
+      { name: "MNavLinks", component: MNavLinks }, // 注册导航组件
+      { name: "confetti", component: confetti }, // 注册五彩纸屑组件
+      { name: "NavIcon", component: NavIcon }, // 注册导航栏图标
+    ];
+
+    globalComponents.forEach(({ name, component }) => {
+      app.component(name, component); // 全局注册组件
+    });
 
     // 非SSR环境下配置路由进度条
     // @ts-ignore-error
