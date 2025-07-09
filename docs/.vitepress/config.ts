@@ -370,7 +370,6 @@ export default defineConfig({
     ],
     server: {
       host: '0.0.0.0', // 推荐使用，自动适配电脑IP
-      port: 5173, // 默认为5173端口，可保持默认
       // strictPort: true, // 若端口已被占用则会直接退出
       // open: true, // 运行后自动打开网页
     },
