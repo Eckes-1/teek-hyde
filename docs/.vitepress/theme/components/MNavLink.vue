@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { withBase } from "vitepress";
 import { slugify } from "@mdit-vue/shared";
 import { NavLink } from '../untils/types'
@@ -15,6 +15,23 @@ const props = defineProps<{
   link: NavLink["link"];
 }>();
 
+const imgError = ref(false);
+
+watch(() => props.icon, () => {
+  imgError.value = false;
+});
+
+const showImg = computed(() => {
+  return typeof props.icon === "string" && props.icon && !imgError.value;
+});
+
+const imgSrc = computed(() => {
+  if (typeof props.icon === "string") {
+    return withBase(props.icon);
+  }
+  return '';
+});
+
 const formatTitle = computed(() => {
   if (!props.title) {
     return "";
@@ -23,7 +40,7 @@ const formatTitle = computed(() => {
 });
 
 const svg = computed(() => {
-  if (typeof props.icon === "object") return props.icon.svg;
+  if (typeof props.icon === "object" && props.icon && 'svg' in props.icon) return props.icon.svg;
   return "";
 });
 
@@ -41,8 +58,8 @@ const formatBadge = computed(() => {
       <div class="box-header">
         <template v-if="!noIcon">
           <div v-if="svg" class="icon" v-html="svg"></div>
-          <div v-else-if="icon && typeof icon === 'string'" class="icon">
-            <img :src="withBase(icon)" :alt="title" onerror="this.parentElement.style.display='none'" />
+          <div v-else-if="showImg" class="icon">
+            <img :src="imgSrc" :alt="title" @error="imgError = true" />
           </div>
           <TkIcon v-else class="icon" :icon="NoIcon"></TkIcon>
         </template>
@@ -195,17 +212,17 @@ const formatBadge = computed(() => {
     /* 当屏幕宽度小于960px时，应用以下样式 */
     --m-nav-icon-box-size: 50px;
     /* 移动端导航链接图标盒子大小 */
-    --m-nav-icon-size: 60px;
+    --m-nav-icon-size: 36px;
     /* 移动端导航链接图标大小 */
     --m-nav-box-gap: 15px;
     /* 移动端导航链接盒子间距 */
   }
 
   .m-nav-link .box {
-  /* 在移动端时设置内边距为上下12px,左右0 */
-  padding: 12px 0;
+    /* 在移动端时设置内边距为上下12px,左右0 */
+    padding: 12px 0;
   }
-  
+
   .m-nav-link .icon img {
     /* 设置图标圆角为50% */
     border-radius: 50%;

@@ -1231,6 +1231,12 @@ export const NAV_DATA: NavData[] = [
         desc: "一站式视频云点播平台，轻量级的用户能够无需了解任何技术就轻而易举地展示和播放视频，而以视频为主要产品的用户能通过强大的 API 和 SDK 完成对视频的高级处理。",
         link: "https://www.dogecloud.com/",
       },
+      {
+        icon: "https://edgeone.ai/favicon.ico",
+        title: "EdgeOne",
+        desc: "解锁全球首个免费CDN支持中国访问，无限CDN流量，无限DDoS防护",
+        link: "https://edgeone.ai/zh/redemption",
+      },
     ],
   },
   {
@@ -1333,6 +1339,12 @@ export const NAV_DATA: NavData[] = [
         title: "NPS",
         desc: "一款轻量级、高性能、功能强大的内网穿透代理服务器",
         link: "https://ehang-io.github.io/nps/#/",
+      },
+      {
+        icon: "https://www.gmssh.com/favicon.ico",
+        title: "GMSSH",
+        desc: "简单高效的服务器可视化运维管理工具",
+        link: "https://www.gmssh.com/",
       },
     ],
   },
