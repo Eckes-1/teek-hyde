@@ -27,7 +27,11 @@ import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条�
 // @ts-ignore
 import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
 // @ts-ignore
-import InformationCard from "./InformationCard.vue"; 
+import InformationCard from "./InformationCard.vue";  //导入信息卡片和舔狗日记组件
+// @ts-ignore 右键菜单组件
+import ContextMenu from "./ContextMenu/ContextMenu.vue";
+// @ts-ignore 过渡动画
+import RouteSwitchingAnimation from "./RouteSwitchingAnimation.vue";
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -75,6 +79,14 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 <template>
   <Teek.Layout>
     <template #layout-top>
+       <!-- 需要进行ssr优化 -->
+      <ClientOnly>
+        <!-- 添加全局右键菜单 -->
+        <ContextMenu/>
+      </ClientOnly>
+      
+      <!-- 路由切换动画组件 -->
+      <RouteSwitchingAnimation/>
       <!-- 全局问候组件 -->
       <GlobalGreet />
       <!-- 看板娘组件 -->
@@ -116,6 +128,10 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 
     <template #teek-home-banner-after>
       <InformationCard />
+    </template>
+
+    <template #nav-bar-content-after>
+      <Clock />
     </template>
   </Teek.Layout>
 </template>

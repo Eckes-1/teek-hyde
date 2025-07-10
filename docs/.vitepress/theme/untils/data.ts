@@ -1311,6 +1311,16 @@ export const NAV_DATA: NavData[] = [
           type: "danger",
         },
       },
+      {
+        icon: "https://docs.etherpad.org/favicon.ico",
+        title: "Etherpad",
+        desc: "下一代协作文档编辑",
+        link: "https://docs.etherpad.org/",
+        badge: {
+          text: "文档编辑协作",
+          type: "danger",
+        },
+      },
     ],
   },
   {
