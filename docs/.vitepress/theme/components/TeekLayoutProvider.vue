@@ -30,8 +30,8 @@ import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
 import InformationCard from "./InformationCard.vue";  //导入信息卡片和舔狗日记组件
 // @ts-ignore 右键菜单组件
 import ContextMenu from "./ContextMenu/ContextMenu.vue";
-// @ts-ignore 过渡动画
-import RouteSwitchingAnimation from "./RouteSwitchingAnimation.vue";
+// @ts-ignore 路由切换遮罩过渡动画
+import RouteSwitchingLoading from "./RouteSwitchingLoading.vue";
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -86,7 +86,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       </ClientOnly>
       
       <!-- 路由切换动画组件 -->
-      <RouteSwitchingAnimation/>
+      <RouteSwitchingLoading/>
       <!-- 全局问候组件 -->
       <GlobalGreet />
       <!-- 看板娘组件 -->
