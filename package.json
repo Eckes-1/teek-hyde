@@ -25,6 +25,7 @@
     "sass": "^1.89.1",
     "terser": "^5.41.0",
     "typescript": "^5.8.3",
+    "vite": "^7.0.4",
     "vite-plugin-imagemin": "^0.6.1",
     "vitepress": "^1.6.3",
     "vitepress-markdown-timeline": "^1.2.2",

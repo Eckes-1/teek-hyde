@@ -1,10 +1,7 @@
 import { defineConfig } from "vitepress";
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 
-import {
-  groupIconMdPlugin,
-  groupIconVitePlugin,
-} from "vitepress-plugin-group-icons"; // 导入代码组图标插件
+import { groupIconMdPlugin } from "vitepress-plugin-group-icons"; // 导入代码组图标插件
 import timeline from "vitepress-markdown-timeline"; // 导入时间线插件
 import { Nav } from "./ConfigHyde/Nav"; // 导入Nav模块
 import type { HeadConfig } from "vitepress"; // 在文件顶部添加类型导入
@@ -13,17 +10,8 @@ import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配�
 import { CommentData } from "./ConfigHyde/Comment"; //导入评论配置
 import { FooterGroup } from "./ConfigHyde/FooterGroup"; //导入页脚信息组配置
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
-import { visualizer } from "rollup-plugin-visualizer"; // 导入可视化分析插件
-import viteImagemin from "vite-plugin-imagemin"; // 导入图片压缩插件
-// import llmstxt from "vitepress-plugin-llms"; // 导入llmstxt插件
-import { RSSOptions, RssPlugin } from "vitepress-plugin-rss"; // 导入RSS插件
-
-const baseUrl = "https://teek.seasir.top";
-const RSS: RSSOptions = {
-  title: "Hyde Blog",
-  baseUrl,
-  copyright: "Copyright 2021-2025 Hyde Blog",
-};
+import { Plugins } from "./plugins";
+import { Build } from "./build";
 
 const description = [
   "欢迎来到 vitepress-theme-teek 使用文档",
@@ -352,67 +340,13 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [
-      groupIconVitePlugin(),
-      viteImagemin({
-        gifsicle: { optimizationLevel: 7 },
-        mozjpeg: { quality: 70 },
-        pngquant: { quality: [0.7, 0.8] },
-        svgo: {
-          plugins: [
-            { name: "removeViewBox" },
-            { name: "removeEmptyAttrs", active: false },
-          ],
-        },
-      }),
-      // llmstxt(), // 插入llmstxt
-      RssPlugin(RSS), //开启RSS功能
-    ],
+    plugins: Plugins(), // vite 插件
     server: {
-      host: '0.0.0.0', // 推荐使用，自动适配电脑IP
-      // strictPort: true, // 若端口已被占用则会直接退出
+      host: "0.0.0.0", // 推荐使用，自动适配电脑IP
+      // port: 5173, // 端口号
+      strictPort: false, // 若端口已被占用则会直接退出
       // open: true, // 运行后自动打开网页
     },
-    build: {
-      chunkSizeWarningLimit: 1500, // 限制警告的块大小
-      assetsInlineLimit: 4096, // 小于 4KB 的字体转为 base64
-      minify: "terser", // 使用 Terser 进行代码压缩
-      rollupOptions: {
-        plugins: [
-          visualizer({
-            filename: "../stats.html",
-            open: false, // 打包后自动打开报告
-            gzipSize: true, // 压缩大小
-            brotliSize: true,
-          }),
-        ],
-        output: {
-          manualChunks: {
-            theme: ["vitepress-theme-teek"],
-          },
-        },
-      },
-      terserOptions: {
-        compress: {
-          drop_console: true, // 移除所有 console.* 调用（生产环境建议开启）
-          drop_debugger: true, // 移除 debugger 语句（生产环境必备）
-          pure_funcs: ["console.info"], // 保留 console.info 调用（白名单机制）
-          dead_code: true, // 移除不可达代码（消除死代码）
-          arrows: true, // 将 function 转换为箭头函数（优化代码体积）
-          unused: true, // 移除未使用的变量/函数（需确保不影响程序逻辑）
-          join_vars: true, // 合并连续 var 声明（优化作用域）
-          collapse_vars: true, // 内联单次使用的变量（体积优化）
-        },
-        format: {
-          comments: false, // 移除所有注释（保留版权声明需使用正则表达式）
-          beautify: false, // 禁用代码美化（进一步减小体积）
-          preamble: "/* 项目版本 1.0.0 */", // 文件头部添加版权声明（需遵守 MIT 协议）
-        },
-        mangle: {
-          toplevel: true, // 混淆顶级作用域变量名（保留 class/function 名称）
-          properties: false, // 保留对象属性名（防止破坏 DOM 属性绑定）
-        },
-      },
-    },
+    build: Build(),
   },
 });
