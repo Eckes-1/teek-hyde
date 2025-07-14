@@ -1257,7 +1257,7 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
-    title: "笔记软件",
+    title: "文档笔记",
     items: [
       {
         icon: "https://typoraio.cn/img/favicon-128.png",
@@ -1296,7 +1296,7 @@ export const NAV_DATA: NavData[] = [
         link: "https://notegen.top/",
       },
       {
-        icon: "https://notegen.top/app-icon.png",
+        icon: "https://www.open-notebook.ai/hero.svg",
         title: "Open Notebook",
         desc: "PDF/EPUB/视频/音频等20+格式一键转文字分析，变成你的笔记。",
         link: "https://www.open-notebook.ai/",
@@ -1318,6 +1318,16 @@ export const NAV_DATA: NavData[] = [
         link: "https://docs.etherpad.org/",
         badge: {
           text: "文档编辑协作",
+          type: "danger",
+        },
+      },
+      {
+        icon: "https://mrdoc.pro/mrdoc-home/assets/img/mrdoc_logo_300.png",
+        title: "MrDoc 觅思文档",
+        desc: "自托管、私有部署的在线文档管理系统和知识库",
+        link: "https://mrdoc.pro/",
+        badge: {
+          text: "文档知识管理",
           type: "danger",
         },
       },

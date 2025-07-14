@@ -70,7 +70,7 @@ const showWeather = ref(true);
 const showDate = ref(true);
 const showTemperature = ref(true);
 const showWeek = ref(true);
-const showgetDiary = ref(true);
+// const showgetDiary = ref(true);
 
 // 新增：FPS计算
 const fps = ref(0);
@@ -123,7 +123,7 @@ onMounted(() => {
         <ElCheckbox v-model="showDate">显示日期</ElCheckbox>
         <ElCheckbox v-model="showTemperature">显示温度</ElCheckbox>
         <ElCheckbox v-model="showWeek">显示星期</ElCheckbox>
-        <ElCheckbox v-model="showgetDiary">显示舔狗</ElCheckbox>
+        <!-- <ElCheckbox v-model="showgetDiary">显示舔狗</ElCheckbox> -->
       </div>
 
       <!-- 欢迎信息 -->
@@ -162,12 +162,12 @@ onMounted(() => {
               <span class="highlight">{{ weatherData.week }}</span>
             </span>
           </div>
-          <div v-if="showgetDiary" class="info-item">
+          <!-- <div v-if="showgetDiary" class="info-item">
             <i class="el-icon-calendar"></i>
             <h1 class="vertical-title">舔狗日记：</h1>
             <p v-if="diaryContent" class="diary-content">{{ diaryContent }}</p>
             <p v-else class="diary-content">加载中...</p>
-          </div>
+          </div> -->
         </div>
       </template>
     </div>
