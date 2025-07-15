@@ -1,41 +1,49 @@
 <template>
-  <div
-      v-show="isVisible"
-      class="context-menu"
-      :style="{
-      top: `${y}px`,
-      left: `${x}px`,
-      '--theme-color': themeColor,
-      '--bg-light': '#ffffff',
-      '--bg-dark': '#1e1b2d',
-      '--text-light': '#4a4158',
-      '--text-dark': '#e2e0e7',
-      '--border-light': '#f3f0ff',
-      '--border-dark': '#2d2644',
-      '--header-gradient-light': 'linear-gradient(to right, #f9f5ff, #f5f3ff)',
-      '--header-gradient-dark': 'linear-gradient(to right, #312a48, #2d2644)',
-      '--divider-light': '#f0e6ff',
-      '--divider-dark': '#372f52',
-      '--hover-light': '#f5f3ff',
-      '--hover-dark': '#352e54',
-    }"
-  >
+  <div v-show="isVisible" class="context-menu" :style="{
+    top: `${y}px`,
+    left: `${x}px`,
+    '--theme-color': themeColor,
+    '--bg-light': '#ffffff',
+    '--bg-dark': '#1e1b2d',
+    '--text-light': '#4a4158',
+    '--text-dark': '#e2e0e7',
+    '--border-light': '#f3f0ff',
+    '--border-dark': '#2d2644',
+    '--header-gradient-light': 'linear-gradient(to right, #f9f5ff, #f5f3ff)',
+    '--header-gradient-dark': 'linear-gradient(to right, #312a48, #2d2644)',
+    '--divider-light': '#f0e6ff',
+    '--divider-dark': '#372f52',
+    '--hover-light': '#f5f3ff',
+    '--hover-dark': '#352e54',
+  }">
     <div class="menu-container">
       <!-- 头部区域 -->
       <div class="menu-header">
         <div class="menu-title-icon">
-          <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="8" x2="12" y2="12"></line>
             <line x1="12" y1="16" x2="12.01" y2="16"></line>
           </svg>
         </div>
         <span :style="{ color: themeColor }">{{ useWebsite.webInfo?.websiteName }}</span>
+
+        <div class="menu-title-icon screen" @click="toggleFullscreen">
+          <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path v-if="isFullScreen"
+              d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+            <path v-else
+              d="M20 9V6.616q0-.231-.192-.424T19.385 6H17V5h2.385q.69 0 1.152.463T21 6.616V9zM3 9V6.616q0-.691.463-1.153T4.615 5H7v1H4.616q-.231 0-.424.192T4 6.616V9zm14 10v-1h2.385q.23 0 .423-.192t.192-.424V15h1v2.385q0 .69-.462 1.152T19.385 19zM4.615 19q-.69 0-1.153-.462T3 17.384V15h1v2.385q0 .23.192.423t.423.192H7v1zm2.231-3.846V8.846h10.308v6.308zm1-1h8.308V9.846H7.846zm0 0V9.846z" />
+          </svg>
+        </div>
+
       </div>
 
       <!-- 菜单项列表 todo 后续改造为通过数据驱动渲染菜单 -->
 
-<!--      <ul class="menu-items">
+      <!--      <ul class="menu-items">
         <li class="menu-item" @click="navigateTo(item.path)" v-for="item in useWebsite.menuInfo">
           <div class="menu-item-icon">
             <div v-html="item.svg"></div>
@@ -48,7 +56,8 @@
         <!-- 首页 -->
         <li class="menu-item" @click="navigateTo('/')">
           <div class="menu-item-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
@@ -57,10 +66,12 @@
         </li>
 
         <!-- 关于我 -->
-        <li class="menu-item" @click="navigateTo('/About')">
+        <li class="menu-item" @click="navigateTo('/about-me')">
           <div class="menu-item-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19.2c-2.5 0-4.71-1.28-6-3.2c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.23 7.23 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-5.53-4.5-10-10-10" />
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M12 19.2c-2.5 0-4.71-1.28-6-3.2c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.23 7.23 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-5.53-4.5-10-10-10" />
             </svg>
           </div>
           <span>关于我</span>
@@ -68,23 +79,27 @@
 
         <!-- 其他（子菜单） -->
         <li class="menu-item has-submenu">
-          <div class="menu-item-content">
-            <div class="menu-item-icon">
-              <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
-              </svg>
-            </div>
-            <span>其他</span>
-            <div class="menu-item-arrow">
-              <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
+          <div class="menu-item-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5h13" />
+              <path d="M4 10h10" />
+              <path d="M4 15h16" />
+              <path d="M4 20h13" />
+            </svg>
+          </div>
+          <span>其他</span>
+          <div class="menu-item-arrow">
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </div>
           <ul class="submenu" :style="themeColor">
             <li class="submenu-item" @click.stop="navigateTo('/tree-hole')">
               <div class="submenu-item-icon">
-                <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
                   <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
                   <line x1="6" y1="1" x2="6" y2="4"></line>
@@ -94,9 +109,10 @@
               </div>
               <span>树洞</span>
             </li>
-            <li class="submenu-item" @click.stop="navigateTo('/message-area')">
+            <li class="submenu-item" @click.stop="navigateTo('/message')">
               <div class="submenu-item-icon">
-                <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </div>
@@ -106,9 +122,10 @@
         </li>
 
         <!-- 友链 -->
-        <li class="menu-item" @click="navigateTo('/Link')">
+        <li class="menu-item" @click="navigateTo('/friend-link')">
           <div class="menu-item-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
@@ -117,9 +134,10 @@
         </li>
 
         <!-- 音乐 -->
-        <li class="menu-item" @click="navigateTo('http://music.alger.fun/#/')">
+        <li class="menu-item" @click="navigateTo('/music')">
           <div class="menu-item-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 18V5l12-2v13"></path>
               <circle cx="6" cy="18" r="3"></circle>
               <circle cx="18" cy="16" r="3"></circle>
@@ -131,7 +149,8 @@
         <!-- 相册 -->
         <li class="menu-item" @click="navigateTo('/photo')">
           <div class="menu-item-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" width="24" height="24" :stroke="themeColor" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
               <circle cx="8.5" cy="8.5" r="1.5"></circle>
               <polyline points="21 15 16 10 5 21"></polyline>
@@ -146,10 +165,97 @@
         <!-- 刷新页面 - 特殊样式 -->
         <li class="menu-item refresh-item" @click="handleRefresh">
           <div class="menu-item-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!--            <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M23 4v6h-6"></path>
               <path d="M1 20v-6h6"></path>
               <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>-->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <rect width="7.33" height="7.33" x="1" y="1" fill="currentColor">
+                <animate id="svgSpinnersBlocksWave0" attributeName="x" begin="0;svgSpinnersBlocksWave1.end+0.3s"
+                  dur="0.9s" values="1;4;1" />
+                <animate attributeName="y" begin="0;svgSpinnersBlocksWave1.end+0.3s" dur="0.9s" values="1;4;1" />
+                <animate attributeName="width" begin="0;svgSpinnersBlocksWave1.end+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="0;svgSpinnersBlocksWave1.end+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="8.33" y="1" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s"
+                  values="8.33;11.33;8.33" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s" values="1;4;1" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="1" y="8.33" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s" values="1;4;1" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s"
+                  values="8.33;11.33;8.33" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.15s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="15.66" y="1" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="15.66;18.66;15.66" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s" values="1;4;1" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="8.33" y="8.33" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="8.33;11.33;8.33" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="8.33;11.33;8.33" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="1" y="15.66" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s" values="1;4;1" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="15.66;18.66;15.66" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.3s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="15.66" y="8.33" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="15.66;18.66;15.66" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="8.33;11.33;8.33" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="8.33" y="15.66" fill="currentColor">
+                <animate attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="8.33;11.33;8.33" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="15.66;18.66;15.66" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.45s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
+              <rect width="7.33" height="7.33" x="15.66" y="15.66" fill="currentColor">
+                <animate id="svgSpinnersBlocksWave1" attributeName="x" begin="svgSpinnersBlocksWave0.begin+0.6s"
+                  dur="0.9s" values="15.66;18.66;15.66" />
+                <animate attributeName="y" begin="svgSpinnersBlocksWave0.begin+0.6s" dur="0.9s"
+                  values="15.66;18.66;15.66" />
+                <animate attributeName="width" begin="svgSpinnersBlocksWave0.begin+0.6s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+                <animate attributeName="height" begin="svgSpinnersBlocksWave0.begin+0.6s" dur="0.9s"
+                  values="7.33;1.33;7.33" />
+              </rect>
             </svg>
           </div>
           <span>刷新页面</span>
@@ -160,10 +266,12 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted, computed, reactive, nextTick} from 'vue';
+import { ref, onMounted, onUnmounted, computed, reactive, nextTick } from 'vue';
 import { useRouter, useRoute, withBase } from 'vitepress'; // 引入 VitePress 路由
-import {Website} from "./Website"
-
+import { Website } from "./Website"
+import { useFullscreen } from "./useFullscreen.mjs"
+// 自定义处理全屏事件hook
+const { isFullScreen, toggleFullscreen } = useFullscreen();
 const useWebsite = ref(Website)
 
 const router = useRouter(); // 获取 VitePress 路由实例
@@ -173,7 +281,6 @@ const x = ref(0);
 const y = ref(0);
 // 缓存DOM元素引用
 let contextMenu: HTMLElement | null = null;
-let menuItems: NodeListOf<HTMLElement> | null = null;
 
 // 子菜单可见状态
 const submenuVisible = reactive({
@@ -196,13 +303,6 @@ function getContextMenu() {
     contextMenu = document.querySelector('.context-menu') as HTMLElement;
   }
   return contextMenu;
-}
-
-function getMenuItems() {
-  if (!menuItems) {
-    menuItems = document.querySelectorAll('.menu-item') as NodeListOf<HTMLElement>;
-  }
-  return menuItems;
 }
 
 // 显示菜单
@@ -258,7 +358,7 @@ const showMenu = (event: MouseEvent) => {
 }
 
 // 调整子菜单位置，防止溢出屏幕
-const adjustSubmenuPositions= () => {
+const adjustSubmenuPositions = () => {
   const submenus = document.querySelectorAll('.submenu') as NodeListOf<HTMLElement>;
 
   // 使用 requestAnimationFrame 批量处理样式更新
@@ -386,8 +486,15 @@ onUnmounted(() => {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* 菜单容器 */
@@ -397,12 +504,12 @@ onUnmounted(() => {
   box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
   border: 1px solid #f3f0ff;
   min-width: 240px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
   color: #4a4158;
   position: relative;
   transition: all 0.2s ease;
   animation: slideIn 0.2s ease;
   overflow: visible !important;
+  font-family: var(--vp-font-family-base);
 }
 
 html[class*='dark'] .menu-container {
@@ -437,14 +544,18 @@ html[class*='dark'] .menu-header {
   margin-right: 10px;
   width: 20px;
   height: 20px;
-  animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+.screen {
+  margin-left: auto;
+  transition: transform 0.3s;
 }
+
+.screen:hover {
+  stroke: var(--vp-c-brand-1);
+  transform: scale(1.15);
+}
+
 
 /* 菜单项 */
 .menu-items {
@@ -453,6 +564,7 @@ html[class*='dark'] .menu-header {
   padding: 10px;
 }
 
+/* 分隔线 */
 .menu-divider {
   height: 1px;
   margin: 10px 0;
@@ -464,6 +576,9 @@ html[class*='dark'] .menu-divider {
 }
 
 .menu-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 14px;
   position: relative;
   font-size: 0.9rem;
   margin: 4px 0;
@@ -473,39 +588,19 @@ html[class*='dark'] .menu-divider {
   overflow: visible;
 }
 
-.menu-item:not(.has-submenu) {
-  display: flex;
-  align-items: center;
-  padding: 5px 14px;
-}
-
-.menu-item-content {
-  display: flex;
-  align-items: center;
-  padding: 10px 14px;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.has-submenu {
-  position: relative;
-  overflow: visible;
-}
-
+/* 子菜单箭头旋转 */
 .has-submenu:hover .menu-item-arrow {
   transform: rotate(90deg);
 }
 
-
-
-.menu-item:hover, .menu-item-content:hover {
+/* 菜单hover背景等 */
+.menu-item:hover {
   background-color: var(--hover-light);
   transform: translateX(2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-html[class*='dark'] .menu-item:hover,
-html[class*='dark'] .menu-item-content:hover {
+html[class*='dark'] .menu-item:hover {
   background-color: var(--hover-dark);
 }
 
@@ -519,10 +614,12 @@ html[class*='dark'] .menu-item-content:hover {
   transition: transform 0.3s;
 }
 
+/* 图标放大加旋转 */
 .menu-item:hover .menu-item-icon {
   transform: scale(1.15) rotate(8deg);
 }
 
+/* 设置图标样式 */
 .menu-item-icon svg {
   width: 18px;
   height: 18px;
@@ -533,7 +630,7 @@ html[class*='dark'] .menu-item-content:hover {
 }
 
 /* 鼠标悬停变色逻辑，带有refresh-item类的除外 */
-.menu-item:not(.refresh-item):hover .menu-item-icon svg:not(.refresh-item) {
+.menu-item:not(.refresh-item):hover .menu-item-icon svg {
   stroke: var(--vp-c-brand-1);
 }
 
@@ -547,13 +644,6 @@ html[class*='dark'] .menu-item:not(.refresh-item):hover .menu-item-icon svg {
 
 html[class*='dark'] .submenu-item:hover .submenu-item-icon svg {
   stroke: var(--vp-c-brand-1);
-
-}
-
-.menu-item span {
-  transition: all 0.2s ease;
-  font-weight: 500;
-  letter-spacing: 0.2px;
 }
 
 .menu-item-arrow {
@@ -563,8 +653,6 @@ html[class*='dark'] .submenu-item:hover .submenu-item-icon svg {
   opacity: 0.7;
   transition: transform 0.2s ease;
 }
-
-
 
 /* 子菜单 */
 .submenu {
@@ -584,7 +672,7 @@ html[class*='dark'] .submenu-item:hover .submenu-item-icon svg {
   padding: 8px;
 }
 
-.has-submenu:hover > .submenu {
+.has-submenu:hover>.submenu {
   visibility: visible;
   opacity: 1;
   transform: translateX(0);
@@ -616,7 +704,6 @@ html[class*='dark'] .submenu {
 html[class*='dark'] .submenu-item:hover {
   background-color: var(--hover-dark);
 }
-
 
 .submenu-item-icon {
   display: flex;
@@ -650,12 +737,12 @@ html[class*='dark'] .submenu-item:hover {
 .refresh-item:hover {
   background: linear-gradient(135deg, #a78bfa, #f472b6);
   box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4), 0 2px 5px rgba(236, 72, 153, 0.3);
-  transform: translateY(-2px) translateX(2px);
+  //transform: translateY(-2px) translateX(2px);
 }
 
-.refresh-item .menu-item-icon svg {
+/*.refresh-item .menu-item-icon svg {
   stroke: white;
-}
+}*/
 
 .refresh-item span {
   color: white;
