@@ -253,7 +253,7 @@ const ValidSocialLinks = computed(() => SocialLinks.filter(i => i.icon && i.icon
       <div class="about-btns">
         <a v-for="btn in profile.buttons" :key="btn.text" :href="btn.link" :class="['about-btn', btn.type]">{{
           btn.text
-        }}</a>
+          }}</a>
       </div>
       <div class="SocialLinks">
         <a v-for="item in ValidSocialLinks" :key="item.name" :href="item.link" class="social-link" target="_blank"
@@ -410,12 +410,10 @@ const ValidSocialLinks = computed(() => SocialLinks.filter(i => i.icon && i.icon
 }
 
 .about-btn.default {
-  background: #fff;
   color: var(--vp-c-brand-1);
 }
 
 .about-btn.default:hover {
-  background: #f5f8ff;
   color: var(--vp-c-brand-1);
   box-shadow: 0 6px 24px rgba(59, 108, 255, 0.18);
   transform: translateY(-3px) scale(1.04);
@@ -657,7 +655,7 @@ const ValidSocialLinks = computed(() => SocialLinks.filter(i => i.icon && i.icon
   align-items: center;
   gap: 0;
   margin-bottom: 18px;
-  background: #f4f4f5;
+  background: var(--oss-tabs-bg);
   border-radius: 12px;
   padding: 6px;
   width: fit-content;
@@ -667,6 +665,7 @@ const ValidSocialLinks = computed(() => SocialLinks.filter(i => i.icon && i.icon
 
 .oss-tabs button {
   background: transparent;
+  color: var(--oss-tabs-button-text);
   border: none;
   border-radius: 8px;
   padding: 7px 28px 7px 28px;
@@ -682,10 +681,9 @@ const ValidSocialLinks = computed(() => SocialLinks.filter(i => i.icon && i.icon
 }
 
 .oss-tabs button.active {
-  background: #fff;
-  color: #222;
+  background: var(--oss-tabs-active-bg);
+  color: var(--oss-tabs-active-text);
   font-weight: bold;
-  box-shadow: 0 2px 8px #e0e3f7;
   z-index: 2;
 }
 

@@ -5,14 +5,14 @@
     <div v-show="isTransitioning" class="transition-mask">
       <div class="loader">
         <div class="spinner"></div>
-        <p>Loading...</p>
+        <p>拼命加载中...</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {onBeforeMount, onMounted, ref} from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { useRouter } from 'vitepress';
 
 // 路由相关
@@ -81,12 +81,21 @@ onMounted(() => {
   height: 100%;
   display: flex;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
-  z-index: 9999; /* 确保覆盖所有内容 */
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
 }
 
 .loader {
-  align-content: center;/* 居中显示 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 水平居中内容 */
+  justify-content: center;
+  /* 垂直居中内容 */
+  height: 100%;
 }
 
 .spinner {
@@ -100,7 +109,12 @@ onMounted(() => {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
