@@ -3,7 +3,7 @@ import type { BuildOptions } from "vite";
 
 export function Build(): BuildOptions {
   return {
-    chunkSizeWarningLimit: 1500,
+    chunkSizeWarningLimit: 4096,
     assetsInlineLimit: 4096,
     minify: "terser", // 这里加类型断言或者直接写字面量
     rollupOptions: {

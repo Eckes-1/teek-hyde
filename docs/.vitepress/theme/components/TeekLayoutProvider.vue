@@ -32,6 +32,8 @@ import InformationCard from "./InformationCard.vue";  //导入信息卡片和舔
 import ContextMenu from "./ContextMenu/ContextMenu.vue";
 // @ts-ignore 路由切换遮罩过渡动画
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue";
+// @ts-ignore
+import Coze from "./Coze.vue"; //导入Coze组件
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -79,14 +81,14 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 <template>
   <Teek.Layout>
     <template #layout-top>
-       <!-- 需要进行ssr优化 -->
+      <!-- 需要进行ssr优化 -->
       <ClientOnly>
         <!-- 添加全局右键菜单 -->
-        <ContextMenu/>
+        <ContextMenu />
       </ClientOnly>
-      
+
       <!-- 路由切换动画组件 -->
-      <RouteSwitchingLoading/>
+      <RouteSwitchingLoading />
       <!-- 全局问候组件 -->
       <GlobalGreet />
       <!-- 看板娘组件 -->
@@ -97,6 +99,8 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <TitleChange />
       <!-- 返回顶部组件 -->
       <BackToTop />
+      <!-- 扣子组件 -->
+      <Coze />
     </template>
     <template #teek-theme-enhance-bottom>
       <div :class="[ns, 'flx-align-center']">

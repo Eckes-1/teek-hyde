@@ -65,7 +65,7 @@ export const FriendLink = {
       link: "https://sugarat.top/",
     },
     {
-      avatar: "https://onedayxyy.cn/images/POETIZE-logo.jpg",
+      avatar: "https://file.poetize.cn/webAvatar/Sara116383637867956",
       name: "POETIZE",
       desc: "最美博客",
       link: "https://poetize.cn/",

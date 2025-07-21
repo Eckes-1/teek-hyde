@@ -6,9 +6,6 @@
   font-display: swap;
 }
 
-/* 应用字体 */
-:root {
-  --vp-font-family-base: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
-
-  --vp-font-family-mono: "JetBrains Mono", "Cascadia Mono", "Not Sans SC", monospace; /* mono：影响代码块的等宽字体。 */
+#app {
+  font-family: "筑紫A丸-子集", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif ;
 }

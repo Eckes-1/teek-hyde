@@ -37,6 +37,15 @@ export const VdoingIcon = {
   },
 };
 
+export const BlogIcon = {
+  text: "博客搭建",
+  link: "/Blog",
+  subMenu: true, // 是否有子菜单
+  iconProps: {
+    icon: Blog,
+  },
+};
+
 export const SSLIcon = {
   text: "SSL证书",
   link: "/SSL",
@@ -45,15 +54,6 @@ export const SSLIcon = {
     icon: "https://allinssl.com/logo.svg",
     iconType: "img",
     size: 12, // 图标大小
-  },
-};
-
-export const BlogIcon = {
-  text: "博客搭建",
-  link: "/Blog",
-  subMenu: true, // 是否有子菜单
-  iconProps: {
-    icon: Blog,
   },
 };
 

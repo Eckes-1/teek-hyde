@@ -39,11 +39,11 @@ export const Nav = [
       },
       {
         component: "NavIcon",
-        props: SSLIcon,
+        props: BlogIcon,
       },
       {
         component: "NavIcon",
-        props: BlogIcon,
+        props: SSLIcon,
       },
     ],
   },
