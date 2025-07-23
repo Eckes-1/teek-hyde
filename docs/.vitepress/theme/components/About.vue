@@ -168,14 +168,14 @@ const techStackIcons = [
 ];
 const ossProjects = [
   {
-    name: 'Vue3 Admin Template',
-    desc: '基于Vue3、TypeScript和Element Plus的后台管理系统模板，包含完整的权限管理、数据可视化等功能，助力快速搭建企业级应用。',
+    name: 'Teek Design Vue3',
+    desc: '一个基于 Vue3、TypeScript、Vite、Pinia、ElementPlus 搭建的现代 Template 管理系统模板。',
     tag: { name: 'Vue3', bg: '#eaf6ff', color: '#33a474' },
     projectsimg: 'https://fastly.picsum.photos/id/482/1080/1920.jpg?hmac=evlV0d4x4sWVknpu4iSg4ULVDAcmNBSnf6htH9RsNxw',
     Star: 1200,
     Fork: 456,
     View: 3200,
-    github: 'https://github.com/example/vue3-admin'
+    github: 'https://vue3-docs.youngkbt.cn/'
   },
   {
     name: 'React Component Library',

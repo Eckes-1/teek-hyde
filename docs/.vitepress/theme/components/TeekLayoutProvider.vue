@@ -27,7 +27,7 @@ import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条�
 // @ts-ignore
 import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
 // @ts-ignore
-import InformationCard from "./InformationCard.vue";  //导入信息卡片和舔狗日记组件
+import WelcomeCard from "./WelcomeCard.vue";  //导入欢迎卡片组件
 // @ts-ignore 右键菜单组件
 import ContextMenu from "./ContextMenu/ContextMenu.vue";
 // @ts-ignore 路由切换遮罩过渡动画
@@ -131,7 +131,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     </template>
 
     <template #teek-home-banner-after>
-      <InformationCard />
+      <WelcomeCard />
     </template>
 
     <template #nav-bar-content-after>
