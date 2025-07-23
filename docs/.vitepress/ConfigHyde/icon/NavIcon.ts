@@ -37,6 +37,17 @@ export const VdoingIcon = {
   },
 };
 
+export const DocusaurusIcon = {
+  text: "Docusaurus主题",
+  link: "/Docusaurus",
+  subMenu: true, // 是否有子菜单
+  iconProps: {
+    icon: "https://www.docusaurus.cn/img/docusaurus_keytar.png",
+    iconType: "img",
+    size: 16, // 图标大小
+  },
+};
+
 export const BlogIcon = {
   text: "博客搭建",
   link: "/Blog",

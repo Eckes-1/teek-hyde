@@ -4,6 +4,7 @@ import {
   VdoingIcon,
   SSLIcon,
   BlogIcon,
+  DocusaurusIcon,
   LinuxIcon,
   NginxIcon,
   GitIcon,
@@ -44,6 +45,10 @@ export const Nav = [
       {
         component: "NavIcon",
         props: SSLIcon,
+      },
+      {
+        component: "NavIcon",
+        props: DocusaurusIcon,
       },
     ],
   },
