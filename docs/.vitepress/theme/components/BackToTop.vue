@@ -8,7 +8,7 @@
 import { useRoute } from "vitepress";
 import { nextTick, onUnmounted, ref, watch } from "vue";
 import { TkMessage } from "vitepress-theme-teek";
-import { onMounted } from 'vue'
+import { onMounted } from "vue";
 
 const route = useRoute();
 const toTop = ref();
@@ -21,11 +21,13 @@ const topTop = () => {
         top: 0,
         behavior: "smooth",
         // @ts-ignore Safari兼容
-        ...(typeof CSS !== 'undefined' && CSS.supports('scroll-behavior', 'smooth') ? {} : { left: 0 })
+        ...(typeof CSS !== "undefined" && CSS.supports("scroll-behavior", "smooth")
+            ? {}
+            : { left: 0 }),
     });
     TkMessage.success({
-        message: '已达到顶部🎉',
-        duration: 3000
+        message: "已达到顶部🎉",
+        duration: 3000,
     });
 };
 
@@ -34,12 +36,19 @@ let animationFrame: number | null = null;
 const backToTop = () => {
     if (!animationFrame) {
         animationFrame = requestAnimationFrame(() => {
-            offsetHeight.value = document.documentElement.offsetHeight;
-            const scrollTop = document.documentElement.scrollTop;
-            if (scrollTop < 100) {
+            const { documentElement } = document;
+            // 批量读取
+            const measurements = {
+                offsetHeight: documentElement.offsetHeight,
+                scrollTop: documentElement.scrollTop,
+            };
+            // 批量更新
+            if (measurements.scrollTop < 100) {
                 top.value = -900;
             } else {
-                top.value = (900 - (scrollTop / offsetHeight.value) * 900) * -1;
+                top.value =
+                    (900 - (measurements.scrollTop / measurements.offsetHeight) * 900) *
+                    -1;
             }
             animationFrame = null;
         });
@@ -49,7 +58,6 @@ const backToTop = () => {
 onUnmounted(() => {
     window.removeEventListener("scroll", backToTop);
 });
-
 
 onMounted(() => {
     // 初始化DOM相关操作
@@ -68,7 +76,7 @@ onMounted(() => {
 
     // 添加滚动事件监听
     window.addEventListener("scroll", backToTop);
-})
+});
 </script>
 <style lang="scss" scoped>
 @keyframes float {

@@ -1,7 +1,9 @@
+<!-- 欢迎卡片组件 -->
 <script setup lang="ts">
-import { onMounted, ref, h } from 'vue';
+import { onMounted, ref } from 'vue';
 import { TkMessage } from "vitepress-theme-teek";
-// 新增：逻辑拆分
+
+// ------------------ 天气 Hook ------------------
 function useWeather() {
   const weatherData = ref({
     city: '',
@@ -12,6 +14,7 @@ function useWeather() {
   });
   const error = ref(false);
   const loading = ref(false);
+
   const getWeatherInfo = async () => {
     loading.value = true;
     error.value = false;
@@ -37,12 +40,15 @@ function useWeather() {
       loading.value = false;
     }
   };
+
   return { weatherData, error, loading, getWeatherInfo };
 }
 
+// ------------------ 舔狗日记 Hook ------------------
 function useDiary() {
   const diaryContent = ref('');
   const diaryError = ref(false);
+
   const getDiary = async () => {
     diaryError.value = false;
     try {
@@ -57,59 +63,51 @@ function useDiary() {
       diaryError.value = true;
     }
   };
+
   return { diaryContent, diaryError, getDiary };
 }
 
+// ------------------ FPS Hook ------------------
 function useFPS(enabled = true) {
   const fps = ref(0);
   let frameCount = 0;
   let lastTime = 0;
-  const updateFPS = (time) => {
+
+  const updateFPS = (time: number) => {
     if (!enabled) return;
+
     if (lastTime === 0) {
       lastTime = time;
       requestAnimationFrame(updateFPS);
       return;
     }
+
     const delta = time - lastTime;
     frameCount += 1;
+
     if (delta > 1000) {
       fps.value = Math.round((frameCount * 1000) / delta);
       frameCount = 0;
       lastTime = time;
     }
+
     requestAnimationFrame(updateFPS);
   };
+
   if (enabled) {
     requestAnimationFrame(updateFPS);
   }
+
   return { fps };
 }
 
-// 使用逻辑
+// ------------------ 使用 Hook ------------------
 const { weatherData, error, loading, getWeatherInfo } = useWeather();
 const { diaryContent, diaryError, getDiary } = useDiary();
 const showFPS = ref(true);
 const { fps } = useFPS(showFPS.value);
 
-const isConfigOpen = ref(false);
-const showWeather = ref(true);
-const showDate = ref(true);
-const showTemperature = ref(true);
-const showWeek = ref(true);
-
-// 防抖处理
-let weatherTimeout: ReturnType<typeof setTimeout> | null = null;
-let diaryTimeout: ReturnType<typeof setTimeout> | null = null;
-const debounceWeather = () => {
-  if (weatherTimeout) clearTimeout(weatherTimeout);
-  weatherTimeout = setTimeout(() => getWeatherInfo(), 300);
-};
-const debounceDiary = () => {
-  if (diaryTimeout) clearTimeout(diaryTimeout);
-  diaryTimeout = setTimeout(() => getDiary(), 300);
-};
-
+// ------------------ 初始化 ------------------
 const init = async () => {
   await getWeatherInfo();
   await getDiary();
@@ -121,51 +119,42 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ElCard class="info-card animate__animated animate__fadeIn welcome-card mobile-card" shadow="hover">
+  <div class="info-card animate__animated animate__fadeIn welcome-card mobile-card" shadow="hover">
     <div class="welcome-content">
       <div v-if="showFPS" class="fps-display">FPS: {{ fps }}</div>
-      <El-Switch v-model="isConfigOpen" class="config-switch" active-color="#13ce66"
-        inactive-color="#ff4949"></El-Switch>
-      <div v-if="isConfigOpen" class="config-panel">
-        <ElCheckbox v-model="showFPS">显示 FPS</ElCheckbox>
-        <ElCheckbox v-model="showWeather">显示天气</ElCheckbox>
-        <ElCheckbox v-model="showDate">显示日期</ElCheckbox>
-        <ElCheckbox v-model="showTemperature">显示温度</ElCheckbox>
-        <ElCheckbox v-model="showWeek">显示星期</ElCheckbox>
-      </div>
-      <ElAlert v-if="error" title="天气数据加载失败，请检查网络或稍后重试" type="error" show-icon />
-      <ElAlert v-if="diaryError" title="舔狗日记加载失败，请检查网络或稍后重试" type="error" show-icon />
-      <template v-else>
-        <h2 v-if="!error && weatherData.city" class="greeting">
+
+      <template v-if="!error">
+        <h2 v-if="weatherData.city" class="greeting">
           欢迎来自
           <span class="highlight">{{ weatherData.city }}</span>
           的小伙伴！🎉🎉🎉
         </h2>
+
         <div class="info-container">
-          <div v-if="showTemperature" class="info-item">
+          <div class="info-item">
             <i class="el-icon-sunny"></i>
-            <span v-if="!error && weatherData.city">
+            <span v-if="weatherData.city">
               今日温度：
               <span class="highlight">{{ weatherData.temperature }}</span>
             </span>
           </div>
-          <div v-if="showWeather" class="info-item">
+          <div class="info-item">
             <i class="el-icon-cloudy"></i>
-            <span v-if="!error && weatherData.city">
+            <span v-if="weatherData.city">
               天气：
               <span class="highlight">{{ weatherData.type }}</span>
             </span>
           </div>
-          <div v-if="showDate" class="info-item">
+          <div class="info-item">
             <i class="el-icon-date"></i>
-            <span v-if="!error && weatherData.city">
+            <span v-if="weatherData.city">
               日期：
               <span class="highlight">{{ weatherData.date }}</span>
             </span>
           </div>
-          <div v-if="showWeek" class="info-item">
+          <div class="info-item">
             <i class="el-icon-calendar"></i>
-            <span v-if="!error && weatherData.city">
+            <span v-if="weatherData.city">
               星期：
               <span class="highlight">{{ weatherData.week }}</span>
             </span>
@@ -173,7 +162,7 @@ onMounted(async () => {
         </div>
       </template>
     </div>
-  </ElCard>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -244,37 +233,9 @@ onMounted(async () => {
     font-weight: bold;
   }
 
-  .config-switch {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-
-  .config-panel {
-    display: flex;
-    flex-wrap: wrap;
-    /* 自动换行 */
-    justify-content: center;
-    /* 水平居中对齐 */
-    align-items: center;
-    /* 垂直居中对齐 */
-  }
-
-  .config-panel .el-checkbox {
-    width: 15%;
-    /* 每个元素占据 15% 宽度，PC保持1列 */
-    margin: 5px;
-    /* 元素间距 */
-    display: flex;
-    justify-content: center;
-    /* 文字与复选框居中 */
-    align-items: center;
-  }
-
   @media (max-width: 768px) {
     .config-panel .el-checkbox {
       width: 40%;
-      /* 如果屏幕更小，双列显示 */
     }
   }
 }

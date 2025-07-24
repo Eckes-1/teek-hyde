@@ -1,3 +1,8 @@
+<template>
+    <!-- 这个组件只需要逻辑，不需要渲染内容 -->
+    <div style="display: none;"></div>
+</template>
+
 <script setup lang="ts">
 import { ref, onBeforeUnmount, onMounted } from 'vue'
 import { useEventListener } from 'vitepress-theme-teek'

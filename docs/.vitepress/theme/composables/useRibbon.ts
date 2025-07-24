@@ -100,7 +100,10 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
       }
     }
 
-    function draw(start: { x: number; y: number }, end: { x: number; y: number }) {
+    function draw(
+      start: { x: number; y: number },
+      end: { x: number; y: number }
+    ) {
       if (!ctx) return fn;
       ctx.beginPath();
       ctx.moveTo(start.x, start.y);

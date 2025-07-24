@@ -42,13 +42,35 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
-    title: "图床",
+    title: "图床软件",
     items: [
+      {
+        icon: "https://pichoro.msq.pub/favicon/app_icon.png",
+        title: "PicList",
+        desc: "图片上传 云存储管理",
+        link: "https://piclist.cn/",
+        badge: {
+          text: "强烈推荐",
+          type: "danger",
+        },
+      },
       {
         icon: "https://res.u-tools.cn/website5/static/assets/favicon.png",
         title: "UTools",
         desc: "AI 加持的超级助手，一个入口，无限能力",
         link: "https://www.u-tools.cn/index.html",
+      },
+      {
+        icon: "https://raw.githubusercontent.com/Molunerfinn/test/master/picgo/New%20LOGO-150.png",
+        title: "PicGo",
+        desc: "图片上传、管理新体验",
+        link: "https://picgo.github.io/PicGo-Doc/",
+      },
+      {
+        icon: "https://getsharex.com/favicon.ico",
+        title: "ShareX",
+        desc: "可以把图片上传到服务器某个目录下同时保存图片到本地",
+        link: "https://getsharex.com",
       },
     ],
   },

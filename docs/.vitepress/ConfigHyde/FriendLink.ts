@@ -65,12 +65,6 @@ export const FriendLink = {
       link: "https://sugarat.top/",
     },
     {
-      avatar: "https://file.poetize.cn/webAvatar/Sara116383637867956",
-      name: "POETIZE",
-      desc: "最美博客",
-      link: "https://poetize.cn/",
-    },
-    {
       avatar: "https://q1.qlogo.cn/g?b=qq&nk=3311118881&s=640",
       name: "宇阳",
       desc: "记录所学知识，缩短和大神的差距！",

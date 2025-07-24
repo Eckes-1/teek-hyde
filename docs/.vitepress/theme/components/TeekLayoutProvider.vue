@@ -2,7 +2,7 @@
 import type { TeekConfig } from "vitepress-theme-teek";
 import Teek, { teekConfigContext, clockIcon } from "vitepress-theme-teek";
 import { useData } from "vitepress";
-import { watch, nextTick, ref, provide } from "vue";
+import { watch, nextTick, ref, provide, onMounted } from "vue";
 import { teekBlogCardConfig } from "../config/teekConfig";
 import { useRibbon } from "../composables/useRibbon";
 import { useRuntime } from "../composables/useRuntime";
@@ -32,8 +32,6 @@ import WelcomeCard from "./WelcomeCard.vue";  //导入欢迎卡片组件
 import ContextMenu from "./ContextMenu/ContextMenu.vue";
 // @ts-ignore 路由切换遮罩过渡动画
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue";
-// @ts-ignore
-import Coze from "./Coze.vue"; //导入Coze组件
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -99,8 +97,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <TitleChange />
       <!-- 返回顶部组件 -->
       <BackToTop />
-      <!-- 扣子组件 -->
-      <Coze />
     </template>
     <template #teek-theme-enhance-bottom>
       <div :class="[ns, 'flx-align-center']">
@@ -134,9 +130,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <WelcomeCard />
     </template>
 
-    <template #nav-bar-content-after>
-      <Clock />
-    </template>
   </Teek.Layout>
 </template>
 
