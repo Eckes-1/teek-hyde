@@ -20,8 +20,8 @@ import NotFound from "./NotFound.vue";//导入404组件
 import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
 // @ts-ignore
 import TitleChange from "./TitleChange.vue" //导入网页标题变化
-// @ts-ignore
-import OhMyLive2D from "./OhMyLive2D.vue"  //导入看板娘组件
+// @ts-ignore导入看板娘组件
+import OhMyLive2D from "./OhMyLive2D.vue"
 // @ts-ignore
 import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
 // @ts-ignore

@@ -25,7 +25,7 @@ export function useIntersectionObserver(threshold = 0.2, once = false) {
       (entries) => {
         const [entry] = entries;
         isVisible.value = entry.isIntersecting;
-        
+
         // 如果设置为只触发一次且已经可见，则停止观察
         if (once && entry.isIntersecting) {
           cleanup();
@@ -77,9 +77,13 @@ export function useMultipleIntersectionObserver(threshold = 0.2, once = false) {
     };
   };
 
-  const setupObserver = (count) => {
+  const setupObserver = () => {
     cleanup();
-    
+
+    console.log("setupObserver elementsRefs", elementsRefs)
+    const count = elementsRefs.value.length
+    console.log("count", count)
+
     if (!('IntersectionObserver' in window)) {
       elementsVisible.value = new Array(count).fill(true);
       return;
@@ -89,13 +93,13 @@ export function useMultipleIntersectionObserver(threshold = 0.2, once = false) {
 
     observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const idx = elementsRefs.value.findIndex(el => el === entry.target);
-          if (idx !== -1) {
-            elementsVisible.value[idx] = true;
-            if (once) {
-              observer.unobserve(entry.target);
-            }
+        const idx = elementsRefs.value.findIndex(el => el === entry.target);
+        if (idx !== -1) {
+          // 无论进入还是离开视口都更新状态
+          elementsVisible.value[idx] = entry.isIntersecting;
+
+          if (once && entry.isIntersecting) {
+            observer.unobserve(entry.target);
           }
         }
       });

@@ -4,8 +4,8 @@
     <div class="skills-content">
       <div class="skills-left" :class="{ visible: skillsLeftVisible }" ref="skillsLeftRef">
         <div class="skills-subtitle">专业技能</div>
-        <div v-for="skill in majorSkills" 
-             :key="skill.name" 
+        <div v-for="skill in majorSkills"
+             :key="skill.name"
              class="skill-bar-item"
              v-memo="[skill]">
           <div class="skill-bar-label">
@@ -13,13 +13,13 @@
             <span>{{ skill.percent }}%</span>
           </div>
           <div class="skill-bar-bg">
-            <div class="skill-bar-fill" 
+            <div class="skill-bar-fill"
                  :style="{ width: skill.percent + '%', background: skill.color }">
             </div>
           </div>
           <div class="skill-bar-tags" v-if="skill.tags">
-            <span class="skill-tag" 
-                  v-for="tag in skill.tags" 
+            <span class="skill-tag"
+                  v-for="tag in skill.tags"
                   :key="tag.name"
                   :style="{ background: tag.bg, color: tag.color }">
               {{ tag.name }}
@@ -27,35 +27,35 @@
           </div>
         </div>
       </div>
-      
+
       <div class="skills-right" :class="{ visible: skillsRightVisible }" ref="skillsRightRef">
         <div class="skills-subtitle">技术栈</div>
         <!-- PC端 -->
         <div class="tech-stack-grid pc" v-if="!isMobile">
-          <div v-for="(row, rowIdx) in techStackRows" 
-               :key="rowIdx" 
+          <div v-for="(row, rowIdx) in techStackRows"
+               :key="rowIdx"
                class="tech-stack-row"
                v-memo="[row]">
-            <div v-for="(item, idx) in row" 
-                 :key="idx" 
-                 class="tech-stack-item" 
+            <div v-for="(item, idx) in row"
+                 :key="idx"
+                 class="tech-stack-item"
                  :class="{ empty: !item.icon }">
-              <TkIcon v-if="item.icon" 
-                      :icon="item.icon" 
-                      icon-type="svg" 
-                      :size="item.small ? '32px' : '46px'"
+              <TkIcon v-if="item.icon"
+                      :icon="item.icon"
+                      icon-type="svg"
+                      :size="item.small ? '32px' : iconSize"
                       :title="item.name" />
             </div>
           </div>
         </div>
         <!-- 移动端 -->
         <div class="tech-stack-grid mobile" v-else>
-          <div v-for="(item, idx) in mobileTechStackIcons" 
-               :key="idx" 
+          <div v-for="(item, idx) in mobileTechStackIcons"
+               :key="idx"
                class="tech-stack-item">
-            <TkIcon :icon="item.icon" 
-                    icon-type="svg" 
-                    size="32px" 
+            <TkIcon :icon="item.icon"
+                    icon-type="svg"
+                    size="32px"
                     :title="item.name" />
           </div>
         </div>
@@ -65,10 +65,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { TkIcon } from "vitepress-theme-teek";
-import { useIntersectionObserver } from './useIntersectionObserver';
-import { majorSkills, techStackIcons } from './data';
+import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
+import {TkIcon} from "vitepress-theme-teek";
+import {useIntersectionObserver} from './useIntersectionObserver';
+import {majorSkills, techStackIcons} from './AboutData';
 
 const props = defineProps({
   isVisible: {
@@ -79,6 +79,30 @@ const props = defineProps({
     type: Boolean,
     default: false
   }
+});
+
+// 响应式图标大小
+const iconSize = ref('46px');
+
+// 窗口大小变化时更新图标大小
+const handleResize = () => {
+  let result = '46px';
+  if (window.innerWidth > 900 && window.innerWidth <= 1100){
+    result = '40px';
+  }else if (window.innerWidth <= 900){
+    result = '46px';
+  }
+
+  iconSize.value = result
+};
+
+onMounted(() => {
+  handleResize()
+  window.addEventListener('resize', handleResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize);
 });
 
 // 使用组合函数创建监听动画
@@ -96,8 +120,7 @@ const techStackRows = computed(() => {
 
 // 修复移动端技术栈显示问题
 const mobileTechStackIcons = computed(() => {
-  const filtered = techStackIcons.filter(item => item && item.icon);
-  return filtered;
+  return techStackIcons.filter(item => item && item.icon);
 });
 </script>
 
@@ -201,7 +224,6 @@ const mobileTechStackIcons = computed(() => {
 
 .skill-bar-fill {
   height: 100%;
-  border-radius: 8px;
   transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 6px;
 }

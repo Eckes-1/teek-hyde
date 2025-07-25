@@ -7,19 +7,16 @@
     <SkillsSection :is-visible="skillsSectionVisible" :is-mobile="isMobile" />
 
     <!-- Projects Section -->
-    <div ref="ossSectionRef">
-      <ProjectsSection :is-visible="ossSectionVisible" :is-mobile="isMobile" />
-    </div>
+    <ProjectsSection/>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useIntersectionObserver } from './About/useIntersectionObserver';
-import { useMobileDetection } from './About/useMobileDetection';
-import ProfileSection from './About/ProfileSection.vue';
-import SkillsSection from './About/SkillsSection.vue';
-import ProjectsSection from './About/ProjectsSection.vue';
+import { useMobileDetection } from './useMobileDetection';
+import ProfileSection from './ProfileSection.vue';
+import SkillsSection from './SkillsSection.vue';
+import ProjectsSection from './ProjectsSection.vue';
 
 // 移动端检测
 const { isMobile } = useMobileDetection();
@@ -27,9 +24,6 @@ const { isMobile } = useMobileDetection();
 // 首屏元素延迟动画
 const aboutHeroVisible = ref(false);
 const skillsSectionVisible = ref(false);
-
-// Projects section 观察器
-const { isVisible: ossSectionVisible, targetRef: ossSectionRef } = useIntersectionObserver(0.2);
 
 // 首屏动画优化
 onMounted(() => {

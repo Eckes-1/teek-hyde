@@ -1,9 +1,10 @@
 <template>
-  <div class="oss-section" :class="{ visible: isVisible }">
+  <div class="oss-section visible" > <!-- :class="{ visible: isVisible }" -->
     <h2 class="oss-title">开源项目</h2>
     <div class="oss-list">
+
       <div class="oss-card" v-for="(item, idx) in ossProjects" :key="item.name" :ref="setOssCardRef(idx)"
-        :class="{ visible: !isMobile || ossCardVisible[idx] }" v-memo="[item, ossCardVisible[idx]]">
+        :class="{ visible: ossCardVisible[idx] }" v-memo="[item, ossCardVisible[idx]]">
         <div class="oss-img-wrap">
           <img :src="item.projectsimg" class="oss-img" :alt="item.name" />
         </div>
@@ -34,20 +35,12 @@
 </template>
 
 <script setup>
-import { watch, nextTick, onMounted, onBeforeUnmount } from 'vue';
+import { nextTick, onMounted, onBeforeUnmount } from 'vue';
 import { TkIcon } from "vitepress-theme-teek";
 import { useMultipleIntersectionObserver } from './useIntersectionObserver';
-import { ossProjects, Star, Fork, View } from './data';
+import { ossProjects, Star, Fork, View } from './AboutData';
 
 const props = defineProps({
-  isVisible: {
-    type: Boolean,
-    default: false
-  },
-  isMobile: {
-    type: Boolean,
-    default: false
-  }
 });
 
 // 使用多元素观察器组合函数
@@ -56,21 +49,10 @@ const {
   setElementRef: setOssCardRef,
   setupObserver,
   cleanup
-} = useMultipleIntersectionObserver(0.2, true);
-
-// 监听移动端状态变化，重新设置观察器
-watch([() => props.isMobile, ossProjects], () => {
-  if (props.isMobile) {
-    nextTick(() => setupObserver(ossProjects.length));
-  } else {
-    cleanup();
-  }
-});
+} = useMultipleIntersectionObserver(0.2, false);
 
 onMounted(() => {
-  if (props.isMobile) {
-    nextTick(() => setupObserver(ossProjects.length));
-  }
+  nextTick(() => setupObserver());
 });
 
 onBeforeUnmount(() => {

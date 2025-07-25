@@ -28,7 +28,7 @@
 import { computed } from 'vue';
 import { TkIcon } from "vitepress-theme-teek";
 import { SocialLinks } from '../../../ConfigHyde/SocialLinks';
-import { profile } from './data';
+import { profile } from './AboutData';
 
 defineProps({
     isVisible: {

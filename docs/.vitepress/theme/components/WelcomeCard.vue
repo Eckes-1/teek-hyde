@@ -1,6 +1,6 @@
 <!-- 欢迎卡片组件 -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { TkMessage } from "vitepress-theme-teek";
 
 // ------------------ 天气 Hook ------------------
@@ -21,6 +21,8 @@ function useWeather() {
     try {
       const response = await fetch('https://api.vvhan.com/api/weather');
       const data = await response.json();
+      console.log(data,"天气数据");
+      
       if (data.success) {
         weatherData.value = {
           city: data.city,
@@ -44,41 +46,19 @@ function useWeather() {
   return { weatherData, error, loading, getWeatherInfo };
 }
 
-// ------------------ 舔狗日记 Hook ------------------
-function useDiary() {
-  const diaryContent = ref('');
-  const diaryError = ref(false);
-
-  const getDiary = async () => {
-    diaryError.value = false;
-    try {
-      const response = await fetch('https://api.vvhan.com/api/text/dog?type=json');
-      const data = await response.json();
-      if (data.success) {
-        diaryContent.value = data.data.content;
-      } else {
-        diaryError.value = true;
-      }
-    } catch (fetchError) {
-      diaryError.value = true;
-    }
-  };
-
-  return { diaryContent, diaryError, getDiary };
-}
-
 // ------------------ FPS Hook ------------------
 function useFPS(enabled = true) {
   const fps = ref(0);
   let frameCount = 0;
   let lastTime = 0;
+  let animationFrameId: number | null = null;
 
   const updateFPS = (time: number) => {
     if (!enabled) return;
 
     if (lastTime === 0) {
       lastTime = time;
-      requestAnimationFrame(updateFPS);
+      animationFrameId = requestAnimationFrame(updateFPS);
       return;
     }
 
@@ -91,29 +71,46 @@ function useFPS(enabled = true) {
       lastTime = time;
     }
 
-    requestAnimationFrame(updateFPS);
+    animationFrameId = requestAnimationFrame(updateFPS);
   };
 
-  if (enabled) {
-    requestAnimationFrame(updateFPS);
-  }
+  const startFPS = () => {
+    if (enabled && typeof requestAnimationFrame !== 'undefined') {
+      lastTime = 0;
+      frameCount = 0;
+      animationFrameId = requestAnimationFrame(updateFPS);
+    }
+  };
 
-  return { fps };
+  const stopFPS = () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+  };
+
+  onBeforeUnmount(() => {
+    // 组件销毁前停止 FPS 监控
+    stopFPS();
+  });
+
+  return { fps, startFPS, stopFPS };
 }
 
 // ------------------ 使用 Hook ------------------
-const { weatherData, error, loading, getWeatherInfo } = useWeather();
-const { diaryContent, diaryError, getDiary } = useDiary();
+const { weatherData, error, getWeatherInfo } = useWeather();
+
 const showFPS = ref(true);
-const { fps } = useFPS(showFPS.value);
+const { fps, startFPS, stopFPS } = useFPS(showFPS.value);
 
 // ------------------ 初始化 ------------------
 const init = async () => {
   await getWeatherInfo();
-  await getDiary();
 };
 
 onMounted(async () => {
+  // 在组件挂载后启动 FPS 监控
+  startFPS();
   await init();
 });
 </script>
@@ -167,19 +164,10 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .welcome-card {
-  margin: 4px;
-  padding: 1.5rem;
-  border-radius: 12px;
   text-align: center;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  background: var(--day-bg);
-  color: var(--day-text);
-  box-shadow: 0 4px 6px var(--day-shadow);
   transform: translateY(0);
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0);
-  /* 完全透明的边框 */
 
   &.night-mode {
     background: var(--night-bg);
@@ -238,5 +226,10 @@ onMounted(async () => {
       width: 40%;
     }
   }
+}
+
+.diary-container {
+  max-width: 70vw;
+  margin: 0 auto;
 }
 </style>

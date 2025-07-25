@@ -140,7 +140,7 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
 
     if (clickReRender) {
       dom.addEventListener("click", handleClick);
-      dom.addEventListener("touchstart", handleClick);
+      dom.addEventListener("touchstart", handleClick, { passive: true });
     }
 
     // 返回清理函数
