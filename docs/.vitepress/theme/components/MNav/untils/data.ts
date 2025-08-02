@@ -1,643 +1,75 @@
 import type { NavData } from "./types.ts";
 import { SiteAnalytics } from "./Data/SiteAnalytics"; // 网站分析
 import { Status } from "./Data/Status"; // 网站监控
+import { ImgTool } from "./Data/ImgTool"; //图像工具
+import { PictureTools } from "./Data/PictureTools"; // 图床工具
+import { NavWebsite } from "./Data/NavWebsite"; // 导航网站
+import { Wallpaper } from "./Data/Wallpaper"; // 精美壁纸
+import { Email } from "./Data/Email"; // 邮箱相关
+import { Utilities } from "./Data/Utilities"; // 常用工具
+import { AICode } from "./Data/AICode"; // AI编程
+import { React } from "./Data/React"; // React 生态
+import { Vue } from "./Data/Vue"; // Vue 生态
+import { javaScript } from "./Data/JavaScript.ts"; // JavaScript 框架
+import { CSS } from "./Data/CSS"; // CSS 框架
+
 import { wechatIcon } from "./icon/WebNavicon.ts";
 
 export const NAV_DATA: NavData[] = [
   {
-    title: SiteAnalytics.title, // 网站分析
+    title: "网站分析",
     items: SiteAnalytics.items,
   },
   {
-    title: Status.title, // 网站监控
+    title: "网站监控",
     items: Status.items,
   },
   {
-    title: "图像处理",
-    items: [
-      {
-        icon: "https://compressjpg.io/favicon.ico",
-        title: "Compress JPG",
-        desc: "一个免费在线的图片压缩工具",
-        link: "https://compressjpg.io/zh-CN",
-      },
-      {
-        icon: "https://www.21zui.com/favicon.ico",
-        title: "在线改图",
-        desc: "简便、安全、免费的在线图片工具",
-        link: "https://www.21zui.com/",
-      },
-      {
-        icon: "https://www.freeconvert.com/favicon.ico",
-        title: "文件转换器",
-        desc: "轻松在线将文件从一种格式转换为另一种格式",
-        link: "https://www.freeconvert.com/zh",
-      },
-      {
-        icon: "https://vert.sh/favicon.png",
-        title: "Vert",
-        desc: "一款开源的文件转换工具，完全本地化，无文件大小限制，支持多种文件格式，无广告",
-        link: "https://vert.sh/",
-      },
-    ],
+    title: "图像工具",
+    items: ImgTool.items,
   },
   {
-    title: "图床软件",
-    items: [
-      {
-        icon: "https://pichoro.msq.pub/favicon/app_icon.png",
-        title: "PicList",
-        desc: "图片上传 云存储管理",
-        link: "https://piclist.cn/",
-        badge: {
-          text: "强烈推荐",
-          type: "danger",
-        },
-      },
-      {
-        icon: "https://res.u-tools.cn/website5/static/assets/favicon.png",
-        title: "UTools",
-        desc: "AI 加持的超级助手，一个入口，无限能力",
-        link: "https://www.u-tools.cn/index.html",
-      },
-      {
-        icon: "https://raw.githubusercontent.com/Molunerfinn/test/master/picgo/New%20LOGO-150.png",
-        title: "PicGo",
-        desc: "图片上传、管理新体验",
-        link: "https://picgo.github.io/PicGo-Doc/",
-      },
-      {
-        icon: "https://getsharex.com/favicon.ico",
-        title: "ShareX",
-        desc: "可以把图片上传到服务器某个目录下同时保存图片到本地",
-        link: "https://getsharex.com",
-      },
-    ],
+    title: "图床工具",
+    items: PictureTools.items,
   },
   {
     title: "导航网站",
-    items: [
-      {
-        icon: "https://doc.sun-panel.top/images/introduce/main-dark.png",
-        title: "Sun-Panel",
-        desc: "一个NAS、服务器导航面板、简易docker管理器、Homepage、浏览器首页",
-        link: "https://doc.sun-panel.top/zh_cn/",
-      },
-      {
-        icon: "https://onedayxyy.cn/img/website/iiikun.png",
-        title: "暮冬浅夏の资源站 ",
-        desc: "资源分享站.",
-        link: "https://iiikun.zone.id/",
-      },
-      {
-        icon: "https://gcore.jsdelivr.net/gh/xjh22222228/nav-image@image/logo.svg",
-        title: "发现导航",
-        desc: "精选实用导航网站",
-        link: "https://nav3.cn/#/",
-      },
-      {
-        icon: "https://linkqiu.com/images/icons/logo.svg",
-        title: "爱达网址聚合页",
-        desc: "爱达杂货铺，收集互联网上用的东西",
-        link: "https://linkqiu.com/",
-      },
-      {
-        icon: "https://openi.cn/wp-content/uploads/2023/04/logo-pic.png",
-        title: "openi",
-        desc: "OpenI AI网址导航开启您的AI时代",
-        link: "https://openi.cn/",
-      },
-      {
-        icon: "https://github.com/Y80/bmm/raw/main/doc/images/logo.svg",
-        title: "BMM 导航",
-        desc: "BMM，你的专属书签管家 🤵",
-        link: "https://bmm.lccl.cc/",
-      },
-      {
-        icon: "https://xtainav.cn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo2.57627e6e.png&w=48&q=75",
-        title: "星途 AI 导航",
-        desc: "发现优质 AI 应用网站资源",
-        link: "https://xtainav.cn/",
-      },
-      {
-        icon: "https://d1tools.com/favicon.ico",
-        title: "在线工具",
-        desc: "一个免费的在线工具集合，持续开发各种好用的工具",
-        link: "https://d1tools.com/tools/",
-      },
-      {
-        icon: "https://fmhy.net/test.png",
-        title: "fmhy",
-        desc: "互联网上最大的免费物品集合！",
-        link: "https://fmhy.net/",
-      },
-      {
-        icon: "https://inspector.fe-dev.cn/logo.svg",
-        title: "Code Inspector",
-        desc: "页面开发提效的神器",
-        link: "https://inspector.fe-dev.cn/",
-      },
-    ],
+    items: NavWebsite.items,
   },
   {
     title: "精美壁纸",
-    items: [
-      {
-        icon: "https://s.panlai.com/images/favicon.ico",
-        title: "壁纸汇",
-        desc: "免费壁纸_电脑壁纸_手机壁纸_4K壁纸_8K高清壁纸图片免费下载",
-        link: "https://www.bizhihui.com/",
-      },
-      {
-        icon: "https://pic.netbian.com/favicon.ico",
-        title: "彼岸图网",
-        desc: "4K壁纸_4K高清壁纸大全_4K手机壁纸_电脑壁纸_4K,5K,6K,7K,8K壁纸图片素材",
-        link: "https://pic.netbian.com/",
-      },
-      {
-        icon: "https://hdqwalls.com/icons/favicon.ico",
-        title: "Hdqwalls",
-        desc: "hdqwalls.com Best Source For HD,4k,5k,8k Wallpapers",
-        link: "https://hdqwalls.com/",
-      },
-    ],
+    items: Wallpaper.items,
   },
   {
     title: "邮件相关",
-    items: [
-      {
-        icon: "https://i.52112.com/icon/jpg/256/20210201/109466/4372976.jpg",
-        title: "个人邮箱 - 来发信",
-        desc: "常见个人邮箱登录方式教程",
-        link: "https://www.laifa.xin/category/yx/gryx/",
-      },
-      {
-        icon: "https://i.postimg.cc/hv2hwd83/331a5669-90e6-4b76-b2f8-ce0397879a4a-1.jpg",
-        title: "企业邮箱 - 来发信",
-        desc: "常见企业邮箱登录方式教程",
-        link: "https://www.laifa.xin/category/yx/qyyx/",
-      },
-      {
-        icon: "https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png",
-        title: "临时邮箱",
-        desc: "12款常用的临时邮箱汇总",
-        link: "https://zhuanlan.zhihu.com/p/690640067",
-      },
-      {
-        icon: "https://inboxes.com/images/favicon.png",
-        title: "Inboxes - Disposable Temporary email",
-        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
-        link: "https://inboxes.com/",
-      },
-      {
-        icon: "https://fviainboxes.com/favicon.ico",
-        title: "Fviainboxes",
-        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
-        link: "https://fviainboxes.com/",
-      },
-      {
-        icon: "https://www.moakt.com/favicon.ico",
-        title: "moakt",
-        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
-        link: "https://www.moakt.com/en",
-      },
-      {
-        icon: "https://generator.email/favicon.ico",
-        title: "generator",
-        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
-        link: "https://generator.email",
-      },
-      {
-        icon: "https://www.1secmail.com/img/favicon.ico",
-        title: "1secmail",
-        desc: "临时邮箱-可以用来接收fb后台邮箱辅助验证码的",
-        link: "https://www.1secmail.com/",
-      },
-      {
-        icon: "https://snovio.cn/blog/wp-content/themes/blog/assets/img/favicon/favicon.png",
-        title: "全球各大邮箱服务商邮件发送限制详情",
-        desc: "全球各大邮箱服务商邮件发送限制详情",
-        link: "https://snovio.cn/blog/email-sending-limits-of-major-email-service-providers/",
-      },
-      {
-        icon: "https://tempmailpro.org/favicon.ico",
-        title: "Temp Mail Pro",
-        desc: "立即获取您的专属临时邮箱。安全发送信息，到期自动销毁——让隐私保护变得简单快捷。",
-        link: "https://tempmailpro.org/zh",
-      },
-      {
-        icon: "https://etempmail.com/assets/img/fav/apple-icon-57x57.png",
-        title: "Temp Mail",
-        desc: "一个免实名的邮箱工具，帮你保护隐私。还能用教育邮箱，享学生折扣。",
-        link: "https://etempmail.com/zh",
-      },
-      {
-        icon: "https://mr.email/logo.png",
-        title: "MR.email",
-        desc: "一次性邮箱，适合注册一些临时用来，顺手就丢的东西，也不会自己的常用邮箱接收太多杂乱的信息",
-        link: "https://mr.email/",
-      },
-      {
-        icon: "https://swapco.de/logo.png",
-        title: "SwapCode",
-        desc: "一个在线临时邮箱和虚拟信息生成器，可以用来一些临时帐号，还支持虚拟信息生成，包括地址，邮箱，手机，人名等。",
-        link: "https://swapco.de/faker",
-      },
-      {
-        icon: "https://www.billionmail.com/logo.png",
-        title: "BillionMail",
-        desc: "开源邮件服务器、邮件订阅与邮件营销解决方案",
-        link: "https://www.billionmail.com/zh_CN/",
-      },
-    ],
+    items: Email.items,
   },
   {
     title: "常用工具",
-    items: [
-      {
-        icon: "https://caniuse.com/img/favicon-128.png",
-        title: "Can I use",
-        badge: {
-          text: "茂神牛批",
-          type: "info",
-        },
-        desc: "前端 API 兼容性查询",
-        link: "https://caniuse.com",
-      },
-      {
-        icon: "https://tinypng.com/images/apple-touch-icon.png",
-        title: "TinyPNG",
-        badge: {
-          text: "茂神牛批",
-          type: "tip",
-        },
-        desc: "在线图片压缩工具",
-        link: "https://tinypng.com",
-      },
-      {
-        icon: "https://devtool.tech/logo.svg",
-        title: "开发者武器库",
-        badge: {
-          text: "茂神牛批",
-          type: "warning",
-        },
-        desc: "开发者武器库，做开发者最专业最好用的专业工具箱",
-        link: "https://devtool.tech",
-      },
-      {
-        icon: "https://tool.lu/favicon.ico",
-        title: "在线工具",
-        badge: {
-          text: "茂神牛批",
-          type: "danger",
-        },
-        desc: "开发人员的工具箱",
-        link: "https://tool.lu",
-      },
-      {
-        icon: "/icons/json-cn.ico",
-        title: "Json 中文网",
-        badge: {
-          text: "请给茂茂点点小星星哦",
-          type: "info",
-        },
-        desc: "JSON 在线解析及格式化验证",
-        link: "https://www.json.cn",
-      },
-      {
-        icon: "https://jsonhero.io/favicon.ico",
-        title: "JSON Hero",
-        desc: "一个简单实用的 JSON 工具，通过简洁美观的 UI 及增强的额外功能，使得阅读和理解 JSON 文档变得更容易、直观",
-        link: "https://jsonhero.io/",
-      },
-      {
-        icon: "https://json4u.com/apple-icon.png",
-        title: "json4u",
-        desc: "JSON 工具包提高效率 – 以前所未有的方式可视化、格式化和比较您的数据！",
-        link: "https://json4u.com/",
-      },
-      {
-        icon: "https://cpwebassets.codepen.io/assets/favicon/favicon-touch-de50acbf5d634ec6791894eba4ba9cf490f709b3d742597c6fc4b734e6492a5a.png",
-        title: "codepen",
-        desc: "CodePen是一个在线的前端开发环境和社区平台,全球180万前端设计师的灵感社区它为开发人员提供了一个可以编写、分享和调试HTML、CSS和JavaScript代码的交互式编辑器",
-        link: "https://codepen.io/",
-      },
-    ],
-  },
-  {
-    title: "AI 导航",
-    items: [
-      {
-        icon: "/icons/chatgpt.png",
-        title: "ChatGPT（最强）",
-        link: "https://chat.openai.com/chat",
-      },
-      {
-        icon: "https://www.notion.so/images/logo-ios.png",
-        title: "Notion AI（笔记）",
-        link: "https://www.notion.so",
-      },
-      {
-        icon: "https://www.midjourney.com/apple-touch-icon.png",
-        title: "Midjourney（绘画）",
-        link: "https://www.midjourney.com",
-      },
-      {
-        icon: "https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png",
-        title: "Beautiful.ai（PPT）",
-        link: "https://www.beautiful.ai",
-      },
-      {
-        icon: "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/common/images/dreamina-v1.ico",
-        title: "即梦AI ",
-        desc: "即刻造梦",
-        link: "https://jimeng.jianying.com/",
-      },
-    ],
+    items: Utilities.items,
   },
   {
     title: "AI编程",
-    items: [
-      {
-        icon: "https://www.cursor.com/favicon-48x48.png",
-        title: "Cursor-free-everyday",
-        desc: "完全免费, 自动获取新账号,一键重置新额度, 解决机器码问题, 自动满额度",
-        link: "https://github.com/agentcodee/cursor-free-everyday",
-        badge: {
-          text: "强烈推荐",
-          type: "danger",
-        },
-      },
-      {
-        icon: "https://www.cursor.com/favicon-48x48.png",
-        title: "Cursor Auto Free",
-        desc: "动注册账号，自动刷新本地token，解放双手",
-        link: "https://cursor-auto-free-doc.vercel.app/zh/",
-      },
-      {
-        icon: "https://www.cursor.com/favicon-48x48.png",
-        title: "Cursor Auto Free",
-        desc: "AI 代码编辑器,Cursor 是使用 AI 编写代码的最佳方式。",
-        link: "https://www.cursor.com/cn",
-      },
-      {
-        icon: "https://lf-cdn.trae.ai/obj/trae-ai-sg/trae_website_prod/static/image/icon.ico",
-        title: "Trae",
-        desc: "字节跳动旗下的AI编程Trae IDE",
-        link: "https://www.trae.ai/",
-      },
-      {
-        icon: "https://voideditor.com/void/slice_of_void.png",
-        title: "Void ",
-        desc: "Void 是 Cursor 的开源替代方案。您可以使用最优秀的 AI 工具编写代码，使用任何模型，并完全掌控您的数据。",
-        link: "https://voideditor.com/",
-      },
-      {
-        icon: "https://cloudcache.tencent-cloud.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png",
-        title: "腾讯云代码助手",
-        desc: "腾讯云自研的一款编程提效辅助工具，以插件形式安装到编辑器（VS Code 或者 JetBrains 系列 IDE）中辅助编程",
-        link: "https://cloud.tencent.com/document/product/1749",
-      },
-    ],
-  },
-  {
-    title: "茂茂的站点导航",
-    items: [
-      {
-        icon: "/logo.png",
-        title: "前端日常笔记",
-        desc: "日常笔记记录（零零散散啥都记系列）",
-        link: "https://github.com/maomao1996/daily-notes",
-      },
-      {
-        icon: "/logo.png",
-        title: "前端思维导图",
-        desc: "用思维导图的方式总结个人所学知识",
-        link: "https://mindmap.fe-mm.com",
-      },
-      {
-        icon: "https://qwerty.fe-mm.com/apple-touch-icon.png",
-        title: "Qwerty Learner",
-        desc: "为键盘工作者设计的单词记忆与英语肌肉记忆锻炼软件",
-        link: "https://qwerty.fe-mm.com",
-      },
-      {
-        icon: "/logo.png",
-        title: "mmPlayer",
-        desc: "mmPlayer 在线音乐播放器",
-        link: "https://netease-music.fe-mm.com",
-      },
-    ],
+    items: AICode.items,
   },
   {
     title: "React 生态",
-    items: [
-      {
-        icon: "https://zh-hans.reactjs.org/favicon.ico",
-        title: "React",
-        desc: "用于构建用户界面的 JavaScript 库",
-        link: "https://zh-hans.reactjs.org",
-      },
-      {
-        icon: "https://reactrouter.com/favicon-light.png",
-        title: "React Router",
-        desc: "React 的声明式路由",
-        link: "https://reactrouter.com",
-      },
-      {
-        icon: "https://nextjs.org/static/favicon/safari-pinned-tab.svg",
-        title: "Next.js",
-        desc: "一个用于 Web 的 React 框架",
-        link: "https://nextjs.org",
-      },
-      {
-        icon: "https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg",
-        title: "UmiJS",
-        desc: "插件化的企业级前端应用框架",
-        link: "https://umijs.org",
-      },
-      {
-        icon: "https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png",
-        title: "Ant Design",
-        desc: "一套企业级 UI 设计语言和 React 组件库",
-        link: "https://ant.design",
-      },
-      {
-        icon: "https://gw.alipayobjects.com/zos/bmw-prod/69a27fcc-ce52-4f27-83f1-c44541e9b65d.svg",
-        title: "Ant Design Mobile",
-        desc: "构建移动 WEB 应用程序的 React 组件库",
-        link: "https://mobile.ant.design",
-      },
-      {
-        icon: "https://docs.pmnd.rs/apple-touch-icon.png",
-        title: "Zustand",
-        desc: "一个小型、快速、可扩展的 React 状态管理解决方案",
-        link: "https://docs.pmnd.rs/zustand/getting-started/introduction",
-      },
-      {
-        icon: "https://valtio.pmnd.rs/favicon.ico",
-        title: "Valtio",
-        desc: "makes proxy-state simple for React and Vanilla",
-        link: "https://valtio.pmnd.rs",
-      },
-      {
-        icon: "https://jotai.org/favicon.svg",
-        title: "Jotai",
-        desc: "primitive and flexible state management for React",
-        link: "https://jotai.org",
-      },
-      {
-        icon: "https://cn.redux.js.org/img/redux.svg",
-        title: "Redux",
-        desc: "JavaScript 应用的状态容器，提供可预测的状态管理",
-        link: "https://cn.redux.js.org",
-      },
-      {
-        icon: "https://zh.mobx.js.org/assets/mobx.png",
-        title: "MobX",
-        desc: "一个小型、快速、可扩展的 React 状态管理解决方案",
-        link: "https://zh.mobx.js.org",
-      },
-      {
-        icon: "https://ahooks.js.org/simple-logo.svg",
-        title: "ahooks",
-        desc: "一套高质量可靠的 React Hooks 库",
-        link: "https://ahooks.js.org/zh-CN",
-      },
-    ],
+    items: React.items,
   },
   {
     title: "Vue 生态",
-    items: [
-      {
-        icon: "https://cn.vuejs.org/logo.svg",
-        title: "Vue 3",
-        desc: "渐进式 JavaScript 框架",
-        link: "https://cn.vuejs.org",
-      },
-      {
-        icon: "https://cn.vuejs.org/logo.svg",
-        title: "Vue 2",
-        desc: "渐进式 JavaScript 框架",
-        link: "https://v2.cn.vuejs.org",
-      },
-      {
-        icon: "https://cn.vuejs.org/logo.svg",
-        title: "Vue Router",
-        desc: "Vue.js 的官方路由\n为 Vue.js 提供富有表现力、可配置的、方便的路由",
-        link: "https://router.vuejs.org/zh",
-      },
-      {
-        icon: "https://pinia.vuejs.org/logo.svg",
-        title: "Pinia",
-        desc: "符合直觉的 Vue.js 状态管理库",
-        link: "https://pinia.vuejs.org/zh",
-      },
-      {
-        icon: "https://nuxt.com/icon.png",
-        title: "Nuxt.js",
-        desc: "一个基于 Vue.js 的通用应用框架",
-        link: "https://nuxt.com",
-      },
-      {
-        icon: "https://vueuse.org/favicon.svg",
-        title: "VueUse",
-        desc: "Vue Composition API 的常用工具集",
-        link: "https://vueuse.org",
-      },
-      {
-        icon: "https://element-plus.org/images/element-plus-logo-small.svg",
-        title: "Element Plus",
-        desc: "基于 Vue 3，面向设计师和开发者的组件库",
-        link: "https://element-plus.org",
-      },
-      {
-        icon: "https://www.antdv.com/assets/logo.1ef800a8.svg",
-        title: "Ant Design Vue",
-        desc: "Ant Design 的 Vue 实现，开发和服务于企业级后台产品",
-        link: "https://antdv.com",
-      },
-      {
-        icon: "https://fastly.jsdelivr.net/npm/@vant/assets/logo.png",
-        title: "Vant",
-        desc: "轻量、可定制的移动端 Vue 组件库",
-        link: "https://vant-ui.github.io/vant",
-      },
-      {
-        icon: "https://webapp.didistatic.com/static/webapp/shield/Cube-UI_logo.ico",
-        title: "Cube UI",
-        desc: "基于 Vue.js 实现的精致移动端组件库",
-        link: "https://didi.github.io/cube-ui",
-      },
-      {
-        icon: "https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png",
-        title: "NutUI",
-        desc: "京东风格的轻量级移动端组件库",
-        link: "https://nutui.jd.com",
-      },
-      {
-        icon: "https://devtools.vuejs.org/logo.svg",
-        title: "Vue DevTools",
-        desc: "Vue 开发者工具,进适用于开发环境",
-        link: "https://devtools.vuejs.org/",
-      },
-      {
-        icon: "https://ppofficial.pages.dev/pplogo.png",
-        title: "PakePlus",
-        desc: "何必是网站，秒变桌面应用和手机应用",
-        link: "https://ppofficial.pages.dev/",
-      },
-    ],
+    items: Vue.items,
   },
   {
-    title: "JavaScript 框架类库",
-    items: [
-      {
-        icon: "https://svelte.dev/svelte-logo-horizontal.svg",
-        title: "Svelte",
-        desc: "将声明性组件转换为精准高效更新 DOM 的 JavaScript 代码",
-        link: "https://svelte.dev",
-      },
-      {
-        // icon: 'https://simpleicons.org/icons/jquery.svg',
-        icon: "/icons/jquery.svg",
-        title: "jQuery API 中文文档",
-        desc: "一个兼容多浏览器的 JavaScript 框架",
-        link: "https://jquery.cuishifeng.cn",
-      },
-    ],
+    title: "JS 框架",
+    items:javaScript.items,
   },
   {
-    title: "CSS 相关",
-    items: [
-      {
-        icon: "https://postcss.org/assets/logo-3e39b0aa.svg",
-        title: "PostCSS",
-        desc: "一个用 JavaScript 转换 CSS 的工具",
-        link: "https://postcss.org",
-      },
-      {
-        icon: "https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg",
-        title: "Sass",
-        desc: "一个成熟，稳定，功能强大的专业级 CSS 扩展语言",
-        link: "https://sass-lang.com",
-      },
-      {
-        icon: "https://www.tailwindcss.cn/apple-touch-icon.png",
-        title: "TailwindCSS 中文网",
-        desc: "一个功能类优先的 CSS 框架",
-        link: "https://www.tailwindcss.cn",
-      },
-      {
-        icon: "https://glassgenerator.netlify.app/assets/images/favicon.png",
-        title: "Glass Morphism",
-        desc: "在线制作 CSS 玻璃风格神器",
-        link: "htthttps://glassgenerator.netlify.app/",
-      },
-    ],
+    title: "CSS 框架",
+    items: CSS.items,
   },
   {
-    title: "小程序相关",
+    title: "小程序",
     items: [
       {
         icon: "https://res.wx.qq.com/a/wx_fed/assets/res/OTE0YTAw.png",
@@ -1350,6 +782,16 @@ export const NAV_DATA: NavData[] = [
         link: "https://mrdoc.pro/",
         badge: {
           text: "文档知识管理",
+          type: "danger",
+        },
+      },
+      {
+        icon: "https://github.com/Auto-Plugin/milkup/raw/main/src/renderer/public/logo.svg",
+        title: "MilkUp",
+        desc: "一个桌面端 Markdown 编辑器, 目前支持 windows、MacOS、Linux(需自行打包)",
+        link: "https://mrdoc.pro/",
+        badge: {
+          text: "Markdown 编辑器",
           type: "danger",
         },
       },

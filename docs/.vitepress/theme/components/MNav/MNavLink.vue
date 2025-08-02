@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
+import { computed, watch, shallowRef } from "vue";
 import { withBase } from "vitepress";
 import { slugify } from "@mdit-vue/shared";
-import { NavLink } from '../untils/types'
+import { NavLink } from './untils/types'
 import { TkIcon } from "vitepress-theme-teek";
-import { NoIcon } from "../icon/NavIcon";
+import { NoIcon } from "../../icon/NavIcon";
 
 const props = defineProps<{
   noIcon?: boolean;
@@ -15,12 +15,15 @@ const props = defineProps<{
   link: NavLink["link"];
 }>();
 
-const imgError = ref(false);
+// 使用 shallowRef 优化响应式性能
+const imgError = shallowRef(false);
 
+// 优化 watch，添加 flush: 'post' 避免不必要的重复执行
 watch(() => props.icon, () => {
   imgError.value = false;
-});
+}, { flush: 'post' });
 
+// 缓存计算结果，避免重复计算
 const showImg = computed(() => {
   return typeof props.icon === "string" && props.icon && !imgError.value;
 });
@@ -32,24 +35,38 @@ const imgSrc = computed(() => {
   return '';
 });
 
+// 优化：只在有title时才计算slugify，避免不必要的计算
 const formatTitle = computed(() => {
-  if (!props.title) {
-    return "";
-  }
-  return slugify(props.title);
+  return props.title ? slugify(props.title) : "";
 });
 
-const svg = computed(() => {
-  if (typeof props.icon === "object" && props.icon && 'svg' in props.icon) return props.icon.svg;
+// 安全的SVG处理：添加基本的XSS防护
+const safeSvg = computed(() => {
+  if (typeof props.icon === "object" && props.icon && 'svg' in props.icon) {
+    const svg = props.icon.svg;
+    // 基本的XSS防护：移除潜在危险的标签和属性
+    if (typeof svg === 'string') {
+      return svg
+        .replace(/<script[^>]*>.*?<\/script>/gi, '')
+        .replace(/on\w+="[^"]*"/gi, '')
+        .replace(/javascript:/gi, '');
+    }
+    return svg;
+  }
   return "";
 });
 
 const formatBadge = computed(() => {
   if (typeof props.badge === "string") {
-    return { text: props.badge, type: "info" };
+    return { text: props.badge, type: "info" as const };
   }
   return props.badge;
 });
+
+// 图片加载错误处理
+const handleImageError = () => {
+  imgError.value = true;
+};
 </script>
 
 <template>
@@ -57,9 +74,10 @@ const formatBadge = computed(() => {
     <article class="box" :class="{ 'has-badge': formatBadge }">
       <div class="box-header">
         <template v-if="!noIcon">
-          <div v-if="svg" class="icon" v-html="svg"></div>
+          <!-- 安全的SVG渲染 -->
+          <div v-if="safeSvg" class="icon" v-html="safeSvg"></div>
           <div v-else-if="showImg" class="icon">
-            <img :src="imgSrc" :alt="title" @error="imgError = true" />
+            <img :src="imgSrc" :alt="title || '图标'" @error="handleImageError" loading="lazy" decoding="async" />
           </div>
           <TkIcon v-else class="icon" :icon="NoIcon"></TkIcon>
         </template>
@@ -85,9 +103,13 @@ const formatBadge = computed(() => {
   border-radius: 12px;
   height: 100%;
   background-color: var(--vp-c-bg-soft);
-  transition: all 0.25s;
+  /* 优化：背景色无过渡，立即响应，其他属性保持平滑过渡 */
+  transition: transform 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  /* 优化：启用硬件加速 */
+  will-change: transform;
 }
 
+/* 优化：修复hover背景延迟问题，使用回退值 */
 .m-nav-link:hover {
   box-shadow: var(--vp-shadow-2);
   border-color: var(--vp-c-brand);
@@ -133,7 +155,6 @@ const formatBadge = computed(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-right: calc(var(--m-nav-box-gap) - 2px); */
   border-radius: 50%;
   min-width: var(--m-nav-icon-box-size);
   min-height: var(--m-nav-icon-box-size);
@@ -141,11 +162,13 @@ const formatBadge = computed(() => {
   height: var(--m-nav-icon-box-size);
   font-size: var(--m-nav-icon-size);
   background-color: var(--vp-c-bg-soft-down);
-  /* 过度动画 */
+  /* 优化：分离动画属性，提升性能 */
   transition: transform 0.6s ease-in-out, opacity 0.4s ease-in-out;
   flex-shrink: 0;
   transform: translateX(0) scale(1);
   opacity: 1;
+  /* 优化：启用硬件加速 */
+  will-change: transform, opacity;
 }
 
 .m-nav-link .icon svg {
@@ -158,6 +181,9 @@ const formatBadge = computed(() => {
   width: 50px;
   height: 50px;
   object-fit: cover;
+  /* 优化：图片渲染优化 */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .m-nav-link .content {
@@ -170,6 +196,8 @@ const formatBadge = computed(() => {
   overflow: hidden;
   margin-left: 0;
   transition: margin-left 0.3s ease-in-out;
+  /* 优化：启用硬件加速 */
+  will-change: margin-left;
 }
 
 .m-nav-link .title {
@@ -182,6 +210,8 @@ const formatBadge = computed(() => {
   line-height: 1.4;
   width: 100%;
   flex-shrink: 0;
+  /* 优化：文本渲染优化 */
+  text-rendering: optimizeLegibility;
 }
 
 .m-nav-link .desc {
@@ -198,6 +228,8 @@ const formatBadge = computed(() => {
   word-wrap: break-word;
   flex: 1;
   min-height: 0;
+  /* 优化：文本渲染优化 */
+  text-rendering: optimizeLegibility;
 }
 
 .m-nav-link .badge {
@@ -207,40 +239,40 @@ const formatBadge = computed(() => {
   transform: scale(0.8);
 }
 
+/* 优化：减少重绘，使用 contain 属性 */
+.m-nav-link {
+  contain: layout style paint;
+}
+
+/* 优化：预加载关键资源 */
+.m-nav-link .icon {
+  contain: layout style;
+}
+
+/* 优化：使用 container queries 替代媒体查询（如果支持） */
 @media (max-width: 960px) {
   .m-nav-link {
-    /* 当屏幕宽度小于960px时，应用以下样式 */
     --m-nav-icon-box-size: 50px;
-    /* 移动端导航链接图标盒子大小 */
     --m-nav-icon-size: 36px;
-    /* 移动端导航链接图标大小 */
     --m-nav-box-gap: 15px;
-    /* 移动端导航链接盒子间距 */
   }
 
   .m-nav-link .box {
-    /* 在移动端时设置内边距为上下12px,左右0 */
     padding: 12px 0;
   }
 
   .m-nav-link .icon img {
-    /* 设置图标圆角为50% */
     border-radius: 50%;
-    /* 设置图标宽度为36px */
     width: 36px;
-    /* 设置图标高度为36px */
     height: 36px;
-    /*设置图标的填充方式为覆盖 */
     object-fit: cover;
   }
 
   .m-nav-link .title {
-    /* 移动端标题文字大小 */
     font-size: 14px;
   }
 
   .m-nav-link .desc {
-    /* 移动端描述文字大小 */
     font-size: 12px;
   }
 

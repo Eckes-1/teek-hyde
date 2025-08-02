@@ -24,7 +24,7 @@ editLink: false #是否显示编辑按钮
 <style src="/.vitepress/theme/styles/nav.scss"></style>
 
 <script setup>
-import { NAV_DATA } from '/.vitepress/theme/untils/data'
+import { NAV_DATA } from '/.vitepress/theme/components/MNav/untils/data.ts'
 </script>
 
 ::: info 教程

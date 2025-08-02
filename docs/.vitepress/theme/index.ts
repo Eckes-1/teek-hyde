@@ -4,7 +4,7 @@ import TeekLayoutProvider from "./components/TeekLayoutProvider.vue";
 import { defineComponent, h } from "vue";
 import { useData } from "vitepress";
 // import notice from "./components/notice.vue";
-import MNavLinks from "./components/MNavLinks.vue"; // 引入导航组件
+import MNavLinks from "./components/MNav/MNavLinks.vue"; // 引入导航组件
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
 

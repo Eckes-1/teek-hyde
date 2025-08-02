@@ -1,5 +1,3 @@
-import type { NavData } from "../types.ts";
-
 export const SiteAnalytics = {
   title: "网站分析",
   items: [
@@ -46,4 +44,4 @@ export const SiteAnalytics = {
       link: "https://www.rybbit.io/",
     },
   ],
-} as NavData;
+};

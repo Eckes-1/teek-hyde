@@ -1,5 +1,3 @@
-import type { NavData } from "../types.ts";
-
 export const Status = {
   title: "网站监控",
   items: [
@@ -46,4 +44,4 @@ export const Status = {
       link: "https://tianji.msgbyte.com/",
     },
   ],
-} as NavData;
+};
