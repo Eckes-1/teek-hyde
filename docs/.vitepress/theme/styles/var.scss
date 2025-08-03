@@ -131,3 +131,8 @@ span {
 .tk-footer-info p img {
   margin-left: 10px;
 }
+
+// 影响性能v1.3.5，去除fixed
+.tk-banner-bg-image.full, .tk-banner-bg-image.part{
+  background: var(--tk-banner-img-bg);
+}
