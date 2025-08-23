@@ -21,7 +21,7 @@ master:
             pnpm docs:build   # VitePress 专用命令
         - name: 🚚 发布制品
           image: tencentcom/rsync # 使用包含rsync工具的镜像（rsync用于高效文件同步）
-          imports: https://cnb.cool/onedayxyy/vitepress-theme-teek-one-private/-/blob/master/env.yaml # 导入外部环境变量配置文件，实际替换自己的
+          imports: https://cnb.cool/W3C/Hyde/teek-hyde/-/blob/main/env.yaml # 导入外部环境变量配置文件，实际替换自己的
           settings:
             user: ${SSH_USER}  # SSH用户名（从环境变量获取，避免硬编码敏感信息）
             key: ${SSH_KEY} # SSH私钥（用于免密登录目标服务器，从环境变量获取）
