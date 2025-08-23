@@ -7,7 +7,7 @@ main:
         - git-clone-yyds # 自定义的Git克隆服务（确保代码能正确拉取到运行环境）
       docker:
         image: docker.cnb.cool/znb/images/node:18 # 使用Node.js 18版本的镜像（前端项目常用环境）
-        volumes:  # 数据卷挂载
+        volumes: # 数据卷挂载
           - /data/.cache:copy-on-write # 将宿主机的/data/.cache目录挂载到容器，采用"写时复制"模式（高效缓存依赖，加速构建）
       stages:
         - name: 🖨️ 打印环境
@@ -23,7 +23,7 @@ main:
           image: tencentcom/rsync # 使用包含rsync工具的镜像（rsync用于高效文件同步）
           imports: https://cnb.cool/W3C/Hyde/teek-hyde/-/blob/main/env.yaml # 导入外部环境变量配置文件，实际替换自己的
           settings:
-            user: ${SSH_USER}  # SSH用户名（从环境变量获取，避免硬编码敏感信息）
+            user: ${SSH_USER} # SSH用户名（从环境变量获取，避免硬编码敏感信息）
             key: ${SSH_KEY} # SSH私钥（用于免密登录目标服务器，从环境变量获取）
             port: 22 # SSH端口（默认22）
             hosts:
