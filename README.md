@@ -1,4 +1,4 @@
-# vitepress-theme-teek1
+# vitepress-theme-teek
 
 在线主题文档：[Teek](http://vp.teek.top/)。
 
