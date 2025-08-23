@@ -29,5 +29,5 @@ main:
             hosts:
               - 111.229.208.160 # 目标服务器IP（要部署到的服务器地址，实际替换自己的服务器IP）
             source: docs/.vitepress/dist/ # 待同步的本地文件目录（阶段3构建出的静态文件
-            target: /root/rsync/rsync-vitepress/dist/ # 目标服务器上的存放路径
+            target: /root/rsync/teek.seasir.top/dist/ # 目标服务器上的存放路径
             delete: true # 同步时删除目标路径中不存在的文件（确保目标与本地完全一致，避免冗余文件）
