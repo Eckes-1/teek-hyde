@@ -30,11 +30,11 @@
     "vitepress": "^1.6.3",
     "vitepress-markdown-timeline": "^1.2.2",
     "vitepress-plugin-group-icons": "^1.6.0",
+    "vitepress-theme-teek": "^1.4.4",
     "vue": "^3.5.16"
   },
   "dependencies": {
     "vite-plugin-compression": "^0.5.1",
-    "vitepress-plugin-rss": "^0.3.1",
-    "vitepress-theme-teek": "^1.3.5"
+    "vitepress-plugin-rss": "^0.3.1"
   }
 }

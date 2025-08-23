@@ -1,5 +1,6 @@
 // 首页壁纸
 export const Wallpaper = [
+  "/home/bg0.webp",
   "/home/bg1.webp",
   "/home/bg2.webp",
   "/home/bg3.webp",

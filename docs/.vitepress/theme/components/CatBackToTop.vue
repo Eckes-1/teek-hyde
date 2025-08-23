@@ -1,4 +1,4 @@
-// 返回顶部挂件
+// 返回顶部小猫挂件
 <template>
     <div class="back_to_top" ref="toTop" :style="{
         top: top + 'px',
@@ -102,7 +102,7 @@ onMounted(() => {
 .back_to_top {
     cursor: pointer;
     position: fixed;
-    right: 40px;
+    left: 25px;
     top: -900px;
     z-index: 1000;
     width: 70px;

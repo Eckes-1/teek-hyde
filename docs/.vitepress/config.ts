@@ -24,16 +24,16 @@ const teekConfig = defineTeekConfig({
   // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
   // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
-  backTopDone: (TkMessage) =>
-    TkMessage.success({
-      message: "已达到顶部🎉",
-      duration: 3000,
-    }),
-  toCommentDone: (TkMessage) =>
-    TkMessage.success({
-      message: "已达到评论区✨",
-      duration: 3000,
-    }),
+
+  backTop: {
+    enabled: true, // 是否启动回到顶部功能
+    content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
+    done: TkMessage => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
+  },
+  toComment: {
+    enabled: true, // 是否启动滚动到评论区功能
+    done: TkMessage => TkMessage.success("已抵达评论区✨"), // 滚动到评论区后的回调
+  },
   // 新版代码块配置
   codeBlock: {
     disabled: false, // 是否禁用新版代码块
@@ -106,7 +106,7 @@ const teekConfig = defineTeekConfig({
     },
     autoFrontmatter: true, // 自动生成 frontmatter
     permalinkOption: {
-      notFoundDelayLoad: 1000, // 1秒后加载
+      // ignoreList: ["nav"], // 支持正则表达式
     },
 
     autoFrontmatterOption: {
@@ -285,6 +285,12 @@ const teekConfig = defineTeekConfig({
             `,
     };
   },
+  //页面加载 Loading 动画配置
+  // loading: true, // 启用 Loading 动画，为 false 则关闭 Loading 动画
+  loading: "拼命加载中...", // 修改 Loading 文案
+  sidebarTrigger: true, // 是否启用侧边栏展开/折叠触发器，点击触发器可以展开/折叠侧边栏
+  windowTransition: true, // 视图渐入过渡效果
+
 });
 
 // https://vitepress.dev/reference/site-config
@@ -348,5 +354,10 @@ export default defineConfig({
       // open: true, // 运行后自动打开网页
     },
     build: Build(),
+  },
+  //解决404 title方法
+    transformHtml: (code, id, context) => {
+    if (context.page !== "404.md") return code;
+    return code.replace("404 | ", "");
   },
 });

@@ -1,25 +1,21 @@
-// nav导航栏配置
-import {
-  TeekIcon,
-  VdoingIcon,
-  SSLIcon,
-  BlogIcon,
-  DocusaurusIcon,
-  LinuxIcon,
-  NginxIcon,
-  GitIcon,
-  DockerIcon,
-  AppstoreIcon,
-  PhotoIcon,
-  MusicIcon,
-  FilmIcon,
-  AboutIcon,
-  LinkIcon,
-  NavIcon,
-  SiteAnalyticsIcon,
-  StatusIcon,
-} from "./icon/NavIcon";
-export const Nav = [
+import { isEmpty } from "../theme/utils/WwUtils";
+import type { DefaultTheme } from "vitepress/theme";
+
+function getNav(text: string, svgPath: string | null) {
+  let imgTemplate = "";
+  if (!isEmpty(svgPath)) {
+    imgTemplate = `<img src="${svgPath}" alt="" style="width: 16px; height: 16px;">`;
+  }
+
+  return `
+            <div style="display: flex; align-items: center; gap: 4px;">
+             ${imgTemplate}
+              <span>${text}</span>
+            </div>
+            `;
+}
+
+export const Nav: DefaultTheme.NavItem[] = [
   {
     text: "🏡首页",
     items: [
@@ -31,24 +27,30 @@ export const Nav = [
     text: "📖笔记专栏",
     items: [
       {
-        component: "NavIcon",
-        props: TeekIcon,
+        text: getNav("Teek主题", "/svg/NavIcon/teek-logo-mini.svg"),
+        link: "/Teek",
       },
       {
-        component: "NavIcon",
-        props: VdoingIcon,
+        text: getNav(
+          "Vdoing主题",
+          "https://vuepress.vuejs.org/images/hero.png"
+        ),
+        link: "/Vdoing",
       },
       {
-        component: "NavIcon",
-        props: BlogIcon,
+        text: getNav(
+          "Docusaurus主题",
+          "https://www.docusaurus.cn/img/docusaurus_keytar.png"
+        ),
+        link: "/Docusaurus",
       },
       {
-        component: "NavIcon",
-        props: SSLIcon,
+        text: getNav("博客搭建", "/svg/NavIcon/Blog.svg"),
+        link: "/Blog",
       },
       {
-        component: "NavIcon",
-        props: DocusaurusIcon,
+        text: getNav("SSL证书", "/svg/NavIcon/allinssl.svg"),
+        link: "/SSL",
       },
     ],
   },
@@ -56,24 +58,24 @@ export const Nav = [
     text: "🧰工具资源", // 目录页链接，此处 link 是 vdoing 主题新增的配置项，有二级导航时，可以点击一级导航跳到目录页
     items: [
       {
-        component: "NavIcon",
-        props: LinuxIcon,
+        text: getNav("Linux", "/svg/NavIcon/linux.svg"),
+        link: "/Linux",
       },
       {
-        component: "NavIcon",
-        props: NginxIcon,
+        text: getNav("Nginx", "/svg/NavIcon/nginx.svg"),
+        link: "/Nginx",
       },
       {
-        component: "NavIcon",
-        props: GitIcon,
+        text: getNav("Git", "/svg/NavIcon/git.svg"),
+        link: "/Git",
       },
       {
-        component: "NavIcon",
-        props: DockerIcon,
+        text: getNav("Docker", "/svg/NavIcon/docker.svg"),
+        link: "/Docker",
       },
       {
-        component: "NavIcon",
-        props: AppstoreIcon,
+        text: getNav("实用软件", "/svg/NavIcon/appstore.svg"),
+        link: "/Appstore",
       },
     ],
   },
@@ -81,16 +83,16 @@ export const Nav = [
     text: "🏙️生活娱乐",
     items: [
       {
-        component: "NavIcon",
-        props: PhotoIcon,
+        text: getNav("相册", "/svg/NavIcon/photo.svg"),
+        link: "/photo",
       },
       {
-        component: "NavIcon",
-        props: MusicIcon,
+        text: getNav("音乐", "/svg/NavIcon/music.svg"),
+        link: "/music",
       },
       {
-        component: "NavIcon",
-        props: FilmIcon,
+        text: getNav("电影", "/svg/NavIcon/movie.svg"),
+        link: "/movie",
       },
     ],
   },
@@ -99,18 +101,28 @@ export const Nav = [
     text: "👏文章索引",
     items: [
       {
-        text: "本站",
-        items: [
-          { text: "文章分类", link: "/categories/" },
-          { text: "文章标签", link: "/tags/" },
-          { text: "文章归档", link: "/archives/" },
-          { text: "文章清单", link: "/articleOverview/" },
-          { text: "站点登录", link: "/login/" },
-          {
-            text: "风险提示",
-            link: "/risk-link?target=https://teek.seasir.top/guide/quickstart",
-          },
-        ],
+        text: getNav("📃文章分类", null),
+        link: "/categories",
+      },
+      {
+        text: getNav("🔖文章标签", null),
+        link: "/tags",
+      },
+      {
+        text: getNav("文章归档", "/svg/NavIcon/归档.svg"),
+        link: "/archives",
+      },
+      {
+        text: getNav("文章清单", "/svg/NavIcon/清单.svg"),
+        link: "/articleOverview",
+      },
+      {
+        text: getNav("站点登录", "/svg/NavIcon/登录.svg"),
+        link: "/login",
+      },
+      {
+        text: getNav("风险提示", "/svg/NavIcon/风险提示.svg"),
+        link: "/risk-link?target=https://teek.seasir.top/guide/quickstart",
       },
     ],
   },
@@ -118,24 +130,24 @@ export const Nav = [
     text: "🌐站点信息",
     items: [
       {
-        component: "NavIcon",
-        props: AboutIcon,
+        text: getNav("关于本站", "/svg/NavIcon/about.svg"),
+        link: "/About",
       },
       {
-        component: "NavIcon",
-        props: LinkIcon,
+        text: getNav("友链链接", "/svg/NavIcon/link.svg"),
+        link: "/friend-link",
       },
       {
-        component: "NavIcon",
-        props: NavIcon,
+        text: getNav("网站导航", "/svg/NavIcon/nav.svg"),
+        link: "/nav",
       },
       {
-        component: "NavIcon",
-        props: SiteAnalyticsIcon,
+        text: getNav("站点统计", "/svg/NavIcon/siteAnalytics.svg"),
+        link: "https://umami.seasir.top/share/rvVBNZWa0sUCN6wG/teek.seasir.top",
       },
       {
-        component: "NavIcon",
-        props: StatusIcon,
+        text: getNav("站点状态", "/svg/NavIcon/status.svg"),
+        link: "https://status.seasir.top/",
       },
     ],
   },

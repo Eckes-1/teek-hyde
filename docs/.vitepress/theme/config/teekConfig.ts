@@ -158,10 +158,12 @@ export const teekBlogCardConfig: TeekConfig = {
   },
   homeCardListPosition: "left", //卡片模式下的标题标签位置
   banner: {
+    enabled: true, // 是否启用 banner
     name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
     descStyle: "types",
+    imgShuffle: true, // 图片是否随机切换，为 false 时按顺序切换，bgStyle 为 partImg 或 fullImg 时生效
   },
 };

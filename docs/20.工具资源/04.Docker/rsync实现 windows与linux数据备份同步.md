@@ -1,41 +1,14 @@
 ---
-# 文档的URL路径标识符
-slug: rsync-windows-to-linux
-
-# 文档标题，显示在页面顶部
+date: 2024-11-14 00:54:49
 title: rsync实现 windows与linux数据备份同步
-
-# 发布日期，用于时间排序
-date: 2024-11-04
-
-# 作者名称
-# authors: Hyde
-
-# 最后更新日期，用于时间排序
-last_update:
-  date: 2024/11/04
-
-# 文章标签，帮助分类
-tags: [rsync, windows, linux]
-
-#关键词，用于SEO优化
-keywords: [rsync, windows, linux]
-
-# 文档的简要描述
-description: rsync实现 windows与linux数据备份同步
-
-# 文章的封面图片
-image: https://static.salesmartly.com/prod/project/fj3mnx/material/image/20241117/1731834999247/235418-171743005803f5.jpg
-
-#置顶级别，决定文章在列表中的位置
-sticky: 5
+permalink: /rsync
+categories:
+  - Docker
+  - rsync
+coverImg: /home/bg5.webp
 ---
 
 有些人可能对图床这个没什么概念，所谓图床，英文叫法应该叫：ImageHost，也就是储存图片的中枢，可以理解为：用户存储图片后，系统提供该图片的直接链接，用来通过网络访问显示该图片。
-
-<!-- truncate -->
-
-# rsync实现 windows与linux数据备份同步
 
 ## 前言
 

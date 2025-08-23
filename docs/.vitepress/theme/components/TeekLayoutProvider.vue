@@ -25,13 +25,15 @@ import OhMyLive2D from "./OhMyLive2D.vue"
 // @ts-ignore
 import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
 // @ts-ignore
-import BackToTop from "./BackToTop.vue";  //导入返回顶部组件
+import CatBackToTop from "./CatBackToTop.vue";  //导入返回顶部小猫组件
 // @ts-ignore
 import WelcomeCard from "./WelcomeCard.vue";  //导入欢迎卡片组件
 // @ts-ignore 右键菜单组件
 import ContextMenu from "./ContextMenu/ContextMenu.vue";
-// @ts-ignore 路由切换遮罩过渡动画
-import RouteSwitchingLoading from "./RouteSwitchingLoading.vue";
+// @ts-ignore 返回顶部组件
+import BackTop from "./BackTop.vue"; 
+// @ts-ignore  导入公告卡片组件
+import NoticeCard from "./NoticeCard.vue"; 
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -84,9 +86,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
         <!-- 添加全局右键菜单 -->
         <ContextMenu />
       </ClientOnly>
-
-      <!-- 路由切换动画组件 -->
-      <RouteSwitchingLoading />
       <!-- 全局问候组件 -->
       <GlobalGreet />
       <!-- 看板娘组件 -->
@@ -95,9 +94,16 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <ScrollProgressBar />
       <!--网页标题切换组件  -->
       <TitleChange />
-      <!-- 返回顶部组件 -->
-      <BackToTop />
+      <!-- 返回顶部小猫组件 -->
+      <CatBackToTop />
     </template>
+
+    <!-- 回到顶部组件插槽 -->
+    <template #teek-back-top>
+      <BackTop/>
+    </template>
+
+    <!-- 布局切换组件 -->
     <template #teek-theme-enhance-bottom>
       <div :class="[ns, 'flx-align-center']">
         <ConfigSwitch v-model="currentStyle" @switch="handleConfigSwitch" />
@@ -121,6 +127,11 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <NoticeContent />
     </template>
 
+    <!-- 自定义公告卡片 -->
+    <template #teek-home-card-my-after>
+      <NoticeCard />
+    </template>
+    
     <template #teek-home-banner-feature-after>
       <!-- 横幅图片箭头组件 -->
       <BannerImgArrow />
