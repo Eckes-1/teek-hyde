@@ -1,4 +1,4 @@
-master:
+main:
   push:
     - runner:
         cpus: 64 #自定义CPU核心数
