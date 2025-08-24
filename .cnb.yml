@@ -18,47 +18,13 @@ $:
       stages:
         - name: 环境启动时执行以下命令
           script:
-            # 安装pnpm并使用pnpm安装依赖
+        # 安装pnpm并使用pnpm安装依赖
             - npm install -g pnpm
             - pnpm i
+            - pnpm docs:dev
 
-# main分支配置
+# 云原生构建流程和自动部署
 main:
-  push:
-    - runner:
-        cpus: 64 # 自定义CPU核心数
-      services:
-        - docker ## 启用Docker服务（用于构建镜像或容器化操作）
-        - git-clone-yyds # 自定义的Git克隆服务（确保代码能正确拉取到运行环境）
-      docker:
-        image: docker.cnb.cool/znb/images/node:18 # 使用Node.js 18版本的镜像（前端项目常用环境）
-        volumes: # 数据卷挂载
-          - /data/.cache:copy-on-write # 将宿主机的/data/.cache目录挂载到容器，采用"写时复制"模式（高效缓存依赖，加速构建）
-      stages:
-        - name: 🖨️ 打印环境
-          script: |
-            node -v && npm -v && yarn -v && pnpm -v
-        - name: 📦️ 安装依赖
-          script: |
-            pnpm install
-        - name: ⚗️ 编译项目
-          script: |
-            pnpm docs:build   # VitePress 专用命令
-        - name: 🚚 发布制品
-          image: tencentcom/rsync # 使用包含rsync工具的镜像（rsync用于高效文件同步）
-          imports: https://cnb.cool/W3C/Hyde/teek-hyde/-/blob/main/env.yaml # 导入外部环境变量配置文件，实际替换自己的
-          settings:
-            user: ${SSH_USER} # SSH用户名（从环境变量获取，避免硬编码敏感信息）
-            key: ${SSH_KEY} # SSH私钥（用于免密登录目标服务器，从环境变量获取）
-            port: 22 # SSH端口（默认22）
-            hosts:
-              - 111.229.208.160 # 目标服务器IP（要部署到的服务器地址，实际替换自己的服务器IP）
-            source: docs/.vitepress/dist/ # 待同步的本地文件目录（阶段3构建出的静态文件）
-            target: /root/rsync/teek.seasir.top/dist/ # 目标服务器上的存放路径
-            delete: true # 同步时删除目标路径中不存在的文件（确保目标与本地完全一致，避免冗余文件）
-
-# master分支配置（云原生构建流程和自动部署）
-master:
   push:
     - imports: https://cnb.cool/W3C/Hyde/APIToken/-/blob/main/APIToken.yml
       stages:
