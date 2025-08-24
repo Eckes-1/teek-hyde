@@ -12,6 +12,7 @@ import { FooterGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组�
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { Plugins } from "./plugins";
 import { Build } from "./build";
+// import { createRewrites } from "vitepress-theme-teek/config";
 
 const description = [
   "欢迎来到 vitepress-theme-teek 使用文档",
@@ -28,11 +29,11 @@ const teekConfig = defineTeekConfig({
   backTop: {
     enabled: true, // 是否启动回到顶部功能
     content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
-    done: TkMessage => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
+    done: (TkMessage) => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
   },
   toComment: {
     enabled: true, // 是否启动滚动到评论区功能
-    done: TkMessage => TkMessage.success("已抵达评论区✨"), // 滚动到评论区后的回调
+    done: (TkMessage) => TkMessage.success("已抵达评论区✨"), // 滚动到评论区后的回调
   },
   // 新版代码块配置
   codeBlock: {
@@ -98,11 +99,16 @@ const teekConfig = defineTeekConfig({
     position: "center", // 公告弹框出现位置
   },
   vitePlugins: {
+    // permalink: true,// 路径重写
+    // sidebar: true, // 侧边栏
     sidebarOption: {
       initItems: false, //这条命令注释后，才会让文档和目录的样式保持一致
       collapsed: true, //打开侧边栏自动收缩功能
       // ignoreList: ["nav"], //忽略的文件夹和文件
       ignoreWarn: true, // 忽略警告
+      // ignoreList: [/^_.*$/], 
+      // resolveRule: "rewrites",
+      // checkRewritesPrefix: true,
     },
     autoFrontmatter: true, // 自动生成 frontmatter
     permalinkOption: {
@@ -290,7 +296,6 @@ const teekConfig = defineTeekConfig({
   loading: "拼命加载中...", // 修改 Loading 文案
   sidebarTrigger: true, // 是否启用侧边栏展开/折叠触发器，点击触发器可以展开/折叠侧边栏
   windowTransition: true, // 视图渐入过渡效果
-
 });
 
 // https://vitepress.dev/reference/site-config
@@ -344,7 +349,9 @@ export default defineConfig({
       pattern: "https://gitee.com/SeasirHyde/teek-hyde/edit/main/docs/:path",
     },
   },
-
+  // rewrites: createRewrites({
+  //   srcDir: 'docs',
+  // }),
   vite: {
     plugins: Plugins(), // vite 插件
     server: {
@@ -356,7 +363,7 @@ export default defineConfig({
     build: Build(),
   },
   //解决404 title方法
-    transformHtml: (code, id, context) => {
+  transformHtml: (code, id, context) => {
     if (context.page !== "404.md") return code;
     return code.replace("404 | ", "");
   },

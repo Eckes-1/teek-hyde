@@ -1,7 +1,32 @@
+# .cnb.yml
+$:
+  # vscode 事件：专供页面中启动远程开发用
+  vscode:
+    - runner:
+        # 自定义CPU核心数,最大支持64核
+        cpus: 64
+      docker:
+        # 自定义开发环境
+        build:
+          # 指定构建镜像的 Dockerfile 文件
+          dockerfile: .ide/Dockerfile
+      services:
+        # 声明使用 vscode 服务
+        - vscode
+        # 声明在容器中支持 docker 命令
+        - docker
+      stages:
+        - name: 环境启动时执行以下命令
+          script:
+            # 安装pnpm并使用pnpm安装依赖
+            - npm install -g pnpm
+            - pnpm i
+
+# main分支配置
 main:
   push:
     - runner:
-        cpus: 64 #自定义CPU核心数
+        cpus: 64 # 自定义CPU核心数
       services:
         - docker ## 启用Docker服务（用于构建镜像或容器化操作）
         - git-clone-yyds # 自定义的Git克隆服务（确保代码能正确拉取到运行环境）
@@ -28,6 +53,18 @@ main:
             port: 22 # SSH端口（默认22）
             hosts:
               - 111.229.208.160 # 目标服务器IP（要部署到的服务器地址，实际替换自己的服务器IP）
-            source: docs/.vitepress/dist/ # 待同步的本地文件目录（阶段3构建出的静态文件
+            source: docs/.vitepress/dist/ # 待同步的本地文件目录（阶段3构建出的静态文件）
             target: /root/rsync/teek.seasir.top/dist/ # 目标服务器上的存放路径
             delete: true # 同步时删除目标路径中不存在的文件（确保目标与本地完全一致，避免冗余文件）
+
+# master分支配置（云原生构建流程和自动部署）
+master:
+  push:
+    - imports: https://cnb.cool/W3C/Hyde/APIToken/-/blob/main/APIToken.yml
+      stages:
+        - name: 构建当前项目
+          image: node:22
+          script: npm install -g pnpm && pnpm i && pnpm run docs:build
+        - name: 部署到Pages
+          image: node:22
+          script: npx edgeone pages deploy ./docs/.vitepress/dist --name vitepress-theme-teek --token $EDGEONE_PAGES_API_TOKEN

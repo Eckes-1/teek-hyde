@@ -23,6 +23,7 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref, computed } from "vue";
+import { TkMessage } from "vitepress-theme-teek";
 
 // 是否显示返回顶部
 const showBackTop = ref(false);
@@ -57,6 +58,11 @@ const scrollToTop = () => {
       // 到达顶部后重置状态
       setTimeout(() => {
         isLaunching.value = false;
+        // 显示提示消息
+        TkMessage({
+          message: "已达到顶部🎉.",
+          type: "success",
+        });
       }, 300);
       window.removeEventListener('scroll', checkScrollEnd);
     }
