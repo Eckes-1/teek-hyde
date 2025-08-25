@@ -34,6 +34,10 @@ import ContextMenu from "./ContextMenu/ContextMenu.vue";
 import BackTop from "./BackTop.vue"; 
 // @ts-ignore  导入公告卡片组件
 import NoticeCard from "./NoticeCard.vue"; 
+// @ts-ignore 导入微信公众号卡片组件
+import WechatCard from "./WechatCard.vue"; 
+// @ts-ignore时钟组件
+import Clock from "./Clock.vue"; 
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -98,6 +102,10 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <CatBackToTop />
     </template>
 
+    <template #nav-bar-content-after>
+      <Clock/>
+    </template>
+    
     <!-- 回到顶部组件插槽 -->
     <template #teek-back-top>
       <BackTop/>
@@ -130,6 +138,8 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     <!-- 自定义公告卡片 -->
     <template #teek-home-card-my-after>
       <NoticeCard />
+      <!-- 微信公众号卡片 -->
+       <WechatCard/>
     </template>
     
     <template #teek-home-banner-feature-after>

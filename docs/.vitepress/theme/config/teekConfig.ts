@@ -55,7 +55,6 @@ const teekBlogCommonConfig: TeekConfig = {
     enabled: true, // 是否启用壁纸模式
     hideBanner: false, // 开启壁纸模式后，全屏是否显示打字机文案，
     hideMask: true, // 开启壁纸模式后，是否隐藏 Banner 或 bodyBgImage 的遮罩层，则确保 banner.mask 和 bodyBgImage.mask 为 true 才生效
-    hideWaves: false, // 开启壁纸模式后，是否隐藏 Banner 波浪组件，仅 banner.bgStyle = 'fullImg' 生效
   },
 
   friendLink: FriendLink, // 友链配置
@@ -151,7 +150,7 @@ export const teekBlogCardConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   // pageStyle: "segment", //主题面板需要选择第四个选项，否则彩带是透明;230630去除该配置会影响网站导航移动端容器样式
   page: {
-    pageSize: 15, // 每页显示的文章数量,这里先暂时设置为15，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
+    pageSize: 21, // 每页显示的文章数量,这里先暂时设置为21，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
   },
   post: {
     postStyle: "card", //文章模板风格，list 为列表风格，card 为卡片风格
