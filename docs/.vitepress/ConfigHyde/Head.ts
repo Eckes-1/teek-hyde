@@ -57,6 +57,7 @@ export const HeadData = [
     "meta",
     { name: "msvalidate.01", content: "48CABE70F538B8D117567176ABF325AF" },
   ], // Bing 收录验证
+  ["meta", { name: "algolia-site-verification", content: "6B185D954DD3AC7E" }], // Algolia 站点验证
   ["link", { rel: "icon", href: "/favicon.ico", type: "image/png" }],
   // 阿里在线矢量库
   [

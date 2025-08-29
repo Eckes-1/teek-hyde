@@ -49,6 +49,7 @@ const teekConfig = defineTeekConfig({
     showMore: true, // 是否显示更多按钮
   },
   author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
+  //文章信息分析配置，分别作用在首页和文章页
   articleAnalyze: {
     imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭}
     showIcon: true, // 作者、日期、分类、标签、字数、阅读时长、浏览量等文章信息的图标是否显示
@@ -65,6 +66,13 @@ const teekConfig = defineTeekConfig({
       position: "after",
       className: "h1-bottom-info",
     },
+  },
+  //面包屑配置
+  breadcrumb: {
+    enabled: true, // 是否启用面包屑
+    showCurrentName: true, // 面包屑最后一列是否显示当前文章的文件名
+    separator: "/", // 面包屑分隔符
+    homeLabel: "首页", // 鼠标悬停首页图标的提示文案
   },
   // 超过半年的文章自动提示文章内容可能已过时
   articleTopTip: (frontmatter) => {
@@ -106,7 +114,7 @@ const teekConfig = defineTeekConfig({
       collapsed: true, //打开侧边栏自动收缩功能
       // ignoreList: ["nav"], //忽略的文件夹和文件
       ignoreWarn: true, // 忽略警告
-      // ignoreList: [/^_.*$/], 
+      // ignoreList: [/^_.*$/],
       // resolveRule: "rewrites",
       // checkRewritesPrefix: true,
     },
@@ -182,7 +190,14 @@ const teekConfig = defineTeekConfig({
   //     content: `<img src='/appreciation/WeChatPay.jpg'><img src='/appreciation/Alipay.jpg'>`, // 赞赏内容，支持 HTML
   //   },
   // },
-  articleShare: { enabled: true }, // 文章分享
+  // 文章分享
+  articleShare: {
+    enabled: true, // 是否开启文章链接分享功能
+    text: "分享此页面", // 分享按钮文本
+    copiedText: "链接已复制", // 复制成功文本
+    query: true, // 是否包含查询参数
+    hash: true, // 是否包含哈希值
+  },
   footerGroup: FooterGroup, // 页脚信息组配置
   // 精选文章卡片
   topArticle: {
@@ -280,14 +295,25 @@ const teekConfig = defineTeekConfig({
     // encrypt: (value, frontmatter) => value,
     // decrypt: (value, frontmatter) => value,
   },
-  // 在每个文章页顶部显示 VitePress 容器添加提示，使用场景如超过半年的文章自动提示文章内容可能已过时。
-  articleBottomTip: () => {
+  // 在每个文章页顶部显示 VitePress 容器添加提示，使用场景如添加文章版权声明。
+  articleBottomTip: frontmatter => {
+    if (typeof window === "undefined") return;
+
+    const hash = false;
+    const query = false;
+    const { origin, pathname, search } = window.location;
+    const url = `${origin}${frontmatter.permalink ?? pathname}${query ? search : ""}${hash ? location.hash : ""}`;
+    const author = "Hyde";
+
     return {
       type: "tip",
-      title: "声明",
-      text: `<p>作者：Hyde</p>
-             <p>版权：此文章版权归 Hyde 所有，如有转载，请注明出处!</p>
-             <p style="margin-bottom: 0">链接：可点击右上角分享此页面复制文章链接</p>
+      // title: "声明", // 可选
+      text: `<p>作者：${author}</p>
+             <p style="margin-bottom: 0">链接：<a href="${url}" target="_blank">${url}</a></p>
+             <p>版权：本博客所有文章除特别声明外，均采用
+             <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">BY-NC-SA 4.0</a>许可协议。
+             转载请注明来自<a href="https://teek.seasir.top/" target="_blank">Hyde Blog！</a>
+             </p>
             `,
     };
   },
@@ -305,12 +331,11 @@ export default defineConfig({
   title: "Hyde Blog",
   description: description,
   cleanUrls: true,
-  lastUpdated: true, // 显示最后更新时间
+  lastUpdated: true, // 显示上次更新时间
   lang: "zh-CN",
   head: HeadData as HeadConfig[],
   markdown: {
-    // 开启行号
-    lineNumbers: true,
+    lineNumbers: true, // 开启行号
     image: {
       // 默认禁用；设置为 true 可为所有图片启用懒加载。
       lazyLoading: true,
@@ -331,6 +356,13 @@ export default defineConfig({
     sidebarMenuLabel: "菜单",
     returnToTopLabel: "返回顶部",
     lastUpdatedText: "上次更新时间",
+    lastUpdated: {
+      text: "最后更新于",
+      formatOptions: {
+        dateStyle: "full",
+        timeStyle: "medium",
+      },
+    },
     outline: {
       level: [2, 4],
       label: "本页导航",
@@ -342,7 +374,55 @@ export default defineConfig({
     nav: Nav, // 导航栏配置
     socialLinks: SocialLinks, // 社交链接配置
     search: {
-      provider: "local",
+      provider: "algolia",
+      options: {
+        appId: "2JNHX3I8RB",
+        apiKey: "84a579c812901faa463103fb5ab52c4c",
+        indexName: "hyde_blog",
+        locales: {
+          root: {
+            placeholder: "搜索文档",
+            translations: {
+              button: {
+                buttonText: "搜索文档",
+                buttonAriaLabel: "搜索文档",
+              },
+              modal: {
+                searchBox: {
+                  resetButtonTitle: "清除查询条件",
+                  resetButtonAriaLabel: "清除查询条件",
+                  cancelButtonText: "取消",
+                  cancelButtonAriaLabel: "取消",
+                },
+                startScreen: {
+                  recentSearchesTitle: "搜索历史",
+                  noRecentSearchesText: "没有搜索历史",
+                  saveRecentSearchButtonTitle: "保存至搜索历史",
+                  removeRecentSearchButtonTitle: "从搜索历史中移除",
+                  favoriteSearchesTitle: "收藏",
+                  removeFavoriteSearchButtonTitle: "从收藏中移除",
+                },
+                errorScreen: {
+                  titleText: "无法获取结果",
+                  helpText: "你可能需要检查你的网络连接",
+                },
+                footer: {
+                  selectText: "选择",
+                  navigateText: "切换",
+                  closeText: "关闭",
+                  searchByText: "搜索提供者",
+                },
+                noResultsScreen: {
+                  noResultsText: "无法找到相关结果",
+                  suggestedQueryText: "你可以尝试查询",
+                  reportMissingResultsText: "你认为该查询应该有结果？",
+                  reportMissingResultsLinkText: "点击反馈",
+                },
+              },
+            },
+          },
+        },
+      },
     },
     editLink: {
       text: "在 GitHub 上编辑此页",

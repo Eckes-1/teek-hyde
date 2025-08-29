@@ -7,6 +7,7 @@ import { useData } from "vitepress";
 import MNavLinks from "./components/MNav/MNavLinks.vue"; // 引入导航组件
 import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
+import WLink from './components/WLink/index.vue' // 友链页
 
 // Teek 在线主题包引用（需安装 Teek 在线版本）
 import "vitepress-theme-teek/index.css"; // 引入主题样式
@@ -44,6 +45,7 @@ export default {
       { name: "MNavLinks", component: MNavLinks }, // 注册导航组件
       { name: "confetti", component: confetti }, // 注册五彩纸屑组件
       { name: "NavIcon", component: NavIcon }, // 注册导航栏图标
+      { name: "WLink", component: WLink }, // 注册友链组件
     ];
 
     globalComponents.forEach(({ name, component }) => {
