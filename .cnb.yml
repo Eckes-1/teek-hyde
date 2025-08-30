@@ -26,11 +26,66 @@ $:
 # 云原生构建流程和自动部署
 main:
   push:
-    - imports: https://cnb.cool/W3C/Hyde/APIToken/-/blob/main/APIToken.yml
+    - runner:
+        cpus: 16
+      services:
+        - docker
+        - git-clone-yyds
+    - imports: https://cnb.cool/W3C/Hyde/secret/-/blob/main/env.yml
+      docker:
+        image: docker.cnb.cool/znb/images/node:18
+        volumes:
+          - /data/.cache:copy-on-write #声明式的构建缓存
       stages:
         - name: 构建当前项目
-          image: node:22
-          script: npm install -g pnpm && pnpm i && pnpm run docs:build
-        - name: 部署到Pages
+          script: echo -n $(date "+%Y-%m-%d %H:%M")
+          exports:
+            info: CUSTOM_ENV_DATE_INFO
+        - name: 🖨️ 打印环境
+          if: |
+            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          script: |
+            node -v && npm -v && yarn -v && pnpm -v
+        - name: 💡 安装依赖 
+          if: |
+            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          script: |
+            pnpm install
+        - name: 📦️ 编译项目
+          if: |
+            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          script: |
+            pnpm docs:build   # VitePress 专用命令    
+        - name: 🚚 部署到Pages
+          if: |
+            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           image: node:22
           script: npx edgeone pages deploy ./docs/.vitepress/dist --name teek-hyde --token $EDGEONE_PAGES_API_TOKEN
+
+
+        #同步仓库到gitee                  
+        - name: sync to gitee
+          image: tencentcom/git-sync
+          settings:
+            branch: master
+            auth_type: https
+            username: ${GIT_USERNAME}
+            password: ${GIT_ACCESS_TOKEN}
+            target_url: https://gitee.com/SeasirHyde/teek-hyde.git
+            # git_email: 'github-actions[bot]@users.noreply.github.com'
+
+        - name: 🔔 发布通知
+          image: tencentcom/wecom-message
+          settings:
+            robot: ${WECOM_BOT}
+            msgType: markdown
+            content: |
+              > **🎉 Hyde Blog 又一次发布成功啦！**   
+              > **构建时间:** $CUSTOM_ENV_DATE_INFO          
+              > **构建id:** $CNB_BUILD_ID  
+              > **提交id:** $CNB_COMMIT_SHORT            
+              > **构建分支:** $CNB_BRANCH
+              > **提交信息:** $CNB_COMMIT_MESSAGE_TITLE
+              > **提交者:** $CNB_COMMITTER
+              > **仓库地址:** [$CNB_REPO_URL_HTTPS]($CNB_REPO_URL_HTTPS)
+              > **我的网站:** [teek.seasir.top](https://teek.seasir.top/)

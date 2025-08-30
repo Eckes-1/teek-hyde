@@ -70,7 +70,7 @@ const teekConfig = defineTeekConfig({
   //面包屑配置
   breadcrumb: {
     enabled: true, // 是否启用面包屑
-    showCurrentName: true, // 面包屑最后一列是否显示当前文章的文件名
+    showCurrentName: false, // 面包屑最后一列是否显示当前文章的文件名
     separator: "/", // 面包屑分隔符
     homeLabel: "首页", // 鼠标悬停首页图标的提示文案
   },
@@ -308,11 +308,11 @@ const teekConfig = defineTeekConfig({
     return {
       type: "tip",
       // title: "声明", // 可选
-      text: `<p>作者：${author}</p>
-             <p style="margin-bottom: 0">链接：<a href="${url}" target="_blank">${url}</a></p>
-             <p>版权：本博客所有文章除特别声明外，均采用
+      text: `<p>文章作者：<a href="https://teek.seasir.top/" target="_blank"> ${author} </a></p>
+             <p>文章链接：<a href="${url}" target="_blank">${url}</a></p>
+             <p>版权版权：本博客所有文章除特别声明外，均采用
              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">BY-NC-SA 4.0</a>许可协议。
-             转载请注明来自<a href="https://teek.seasir.top/" target="_blank">Hyde Blog！</a>
+             转载请注明来自<a href="https://teek.seasir.top/" target="_blank"> ${author} </a>
              </p>
             `,
     };
