@@ -77,8 +77,8 @@ main:
         - name: 🔔 发布通知
           image: tencentcom/dingtalk-bot-msg:latest
           settings:
-            robot: ${WEBHOOK}  # 填写钉钉机器人的Webhook地址变量
-            secret: ${SECRET}  # 添加钉钉机器人的签名密钥
+            secret: $SECRET  # 添加钉钉机器人的签名密钥
+            webhook: $WEBHOOK  # 填写钉钉机器人的Webhook地址变量
             msgType: markdown
             content: |
               > **🎉 Hyde Blog 又一次发布成功啦！**   
