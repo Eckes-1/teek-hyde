@@ -75,7 +75,7 @@ main:
             # git_email: 'github-actions[bot]@users.noreply.github.com'
 
         - name: 🔔 发布通知
-          image: dingtalk/robot
+          image: tencentcom/dingtalk-bot-msg:latest
           settings:
             robot: ${WEBHOOK}  # 填写钉钉机器人的Webhook地址变量
             secret: ${SECRET}  # 添加钉钉机器人的签名密钥
