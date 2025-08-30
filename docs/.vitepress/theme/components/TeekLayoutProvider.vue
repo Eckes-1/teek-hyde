@@ -36,6 +36,8 @@ import BackTop from "./BackTop.vue";
 import NoticeCard from "./NoticeCard.vue"; 
 // @ts-ignore时钟组件
 import Clock from "./Clock.vue"; 
+// @ts-ignore版权声明组件
+import DocFooterCopyright from "./DocFooterCopyright.vue"; 
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -147,6 +149,10 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <WelcomeCard />
     </template>
 
+    <template #doc-footer-before>
+      <DocFooterCopyright />
+    </template>
+
   </Teek.Layout>
 </template>
 
@@ -155,5 +161,9 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
   .tk-my__avatar.circle-rotate {
     margin-top: 200px;
   }
+// 头像边框白色圈
+    .tk-avatar:not(.avatar-sticker) {
+      border: 5px solid var(--vp-c-bg-elv);
+    }
 }
 </style>

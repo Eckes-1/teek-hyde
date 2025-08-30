@@ -28,6 +28,14 @@ const teekBlogCommonConfig: TeekConfig = {
     name: "Hyde",
     slogan: "人心中的成见是一座大山~",
     circleBgImg: "/avatar/circleBgImg.webp", // 头像圆形背景图
+    color: "#ffffff", // 字体颜色
+    circleSize: 100, // 头像大小
+    // 状态，仅当 shape 为 circle 相关值时有效
+    status: {
+      icon: "😪", // 状态图标
+      size: 24, // 图标大小
+      title: "困", // 鼠标悬停图标的提示语
+    },
   },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块

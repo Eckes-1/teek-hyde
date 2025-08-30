@@ -296,27 +296,27 @@ const teekConfig = defineTeekConfig({
     // decrypt: (value, frontmatter) => value,
   },
   // 在每个文章页顶部显示 VitePress 容器添加提示，使用场景如添加文章版权声明。
-  articleBottomTip: frontmatter => {
-    if (typeof window === "undefined") return;
+  // articleBottomTip: frontmatter => {
+  //   if (typeof window === "undefined") return;
 
-    const hash = false;
-    const query = false;
-    const { origin, pathname, search } = window.location;
-    const url = `${origin}${frontmatter.permalink ?? pathname}${query ? search : ""}${hash ? location.hash : ""}`;
-    const author = "Hyde";
+  //   const hash = false;
+  //   const query = false;
+  //   const { origin, pathname, search } = window.location;
+  //   const url = `${origin}${frontmatter.permalink ?? pathname}${query ? search : ""}${hash ? location.hash : ""}`;
+  //   const author = "Hyde";
 
-    return {
-      type: "tip",
-      // title: "声明", // 可选
-      text: `<p>文章作者：<a href="https://teek.seasir.top/" target="_blank"> ${author} </a></p>
-             <p>文章链接：<a href="${url}" target="_blank">${url}</a></p>
-             <p>版权版权：本博客所有文章除特别声明外，均采用
-             <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">BY-NC-SA 4.0</a>许可协议。
-             转载请注明来自<a href="https://teek.seasir.top/" target="_blank"> ${author} </a>
-             </p>
-            `,
-    };
-  },
+  //   return {
+  //     type: "tip",
+  //     // title: "声明", // 可选
+  //     text: `<p>文章作者：<a href="https://teek.seasir.top/" target="_blank"> ${author} </a></p>
+  //            <p>文章链接：<a href="${url}" target="_blank">${url}</a></p>
+  //            <p>版权声明：本博客所有文章除特别声明外，均采用
+  //            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">BY-NC-SA 4.0</a>许可协议。
+  //            转载请注明来自<a href="https://teek.seasir.top/" target="_blank"> ${author} </a>
+  //            </p>
+  //           `,
+  //   };
+  // },
   //页面加载 Loading 动画配置
   // loading: true, // 启用 Loading 动画，为 false 则关闭 Loading 动画
   loading: "拼命加载中...", // 修改 Loading 文案
