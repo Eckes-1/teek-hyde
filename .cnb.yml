@@ -79,7 +79,10 @@ main:
           settings:
             secret: $SECRET  # 添加钉钉机器人的签名密钥
             webhook: $WEBHOOK  # 填写钉钉机器人的Webhook地址变量
-            msgType: markdown
+            at: "19902247966" # 多个用分号(;)分隔
+            isAtAll: true
+            debug: true # 新增: 是否启用调试模式
+            c_type: "markdown" # 支持: text, markdown, link, actionCard, multiActionCard, feedCard
             content: |
               > **🎉 Hyde Blog 又一次发布成功啦！**   
               > **构建时间:** $CUSTOM_ENV_DATE_INFO          
