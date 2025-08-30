@@ -41,11 +41,15 @@ main:
           script: echo -n $(date "+%Y-%m-%d %H:%M")
           exports:
             info: CUSTOM_ENV_DATE_INFO
+            info: CUSTOM_ENV_START_TIME
+        - name: 🏠 设置淘宝源
+          script: |
+            npm config set registry https://registry.npmmirror.com
         - name: 🖨️ 打印环境
           if: |
             [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           script: |
-            node -v && npm -v && yarn -v && pnpm -v
+            npm install -g pnpm && node -v && npm -v && yarn -v && pnpm -v
         - name: 💡 安装依赖 
           if: |
             [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
@@ -74,12 +78,14 @@ main:
             target_url: https://gitee.com/SeasirHyde/teek-hyde.git
             # git_email: 'github-actions[bot]@users.noreply.github.com'
 
-        - name: 🔔 发布通知
+
+        # 发布通知到钉钉
+        - name: 📢 发布通知到钉钉
           image: tencentcom/dingtalk-bot-msg:latest
           settings:
             secret: $SECRET  # 添加钉钉机器人的签名密钥
             webhook: $WEBHOOK  # 填写钉钉机器人的Webhook地址变量
-            at: "19902247966" # 多个用分号(;)分隔
+            at: "199********" # 多个用分号(;)分隔
             isAtAll: true
             debug: true # 新增: 是否启用调试模式
             c_type: "markdown" # 支持: text, markdown, link, actionCard, multiActionCard, feedCard
