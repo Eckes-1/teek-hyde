@@ -41,7 +41,6 @@ main:
           script: echo -n $(date "+%Y-%m-%d %H:%M")
           exports:
             info: CUSTOM_ENV_DATE_INFO
-            info: CUSTOM_ENV_START_TIME
         - name: 🏠 设置淘宝源
           script: |
             npm config set registry https://registry.npmmirror.com
