@@ -50,6 +50,10 @@ features:
   animation: rainbow 12s linear infinite;
 }
 
+.vp-doc #hero-text {
+  display: none !important;  /* 首页下面出现这个的 hero text */
+}
+
 @media (min-width: 640px) {
   :root {
     --vp-home-hero-image-filter: blur(56px);

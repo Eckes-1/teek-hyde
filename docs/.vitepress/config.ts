@@ -7,7 +7,7 @@ import { Nav } from "./ConfigHyde/Nav"; // 导入Nav模块
 import type { HeadConfig } from "vitepress"; // 在文件顶部添加类型导入
 import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型断言
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
-import { CommentData } from "./ConfigHyde/Comment"; //导入评论配置
+// import { CommentData } from "./ConfigHyde/Comment"; //导入评论配置
 import { FooterGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组配置
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { Plugins } from "./plugins";
@@ -15,9 +15,9 @@ import { Build } from "./build";
 // import { createRewrites } from "vitepress-theme-teek/config";
 
 const description = [
-  "欢迎来到 vitepress-theme-teek 使用文档",
-  "Teek 是一个基于 VitePress 构建的主题，是在默认主题的基础上进行拓展，支持 VitePress 的所有功能、配置",
-  "Teek 拥有三种典型的知识管理形态：结构化、碎片化、体系化，可以轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
+  "欢迎来到 Hyde Blog 🎉",
+  "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
+  "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
 ].toString();
 const CoverImgList = Wallpaper; // 获取壁纸列表
 
@@ -37,8 +37,11 @@ const teekConfig = defineTeekConfig({
   },
   // 新版代码块配置
   codeBlock: {
-    disabled: false, // 是否禁用新版代码块
+    enabled: true, // 是否禁用新版代码块
     collapseHeight: 700, // 超出高度后自动折叠，设置 true 则默认折叠，false 则默认不折叠
+    overlay: true, // 代码块底部是否显示展开/折叠遮罩层
+    overlayHeight: 400, // 当出现遮罩层时，指定代码块显示高度，当 overlay 为 true 时生效
+    langTextTransform: "uppercase", // 语言文本显示样式，为 text-transform 的值:none, capitalize, lowercase, uppercase
     copiedDone: (TkMessage) => TkMessage.success("代码已复制 🎉"),
   },
   page: {
@@ -90,10 +93,10 @@ const teekConfig = defineTeekConfig({
       return tip;
   },
   // 评论配置
-  comment: {
-    provider: "twikoo",
-    options: CommentData,
-  },
+  // comment: {
+  //   provider: "twikoo",
+  //   options: CommentData,
+  // },
   // 公告
   notice: {
     enabled: true, // 是否启用公告功能
@@ -319,7 +322,7 @@ const teekConfig = defineTeekConfig({
   // },
   //页面加载 Loading 动画配置
   // loading: true, // 启用 Loading 动画，为 false 则关闭 Loading 动画
-  loading: "拼命加载中...", // 修改 Loading 文案
+  // loading: "拼命加载中...", // 修改 Loading 文案
   sidebarTrigger: true, // 是否启用侧边栏展开/折叠触发器，点击触发器可以展开/折叠侧边栏
   windowTransition: true, // 视图渐入过渡效果
 });

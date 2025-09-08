@@ -149,6 +149,10 @@ export const Nav: DefaultTheme.NavItem[] = [
         text: getNav("站点状态", "/svg/NavIcon/status.svg"),
         link: "https://status.seasir.top/",
       },
+      {
+        text: getNav("VitePress", "https://vitepress.dev/vitepress-logo-large.svg"),
+        link: "/VitePress",
+      },
     ],
   },
 ];

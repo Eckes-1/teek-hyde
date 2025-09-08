@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      twikoo:
+        specifier: ^1.6.44
+        version: 1.6.44
       vite-plugin-compression:
         specifier: ^0.5.1
         version: 0.5.1(vite@7.0.4(@types/node@22.15.30)(sass@1.89.1)(terser@5.41.0))
@@ -2727,6 +2730,9 @@ packages:
 
   tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
+
+  twikoo@1.6.44:
+    resolution: {integrity: sha512-Y3YfGtMelWT+1XxZS8SmGXkHZ6/26ry1ZteKKBNTYV0oA+o5/2ELUMi4ta2zYD/V0wGZGv6EXJ6HJU8GTPVh4g==}
 
   type-fest@0.11.0:
     resolution: {integrity: sha512-OdjXJxnCN1AvyLSzeKIgXTXxV+99ZuXl3Hpo9XpJAv9MBcHrrJOQ5kV7ypXOuQie+AmWG25hLbiKdwYTifzcfQ==}
@@ -5597,6 +5603,8 @@ snapshots:
   tunnel-agent@0.6.0:
     dependencies:
       safe-buffer: 5.2.1
+
+  twikoo@1.6.44: {}
 
   type-fest@0.11.0: {}
 

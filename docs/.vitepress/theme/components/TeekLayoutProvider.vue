@@ -15,29 +15,31 @@ import NoticeContent from "./NoticeContent.vue"; //导入公告组件
 // @ts-ignore
 import BannerImgArrow from "./BannerImgArrow.vue"; //导入横幅图片箭头组件
 // @ts-ignore
-import NotFound from "./NotFound.vue";//导入404组件
+import NotFound from "./NotFound.vue"; //导入404组件
 // @ts-ignore
-import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
+import GlobalGreet from "./GlobalGreet.vue"; //导入全局问候组件
 // @ts-ignore
-import TitleChange from "./TitleChange.vue" //导入网页标题变化
+import TitleChange from "./TitleChange.vue"; //导入网页标题变化
 // @ts-ignore导入看板娘组件
-import OhMyLive2D from "./OhMyLive2D.vue"
+import OhMyLive2D from "./OhMyLive2D.vue";
 // @ts-ignore
-import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
+import ScrollProgressBar from "./ScrollProgressBar.vue"; //导入顶部滚动条组件
 // @ts-ignore
-import CatBackToTop from "./CatBackToTop.vue";  //导入返回顶部小猫组件
-// @ts-ignore
-import WelcomeCard from "./WelcomeCard.vue";  //导入欢迎卡片组件
+import CatBackToTop from "./CatBackToTop.vue"; //导入返回顶部小猫组件
 // @ts-ignore 右键菜单组件
 import ContextMenu from "./ContextMenu/ContextMenu.vue";
 // @ts-ignore 返回顶部组件
-import BackTop from "./BackTop.vue"; 
+import BackTop from "./BackTop.vue";
 // @ts-ignore  导入公告卡片组件
-import NoticeCard from "./NoticeCard.vue"; 
+import NoticeCard from "./NoticeCard.vue";
 // @ts-ignore时钟组件
-import Clock from "./Clock.vue"; 
+import Clock from "./Clock.vue";
 // @ts-ignore版权声明组件
-import DocFooterCopyright from "./DocFooterCopyright.vue"; 
+import DocFooterCopyright from "./DocFooterCopyright.vue";
+//@ts-ignore评论组件
+import Twikoo from "./Twikoo.vue";
+import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; //路由切换loading组件
+import WechatCard from "./WechatCard.vue";
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -51,11 +53,17 @@ provide(teekConfigContext, teekConfig);
 // provide(teekConfigContext, teekConfig);
 
 // 彩带背景
-const { start: startRibbon, stop: stopRibbon } = useRibbon({ immediate: false, clickReRender: true });
-// 页脚运行时间
-const { start: startRuntime, stop: stopRuntime } = useRuntime("2025-03-14 00:00:00", {
-  prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>本站已在地球上苟活了`,
+const { start: startRibbon, stop: stopRibbon } = useRibbon({
+  immediate: false,
+  clickReRender: true,
 });
+// 页脚运行时间
+const { start: startRuntime, stop: stopRuntime } = useRuntime(
+  "2025-03-14 00:00:00",
+  {
+    prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>本站已在地球上苟活了`,
+  }
+);
 
 const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   const isHome = layout === "home";
@@ -69,11 +77,19 @@ const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   // startRuntime();
 
   // 博客类风格的首页显示彩带 & 设置了 pageStyle 的文章页显示彩带
-  if ((isHome && isBlog && style !== "blog-body") || (isDoc && teekConfig.value.pageStyle)) startRibbon();
+  if (
+    (isHome && isBlog && style !== "blog-body") ||
+    (isDoc && teekConfig.value.pageStyle)
+  )
+    startRibbon();
   else stopRibbon();
 };
 
-watch(frontmatter, async newVal => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), { immediate: true });
+watch(
+  frontmatter,
+  async (newVal) => watchRuntimeAndRibbon(newVal.layout, currentStyle.value),
+  { immediate: true }
+);
 
 const handleConfigSwitch = (config: TeekConfig, style: string) => {
   teekConfig.value = config;
@@ -100,15 +116,17 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <TitleChange />
       <!-- 返回顶部小猫组件 -->
       <CatBackToTop />
+      <!-- 路由切换loading组件 -->
+      <RouteSwitchingLoading />
     </template>
 
     <template #nav-bar-content-after>
-      <Clock/>
+      <Clock />
     </template>
-    
+
     <!-- 回到顶部组件插槽 -->
     <template #teek-back-top>
-      <BackTop/>
+      <BackTop />
     </template>
 
     <!-- 布局切换组件 -->
@@ -139,20 +157,27 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     <template #teek-home-card-my-after>
       <NoticeCard />
     </template>
-    
+
+    <template #teek-home-card-doc-analysis-after>
+      <WechatCard />
+    </template>
+
     <template #teek-home-banner-feature-after>
       <!-- 横幅图片箭头组件 -->
       <BannerImgArrow />
     </template>
 
     <template #teek-home-banner-after>
-      <WelcomeCard />
     </template>
 
     <template #doc-footer-before>
       <DocFooterCopyright />
     </template>
 
+    <template #teek-doc-after-appreciation-before>
+      <!-- 评论组件 -->
+      <Twikoo />
+    </template>
   </Teek.Layout>
 </template>
 
@@ -161,9 +186,9 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
   .tk-my__avatar.circle-rotate {
     margin-top: 200px;
   }
-// 头像边框白色圈
-    .tk-avatar:not(.avatar-sticker) {
-      border: 5px solid var(--vp-c-bg-elv);
-    }
+  // 头像边框白色圈
+  .tk-avatar:not(.avatar-sticker) {
+    border: 5px solid var(--vp-c-bg-elv);
+  }
 }
 </style>

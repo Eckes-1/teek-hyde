@@ -1,7 +1,7 @@
 const description = [
-  "欢迎来到 vitepress-theme-teek 使用文档",
-  "Teek 是一个基于 VitePress 构建的主题，是在默认主题的基础上进行拓展，支持 VitePress 的所有功能、配置",
-  "Teek 拥有三种典型的知识管理形态：结构化、碎片化、体系化，可以轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
+  "欢迎来到 Hyde Blog 🎉",
+  "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
+  "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
 ].toString();
 
 // 导出head.ts
@@ -58,6 +58,8 @@ export const HeadData = [
     { name: "msvalidate.01", content: "48CABE70F538B8D117567176ABF325AF" },
   ], // Bing 收录验证
   ["meta", { name: "algolia-site-verification", content: "6B185D954DD3AC7E" }], // Algolia 站点验证
+  ['meta', { property: 'og:description', content: '心中的成见是一座大山' }],
+  ['meta', { property: 'og:image', content: 'https://teek.seasir.top/avatar/avatar.webp' }],
   ["link", { rel: "icon", href: "/favicon.ico", type: "image/png" }],
   // 阿里在线矢量库
   [
