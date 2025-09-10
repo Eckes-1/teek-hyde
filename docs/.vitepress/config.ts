@@ -7,7 +7,7 @@ import { Nav } from "./ConfigHyde/Nav"; // 导入Nav模块
 import type { HeadConfig } from "vitepress"; // 在文件顶部添加类型导入
 import { HeadData } from "./ConfigHyde/Head"; // 导入 HeadData 导入和类型断言
 import { SocialLinks } from "./ConfigHyde/SocialLinks"; //导入社交链接配置
-// import { CommentData } from "./ConfigHyde/Comment"; //导入评论配置
+import { CommentData } from "./ConfigHyde/Comment"; //导入评论配置
 import { FooterGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组配置
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { Plugins } from "./plugins";
@@ -93,10 +93,10 @@ const teekConfig = defineTeekConfig({
       return tip;
   },
   // 评论配置
-  // comment: {
-  //   provider: "twikoo",
-  //   options: CommentData,
-  // },
+  comment: {
+    provider: "twikoo",
+    options: CommentData,
+  },
   // 公告
   notice: {
     enabled: true, // 是否启用公告功能

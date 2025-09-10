@@ -36,8 +36,6 @@ import NoticeCard from "./NoticeCard.vue";
 import Clock from "./Clock.vue";
 // @ts-ignore版权声明组件
 import DocFooterCopyright from "./DocFooterCopyright.vue";
-//@ts-ignore评论组件
-import Twikoo from "./Twikoo.vue";
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; //路由切换loading组件
 import WechatCard from "./WechatCard.vue";
 
@@ -167,16 +165,11 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <BannerImgArrow />
     </template>
 
-    <template #teek-home-banner-after>
-    </template>
-
     <template #doc-footer-before>
       <DocFooterCopyright />
     </template>
 
     <template #teek-doc-after-appreciation-before>
-      <!-- 评论组件 -->
-      <Twikoo />
     </template>
   </Teek.Layout>
 </template>

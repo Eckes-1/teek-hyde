@@ -1,9 +1,9 @@
 // 评论配置
 export const CommentData = {
   // twikoo 配置，官网：https://twikoo.js.org/
-  // envId: "https://twikoo.seasir.top/",
+  envId: "https://twikoo.seasir.top/",
   // link: "https://cdn.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js", //teek主题内置
-  // version: "1.6.42",
+  version: "1.6.44",
 
   // waline 配置，官网：https://waline.js.org/
   // serverURL: "https://tk.waline.youngkbt.cn/",
