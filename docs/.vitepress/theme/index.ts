@@ -36,6 +36,8 @@ import "virtual:group-icons.css"; //代码组图标样式
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
 import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
 import "nprogress-v2/dist/index.css"; // 进度条样式
+// 引入复制事件（复制后弹窗提示）
+import { useCopyEvent } from "./composables/useCopyEvent.ts";
 
 export default {
   extends: Teek,
@@ -74,6 +76,11 @@ export default {
       if (frontmatter.value?.layoutClass) {
         props.class = frontmatter.value.layoutClass;
       }
+      
+      if (typeof window !== 'undefined') {
+      // 监听复制事件
+      useCopyEvent();
+    }
 
       return () => h(TeekLayoutProvider, props);
     },

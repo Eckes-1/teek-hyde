@@ -6,6 +6,7 @@ import { watch, nextTick, ref, provide, onMounted } from "vue";
 import { teekBlogCardConfig } from "../config/teekConfig";
 import { useRibbon } from "../composables/useRibbon";
 import { useRuntime } from "../composables/useRuntime";
+import { useCopyEvent } from "../composables/useCopyEvent";
 // @ts-ignore
 import ConfigSwitch from "./ConfigSwitch.vue";
 // @ts-ignore
@@ -94,6 +95,11 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 
   watchRuntimeAndRibbon(frontmatter.value.layout, style);
 };
+
+// 初始化复制事件监听
+onMounted(() => {
+  useCopyEvent();
+});
 </script>
 
 <template>
@@ -169,8 +175,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <DocFooterCopyright />
     </template>
 
-    <template #teek-doc-after-appreciation-before>
-    </template>
+    <template #teek-doc-after-appreciation-before> </template>
   </Teek.Layout>
 </template>
 

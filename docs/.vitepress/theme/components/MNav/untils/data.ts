@@ -16,6 +16,7 @@ import { Applet } from "./Data/Applet"; // 小程序
 import { Node } from "./Data/Node"; // Node 相关
 import { Visibility } from "./Data/Visibility"; // 可视化库
 import { BuildPackage } from "./Data/BuildPackage"; // 构建打包
+import { deploy } from "./Data/Deploy"; // 部署平台
 import { SiteBuilder } from "./Data/SiteBuilder"; // 站点生成器
 import { IconLibrary } from "./Data/IconLibrary"; // 图标库
 import { DevCommunity } from "./Data/DevCommunity"; // 开发者社区
@@ -98,6 +99,10 @@ export const NAV_DATA: NavData[] = [
   {
     title: "构建打包",
     items: BuildPackage.items,
+  },
+  {
+    title: "部署平台",
+    items: deploy.items,
   },
   {
     title: "站点生成器",

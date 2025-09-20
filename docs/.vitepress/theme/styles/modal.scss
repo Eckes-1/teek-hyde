@@ -1,0 +1,86 @@
+.wave-banner {
+    position: fixed;
+    top: -15%; /* 初始在视口上方，滑入时变为 top: 0 */
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: #cecece1f; /* 主横幅背景色 */
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    transition: top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wave-banner-visible {
+    top: 0; /* 滑入到视口顶部 */
+}
+
+.wave-content {
+    padding: 20px;
+    font-size: 1rem;
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: -2; /* 内容层级 > 进度条层级，确保内容在进度条上方 */
+}
+
+.wave-content h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--vp-c-brand-1);
+    font-weight: bold;
+}
+
+/* 进度条容器：控制进度条背景与位置 */
+.wave-progress {
+    height: 2px; /* 进度条整体高度，可根据需求调整 */
+    // background-color: #ffffff; /* 进度条背景色（浅灰色，匹配参考图） */
+    z-index: 1; /* 层级 < 内容，确保在内容下方 */
+}
+
+/* 进度条填充条：动画填充进度 */
+.wave-progress-bar {
+    height: 100%;
+    background-color: var(--vp-c-brand-1); /* 进度条填充色（可根据需求替换，如蓝色 #2196F3） */
+    animation: progress-fill 3s linear forwards; /* 3秒内完成填充，与横幅显示时长同步 */
+}
+
+/* 进度条填充动画 */
+@keyframes progress-fill {
+    0% { width: 0; }
+    100% { width: 100%; }   
+}
+
+/* 以下为原有 parallax 动画样式，保持不变 */
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .wave-content {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+}

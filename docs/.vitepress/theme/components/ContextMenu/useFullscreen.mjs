@@ -1,82 +1,126 @@
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from "vue";
+
+// 检查是否在客户端环境
+const isClient =
+  typeof window !== "undefined" && typeof document !== "undefined";
+
+// 定义 fullscreenApi 结构
+let fullscreenApi = null;
+
+if (isClient) {
+  fullscreenApi = {
+    request:
+      document.documentElement.requestFullscreen ||
+      document.documentElement.webkitRequestFullscreen ||
+      document.documentElement.mozRequestFullScreen ||
+      document.documentElement.msRequestFullscreen,
+
+    exit: (
+      document.exitFullscreen ||
+      document.documentElement.webkitExitFullscreen ||
+      document.documentElement.mozCancelFullScreen ||
+      document.documentElement.msExitFullscreen
+    )?.bind(document),
+
+    element: () =>
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement,
+
+    changeEvent: () => {
+      if (document.fullscreenElement !== undefined) return "fullscreenchange";
+      if (document.webkitFullscreenElement !== undefined)
+        return "webkitfullscreenchange";
+      if (document.mozFullScreenElement !== undefined)
+        return "mozfullscreenchange";
+      if (document.msFullscreenElement !== undefined)
+        return "MSFullscreenChange";
+      return "fullscreenchange";
+    },
+  };
+}
 
 export function useFullscreen() {
-    const isFullScreen = ref(false);
+  const isFullScreen = ref(false);
+  // 用组件内部变量存储事件引用（替代window挂载）
+  let eventRefs = {
+    changeEvent: null,
+    handleFullscreenChange: null,
+    handleKeydown: null,
+  };
 
-    const fullscreenApi = {
-        request: document.documentElement.requestFullscreen ||
-            document.documentElement.webkitRequestFullscreen ||
-            document.documentElement.mozRequestFullScreen ||
-            document.documentElement.msRequestFullscreen,
+  const checkFullscreen = () => {
+    if (!isClient || !fullscreenApi) return false;
+    return !!fullscreenApi.element();
+  };
 
-        exit: (document.exitFullscreen ||
-            document.webkitExitFullscreen ||
-            document.mozCancelFullScreen ||
-            document.msExitFullscreen)?.bind(document), // 关键：绑定 document 上下文,
+  const updateStatus = () => {
+    if (!isClient || !fullscreenApi) return;
+    isFullScreen.value = checkFullscreen();
+  };
 
-        element: () => document.fullscreenElement ||
-            document.webkitFullscreenElement ||
-            document.mozFullScreenElement ||
-            document.msFullscreenElement,
+  const toggle = () => {
+    if (!isClient || !fullscreenApi) return;
 
-        changeEvent: () => {
-            if (document.fullscreenElement !== undefined) return 'fullscreenchange';
-            if (document.webkitFullscreenElement !== undefined) return 'webkitfullscreenchange';
-            if (document.mozFullScreenElement !== undefined) return 'mozfullscreenchange';
-            if (document.msFullscreenElement !== undefined) return 'MSFullscreenChange';
-            return 'fullscreenchange';
-        }
-    };
+    if (checkFullscreen()) {
+      fullscreenApi.exit?.();
+    } else {
+      const element = document.documentElement;
+      fullscreenApi.request?.call(element);
+    }
+  };
 
-    const checkFullscreen = () => !!fullscreenApi.element();
-    const updateStatus = () => isFullScreen.value = checkFullscreen();
+  // 定义事件处理函数（用变量存储以便卸载）
+  const handleFullscreenChange = () => {
+    updateStatus();
+  };
 
-    const toggle = () => {
-        if (checkFullscreen()) {
-            fullscreenApi.exit?.();
-        } else {
-            const element = document.documentElement;
-            fullscreenApi.request?.call(element);
-        }
-    };
+  const handleKeydown = (e) => {
+    if (e.key === "F11" || e.keyCode === 122) {
+      requestAnimationFrame(updateStatus);
+    }
+  };
 
-    const handleFullscreenChange = () => {
-        updateStatus();
-    };
+  onMounted(() => {
+    updateStatus();
 
-    const handleKeydown = (e) => {
-        console.log("handleKeydown", e.key)
-        if (e.key === 'F11' || e.keyCode === 122) {
-            console.log("isFullScreen.value", isFullScreen.value)
-            requestAnimationFrame(updateStatus);
-            console.log("isFullScreen.value", isFullScreen.value)
-        }
-    };
+    if (isClient && fullscreenApi) {
+      const changeEvent = fullscreenApi.changeEvent();
+      // 存储事件引用到内部变量
+      eventRefs = {
+        changeEvent,
+        handleFullscreenChange,
+        handleKeydown,
+      };
+      // 绑定事件
+      document.addEventListener(changeEvent, handleFullscreenChange);
+      window.addEventListener("keydown", handleKeydown);
+    }
+  });
 
-    onMounted(() => {
-        updateStatus();
+  onUnmounted(() => {
+    if (isClient) {
+      // 从内部变量获取事件引用并卸载
+      const { changeEvent, handleFullscreenChange, handleKeydown } = eventRefs;
+      if (changeEvent && handleFullscreenChange) {
+        document.removeEventListener(changeEvent, handleFullscreenChange);
+      }
+      if (handleKeydown) {
+        window.removeEventListener("keydown", handleKeydown);
+      }
+      // 清空内部变量
+      eventRefs = {
+        changeEvent: null,
+        handleFullscreenChange: null,
+        handleKeydown: null,
+      };
+    }
+  });
 
-        const changeEvent = fullscreenApi.changeEvent();
-        document.addEventListener(changeEvent, handleFullscreenChange);
-        window.addEventListener('keydown', handleKeydown);
-
-        window._fullscreenEvent = { changeEvent, handleFullscreenChange, handleKeydown };
-    });
-
-    onUnmounted(() => {
-        const { changeEvent, handleFullscreenChange, handleKeydown } = window._fullscreenEvent || {};
-        if (changeEvent && handleFullscreenChange) {
-            document.removeEventListener(changeEvent, handleFullscreenChange);
-        }
-        if (handleKeydown) {
-            window.removeEventListener('keydown', handleKeydown);
-        }
-        delete window._fullscreenEvent;
-    });
-
-    return {
-        isFullScreen,
-        toggleFullscreen: toggle,
-        updateFullscreenStatus: updateStatus
-    };
+  return {
+    isFullScreen: isFullScreen,
+    toggleFullscreen: isClient ? toggle : () => {},
+    updateFullscreenStatus: isClient ? updateStatus : () => {},
+  };
 }
