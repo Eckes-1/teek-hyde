@@ -20,34 +20,66 @@
     font-size: 1rem;
     backdrop-filter: blur(5px);
     position: relative;
-    z-index: -2; /* 内容层级 > 进度条层级，确保内容在进度条上方 */
+    // z-index: -2; /* 内容层级 > 进度条层级，确保内容在进度条上方 */
 }
 
 .wave-content h1 {
+    display: inline-block;
+
     margin: 0;
-    font-size: 1.2rem;
-    color: var(--vp-c-brand-1);
+    font-size: 1.6rem;
     font-weight: bold;
+    white-space: nowrap;
+
+    /* ~颜色配置~ */
+    background: linear-gradient(
+        120deg,
+        rgba(255, 150, 150, 0.8),
+        rgba(150, 216, 255, 0.8),
+        rgba(152, 150, 255, 0.8),
+        rgba(255, 150, 150, 0.8)
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 控制颜色移动效果的时间。🥰2秒速度很快，3秒适中，5秒个人感觉很平衡 */
+    animation: waveText 5s linear infinite;
 }
 
 /* 进度条容器：控制进度条背景与位置 */
 .wave-progress {
+    //  position: fixed;
+    // margin-top: -2px;
     height: 2px; /* 进度条整体高度，可根据需求调整 */
     // background-color: #ffffff; /* 进度条背景色（浅灰色，匹配参考图） */
-    z-index: 1; /* 层级 < 内容，确保在内容下方 */
+    // z-index: 1; /* 层级 < 内容，确保在内容下方 */
 }
 
 /* 进度条填充条：动画填充进度 */
 .wave-progress-bar {
     height: 100%;
-    background-color: var(--vp-c-brand-1); /* 进度条填充色（可根据需求替换，如蓝色 #2196F3） */
+    // background-color: var(--vp-c-brand-1); /* 进度条填充色（可根据需求替换，如蓝色 #2196F3） */
+    background-image: linear-gradient(
+        107deg,
+        rgb(255, 182, 133) -30.6%,
+        rgb(255, 111, 29) -1.11%,
+        rgb(252, 181, 232) 39.14%,
+        rgb(135, 148, 255) 73.35%,
+        rgb(60, 112, 255) 97.07%,
+        rgb(60, 112, 255) 118.97%
+    );
     animation: progress-fill 3s linear forwards; /* 3秒内完成填充，与横幅显示时长同步 */
 }
 
 /* 进度条填充动画 */
 @keyframes progress-fill {
-    0% { width: 0; }
-    100% { width: 100%; }   
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
 }
 
 /* 以下为原有 parallax 动画样式，保持不变 */
@@ -72,9 +104,23 @@
     animation-duration: 20s;
 }
 
+/* 从左到右的移动动画~ */
+@keyframes waveText {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
 @keyframes move-forever {
-    0% { transform: translate3d(-90px, 0, 0); }
-    100% { transform: translate3d(85px, 0, 0); }
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
 }
 
 /* 响应式调整 */

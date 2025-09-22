@@ -64,6 +64,7 @@ const handleImageError = () => {
   height: 100%;
   text-decoration: none;
   color: inherit;
+  gap: 16px;
 }
 
 .link-avatar {
@@ -72,7 +73,8 @@ const handleImageError = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  transform-origin: center center;
+  transition: transform 0.5s ease, flex-basis 0.5s ease, width 0.5s ease, opacity 0.5s ease;
 }
 
 .link-avatar img {
@@ -104,8 +106,19 @@ const handleImageError = () => {
 
 .link-item-card:hover .link-avatar img,
 .link-item-card:hover .avatar-placeholder {
-  /* transform: scale(1.2); */
-  transform: translateX(-50%) scale(0);
+  transform: scale(0);
+}
+
+/* 当鼠标悬停时整体以中心点缩小头像容器并收起布局，使右侧内容左移 */
+.link-item-card:hover .link-avatar {
+  transform: scale(0);
+  flex: 0 0 0;
+  width: 0;
+  min-width: 0;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: transform 0.3s ease, flex-basis 0.3s ease, width 0.3s ease, opacity 0.25s ease;
 }
 
 .link-content {

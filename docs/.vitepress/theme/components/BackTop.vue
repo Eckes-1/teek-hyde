@@ -112,10 +112,10 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
   z-index: 999;
   position: fixed;
   bottom: 40px;
-  right: 20px;
+  right: 30px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   display: flex;
@@ -137,7 +137,7 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
   /* 低宽度下和下方按钮对齐 */
   .vitepress-backTop-main {
     bottom: 70px;
-    right: 10px;
+    right: 16px;
   }
 }
 

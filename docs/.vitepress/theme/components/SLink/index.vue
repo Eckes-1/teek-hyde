@@ -177,8 +177,7 @@ const shouldShow = computed(() => frontmatter.value.comments !== false);
   break-inside: avoid;
 }
 
-/* 当外层 .links-grid__item 悬停时，使子组件内的 .link-content 发生偏移（使用 ::v-deep 穿透 scoped） */
-.links-grid__item:hover ::v-deep .link-content {
+.link-content:hover{
   margin-left: calc(-5 * 16px);
 }
 
