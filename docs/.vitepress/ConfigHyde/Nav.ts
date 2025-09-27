@@ -143,7 +143,7 @@ export const Nav: DefaultTheme.NavItem[] = [
       },
       {
         text: getNav("站点统计", "/svg/NavIcon/siteAnalytics.svg"),
-        link: "https://umami.seasir.top/share/rvVBNZWa0sUCN6wG/teek.seasir.top",
+        link: "https://umami.seasir.top/share/9Pa3wB79cHKsoAyT/teek.seasir.top",
       },
       {
         text: getNav("站点状态", "/svg/NavIcon/status.svg"),

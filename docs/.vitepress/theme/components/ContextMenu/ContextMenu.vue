@@ -86,11 +86,11 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { useData, useRouter, withBase } from "vitepress"; // 引入 VitePress 路由
 import { menuData } from "./MenuData";
-import { useFullscreen } from "./useFullscreen.mjs";
+import { useFullscreen } from "./useFullscreen.js";
 import SvgRender from "./SvgRender.vue";
 import { Arrow, Copy, FullScreen, NonFullScreen, Refresh } from "./SvgList";
 import { TkMessage } from "vitepress-theme-teek";
-import { showWaveBanner } from "../../composables/useCopyEvent";
+import { useCopyEvent, triggerCopyEvent } from "../../composables/useCopyEvent";
 
 const { frontmatter } = useData();
 // 自定义处理全屏事件hook
@@ -262,7 +262,7 @@ const copy = async () => {
     await navigator.clipboard.writeText(selectedText);
 
     // 显示顶部复制提示横幅
-    showWaveBanner();
+    triggerCopyEvent();
 
     // 复制成功提示（保留原有的消息提示）
     TkMessage.success({

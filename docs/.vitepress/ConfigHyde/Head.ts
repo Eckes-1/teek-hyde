@@ -83,7 +83,7 @@ export const HeadData = [
     "script",
     {
       src: "https://umami.seasir.top/script.js",
-      "data-website-id": "aa519ead-42bb-4f0c-96b5-0ccf630f82be",
+      "data-website-id": "4508c10d-79fd-4b94-bc06-590a4dc6d598",
       defer: "defer",
     },
   ],

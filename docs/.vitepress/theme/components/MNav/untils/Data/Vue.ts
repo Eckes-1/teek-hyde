@@ -78,5 +78,11 @@ export const Vue = {
       desc: "何必是网站，秒变桌面应用和手机应用",
       link: "https://ppofficial.pages.dev/",
     },
+    {
+      icon: "https://uiverse.io/favicon-32x32.png",
+      title: "uiverse",
+      desc: "最大的开源 UI 库",
+      link: "https://uiverse.io/",
+    },
   ],
 };

@@ -126,5 +126,11 @@ export const Other = {
       desc: "一款集文件索引、在线预览与分享于一体的多功能私有存储程序，支持WebDAV和离线下载。",
       link: "https://www.zdir.pro/zh/",
     },
+    {
+      icon: "https://resume.whitemeta.cn/favicon.svg",
+      title: "Resumaker",
+      desc: "Resumaker - 简历编辑器",
+      link: "https://resume.whitemeta.cn/",
+    },
   ],
 };

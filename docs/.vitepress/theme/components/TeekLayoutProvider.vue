@@ -181,9 +181,12 @@ onMounted(() => {
 
 <style lang="scss">
 .tk-my.is-circle-bg {
+  margin-bottom: 20px;
+
   .tk-my__avatar.circle-rotate {
     margin-top: 200px;
   }
+
   // 头像边框白色圈
   .tk-avatar:not(.avatar-sticker) {
     border: 5px solid var(--vp-c-bg-elv);

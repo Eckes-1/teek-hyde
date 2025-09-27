@@ -1,34 +1,70 @@
-// 导出 showWaveBanner 函数供其他组件使用
+// 搭配modal.scss使用，这是横幅提示地基文件
 export function useCopyEvent(): void {
-  document.addEventListener("copy", showWaveBanner);
+  document.addEventListener("copy", () => {
+    const selection = window.getSelection();
+    if (!selection || selection.toString().trim() === "") {
+      showEmptyCopyBanner();
+    } else {
+      showSlideBanner();
+    }
+  });
 }
 
-export function showWaveBanner(): void {
-  // 避免重复创建弹窗
-  if (document.querySelector(".wave-banner")) return;
+export function triggerCopyEvent(): void {
+  showSlideBanner();
+}
 
+function showSlideBanner(): void {
   const banner = document.createElement("div");
-  banner.className = "wave-banner"; // 初始无visible类
+  banner.className = "slide-banner";
   banner.innerHTML = `
-    <div class="wave-content">
-      <h1>复制成功，复制和转载请标注本文地址！</h1>
-    </div>
-    <div class="wave-progress">
-      <div class="wave-progress-bar"></div>
-    </div>
-  `;
+      <div class="slide-content">
+        <!-- 这里是复制后，提示的文本内容-->
+        <h1>✨️你拷贝了哦！被我发现呢，一定要标注本文来源哦！</h1>
+      </div>
+      <div class="slide-block"></div>
+    `;
 
   document.body.appendChild(banner);
 
-  // 延迟添加visible类以触发滑入动画
+  // 出现动画~
   setTimeout(() => {
-    banner.classList.add("wave-banner-visible");
+    banner.classList.add("show");
   }, 10);
 
-  // 3秒后滑出并移除
   setTimeout(() => {
-    banner.classList.remove("wave-banner-visible");
-    // 等待滑出动画结束后移除元素
-    setTimeout(() => banner.remove(), 500);
-  }, 3000);
+    const slideBlock = banner.querySelector(".slide-block") as HTMLElement;
+    slideBlock.style.width = "100%";
+  }, 10);
+
+  setTimeout(() => {
+    banner.classList.add("hide");
+  }, 3000); // 调整横幅存在时间，这里是毫秒单位哦~
+}
+
+function showEmptyCopyBanner(): void {
+  const banner = document.createElement("div");
+  banner.className = "slide-banner";
+  banner.innerHTML = `
+      <div class="slide-content">
+        <h1>您没有选中任何复制内容哦~</h1>
+      </div>
+      <div class="slide-block"></div>
+    `;
+
+  document.body.appendChild(banner);
+
+  // 出现动画~
+  setTimeout(() => {
+    banner.classList.add("show");
+  }, 10);
+
+  setTimeout(() => {
+    const slideBlock = banner.querySelector(".slide-block") as HTMLElement;
+    slideBlock.style.width = "100%";
+  }, 10);
+
+  setTimeout(() => {
+    banner.classList.add("hide");
+  }, 3000); // 空复制提示显示时间稍短
 }
