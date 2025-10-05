@@ -23,20 +23,20 @@ const teekBlogCommonConfig: TeekConfig = {
 
   blogger: {
     // 博主信息，显示在首页侧边栏
-    name: "Hyde",
-    slogan: "人心中的成见是一座大山~",
-    avatar: "/avatar/avatar.webp",
-    shape: "circle", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
-    circleBgImg: "/avatar/circleBgImg.webp", // 头像圆形背景图
-    circleBgMask: true, // 遮罩层是否显示，仅当 shape 为 circle 且 circleBgImg 配置时有效
-    circleSize: 100, // 头像大小
-    color: "#ffffff", // 字体颜色
+    avatar: "/avatar/avatar.webp",  //侧边栏个人头像
+    shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
+    name: "Hyde", // 侧边栏个人昵称
+    slogan: "人心中的成见是一座大山~", // 侧边栏个人座右铭
+    circleBgImg: "/avatar/circleBgImg.webp", // 侧边栏个人头像圆形背景图
+    circleBgMask: false, // 头像圆形背景图是否显示遮罩层
+    color: "#fff",
+
     // 状态，仅当 shape 为 circle 相关值时有效
     status: {
-      icon: "😪", // 状态图标
+      icon: "😜", // 状态图标
       size: 24, // 图标大小
-      title: "困", // 鼠标悬停图标的提示语
-    },
+      title: "有趣", // 鼠标悬停图标的提示语
+    },    
   },
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块

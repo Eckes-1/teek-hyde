@@ -1,29 +1,30 @@
 // 卡片栏社交信息
-import { Social } from "vitepress-theme-teek/config";
+import { gitee, email, WhatsApp, telegram } from "../theme/icon/icons";
+import type { Social } from "vitepress-theme-teek/config";
 
 export const SocialDate: Social[] = [
   {
-    icon: "icon-github",
-    iconType: "iconfont",
-    name: "GitHub",
-    link: "https://github.com/Seasir-Hyde",
-  },
-  {
-    icon: "icon-gitee2",
-    iconType: "iconfont",
     name: "Gitee",
-    link: "https://gitee.com/SeasirHyde/vitepress-theme-teeker-hyde",
+    icon: gitee,
+    iconType: "component", // 指定为组件类型
+    link: "https://gitee.com/SeasirHyde/teek-hyde",
   },
   {
-    icon: "icon-qq",
-    iconType: "iconfont",
-    name: "QQ",
-    link: "http://wpa.qq.com/msgrd?v=3&uin=2429016980&site=qq&menu=yes",
+    name: "邮件",
+    icon: email,
+    iconType: "component",
+    link: "mailto:seasir666@gmail.com",
   },
   {
-    icon: "icon-mobile",
-    iconType: "iconfont",
-    name: "联系我",
-    link: "https://teek.seasir.top",
+    name: "WhatsApp",
+    icon: WhatsApp,
+    iconType: "component", // 指定为组件类型
+    link: "https://api.whatsapp.com/send/?phone=13527063419&text=Hello",
+  },
+  {
+    name: "telegram",
+    icon: telegram,
+    iconType: "component", // 指定为组件类型
+    link: "https://t.me/seasir_Bot",
   },
 ];

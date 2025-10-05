@@ -4,7 +4,7 @@
 
   --vp-c-brand-1: var(--vp-c-indigo-2);
 
-  --vp-c-indigo-2: #539dfd; //预设hover
+  --vp-c-indigo-2: #395ae3; //预设hover
   --vp-c-indigo-3: #ffbfbc; //预设
   // --vp-c-green-2: #299764; //绿色hover
   // // --vp-c-green-3: #30a46c; //绿色
@@ -130,4 +130,9 @@ label {
 /* 页脚微章图片 */
 .tk-footer-info p img {
   margin-left: 10px;
+}
+
+// 隐藏博图全图配置翻页下面的横线
+.tk-body-bg-image ~ .tk-layout.Layout .VPContent.is-home .vp-doc > div {
+    background-color: #ffffff00;
 }

@@ -12,20 +12,89 @@ import { FooterGroup } from "./ConfigHyde/footerGroup"; //导入页脚信息组�
 import { Wallpaper } from "./ConfigHyde/Wallaper"; // 导入Wallaper模块
 import { Plugins } from "./plugins";
 import { Build } from "./build";
-// import { createRewrites } from "vitepress-theme-teek/config";
+
+import { createRewrites } from "vitepress-theme-teek/config";
 
 const description = [
   "欢迎来到 Hyde Blog 🎉",
   "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
   "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
 ].toString();
-const CoverImgList = Wallpaper; // 获取壁纸列表
+
+const CoverImgList = Wallpaper; // 获取封面列表
 
 const teekConfig = defineTeekConfig({
-  // teekHome: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
-  // teekTheme: true, // 是否使用tk主题，teekHome 和 teekTheme 默认都是 true，可以注释
-  // vpHome: true, // 是否使用vp主题，是否启用 VitePress 首页风格，支持 teekHome 和 vpHome 同时存在。
+  // // 首页顶部按 F11 开启壁纸模式
+  // 首页顶部按 F11 开启壁纸模式
+  wallpaper: {
+    enabled: true, // 是否启用壁纸模式
+    hideBanner: true, // 开启壁纸模式后，全屏是否显示打字机文案，
+    hideMask: true, // 开启壁纸模式后，是否隐藏 Banner 或 bodyBgImage 的遮罩层，则确保 banner.mask 和 bodyBgImage.mask 为 true 才生效
+  },
 
+  loading: false, // 启用 Loading 动画，为 false 则关闭 Loading 动画
+  // loading: "正在加载中...", // 修改 Loading 文案
+
+
+  themeEnhance: {
+    themeColor: {
+      defaultColorName: "ep-blue",   //默认主题色为蓝色
+    },
+  },
+  
+  windowTransition: true,
+  
+  sidebarTrigger: true,
+  // 分类卡片
+  category: {
+    enabled: true, // 是否启用分类卡片
+    limit: 8, // 一页显示的数量
+    autoPage: false, // 是否自动翻页
+    pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
+  },  
+  // 标签卡片
+  tag: {
+    enabled: true, // 是否启用标签卡片
+    limit: 21, // 一页显示的数量
+    autoPage: false, // 是否自动翻页
+    pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
+  },
+
+
+  // // 布蒜子统计分析
+  // docAnalysis: {
+  //   createTime: "2021-10-19",
+  //   statistics: {
+  //     // provider: "busuanzi",
+  //     provider: "vercount",
+  //     // provider: "busuanzi",
+  //     // url: "//bsz.eryajf.net/jsonp?callback=Busuanzicallback"
+  //   },
+  //   wordCount: true,
+  //   readingTime: true,
+  //   // overrideInfo: [
+  //   //   { key: "lastActiveTime", value: (_, currentValue) => `${currentValue}前` },
+  //   //   { key: "totalPosts", label: "文章总数目" },
+  //   // ],
+  //   appendInfo: [{ key: "index", label: "序号", value: "One" }],
+  // },
+
+
+// 布蒜子统计分析
+  docAnalysis: {
+    createTime: "2025-02-26",
+    statistics: {
+      provider: "busuanzi",
+      url: "https://bszi.eryajf.net/jsonp?callback=BusuanziCallback",
+      tryRequest: true,
+      tryCount: 5,
+      tryIterationTime: 2000,
+    },
+    wordCount: true,
+    readingTime: true,
+  },
+  
+  // //右下角回到顶部配置。
   backTop: {
     enabled: true, // 是否启动回到顶部功能
     content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
@@ -47,9 +116,20 @@ const teekConfig = defineTeekConfig({
   page: {
     pageSize: 16, // 每页显示的文章数量
   },
+  //文章列表配置
   post: {
-    coverImgMode: "full", // 封面图模式，default 为默认，full 为全图
+    excerptPosition: "top", // 文章摘要位置
     showMore: true, // 是否显示更多按钮
+    moreLabel: "阅读全文 >", // 更多按钮文字
+    emptyLabel: "暂无文章", // 文章列表为空时的标签
+    coverImgMode: "full", // 封面图模式，default 为默认，full 为全图
+    showCapture: false, // 是否在摘要位置显示文章部分文字，当为 true 且不使用 frontmatter.describe 和 <!-- more --> 时，会自动截取前 300 个字符作为摘要
+    splitSeparator: false, // 文章信息（作者、创建时间、分类、标签等信息）是否添加 | 分隔符
+    transition: true, // 是否开启过渡动画
+    transitionName: "tk-slide-fade", // 自定义过渡动画名称
+    // listStyleTitleTagPosition: "right", // 列表模式下的标题标签位置（postStyle 为 list）
+    cardStyleTitleTagPosition: "left", // 卡片模式下的标题标签位置（postStyle 为 card）
+    defaultCoverImg: [], // 默认封面图地址，如果不设置封面图则使用默认封面图地址
   },
   author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
   //文章信息分析配置，分别作用在首页和文章页
@@ -95,7 +175,7 @@ const teekConfig = defineTeekConfig({
   // 评论配置
   comment: {
     provider: "twikoo",
-    options: CommentData,
+    options: CommentData, //需要把CommentData里面的envID解除注释就不会报错了，解除注释走teek内置的1.6.42样式评论区长表情bug
   },
   // 公告
   notice: {
@@ -109,23 +189,26 @@ const teekConfig = defineTeekConfig({
     twinkle: true, // 公告图标是否打开闪烁提示
     position: "center", // 公告弹框出现位置
   },
+  
   vitePlugins: {
-    // permalink: true,// 路径重写
-    // sidebar: true, // 侧边栏
+    permalink: true,
+    sidebar: true,
     sidebarOption: {
       initItems: false, //这条命令注释后，才会让文档和目录的样式保持一致
       collapsed: true, //打开侧边栏自动收缩功能
       // ignoreList: ["nav"], //忽略的文件夹和文件
       ignoreWarn: true, // 忽略警告
-      // ignoreList: [/^_.*$/],
-      // resolveRule: "rewrites",
-      // checkRewritesPrefix: true,
-    },
-    autoFrontmatter: true, // 自动生成 frontmatter
-    permalinkOption: {
-      // ignoreList: ["nav"], // 支持正则表达式
+      ignoreList: [/^_.*$/],
+      resolveRule: "rewrites",
+      checkRewritesPrefix: true,
     },
 
+    autoFrontmatter: true, // 自动生成 frontmatter
+    // permalinkOption: {
+    //   notFoundDelayLoad: 1000, // 1秒后加载
+    // },
+
+    // 自动格式formatter插件 添加文章封面图
     autoFrontmatterOption: {
       exclude: { title: true, date: true }, // 排除自动生成字段
       transform: (frontmatter) => {
@@ -149,6 +232,9 @@ const teekConfig = defineTeekConfig({
     config: (md) => {
       md.use(timeline); //时间线插件
       md.use(groupIconMdPlugin); // 代码组图标插件
+    },    
+    demo: {
+      githubUrl: "https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/docs",
     },
   },
   // 站点分析
@@ -320,20 +406,33 @@ const teekConfig = defineTeekConfig({
   //           `,
   //   };
   // },
+
+  // 单文章页banner功能
+  articleBanner: {
+    enabled: true, // 是否启用单文章页 Banner
+    showCategory: true, // 是否展示分类
+    showTag: true, // 是否展示标签
+    defaultCoverImg: "", // 默认封面图
+    defaultCoverBgColor: "", // 默认封面背景色，优先级低于 defaultCoverImg
+  },
+
   //页面加载 Loading 动画配置
   // loading: true, // 启用 Loading 动画，为 false 则关闭 Loading 动画
   // loading: "拼命加载中...", // 修改 Loading 文案
-  sidebarTrigger: true, // 是否启用侧边栏展开/折叠触发器，点击触发器可以展开/折叠侧边栏
-  windowTransition: true, // 视图渐入过渡效果
 });
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  extends: teekConfig,
+  rewrites: createRewrites({
+    srcDir: "docs",
+  }),
   base: "/",
-  title: "Hyde Blog",
+  extends: teekConfig,
+  title: "Hyde Blog", //左上角网站名称
   description: description,
-  cleanUrls: true,
+
+  cleanUrls: true, //设置为true就是让链接后不默认添加.html
+
   lastUpdated: true, // 显示上次更新时间
   lang: "zh-CN",
   head: HeadData as HeadConfig[],
@@ -352,9 +451,22 @@ export default defineConfig({
       detailsLabel: "详细信息",
     },
   },
+  sitemap: {
+    hostname: "https://onedayxyy.cn",
+    // transformItems: items => {
+    //   const permalinkItemBak: typeof items = [];
+    //   // 使用永久链接生成 sitemap
+    //   const permalinks = (globalThis as any).VITEPRESS_CONFIG.site.themeConfig.permalinks;
+    //   items.forEach(item => {
+    //     const permalink = permalinks?.map[item.url];
+    //     if (permalink) permalinkItemBak.push({ url: permalink, lastmod: item.lastmod });
+    //   });
+    //   return [...items, ...permalinkItemBak];
+    // },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "/favicon.ico",
+    logo: "/avatar/avatar.webp",
     darkModeSwitchLabel: "主题",
     sidebarMenuLabel: "菜单",
     returnToTopLabel: "返回顶部",
@@ -427,23 +539,24 @@ export default defineConfig({
         },
       },
     },
+
     editLink: {
       text: "在 GitHub 上编辑此页",
       pattern: "https://gitee.com/SeasirHyde/teek-hyde/edit/main/docs/:path",
     },
   },
-  // rewrites: createRewrites({
-  //   srcDir: 'docs',
-  // }),
+
   vite: {
-    plugins: Plugins(), // vite 插件
     server: {
       host: "0.0.0.0", // 推荐使用，自动适配电脑IP
       // port: 5173, // 端口号
       strictPort: false, // 若端口已被占用则会直接退出
       // open: true, // 运行后自动打开网页
     },
-    build: Build(),
+    // 构建
+    build: Build() as any,
+    // 插件
+    plugins: Plugins(), // vite 插件
   },
   //解决404 title方法
   transformHtml: (code, id, context) => {

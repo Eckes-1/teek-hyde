@@ -1,13 +1,12 @@
 ---
-date: 2024-11-13 20:05:45
-title: XiaoZhangBlog
-permalink: /XiaoZhang/Blog
 categories:
-  - 笔记专栏
-  - 博客搭建
+- 笔记专栏
+- 博客搭建
 coverImg: /home/bg6.webp
+date: 2024-11-13 20:05:45
+permalink: /Note/Blog
+title: XiaoZhangBlog
 ---
-
 # 博客部署教程-宝塔面版详细版
 
 :::tip

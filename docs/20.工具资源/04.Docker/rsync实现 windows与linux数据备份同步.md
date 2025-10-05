@@ -1,13 +1,12 @@
 ---
-date: 2024-11-14 00:54:49
-title: rsync实现 windows与linux数据备份同步
-permalink: /rsync
 categories:
-  - Docker
-  - rsync
+- Docker
+- rsync
 coverImg: /home/bg5.webp
+date: 2024-11-14 00:54:49
+permalink: /Tool/Docker/rsync
+title: rsync实现 windows与linux数据备份同步
 ---
-
 有些人可能对图床这个没什么概念，所谓图床，英文叫法应该叫：ImageHost，也就是储存图片的中枢，可以理解为：用户存储图片后，系统提供该图片的直接链接，用来通过网络访问显示该图片。
 
 ## 前言

@@ -100,10 +100,7 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
       }
     }
 
-    function draw(
-      start: { x: number; y: number },
-      end: { x: number; y: number }
-    ) {
+    function draw(start: { x: number; y: number }, end: { x: number; y: number }) {
       if (!ctx) return fn;
       ctx.beginPath();
       ctx.moveTo(start.x, start.y);
@@ -140,7 +137,7 @@ export const useRibbon = (options: UseRibbonOptions = {}) => {
 
     if (clickReRender) {
       dom.addEventListener("click", handleClick);
-      dom.addEventListener("touchstart", handleClick, { passive: true });
+      dom.addEventListener("touchstart", handleClick);
     }
 
     // 返回清理函数

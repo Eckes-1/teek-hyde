@@ -1,13 +1,12 @@
 ---
-date: 2025-08-23 00:38:12
-title: Docker 数据备份
-permalink: /docker/backups
 categories:
-  - 工具资源
-  - Docker
+- 工具资源
+- Docker
 coverImg: /home/bg22.webp
+date: 2025-08-23 00:38:12
+permalink: /Tool/Docker/backups
+title: Docker 数据备份
 ---
-
 ## 背景
 
 服务器到期前需备份 Docker 数据，分别备份容器文件系统与数据卷，或把容器保存成镜像备份

@@ -43,12 +43,18 @@
       <div class="message-card">
         <p>欢迎在评论区留言，格式如下：</p>
         <!-- 示例格式 -->
-        <pre>
+        <div class="example-container">
+          <pre ref="exampleRef">
 网站名称: Hyde Blog
 网站链接: https://teek.seasir.top/
 网站头像: https://teek.seasir.top/avatar/avatar.webp
 网站描述: 人心中的成见是一座大山~</pre
-        >
+          >
+          <button class="copy-button" @click="copyExample">
+            <span class="copy-icon"></span>
+            复制示例
+          </button>
+        </div>
         <!-- 评论区插槽 -->
         <!-- 默认为Twikoo评论组件，可通过插槽自定义其他评论系统 -->
         <slot name="comments">
@@ -56,15 +62,23 @@
         </slot>
       </div>
     </div>
+
+    <!-- 滚动到评论区按钮 -->
+    <ScrollToComment
+      v-if="shouldShow"
+      :show="showScrollButton"
+      :scroll-to-comment="scrollToComment"
+    />
   </div>
 </template>
 
 <script setup>
 import { useData } from "vitepress";
 import LinkItem from "./LinkItem.vue";
-// 导入Twikoo评论组件
 import Twikoo from "../Twikoo.vue";
-import { computed } from "vue";
+import ScrollToComment from "../ScrollToComment.vue";
+import { computed, ref, onMounted, onUnmounted } from "vue";
+import { TkMessage } from "vitepress-theme-teek";
 
 /**
  * 单个友链的数据结构定义
@@ -95,6 +109,110 @@ const title = computed(() => frontmatter.value.title || "我的友链");
 
 // 当frontmatter中comments为false时隐藏，默认显示
 const shouldShow = computed(() => frontmatter.value.comments !== false);
+
+// 示例文本引用
+const exampleRef = ref(null);
+
+// 复制示例文本函数
+const copyExample = async () => {
+  if (exampleRef.value) {
+    const exampleText = exampleRef.value.textContent;
+    try {
+      await navigator.clipboard.writeText(exampleText);
+      TkMessage({
+        message: "示例格式已复制",
+        type: "success",
+      });
+    } catch (err) {
+      // 降级方案：使用 document.execCommand
+      const textArea = document.createElement("textarea");
+      textArea.value = exampleText;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        TkMessage({
+          message: "示例格式已复制",
+          type: "success",
+        });
+      } catch (fallbackErr) {
+        TkMessage({
+          message: "复制失败，请手动复制示例文本",
+          type: "error",
+        });
+      } finally {
+        document.body.removeChild(textArea);
+      }
+    }
+  }
+};
+
+// 控制按钮显示状态
+const showScrollButton = ref(true);
+
+// 滚动到评论区的函数
+const scrollToComment = () => {
+  const commentElement = document.querySelector(
+    "#twikoo, .my-message-section, .message-card"
+  );
+  if (commentElement) {
+    commentElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // 显示成功消息提示
+    TkMessage({
+      message: "已跳转到留链区，欢迎留下您的友链信息✨",
+      type: "success",
+    });
+  } else {
+    // 如果没有找到评论区域，显示提示
+    TkMessage({
+      message: "未找到留链区",
+      type: "warning",
+    });
+  }
+};
+
+// 检查是否滚动到评论区
+const checkScrollPosition = () => {
+  const commentElement = document.querySelector(
+    ".my-message-section, .message-card"
+  );
+  if (commentElement) {
+    const rect = commentElement.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // 如果评论区域的顶部进入视窗，则隐藏按钮
+    showScrollButton.value = rect.top > windowHeight * 0.3;
+  }
+};
+
+// 节流函数，避免频繁触发
+let throttleTimer = null;
+const throttledCheckScroll = () => {
+  if (throttleTimer) return;
+  throttleTimer = setTimeout(() => {
+    checkScrollPosition();
+    throttleTimer = null;
+  }, 100);
+};
+
+// 组件挂载时添加滚动监听
+onMounted(() => {
+  window.addEventListener("scroll", throttledCheckScroll);
+  // 初始检查
+  setTimeout(checkScrollPosition, 100);
+});
+
+// 组件卸载时移除监听
+onUnmounted(() => {
+  window.removeEventListener("scroll", throttledCheckScroll);
+  if (throttleTimer) {
+    clearTimeout(throttleTimer);
+  }
+});
 </script>
 
 <style scoped>
@@ -111,14 +229,23 @@ const shouldShow = computed(() => frontmatter.value.comments !== false);
 .my-links-title {
   margin-bottom: 50px;
   padding: 0 10px;
+  /* 居中 */
+  text-align: center;
 }
 
 /* 主标题样式 */
 .my-links-title h1 {
   font-size: 2rem;
   font-weight: 600;
-  /* background: -webkit-linear-gradient(10deg, #bd34fe 5%, #e43498 15%); */
-  background: -webkit-linear-gradient(10deg, #000000 5%, #000000 15%);
+  background: -webkit-linear-gradient(
+    107deg,
+    rgb(255, 182, 133) -30.6%,
+    rgb(255, 111, 29) -1.11%,
+    rgb(252, 181, 232) 39.14%,
+    rgb(135, 148, 255) 73.35%,
+    rgb(60, 112, 255) 97.07%,
+    rgb(60, 112, 255) 118.97%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -177,7 +304,7 @@ const shouldShow = computed(() => frontmatter.value.comments !== false);
   break-inside: avoid;
 }
 
-.link-content:hover{
+.link-content:hover {
   margin-left: calc(-5 * 16px);
 }
 
@@ -223,6 +350,12 @@ const shouldShow = computed(() => frontmatter.value.comments !== false);
   }
 }
 
+/* 示例容器样式 */
+.example-container {
+  position: relative;
+  margin: 20px 0;
+}
+
 /* 示例格式代码块样式 */
 .message-card pre {
   background: var(--vp-code-block-bg);
@@ -230,9 +363,37 @@ const shouldShow = computed(() => frontmatter.value.comments !== false);
   border-radius: 8px;
   font-size: 0.95rem;
   overflow-x: auto;
-  margin: 20px 0;
+  margin: 0;
   border: 1px solid var(--vp-c-divider);
   line-height: 1.5;
+}
+
+/* 复制按钮样式 */
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--vp-c-brand);
+  color: white;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background: var(--vp-c-indigo-3);
+  transform: translateY(-2px);
+}
+
+.copy-button:active {
+  transform: translateY(0);
+}
+
+.copy-icon {
+  font-size: 0.9rem;
 }
 
 /* 留言卡片悬停效果 */

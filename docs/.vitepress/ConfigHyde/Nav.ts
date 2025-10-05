@@ -32,6 +32,13 @@ export const Nav: DefaultTheme.NavItem[] = [
       },
       {
         text: getNav(
+          "VitePress",
+          "https://vitepress.dev/vitepress-logo-large.svg"
+        ),
+        link: "/VitePress",
+      },
+      {
+        text: getNav(
           "Vdoing主题",
           "https://vuepress.vuejs.org/images/hero.png"
         ),
@@ -47,11 +54,7 @@ export const Nav: DefaultTheme.NavItem[] = [
       {
         text: getNav("博客搭建", "/svg/NavIcon/Blog.svg"),
         link: "/Blog",
-      },
-      {
-        text: getNav("SSL证书", "/svg/NavIcon/allinssl.svg"),
-        link: "/SSL",
-      },
+      }
     ],
   },
   {
@@ -77,6 +80,10 @@ export const Nav: DefaultTheme.NavItem[] = [
         text: getNav("实用软件", "/svg/NavIcon/appstore.svg"),
         link: "/Appstore",
       },
+      {
+        text: getNav("SSL证书", "/svg/NavIcon/allinssl.svg"),
+        link: "/SSL",
+      },
     ],
   },
   {
@@ -96,9 +103,8 @@ export const Nav: DefaultTheme.NavItem[] = [
       },
     ],
   },
-  { text: "👂畅所欲言", link: "/message-area/" },
   {
-    text: "👏文章索引",
+    text: "🗂️文章索引",
     items: [
       {
         text: getNav("📃文章分类", null),
@@ -149,10 +155,7 @@ export const Nav: DefaultTheme.NavItem[] = [
         text: getNav("站点状态", "/svg/NavIcon/status.svg"),
         link: "https://status.seasir.top/",
       },
-      {
-        text: getNav("VitePress", "https://vitepress.dev/vitepress-logo-large.svg"),
-        link: "/VitePress",
-      },
+      { text: "👂畅所欲言", link: "/message-area/" },
     ],
   },
 ];

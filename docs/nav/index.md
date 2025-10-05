@@ -11,7 +11,7 @@ next: false #是否显示下一篇
 categories: #分类
   - 导航
   - nav
-permalink: /pages/5dc884 #永久链接
+permalink: /nav #永久链接
 article: false #是否显示文章
 outline:
   - 2

@@ -18,7 +18,6 @@ import "vitepress-theme-teek/theme-chalk/tk-aside.css"; // 文章目录样式
 import "vitepress-theme-teek/theme-chalk/tk-doc-h1-gradient.css"; // 文档以及标题样式
 import "vitepress-theme-teek/theme-chalk/tk-table.css"; // 表格样式
 import "vitepress-theme-teek/theme-chalk/tk-mark.css"; // 文章 mark 标签样式
-import "vitepress-theme-teek/theme-chalk/tk-blockquote.css"; //引用样式
 import "vitepress-theme-teek/theme-chalk/tk-index-rainbow.css"; // Vitepress 首页彩虹渐变样式
 // import "vitepress-theme-teek/theme-chalk/tk-doc-fade-in.css"; // 文档淡入效果样式
 import "vitepress-theme-teek/theme-chalk/tk-banner-desc-gradient.css"; // Banner 描述渐变样式
@@ -42,6 +41,7 @@ import { useCopyEvent } from "./composables/useCopyEvent.ts";
 export default {
   extends: Teek,
   async enhanceApp({ app, router }) {
+
     // 使用数组统一注册组件，减少重复代码
     const globalComponents = [
       { name: "MNavLinks", component: MNavLinks }, // 注册导航组件
@@ -64,6 +64,9 @@ export default {
           NProgress.done();
         }, 100);
       };
+
+      // 3. 修复：将 useCopyEvent 移到非SSR环境内（避免服务端渲染报错）
+      useCopyEvent();
     }
   },
   Layout: defineComponent({
@@ -76,12 +79,6 @@ export default {
       if (frontmatter.value?.layoutClass) {
         props.class = frontmatter.value.layoutClass;
       }
-      
-      if (typeof window !== 'undefined') {
-      // 监听复制事件
-      useCopyEvent();
-    }
-
       return () => h(TeekLayoutProvider, props);
     },
   }),

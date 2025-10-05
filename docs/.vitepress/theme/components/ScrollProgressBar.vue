@@ -3,38 +3,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const progressBar = ref(null);
 const progress = ref(0);
 
-let ticking = false;
-
 const handleScroll = () => {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            const { documentElement, body } = document;
-            // 批量读取
-            const measurements = {
-                scrollHeight: documentElement.scrollHeight,
-                clientHeight: documentElement.clientHeight,
-                scrollTop: documentElement.scrollTop || body.scrollTop,
-            };
-            const totalHeight = measurements.scrollHeight - measurements.clientHeight;
-            // 批量更新
-            progress.value = (measurements.scrollTop / totalHeight) * 100;
-            ticking = false;
-        });
-        ticking = true;
-    }
+    const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    progress.value = (scrollTop / totalHeight) * 100;
 };
 
 onMounted(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
-    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener('scroll', handleScroll);
 });
 </script>
 

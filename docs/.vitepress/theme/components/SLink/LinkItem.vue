@@ -22,6 +22,15 @@
           {{ data.descr }}
         </div>
       </div>
+
+      <!-- Badge 标签 - 右上角定位 -->
+      <span
+        v-if="data.badge && data.badge.trim()"
+        class="link-badge"
+        :class="getBadgeClass(data.badgeType)"
+      >
+        {{ data.badge }}
+      </span>
     </a>
   </div>
 </template>
@@ -40,10 +49,23 @@ const imageFailed = ref(false);
 const handleImageError = () => {
   imageFailed.value = true;
 };
+
+// Badge 类型映射
+const getBadgeClass = (badgeType) => {
+  const typeMap = {
+    tip: "badge-tip",
+    warning: "badge-warning",
+    danger: "badge-danger",
+    info: "badge-info",
+    success: "badge-success",
+  };
+  return typeMap[badgeType] || "badge-default";
+};
 </script>
 
 <style scoped>
 .link-item-card {
+  position: relative;
   height: 100px;
   border-radius: 12px;
   background: var(--vp-c-bg);
@@ -74,7 +96,8 @@ const handleImageError = () => {
   align-items: center;
   justify-content: center;
   transform-origin: center center;
-  transition: transform 0.5s ease, flex-basis 0.5s ease, width 0.5s ease, opacity 0.5s ease;
+  transition: transform 0.5s ease, flex-basis 0.5s ease, width 0.5s ease,
+    opacity 0.5s ease;
 }
 
 .link-avatar img {
@@ -101,7 +124,8 @@ const handleImageError = () => {
   font-weight: 600;
   color: #555;
   font-size: 1.2rem;
-  transition: transform 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  transition: transform 0.25s ease-out, border-color 0.25s ease-out,
+    box-shadow 0.25s ease-out;
 }
 
 .link-item-card:hover .link-avatar img,
@@ -118,15 +142,16 @@ const handleImageError = () => {
   padding: 0;
   opacity: 0;
   overflow: hidden;
-  transition: transform 0.3s ease, flex-basis 0.3s ease, width 0.3s ease, opacity 0.25s ease;
+  transition: transform 0.3s ease, flex-basis 0.3s ease, width 0.3s ease,
+    opacity 0.25s ease;
 }
 
 .link-content {
   flex: 1;
   padding: 0 16px 0 0px;
-  transition: margin-left 0.3s ease, transform 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+  transition: margin-left 0.3s ease, transform 0.25s ease-out,
+    border-color 0.25s ease-out, box-shadow 0.25s ease-out;
 }
-
 
 .link-name {
   font-size: 1rem;
@@ -150,5 +175,22 @@ const handleImageError = () => {
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.4;
+}
+
+/* Badge 样式 - 右上角定位 */
+.link-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.2px;
+  background-color: var(--vp-badge-tip-bg);
+  color: var(--vp-badge-tip-text);
+
 }
 </style>
