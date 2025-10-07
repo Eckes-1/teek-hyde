@@ -140,6 +140,10 @@ export const Nav: DefaultTheme.NavItem[] = [
         link: "/About",
       },
       {
+        text: getNav("个人主页", "/svg/NavIcon/homepage.svg"),
+        link: "/homepage",
+      },
+      {
         text: getNav("友链链接", "/svg/NavIcon/link.svg"),
         link: "/friend-link",
       },

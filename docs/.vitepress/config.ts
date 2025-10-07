@@ -549,7 +549,7 @@ export default defineConfig({
   vite: {
     server: {
       host: "0.0.0.0", // 推荐使用，自动适配电脑IP
-      // port: 5173, // 端口号
+      port: 5174, // 端口号
       strictPort: false, // 若端口已被占用则会直接退出
       // open: true, // 运行后自动打开网页
     },

@@ -7,16 +7,16 @@
     <SkillsSection :is-visible="skillsSectionVisible" :is-mobile="isMobile" />
 
     <!-- Projects Section -->
-    <ProjectsSection/>
+    <ProjectsSection />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useMobileDetection } from './useMobileDetection';
-import ProfileSection from './ProfileSection.vue';
-import SkillsSection from './SkillsSection.vue';
-import ProjectsSection from './ProjectsSection.vue';
+import { ref, onMounted } from "vue";
+import { useMobileDetection } from "./data/useMobileDetection";
+import ProfileSection from "./ProfileSection.vue";
+import SkillsSection from "./SkillsSection.vue";
+import ProjectsSection from "./ProjectsSection.vue";
 
 // 移动端检测
 const { isMobile } = useMobileDetection();
