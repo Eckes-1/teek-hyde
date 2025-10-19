@@ -12,17 +12,17 @@ import ContributeChart from "./ContributeChart.vue";
 import NotFound from "./404.vue";
 import BannerImgArrow from "./BannerImgArrow/BannerImgArrow.vue"; //导入横幅图片箭头组件
 import NoticeContent from "./NoticeContent.vue"; //导入公告组件
-import GlobalGreet from "./GlobalGreet.vue";  //导入全局问候组件
-import TitleChange from "./TitleChange.vue" //导入网页标题变化
-import ScrollProgressBar from "./ScrollProgressBar.vue" //导入顶部滚动条组件
+import GlobalGreet from "./GlobalGreet.vue"; //导入全局问候组件
+import TitleChange from "./TitleChange.vue"; //导入网页标题变化
+import ScrollProgressBar from "./ScrollProgressBar.vue"; //导入顶部滚动条组件
 import DocFooterCopyright from "./DocFooterCopyright.vue"; //导入文档页脚版权组件
 import BackTop from "./BackTop.vue"; //导入回到顶部组件
 import Clock from "./Clock.vue"; // 时钟组件
-import NoticeCard from "./NoticeCard.vue";
+import NoticeCard from "./NoticeCard.vue"; // 公告卡片
 import WechatCard from "./WechatCard.vue";
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; // 过渡动画组件
-import Twikoo from "./Twikoo.vue";
-import ScrollToComment from './ScrollToComment.vue';
+import Twikoo from "./Twikoo/Twikoo.vue";
+import ScrollToComment from "./ScrollToComment.vue";
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -31,19 +31,24 @@ const { frontmatter } = useData();
 // const currentStyle = ref("doc");
 // const teekConfig = ref(teekDocConfig);
 
-
 // 默认博客 卡片风
 const currentStyle = ref("blog-card");
 const teekConfig = ref(teekBlogCardConfig);
 provide(teekConfigContext, teekConfig);
 
 // 彩带背景
-const { start: startRibbon, stop: stopRibbon } = useRibbon({ immediate: false, clickReRender: true });
+const { start: startRibbon, stop: stopRibbon } = useRibbon({
+  immediate: false,
+  clickReRender: true,
+});
 
 // 页脚运行时间
-const { start: startRuntime, stop: stopRuntime } = useRuntime("2021-10-19 00:00:00", {
-  prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>小破站已运行 `,
-});
+const { start: startRuntime, stop: stopRuntime } = useRuntime(
+  "2021-10-19 00:00:00",
+  {
+    prefix: `<span style="width: 16px; display: inline-block; vertical-align: -3px; margin-right: 3px;">${clockIcon}</span>小破站已运行 `,
+  }
+);
 
 const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   const isHome = layout === "home";
@@ -62,7 +67,11 @@ const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   // else stopRibbon();
 };
 
-watch(frontmatter, async newVal => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), { immediate: true });
+watch(
+  frontmatter,
+  async (newVal) => watchRuntimeAndRibbon(newVal.layout, currentStyle.value),
+  { immediate: true }
+);
 
 const handleConfigSwitch = (config: TeekConfig, style: string) => {
   teekConfig.value = config;
@@ -70,8 +79,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
   watchRuntimeAndRibbon(frontmatter.value.layout, style);
 };
 </script>
-
-
 
 <template>
   <Teek.Layout>
@@ -86,7 +93,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <TitleChange />
       <!-- 返回顶部组件 -->
       <!--<BackToTop /> -->
-      
+
       <!-- 路由切换遮罩动画组件 -->
       <RouteSwitchingLoading />
     </template>
@@ -120,15 +127,14 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <BannerImgArrow />
     </template>
 
-    <!-- 自定义公告卡片 -->
+    <!-- 自定义卡片 -->
     <template #teek-home-card-my-after>
+      <WechatCard />
       <NoticeCard />
     </template>
 
     <!-- 自定义微信公众号卡片 -->
-    <template #teek-home-card-doc-analysis-after>
-      <WechatCard />
-    </template>
+    <template #teek-home-card-doc-analysis-after> </template>
 
     <!-- 回到顶部组件 -->
     <template #teek-home-bottom-after>
@@ -142,7 +148,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 
     <!-- 右上角时钟组件 -->
     <template #nav-bar-content-after>
-      <Clock/>
+      <Clock />
     </template>
 
     <!-- 文章末尾版权说明 -->
@@ -162,7 +168,6 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
         :scroll-to-comment="scrollToComment"
       />
     </template>
-        
   </Teek.Layout>
 </template>
 
@@ -173,10 +178,9 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
   .tk-my__avatar.circle-rotate {
     // margin-top: 90px;
 
-
     .tk-avatar:not(.avatar-sticker) {
       border: 5px solid var(--vp-c-bg-elv);
-    }    
+    }
   }
 }
 </style>

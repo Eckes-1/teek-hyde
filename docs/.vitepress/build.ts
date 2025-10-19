@@ -38,7 +38,6 @@ export function Build(): BuildOptions {
     rollupOptions: {
       plugins: [
         visualizer({
-          // filename: "../stats.html",
           open: false,
           gzipSize: true,
           brotliSize: true,

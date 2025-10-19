@@ -9,6 +9,9 @@
     transition: all 0.25s ease;
 }
 
+.VPSidebar .nav .VPSidebarItem.level-0 > .items {
+    padding-left: 0px;
+}
 /* 侧边栏项基本样式 */
 #VPSidebarNav .VPSidebarItem > .item {
     align-items: center;

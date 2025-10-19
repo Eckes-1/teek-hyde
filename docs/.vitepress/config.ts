@@ -210,6 +210,7 @@ const teekConfig = defineTeekConfig({
 
     // 自动格式formatter插件 添加文章封面图
     autoFrontmatterOption: {
+      permalinkType: "simple",
       exclude: { title: true, date: true }, // 排除自动生成字段
       transform: (frontmatter) => {
         // 如果文件本身存在了 coverImg，则不生成

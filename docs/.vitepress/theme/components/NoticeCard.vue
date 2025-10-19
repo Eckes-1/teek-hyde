@@ -3,23 +3,67 @@
     <div class="announcement-card">
       <!-- 公告内容 -->
       <div class="announcement-content">
-        <h3 class="announcement-title">
+        <span class="announcement-title">
           {{ noticeContent.subtitle }}
-        </h3>
+        </span>
 
-        <p class="announcement-text">
+        <span class="announcement-text">
           {{ noticeContent.content }}
-        </p>
+        </span>
+        <span class="announcement-text">
+          {{ noticeContent.error }}
+        </span>
+        <span class="announcement-text" v-html="noticeContent.email"> </span>
+      </div>
 
-        <!-- 底部操作区 -->
-        <div class="announcement-footer">
-          <a class="announcement-link" :href="noticeContent.operationButtonPath" :target="getTargetValue()">
-            <span>{{ noticeContent.operationButtonName }}</span>
-            <!-- <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-            </svg> -->
-          </a>
+      <!-- IP位置信息 -->
+      <div class="ip-section" v-if="ipData">
+        <div class="ip-header">
+          <span class="ip-location"
+            >欢迎来自<span class="red-text"> {{ getLocationText() }} </span
+            >的朋友💖</span
+          >
+        </div>
+        <div class="ip-info">
+          <div class="ip-details">
+            您的IP地址:
+            <span class="ip-address" :title="ipData.ip">{{ ipData.ip }}</span>
+          </div>
+          <div class="distance-info" v-if="distance">
+            当前位置距博主约<span class="distance-value">{{ distance }}</span
+            >公里
+          </div>
+          <div class="greeting-section" v-if="ipData">
+            <span class="greeting-text">{{ getGreetingText() }}</span>
+            <span class="greeting-tip">Tip：带我去你的城市逛逛吧！ 🍂</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 天气信息 -->
+      <div class="weather-section" v-if="weatherData">
+        <div class="weather-header">
+          <span class="weather-icon">🌤️</span>
+          <span class="weather-location"
+            >{{ weatherData.province }} {{ weatherData.city }}
+            {{ weatherData.district }}</span
+          >
+        </div>
+        <div class="weather-info">
+          <div class="weather-main">
+            <span class="weather-temp">{{ weatherData.temperature }}°C</span>
+            <span class="weather-desc">{{ weatherData.weather }}</span>
+          </div>
+          <div class="weather-details">
+            <span
+              >{{ weatherData.wind_direction }}
+              {{ weatherData.wind_power }}</span
+            >
+            <span>湿度 {{ weatherData.humidity }}%</span>
+          </div>
+        </div>
+        <div class="weather-update">
+          最后更新: {{ weatherData.update_time }}
         </div>
       </div>
     </div>
@@ -28,34 +72,185 @@
 
 <script setup lang="ts">
 import { TkPageCard } from "vitepress-theme-teek";
+import { ref, onMounted } from "vue";
+
+// IP数据类型
+interface IPData {
+  ip: string;
+  country: string;
+  prov: string;
+  city: string;
+  district: string;
+  adcode: number;
+  lat: number;
+  lng: number;
+}
+
+// 天气数据类型
+interface WeatherData {
+  province: string;
+  city: string;
+  district: string;
+  update_time: string;
+  weather: string;
+  temperature: number;
+  wind_direction: string;
+  wind_power: string;
+  humidity: number;
+}
 
 // 公告内容类型
 interface NoticeContent {
   title: string;
   subtitle: string;
   content: string;
-  operationButtonName: string;
-  operationButtonPath: string;
+  error: string;
+  email: string;
 }
+
+// 响应式数据
+const ipData = ref<IPData | null>(null);
+const weatherData = ref<WeatherData | null>(null);
+const distance = ref<string>("");
 
 // 公告内容
 const noticeContent: NoticeContent = {
-  title: '📢 重要公告',
-  subtitle: '全网最美博客Teek🎉',
-  content: 'Teek一款简约、唯美、丝滑且强大的VitePress主题博客(知识库&博客二合一) ，正在持续迭代更新，欢迎交流学习！',
-  operationButtonName: '查看详情',
-  operationButtonPath: 'https://vp.teek.top/',
+  title: "📢 欢迎来访者",
+  subtitle: "👋🏻 Hi，我是Hyde，欢迎您！",
+  content: "❓ 如有问题欢迎评论区交流！",
+  error: "😫 页面异常？尝试Ctrl+F5",
+  email:
+    '📧 如需联系我：<a href="mailto:seasir666@gmail.com" style="color: var(--vp-c-brand-1);">发送邮件🚀</a>',
 };
 
-// 判断是否为外链
-const isExternalLink = (): boolean => {
-  const url: string = noticeContent.operationButtonPath
-  return /^(https?:\/\/|\/\/)/.test(url);
+// 获取IP数据
+const fetchIPData = async (): Promise<void> => {
+  try {
+    const API_URL =
+      "https://api.nsmao.net/api/ip/query?key=K7ti7rB7FYzOnxqeE4isG8ueRQ";  //替换实际自己的API_KEY
+
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.code === 200 && result.data) {
+      ipData.value = result.data;
+      // 计算距离
+      distance.value = calculateDistance();
+    } else {
+      throw new Error(result.msg || "IP数据获取失败");
+    }
+  } catch (error) {
+    console.error("获取IP数据失败:", error);
+    ipData.value = null;
+  }
 };
 
-// 获取网页打开方式
-const getTargetValue = (): string => {
-  return isExternalLink() ? '_blank' : '_self';
+// 获取天气数据
+const fetchWeatherData = async (): Promise<void> => {
+  try {
+    const API_URL =
+      "https://api.nsmao.net/api/weather/query?key=K7ti7rB7FYzOnxqeE4isG8ueRQ&adcode=";  //替换实际自己的API_KEY
+
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.code === 200 && result.data) {
+      weatherData.value = result.data;
+    } else {
+      throw new Error(result.msg || "天气数据获取失败");
+    }
+  } catch (error) {
+    console.error("获取天气数据失败:", error);
+    weatherData.value = null;
+  }
+};
+
+// 组件挂载时获取IP和天气数据
+onMounted(() => {
+  fetchIPData();
+  fetchWeatherData();
+});
+
+// 获取位置显示文本
+const getLocationText = (): string => {
+  if (!ipData.value) return "";
+
+  const { country, prov, city, district } = ipData.value;
+
+  // 优先显示城市和区县
+  if (city && district) {
+    return `${city} ${district}`;
+  } else if (city) {
+    return city;
+  } else if (district) {
+    return district;
+  } else if (prov) {
+    return prov;
+  } else if (country) {
+    return country;
+  }
+
+  return "未知地区";
+};
+
+// 计算距离（广州经纬度：23.1216, 113.3372）
+const calculateDistance = (): string => {
+  if (!ipData.value || !ipData.value.lat || !ipData.value.lng) return "";
+
+  const guangzhouLat = 23.1216;
+  const guangzhouLng = 113.3372;
+
+  const userLat = ipData.value.lat;
+  const userLng = ipData.value.lng;
+
+  // 使用Haversine公式计算距离
+  const R = 6371; // 地球半径（公里）
+  const dLat = ((userLat - guangzhouLat) * Math.PI) / 180;
+  const dLng = ((userLng - guangzhouLng) * Math.PI) / 180;
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((guangzhouLat * Math.PI) / 180) *
+      Math.cos((userLat * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+
+  return Math.round(distance).toString();
+};
+
+// 获取问候语文本
+const getGreetingText = (): string => {
+  const now = new Date();
+  const hour = now.getHours();
+
+  if (hour >= 6 && hour < 9) {
+    return "🌅 早安，开启美好的一天！";
+  } else if (hour >= 9 && hour < 12) {
+    return "☀️ 上午好，工作学习加油！";
+  } else if (hour >= 12 && hour < 14) {
+    return "🍽️ 中午好，记得好好吃饭哦~";
+  } else if (hour >= 14 && hour < 18) {
+    return "☕ 下午好，来杯咖啡提提神吧！";
+  } else if (hour >= 18 && hour < 22) {
+    return "🌇 晚上好，放松一下享受时光~";
+  } else if (hour >= 22 && hour < 24) {
+    return "🌙 夜深了，早点休息哦~";
+  } else {
+    return "🌌 凌晨好，注意身体别熬夜~";
+  }
 };
 </script>
 
@@ -70,22 +265,180 @@ html.dark .announcement-card {
   --link-hover: #818cf8;
 }
 
-.announcement-content {
-  padding: 10px;
+/* IP位置信息样式 */
+.ip-section {
+  background-color: #f0f2f5;
+  border-radius: 8px 8px 0 0;
+  padding: 8px;
+  text-align: center;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+html.dark .ip-section {
+  background-color: #2a2d31;
+}
+
+.ip-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ip-location {
+  font-size: 15px;
+}
+
+.ip-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ip-details {
+  font-size: 14px;
+}
+
+.red-text {
+  color: var(--vp-c-brand-1);
+  font-weight: bold;
+}
+
+.ip-address {
+  color: var(--vp-c-brand-1);
+  font-weight: bold;
+  filter: blur(3px);
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+.ip-address:hover {
+  filter: none;
+}
+
+.distance-info {
+  font-size: 14px;
+}
+
+.distance-value {
+  color: var(--vp-c-brand-1);
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+/* 问候语样式 */
+.greeting-section {
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.greeting-text {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.greeting-tip {
+  font-size: 12px;
+  color: #425aef;
+  font-style: italic;
+  text-align: center;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .greeting-section {
+    gap: 6px;
+  }
+
+  .greeting-text {
+    font-size: 13px;
+  }
+
+  .greeting-tip {
+    font-size: 11px;
+  }
+}
+
+/* 天气信息样式 */
+.weather-section {
+  background-color: #f0f2f5;
+  border-radius: 0 0 8px 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+html.dark .weather-section {
+  background-color: #2a2d31;
+}
+
+.weather-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  gap: 6px;
+}
+
+.weather-icon {
+  font-size: 20px;
+}
+
+.weather-location {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.weather-info {
+  margin-bottom: 6px;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 6px;
+}
+
+.weather-temp {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.weather-desc {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.weather-details {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.weather-update {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: right;
 }
 
 .announcement-title {
   display: flex;
   align-items: center;
-  margin: 0 0 16px 0;
-  font-size: 18px;
   font-weight: 700;
   color: var(--text-color);
   gap: 8px;
 }
 
 .announcement-text {
-  margin: 0 0 20px 0;
   color: var(--text-color);
   line-height: 1.7;
   font-size: 15px;
@@ -93,38 +446,5 @@ html.dark .announcement-card {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.announcement-footer {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.announcement-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 8px;
-  color: var(--link-color);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  gap: 6px;
-  border-radius: 4px;
-}
-
-.announcement-link:hover {
-  color: var(--link-hover);
-  background-color: rgba(99, 102, 241, 0.1);
-}
-
-.link-icon {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-
-.announcement-link:hover .link-icon {
-  transform: translateX(3px);
 }
 </style>

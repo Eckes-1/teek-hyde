@@ -75,7 +75,7 @@
 <script setup>
 import { useData } from "vitepress";
 import LinkItem from "./LinkItem.vue";
-import Twikoo from "../Twikoo.vue";
+import Twikoo from "../Twikoo/Twikoo.vue";
 import ScrollToComment from "../ScrollToComment.vue";
 import { computed, ref, onMounted, onUnmounted } from "vue";
 import { TkMessage } from "vitepress-theme-teek";
