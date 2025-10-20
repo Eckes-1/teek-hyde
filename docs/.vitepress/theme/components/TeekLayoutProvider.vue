@@ -18,11 +18,13 @@ import ScrollProgressBar from "./ScrollProgressBar.vue"; //导入顶部滚动条
 import DocFooterCopyright from "./DocFooterCopyright.vue"; //导入文档页脚版权组件
 import BackTop from "./BackTop.vue"; //导入回到顶部组件
 import Clock from "./Clock.vue"; // 时钟组件
-import NoticeCard from "./NoticeCard.vue"; // 公告卡片
+import WelcomeCard from "./WelcomeCard.vue"; // 欢迎卡片
 import WechatCard from "./WechatCard.vue";
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; // 过渡动画组件
 import Twikoo from "./Twikoo/Twikoo.vue";
 import ScrollToComment from "./ScrollToComment.vue";
+import CalendarCard from "./CalendarCard.vue";
+import ScheduleCard from "./ScheduleCard.vue";
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -131,6 +133,8 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     <template #teek-home-card-my-after>
       <WechatCard />
       <NoticeCard />
+      <WelcomeCard />
+      <ScheduleCard />
     </template>
 
     <!-- 自定义微信公众号卡片 -->

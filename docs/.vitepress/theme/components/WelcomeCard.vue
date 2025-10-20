@@ -207,8 +207,9 @@ const getLocationText = (): string => {
 const calculateDistance = (): string => {
   if (!ipData.value || !ipData.value.lat || !ipData.value.lng) return "";
 
-  const guangzhouLat = 23.1216;
-  const guangzhouLng = 113.3372;
+  // 替换自己实际经纬度，可以通过 https://www.lddgo.net/convert/position 百度地图来定位自己的位置
+  const guangzhouLat = 23.12;
+  const guangzhouLng = 113.34;
 
   const userLat = ipData.value.lat;
   const userLng = ipData.value.lng;
