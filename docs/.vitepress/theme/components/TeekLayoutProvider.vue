@@ -132,8 +132,8 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     <!-- 自定义卡片 -->
     <template #teek-home-card-my-after>
       <WechatCard />
-      <NoticeCard />
       <WelcomeCard />
+      <CalendarCard />
       <ScheduleCard />
     </template>
 

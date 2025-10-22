@@ -159,7 +159,7 @@ export const teekBlogCardConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   // pageStyle: "segment", //主题面板需要选择第四个选项，否则彩带是透明;230630去除该配置会影响网站导航移动端容器样式
   page: {
-    pageSize: 24, // 每页显示的文章数量,这里先暂时设置为24，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
+    pageSize: 30, // 每页显示的文章数量,这里先暂时设置为24，因为卡片栏高度超出右侧卡片就会一起同步滚动了，反之不会
   },
   post: {
     postStyle: "card", //文章模板风格，list 为列表风格，card 为卡片风格

@@ -65,9 +65,9 @@
           </div>
         </div>
         <div id="schedule-area-left">
-          <div id="schedule-title">距离春节</div>
-          <div id="schedule-days">{{ springFestivalDays }}</div>
-          <div id="schedule-date">{{ springFestivalDateText }}</div>
+          <div id="schedule-title">距离{{ nearestHoliday.name }}</div>
+          <div id="schedule-days">{{ nearestHoliday.days }}</div>
+          <div id="schedule-date">{{ nearestHoliday.date }}</div>
         </div>
       </div>
     </div>
@@ -90,6 +90,7 @@ const monthPassedDays = ref(0);
 const weekProgress = ref("--");
 const weekDaysLeft = ref("--");
 const weekDisplayValue = ref(0);
+const nearestHoliday = ref({ name: "元旦", days: "--", date: "--" });
 
 /**
  * 计算指定年份春节（农历正月初一）的公历日期（1900-2100年适用）
@@ -132,15 +133,31 @@ const getSpringFestivalDate = (lunarYear) => {
 };
 
 /**
- * 动态获取目标春节日期（今年或明年）
+ * 以2026年元旦为基准，计算目标春节日期
  * @returns {Date} 目标春节日期
  */
 const getTargetSpringFestival = () => {
   const today = new Date();
   const currentYear = today.getFullYear();
-  const currentYearSpring = getSpringFestivalDate(currentYear);
-  // 若今天在今年春节前，目标为今年春节；否则为明年春节
-  return today < currentYearSpring ? currentYearSpring : getSpringFestivalDate(currentYear + 1);
+  
+  // 基准年份：2026年
+  const baseYear = 2026;
+  
+  // 如果当前年份小于2026年，目标就是2026年元旦
+  if (currentYear < baseYear) {
+    return new Date(baseYear, 0, 1);
+  }
+  
+  // 如果当前年份等于或大于2026年
+  // 春节固定在每年1月1日（元旦）
+  const targetSpring = new Date(currentYear, 0, 1);
+  
+  // 如果今天已经过了今年的元旦，则目标为明年的元旦
+  if (today >= targetSpring) {
+    return new Date(currentYear + 1, 0, 1);
+  }
+  
+  return targetSpring;
 };
 
 /**
@@ -226,6 +243,63 @@ const updateWeekProgress = () => {
 };
 
 /**
+ * 获取所有主要节日的日期
+ * @param {number} year - 年份
+ * @returns {Array} 节日数组
+ */
+const getAllHolidays = (year) => {
+  return [
+    { name: "元旦", date: new Date(year, 0, 1) },
+    { name: "春节", date: new Date(year, 0, 1) }, // 2026年后春节=元旦
+    { name: "清明节", date: new Date(year, 3, 4) }, // 4月4日或5日，简化处理
+    { name: "劳动节", date: new Date(year, 4, 1) },
+    { name: "端午节", date: new Date(year, 5, 5) }, // 农历五月初五，简化处理
+    { name: "中秋节", date: new Date(year, 8, 15) }, // 农历八月十五，简化处理
+    { name: "国庆节", date: new Date(year, 9, 1) }
+  ];
+};
+
+/**
+ * 计算距离最近节日的天数
+ */
+const updateNearestHoliday = () => {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const nextYear = currentYear + 1;
+  
+  // 获取今年和明年的所有节日
+  const holidays = [...getAllHolidays(currentYear), ...getAllHolidays(nextYear)];
+  
+  // 过滤掉已经过去的节日
+  const upcomingHolidays = holidays.filter(holiday => holiday.date > today);
+  
+  if (upcomingHolidays.length > 0) {
+    // 找到距离最近的节日
+    const nearest = upcomingHolidays.reduce((prev, current) => {
+      const prevDiff = prev.date - today;
+      const currentDiff = current.date - today;
+      return currentDiff < prevDiff ? current : prev;
+    });
+    
+    // 计算天数差
+    const daysDiff = getDaysDifference(today, nearest.date);
+    
+    // 格式化日期
+    const year = nearest.date.getFullYear();
+    const month = String(nearest.date.getMonth() + 1).padStart(2, '0');
+    const day = String(nearest.date.getDate()).padStart(2, '0');
+    
+    nearestHoliday.value = {
+      name: nearest.name,
+      days: daysDiff,
+      date: `${year}-${month}-${day}`
+    };
+  } else {
+    nearestHoliday.value = { name: "元旦", days: "--", date: "--" };
+  }
+};
+
+/**
  * 统一更新所有数据
  */
 const updateAllData = () => {
@@ -233,6 +307,7 @@ const updateAllData = () => {
   updateYearProgress();
   updateMonthProgress();
   updateWeekProgress();
+  updateNearestHoliday();
 };
 
 // 页面加载时初始化，并设置每天凌晨更新
@@ -294,29 +369,49 @@ progress::-webkit-progress-value {
   gap: 20px;
 }
 
-/* 左侧春节倒计时样式 */
+/* 倒计时样式 - 优化布局和视觉效果 */
 #schedule-area-left {
   flex: 1;
-  min-width: 200px;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
+  min-width: 220px;
+  border-radius: 10px;
+  padding: 6px;
   border: 1px solid var(--vp-c-brand-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(57, 90, 227, 0.08);
 }
+
+#schedule-area-left:hover {
+  border-color: var(--vp-c-yellow-2);
+  box-shadow: 0 4px 16px rgba(57, 90, 227, 0.12);
+  transform: translateY(-2px);
+}
+
 #schedule-title {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--vp-c-brand-1);
-  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
 }
+
 #schedule-days {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 52px;
+  font-weight: 800;
   color: var(--vp-c-brand-1);
-  margin: 10px 0;
+  line-height: 1;
+  margin: 4px 0;
+  text-shadow: 0 2px 4px rgba(57, 90, 227, 0.1);
 }
+
 #schedule-date {
-  font-size: 14px;
-  color: #666666;
+  font-size: 13px;
+  opacity: 0.8;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 /* 右侧进度区域样式 */
@@ -359,7 +454,6 @@ progress::-webkit-progress-value {
 }
 .aside-span2 {
   font-size: 13px;
-  color: #666666;
   flex: 1;
 }
 .aside-span2 a {
