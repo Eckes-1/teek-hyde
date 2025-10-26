@@ -162,7 +162,7 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
 
     <!-- 文章末尾评论组件 -->
     <template #teek-doc-after-appreciation-before>
-      <!-- <Twikoo /> -->
+      <Twikoo />
     </template>
 
     <template #teek-to-comment="{ show, icon, scrollToComment }">

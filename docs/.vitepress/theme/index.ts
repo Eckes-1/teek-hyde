@@ -37,6 +37,8 @@ import { NProgress } from "nprogress-v2/dist/index.js"; // 进度条组件
 import "nprogress-v2/dist/index.css"; // 进度条样式
 // 引入复制事件（复制后弹窗提示）
 import { useCopyEvent } from "./composables/useCopyEvent.ts";
+import "./components/guangbiaoTX/guangbiaoTX.scss"; // ⬅️ 鼠标拖尾样式scss
+import { useGuangbiaoTX } from "./components/guangbiaoTX/useGuangbiaoTX"; // ⬅️ 导入鼠标拖尾星星动画ts
 
 export default {
   extends: Teek,
@@ -66,7 +68,8 @@ export default {
       };
 
       // 3. 修复：将 useCopyEvent 移到非SSR环境内（避免服务端渲染报错）
-      useCopyEvent();
+      useCopyEvent(); // ⬅️ 调用复制事件
+      useGuangbiaoTX(); // ⬅️ 调用鼠标拖尾星星动画
     }
   },
   Layout: defineComponent({

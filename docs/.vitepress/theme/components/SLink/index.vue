@@ -4,57 +4,104 @@
     <div class="my-links-title">
       <h1>{{ title }}</h1>
     </div>
+    <!-- 顶部Banner区域 -->
+    <div v-if="bannerShow" class="flink-banner" id="banners">
+      <!-- 左上角smallTitle -->
+      <div class="icon-heartbeat1 banners-small-title">
+        {{ smallTitle }}
+      </div>
 
+      <!-- 右上角功能按钮组 -->
+      <div v-if="bannerButtonGroupShow" class="banner-button-group">
+        <!-- 随机访问按钮 -->
+        <button class="banner-button secondary" @click="handleRandomVisit" :disabled="allLinks.length === 0"
+          aria-label="随机访问友链">
+          <i class="icon-paper-plane" style="font-size: 18px;"></i>
+          <span class="banner-button-text">随机访问</span>
+        </button>
+
+        <!-- 申请友链按钮 -->
+        <a class="banner-button primary" href="#post-comment" :disabled="!shouldShow" aria-label="申请友链"
+          @click="handleApplyFriendLink">
+          <i class="icon-link" style="font-size: 18px;"></i>
+          <span class="banner-button-text">申请友链</span>
+        </a>
+      </div>
+
+      <!-- 两行头像横向无限滚动区域（错位排列） - 白木新增样式 -->
+      <div class="tags-group-all">
+        <!-- 星爆效果容器 - 白木新增样式 -->
+        <div class="global-stars" ref="starsContainer">
+          <svg v-for="(style, index) in starStyles" :key="index" class="star-item" :class="`gstar-${index + 1}`"
+            :style="style" viewBox="0 0 24 24">
+            <path
+              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+          </svg>
+        </div>
+        <div class="tags-group-wrapper">
+          <!-- 第一行 -->
+          <div class="tags-group-row" :class="{ 'offset-start': index % 2 === 0 }" v-for="(row, index) in avatarRows"
+            :key="index">
+            <div class="tags-group-content">
+              <!-- 白木新增样式 -->
+              <a v-for="(link, linkIndex) in row" :key="linkIndex" class="tags-group-icon" target="_blank"
+                :href="link.link" :title="link.name" rel="external nofollow noopener"
+                @mouseenter="handleAvatarMouseEnter($event, link)" @mouseleave="handleAvatarMouseLeave">
+                <img :src="link.avatar" :alt="link.name" loading="lazy" :class="{ irregular: link.irregular }">
+                <!-- 毛玻璃半透明背景 - 白木新增样式 -->
+                <div v-if="activeLink && activeLink.link === link.link" class="avatar-overlay">
+                  <span class="avatar-text">{{ activeLink.name }}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <!-- 友链分组列表，每个分组包含标题、描述和友链列表 -->
-    <div
-      v-for="(group, index) in linksData"
-      :key="index"
-      class="my-links-group"
-    >
+    <div v-for="(group, index) in linksData" :key="index" class="my-links-group">
       <!-- 分组标题容器 -->
       <div class="title-wrapper">
         <h3>{{ group.title }}</h3>
       </div>
 
       <!-- 分组描述文本 -->
-      <p class="group-desc">{{ group.descr }}</p>
+      <p class="group-desc">{{ group.desc }}</p>
 
       <!-- 友链列表容器 -->
       <div class="links-grid">
         <!-- 每个友链项使用LinkItem子组件展示，通过:data传递友链信息 -->
-        <div
-          v-for="link in group.list"
-          :key="link.link"
-          class="links-grid__item"
-        >
+        <div v-for="link in group.list" :key="link.link" class="links-grid__item">
           <LinkItem :data="link" />
         </div>
       </div>
     </div>
 
     <!-- 留言/评论区域，默认显示，可通过frontmatter隐藏 -->
-    <div v-if="shouldShow" class="my-message-section">
+    <div v-if="commentShow" class="my-message-section" id="post-comment">
       <div class="title-wrapper">
-        <h3>留链吗</h3>
+        <h3>申请友链</h3>
       </div>
-      <p>留恋的小伙伴，想要和我做友链 💞</p>
+      <p>想要和我交换友链？请在评论区按以下格式留言 💞</p>
 
       <!-- 留言卡片容器 -->
       <div class="message-card">
-        <p>欢迎在评论区留言，格式如下：</p>
-        <!-- 示例格式 -->
-        <div class="example-container">
-          <pre ref="exampleRef">
-网站名称: Hyde Blog
-网站链接: https://teek.seasir.top/
-网站头像: https://teek.seasir.top/avatar/avatar.webp
-网站描述: 人心中的成见是一座大山~</pre
-          >
-          <button class="copy-button" @click="copyExample">
-            <span class="copy-icon"></span>
-            复制示例
+        <!-- 复制按钮区域 -->
+        <div class="copy-button-container">
+          <button class="copy-button" @click="copyMessageFormat" :aria-label="copyButtonText">
+            <i class="icon-copy" style="font-size: 16px;"></i>
+            <span class="copy-button-text">{{ copyButtonText }}</span>
           </button>
         </div>
+
+        <p>留言格式：</p>
+        <!-- 示例格式 -->
+        <pre ref="messageFormat">
+          网站名称: Hyde Blog
+          网站链接: https://teek.seasir.top/
+          网站头像: https://teek.seasir.top/avatar/avatar.webp
+          网站描述: 人心中的成见是一座大山~</pre>
         <!-- 评论区插槽 -->
         <!-- 默认为Twikoo评论组件，可通过插槽自定义其他评论系统 -->
         <slot name="comments">
@@ -64,21 +111,21 @@
     </div>
 
     <!-- 滚动到评论区按钮 -->
-    <ScrollToComment
-      v-if="shouldShow"
-      :show="showScrollButton"
-      :scroll-to-comment="scrollToComment"
-    />
+    <ScrollToComment v-if="shouldShow" :show="showScrollButton" :scroll-to-comment="scrollToComment" />
   </div>
 </template>
 
 <script setup>
 import { useData } from "vitepress";
 import LinkItem from "./LinkItem.vue";
+// 导入Twikoo评论组件
 import Twikoo from "../Twikoo/Twikoo.vue";
-import ScrollToComment from "../ScrollToComment.vue";
 import { computed, ref, onMounted, onUnmounted } from "vue";
+// 引入顶部区域头像星爆效果+毛玻璃背景功能  - 白木新增样式
+import { useStarBurst } from "./DiySlinkShiroki.ts";
+// 导入消息提示组件
 import { TkMessage } from "vitepress-theme-teek";
+import ScrollToComment from "../ScrollToComment.vue";
 
 /**
  * 单个友链的数据结构定义
@@ -108,53 +155,57 @@ const linksData = computed(() => frontmatter.value.links || []);
 const title = computed(() => frontmatter.value.title || "我的友链");
 
 // 当frontmatter中comments为false时隐藏，默认显示
-const shouldShow = computed(() => frontmatter.value.comments !== false);
+const commentShow = computed(() => frontmatter.value.comments !== false);
+// 当frontmatter中banner为false时隐藏，默认显示
+const bannerShow = computed(() => frontmatter.value.banner !== false);
+// 当frontmatter中bannerButtonGroup为false时隐藏，默认显示
+const bannerButtonGroupShow = computed(() => frontmatter.value.bannerButtonGroup !== false);
+// 可自定义frontmatter中的smallTitle，作为banner的小标题，默认值为"与各位博主一起成长进步"
+const smallTitle = computed(() => frontmatter.value.smallTitle || "与各位博主一起成长进步");
 
-// 示例文本引用
-const exampleRef = ref(null);
+const allLinks = computed(() => {
+  return linksData.value.reduce((acc, group) => {
+    const processedLinks = group.list.map(link => ({
+      ...link,
+      avatar: link.avatar
+    }));
+    acc.push(...processedLinks);
+    return acc;
+  }, []);
+});
 
-// 复制示例文本函数
-const copyExample = async () => {
-  if (exampleRef.value) {
-    const exampleText = exampleRef.value.textContent;
-    try {
-      await navigator.clipboard.writeText(exampleText);
-      TkMessage({
-        message: "示例格式已复制",
-        type: "success",
-      });
-    } catch (err) {
-      // 降级方案：使用 document.execCommand
-      const textArea = document.createElement("textarea");
-      textArea.value = exampleText;
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand("copy");
-        TkMessage({
-          message: "示例格式已复制",
-          type: "success",
-        });
-      } catch (fallbackErr) {
-        TkMessage({
-          message: "复制失败，请手动复制示例文本",
-          type: "error",
-        });
-      } finally {
-        document.body.removeChild(textArea);
-      }
-    }
-  }
+// 将头像平均分成两行，并复制内容以实现无缝滚动
+const avatarRows = computed(() => {
+  const avatars = allLinks.value;
+  if (avatars.length === 0) return [[], []];
+
+  const mid = Math.ceil(avatars.length / 2);
+  const row1 = avatars.slice(0, mid);
+  const row2 = avatars.slice(mid);
+
+  // 复制内容以实现无缝滚动
+  return [
+    [...row1, ...row1], // 第一行复制一份
+    [...row2, ...row2]  // 第二行复制一份
+  ];
+});
+
+const handleRandomVisit = () => {
+  if (allLinks.value.length === 0) return;
+  const randomIndex = Math.floor(Math.random() * allLinks.value.length);
+  const randomLink = allLinks.value[randomIndex];
+  window.open(randomLink.link, "_blank");
 };
 
-// 控制按钮显示状态
-const showScrollButton = ref(true);
+// 处理申请友链按钮点击事件
+const handleApplyFriendLink = (event) => {
+  // 阻止默认的锚点跳转行为
+  event.preventDefault();
 
-// 滚动到评论区的函数
-const scrollToComment = () => {
   const commentElement = document.querySelector(
-    "#twikoo, .my-message-section, .message-card"
+    "#post-comment"
   );
+
   if (commentElement) {
     commentElement.scrollIntoView({
       behavior: "smooth",
@@ -175,47 +226,125 @@ const scrollToComment = () => {
   }
 };
 
-// 检查是否滚动到评论区
-const checkScrollPosition = () => {
+// 控制滚动到评论区按钮的显示逻辑
+const shouldShow = computed(() => commentShow.value);
+const showScrollButton = ref(true);
+
+// 滚动到评论区函数
+const scrollToComment = () => {
   const commentElement = document.querySelector(
-    ".my-message-section, .message-card"
+    "#twikoo, .my-message-section, .message-card"
   );
   if (commentElement) {
+    commentElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // 显示成功消息提示
+    TkMessage({
+      message: "已抵达评论区✨",
+      type: "success",
+    });
+  } else {
+    // 如果没有找到评论区域，显示提示
+    TkMessage({
+      message: "未找到留链区",
+      type: "warning",
+    });
+  }
+};
+
+// 智能显示/隐藏滚动按钮逻辑
+const isScrolledToComment = ref(false);
+
+// 检查是否已经滚动到评论区
+const checkScrollPosition = () => {
+  const commentElement = document.querySelector(
+    "#twikoo, .my-message-section, .message-card"
+  );
+  
+  if (commentElement) {
     const rect = commentElement.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // 如果评论区域的顶部进入视窗，则隐藏按钮
-    showScrollButton.value = rect.top > windowHeight * 0.3;
+    // 如果评论区元素在视口顶部附近（距离顶部小于200px），则认为已经滚动到评论区
+    isScrolledToComment.value = rect.top <= 200;
+    
+    // 根据是否滚动到评论区来显示/隐藏按钮
+    showScrollButton.value = !isScrolledToComment.value;
   }
 };
 
-// 节流函数，避免频繁触发
-let throttleTimer = null;
-const throttledCheckScroll = () => {
-  if (throttleTimer) return;
-  throttleTimer = setTimeout(() => {
-    checkScrollPosition();
-    throttleTimer = null;
-  }, 100);
-};
-
-// 组件挂载时添加滚动监听
+// 添加滚动事件监听
 onMounted(() => {
-  window.addEventListener("scroll", throttledCheckScroll);
-  // 初始检查
-  setTimeout(checkScrollPosition, 100);
+  if (starsContainer.value) {
+    setWrap(starsContainer.value);
+  }
+  
+  // 页面加载时检查一次
+  checkScrollPosition();
+  
+  // 添加滚动事件监听
+  window.addEventListener('scroll', checkScrollPosition);
 });
 
-// 组件卸载时移除监听
+// 组件卸载时移除事件监听
 onUnmounted(() => {
-  window.removeEventListener("scroll", throttledCheckScroll);
-  if (throttleTimer) {
-    clearTimeout(throttleTimer);
+  window.removeEventListener('scroll', checkScrollPosition);
+});
+
+// 星爆效果相关 - 白木新增样式
+const { gStarStyle, setWrap, onAvatarEnter, onAvatarLeave } = useStarBurst();
+const starStyles = ref(gStarStyle);
+const activeLink = ref(null);
+const starsContainer = ref(null);
+
+// 处理头像鼠标进入事件 - 白木新增样式
+const handleAvatarMouseEnter = (event, link) => {
+  // 调用星爆效果函数 - 白木新增样式
+  onAvatarEnter(event);
+
+  // 设置当前激活的链接 - 白木新增样式
+  activeLink.value = link;
+};
+
+// 处理头像鼠标离开事件 - 白木新增样式
+const handleAvatarMouseLeave = () => {
+  // 调用星爆效果函数 - 白木新增样式
+  onAvatarLeave();
+
+  // 清除激活的链接 - 白木新增样式
+  activeLink.value = null;
+};
+
+// 组件挂载后设置星星容器 - 白木新增样式
+onMounted(() => {
+  if (starsContainer.value) {
+    setWrap(starsContainer.value);
   }
 });
+
+// 复制功能相关
+const messageFormat = ref(null);
+const copyButtonText = ref('复制格式');
+const copyMessageFormat = async () => {
+  if (!messageFormat.value) return;
+  const text = messageFormat.value.textContent;
+  await navigator.clipboard.writeText(text);
+  // 复制成功反馈
+  copyButtonText.value = '已复制 !';
+  // 2秒后恢复原文本
+  setTimeout(() => {
+    copyButtonText.value = '复制格式';
+  }, 2000);
+};
 </script>
 
 <style scoped>
+/* 字体图标 */
+@import url("https://cdn.ksah.cn/fonts/icomoon/font.css");
+/* 导入自定义样式 - 包含白木新增样式 */
+@import "./DiySlinkShiroki.scss";
+
 /* 主容器样式 */
 .my-links-container {
   max-width: 1500px;
@@ -229,7 +358,6 @@ onUnmounted(() => {
 .my-links-title {
   margin-bottom: 50px;
   padding: 0 10px;
-  /* 居中 */
   text-align: center;
 }
 
@@ -237,15 +365,13 @@ onUnmounted(() => {
 .my-links-title h1 {
   font-size: 2rem;
   font-weight: 600;
-  background: -webkit-linear-gradient(
-    107deg,
-    rgb(255, 182, 133) -30.6%,
-    rgb(255, 111, 29) -1.11%,
-    rgb(252, 181, 232) 39.14%,
-    rgb(135, 148, 255) 73.35%,
-    rgb(60, 112, 255) 97.07%,
-    rgb(60, 112, 255) 118.97%
-  );
+  background: -webkit-linear-gradient(107deg,
+      rgb(255, 182, 133) -30.6%,
+      rgb(255, 111, 29) -1.11%,
+      rgb(252, 181, 232) 39.14%,
+      rgb(135, 148, 255) 73.35%,
+      rgb(60, 112, 255) 97.07%,
+      rgb(60, 112, 255) 118.97%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -253,7 +379,255 @@ onUnmounted(() => {
   text-rendering: optimizeLegibility;
   line-height: 1.2;
   display: inline-block;
+  font-size: 2rem;
+}
+
+/* Banner区域 */
+.flink-banner {
+  border: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg);
+  border-radius: 12px;
+  padding: 50px 20px 30px;
+  margin-bottom: 60px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* 左上角图标 */
+.icon-heartbeat1::before {
+  margin-right: 8px;
+}
+
+/* 左上角smallTitle */
+.banners-small-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+  z-index: 2;
+}
+
+/* 移动端水平居中 */
+@media (max-width: 768px) {
+  .banners-small-title {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+/* 右上角按钮组 */
+.banner-button-group {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 16px;
+  z-index: 2;
+}
+
+.banner-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.banner-button.secondary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner-button.primary {
+  background: var(--vp-c-brand-1);
+  color: white;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* 按钮图标样式 */
+.banner-button i {
+  font-size: 18px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* 按钮文字样式 */
+.banner-button-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* 按钮悬停效果 */
+.banner-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.banner-button.secondary:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(248, 250, 252, 1));
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #1f2937;
+  /* 确保在浅色背景上有足够的对比度 */
+}
+
+.banner-button.primary:hover {
+  background: var(--vp-c-brand-1);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.banner-button:hover i {
+  transform: translateY(-1px) scale(1.1);
+}
+
+/* 按钮激活状态 */
+.banner-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 禁用状态 */
+.banner-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.banner-button:disabled:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 闪光效果 */
+.banner-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  transition: left 0.6s ease;
+}
+
+.banner-button:hover::before {
+  left: 100%;
+}
+
+/* 按钮内发光效果 */
+.banner-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.banner-button:hover::after {
+  opacity: 1;
+}
+
+/* 两行头像横向滚动区域 */
+.tags-group-all {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0 10px;
+  position: relative;
+}
+
+/* 滚动包装器 */
+.tags-group-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 每一行 */
+.tags-group-row {
+  display: flex;
+  width: max-content;
+  animation: scrollRow 60s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* 原本的悬停时停止滚动动画样式，
+已移至DiySlinkShiroki.scss
+- 白木新增样式
+*/
+
+/* 内容组 */
+.tags-group-content {
+  display: flex;
+  gap: 20px;
+  padding: 0 10px;
+}
+
+/* 上下行错位排列 */
+.offset-start {
+  margin-left: 60px;
+  /* 错开半个头像 */
+}
+
+/* 滚动动画 */
+@keyframes scrollRow {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-40%);
+  }
+}
+
+/* 头像样式样式
+已移至DiySlinkShiroki.scss
+- 白木新增样式
+*/
+
+/* 头像覆盖层样式
+已移至DiySlinkShiroki.scss
+- 白木新增样式
+*/
+
+/* 确保内容在banner内部 - 白木新增样式后，修复一个bug */
+.tags-group-all {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 星星相关样式
+  已移至DiySlinkShiroki.scss
+  - 白木新增样式
+  */
+
+.my-links-group {
+  margin-bottom: 40px;
 }
 
 /* 分组标题装饰线样式 */
@@ -292,7 +666,8 @@ onUnmounted(() => {
 .links-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* 让所有行的内容居中对齐 */
+  justify-content: center;
+  /* 让所有行的内容居中对齐 */
   gap: 24px;
   margin-bottom: 60px;
   padding: 0 8px;
@@ -300,12 +675,9 @@ onUnmounted(() => {
 
 /* 每个友链项的样式，设置基础宽度 */
 .links-grid__item {
-  flex: 0 0 calc(100% - 24px); /* 移动设备：每行1个 */
+  flex: 0 0 calc(100% - 24px);
+  /* 移动设备：每行1个 */
   break-inside: avoid;
-}
-
-.link-content:hover {
-  margin-left: calc(-5 * 16px);
 }
 
 /* 平板设备：每行2个 */
@@ -339,21 +711,63 @@ onUnmounted(() => {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--vp-c-divider);
   text-align: left;
-  transition: all 0.2s ease;
-}
-
-/* 移动端留言卡片适配 */
-@media (max-width: 768px) {
-  .message-card {
-    padding: 24px;
-    margin: 24px auto;
-  }
-}
-
-/* 示例容器样式 */
-.example-container {
   position: relative;
-  margin: 20px 0;
+}
+
+/* 复制按钮容器 */
+.copy-button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+/* 复制按钮样式 */
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  border: none;
+}
+
+.copy-button:hover::before {
+  left: 100%;
+}
+
+.copy-button:hover {
+  background: var(--vp-c-brand-1);
+  color: white;
+  /* 确保在品牌色背景上文字清晰可见 */
+}
+
+/* 修复错误的CSS选择器 */
+.copy-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.copy-button:hover::after {
+  opacity: 1;
+}
+
+.copy-button:active {
+  transform: translateY(0);
 }
 
 /* 示例格式代码块样式 */
@@ -363,42 +777,70 @@ onUnmounted(() => {
   border-radius: 8px;
   font-size: 0.95rem;
   overflow-x: auto;
-  margin: 0;
+  margin: 20px 0;
   border: 1px solid var(--vp-c-divider);
   line-height: 1.5;
+  position: relative;
 }
 
-/* 复制按钮样式 */
-.copy-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: var(--vp-c-brand);
-  color: white;
-  padding: 4px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  transition: all 0.2s ease;
+/* 移动端留言卡片适配 */
+@media (max-width: 768px) {
+  .message-card {
+    padding: 24px;
+    margin: 24px auto;
+  }
+
+  .copy-button-container {
+    position: static;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .copy-button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .tags-group-icon {
+    flex: 0 0 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .tags-group-content {
+    gap: 15px;
+  }
+
+  .offset-start {
+    margin-left: 40px;
+    /* 移动端适配 */
+  }
+
+  .flink-banner {
+    padding: 30px 15px 20px;
+  }
+
+  .banner-button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* 移动端隐藏按钮 */
+  .banner-button-group {
+    display: none;
+  }
+
+  /* 移动端滚动速度调整 */
+  .tags-group-row {
+    animation-duration: 40s;
+  }
 }
 
-.copy-button:hover {
-  background: var(--vp-c-indigo-3);
-  transform: translateY(-2px);
-}
-
-.copy-button:active {
-  transform: translateY(0);
-}
-
-.copy-icon {
-  font-size: 0.9rem;
-}
-
-/* 留言卡片悬停效果 */
-.message-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+/* 减少动画对性能的影响 */
+@media (prefers-reduced-motion: reduce) {
+  .tags-group-row {
+    animation: none;
+  }
 }
 </style>

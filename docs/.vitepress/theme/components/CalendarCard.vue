@@ -426,7 +426,7 @@ body {
 
 #calendar-main a {
   height: 1.2rem;
-  width: 1.5rem;
+  width: 1.2rem;
   border-radius: 50%;
   font-size: 12px;
   line-height: 12px;

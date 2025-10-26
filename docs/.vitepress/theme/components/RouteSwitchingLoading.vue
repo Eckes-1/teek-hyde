@@ -51,9 +51,9 @@ router.onAfterRouteChange = (to) => {
   handleRouteComplete();
 };
 
-// 首次加载时显示遮罩
-onBeforeMount(handleRouteStart);
-onMounted(handleRouteComplete);
+// 首次加载时不显示遮罩，只用于路由切换
+// onBeforeMount(handleRouteStart);
+// onMounted(handleRouteComplete);
 </script>
 
 <style scoped>

@@ -41,9 +41,9 @@ const teekConfig = defineTeekConfig({
       defaultColorName: "ep-blue",   //默认主题色为蓝色
     },
   },
-  
+
   windowTransition: true,
-  
+
   sidebarTrigger: true,
   // 分类卡片
   category: {
@@ -51,7 +51,7 @@ const teekConfig = defineTeekConfig({
     limit: 8, // 一页显示的数量
     autoPage: false, // 是否自动翻页
     pageSpeed: 4000, // 翻页间隔时间，单位：毫秒。autoPage 为 true 时生效
-  },  
+  },
   // 标签卡片
   tag: {
     enabled: true, // 是否启用标签卡片
@@ -80,7 +80,7 @@ const teekConfig = defineTeekConfig({
   // },
 
 
-// 布蒜子统计分析
+  // 布蒜子统计分析
   docAnalysis: {
     createTime: "2025-02-26",
     statistics: {
@@ -93,17 +93,17 @@ const teekConfig = defineTeekConfig({
     wordCount: true,
     readingTime: true,
   },
-  
+
   // //右下角回到顶部配置。
   backTop: {
     enabled: true, // 是否启动回到顶部功能
     content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
     done: (TkMessage) => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
   },
-  toComment: {
-    enabled: true, // 是否启动滚动到评论区功能
-    done: (TkMessage) => TkMessage.success("已抵达评论区✨"), // 滚动到评论区后的回调
-  },
+  // toComment: {
+  //   enabled: true, // 是否启动滚动到评论区功能
+  //   done: (TkMessage) => TkMessage.success("已抵达评论区✨"), // 滚动到评论区后的回调
+  // },
   // 新版代码块配置
   codeBlock: {
     enabled: true, // 是否禁用新版代码块
@@ -174,7 +174,7 @@ const teekConfig = defineTeekConfig({
   },
   // 评论配置
   comment: {
-    provider: "twikoo",
+    provider: "render", // 自定义评论区必须指定 render
     options: CommentData, //需要把CommentData里面的envID解除注释就不会报错了，解除注释走teek内置的1.6.42样式评论区长表情bug
   },
   // 公告
@@ -189,7 +189,7 @@ const teekConfig = defineTeekConfig({
     twinkle: true, // 公告图标是否打开闪烁提示
     position: "center", // 公告弹框出现位置
   },
-  
+
   vitePlugins: {
     permalink: true,
     sidebar: true,
@@ -233,7 +233,7 @@ const teekConfig = defineTeekConfig({
     config: (md) => {
       md.use(timeline); //时间线插件
       md.use(groupIconMdPlugin); // 代码组图标插件
-    },    
+    },
     demo: {
       githubUrl: "https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/docs",
     },
@@ -416,10 +416,6 @@ const teekConfig = defineTeekConfig({
     defaultCoverImg: "", // 默认封面图
     defaultCoverBgColor: "", // 默认封面背景色，优先级低于 defaultCoverImg
   },
-
-  //页面加载 Loading 动画配置
-  // loading: true, // 启用 Loading 动画，为 false 则关闭 Loading 动画
-  // loading: "拼命加载中...", // 修改 Loading 文案
 });
 
 // https://vitepress.dev/reference/site-config

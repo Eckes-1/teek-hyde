@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PropType, VNode } from 'vue'
 import { TkIcon } from 'vitepress-theme-teek'
+import { TkMessage } from "vitepress-theme-teek";
 
 const props = defineProps({
   show: { type: Boolean, default: true },
@@ -9,6 +10,31 @@ const props = defineProps({
 })
 
 const svg = `<svg t="1759322030202" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4525" width="256" height="256"><path d="M513.77 102.4c-246.32 0-446 183.56-446 410s199.68 410 446 410a486.69 486.69 0 0 0 82.43-7h234.57a100 100 0 0 0 100-100V658.11a380 380 0 0 0 29-145.71c0-226.4-199.68-410-446-410z m324.61 517.48l-7.59 18.36V765.4a50 50 0 0 1-50 50H587.67l-8.4 1.44-1.95 0.33a386.7 386.7 0 0 1-63.55 5.22c-192.88 0-346-140.76-346-310s153.12-310 346-310 346 140.75 346 310a279.79 279.79 0 0 1-21.39 107.49z" fill="#ffffff" p-id="4526" data-spm-anchor-id="a313x.search_index.0.i2.49223a81qw4Obc" class="selected"></path><path d="M623.77 379.4h-220a50 50 0 0 0 0 100h220a50 50 0 0 0 0-100zM593.77 545.4h-160a50 50 0 0 0 0 100h160a50 50 0 0 0 0-100z" fill="#ffffff" p-id="4527" data-spm-anchor-id="a313x.search_index.0.i3.49223a81qw4Obc" class="selected"></path></svg>`
+
+// 滚动到评论区的函数
+const scrollToComment = () => {
+  const commentElement = document.querySelector(
+    "#twikoo, .my-message-section, .message-card"
+  );
+  if (commentElement) {
+    commentElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    // 显示成功消息提示
+    TkMessage({
+      message: "已抵达评论区✨",
+      type: "success",
+    });
+  } else {
+    // 如果没有找到评论区域，显示提示
+    TkMessage({
+      message: "未找到留链区",
+      type: "warning",
+    });
+  }
+};
 
 </script>
 

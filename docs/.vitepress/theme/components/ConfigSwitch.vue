@@ -49,9 +49,9 @@ const emit = defineEmits<{
   switch: [config: typeof teekDocConfig, style: string];
 }>();
 
-// 默认文档风格
-const themeStyle = defineModel({ default: "doc" });
-const currentStyle = useStorage("tk:configStyle", "doc");
+// 默认卡片风格
+const themeStyle = defineModel({ default: "blog-card" });
+const currentStyle = useStorage("tk:configStyle", "blog-card");
 const teekConfig = ref(teekDocConfig);
 
 const { copy, copied } = useClipboard();
