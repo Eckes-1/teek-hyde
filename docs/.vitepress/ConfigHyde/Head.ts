@@ -100,10 +100,8 @@ export const HeadData = [
       content: "https://teek.seasir.top/avatar/avatar.webp",
     },
   ],
-  // 资源预加载
-  ["link", { rel: "preload", href: "/favicon.ico", as: "image/x-icon" }],
   // 图标
-  ["link", { rel: "icon", href: "/favicon.ico", type: "image/png" }],
+  ["link", { rel: "icon", href: "/favicon.ico", type: "image/x-icon" }],
   // 作者信息
   ["meta", { name: "author", content: "Hyde" }],
    // 版权声明

@@ -9,6 +9,9 @@ import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
 import SLink from "./components/SLink/index.vue";
 
+// 被动事件监听器修复工具 - 针对 vitepress-theme-teek 主题
+import "./fix-teek-passive-events.js";
+
 // Teek 在线主题包引用（需安装 Teek 在线版本）
 import "vitepress-theme-teek/index.css"; // 引入主题样式
 import "vitepress-theme-teek/theme-chalk/tk-code-block-mobile.css"; // 引入移动端代码块样式
