@@ -46,5 +46,11 @@ export const AICode = {
       desc: "即刻造梦",
       link: "https://jimeng.jianying.com/",
     },
+    {
+      icon: "https://inspector.fe-dev.cn/logo.svg",
+      title: "Code Inspector",
+      desc: "页面开发提效的神器",
+      link: "https://inspector.fe-dev.cn/",
+    },
   ],
 };

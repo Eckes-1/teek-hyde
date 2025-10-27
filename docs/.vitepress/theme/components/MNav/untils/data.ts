@@ -65,7 +65,7 @@ export const NAV_DATA: NavData[] = [
     items: Utilities.items,
   },
   {
-    title: "AI编程",
+    title: "编程开发",
     items: AICode.items,
   },
   {

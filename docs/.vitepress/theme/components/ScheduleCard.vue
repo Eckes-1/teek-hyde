@@ -161,14 +161,17 @@ const getTargetSpringFestival = () => {
 };
 
 /**
- * 计算两个日期的天数差
+ * 计算两个日期的天数差（时区安全）
  * @param {Date} date1 - 起始日期
  * @param {Date} date2 - 目标日期
  * @returns {number} 天数差（向上取整）
  */
 const getDaysDifference = (date1, date2) => {
+  // 使用UTC日期避免时区问题
+  const utcDate1 = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
+  const utcDate2 = Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate());
   const oneDay = 24 * 60 * 60 * 1000;
-  const diffTime = date2 - date1;
+  const diffTime = utcDate2 - utcDate1;
   return Math.ceil(diffTime / oneDay);
 };
 
@@ -177,10 +180,11 @@ const getDaysDifference = (date1, date2) => {
  */
 const updateSpringFestivalCountdown = () => {
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // 忽略时分秒，按整天计算
+  // 使用UTC日期避免时区问题
+  const utcToday = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
   const targetSpring = getTargetSpringFestival();
   // 计算剩余天数
-  springFestivalDays.value = getDaysDifference(today, targetSpring);
+  springFestivalDays.value = getDaysDifference(utcToday, targetSpring);
   // 格式化日期为YYYY-MM-DD
   const year = targetSpring.getFullYear();
   const month = String(targetSpring.getMonth() + 1).padStart(2, '0');
