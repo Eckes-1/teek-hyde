@@ -44,7 +44,7 @@ export const FriendLink = {
       avatar: "https://img.onedayxyy.cn/images/Teek/Teekwebsite/sinc-us-kg-favicon.ico",
       name: "凿壁偷光不算偷",
       desc: "tk 道友",
-      link: "https://sinc.us.kg/",
+      link: "https://blog.99600000.xyz/",
     },
     {
       avatar: "https://zhouyu2156.github.io/favicon.png",

@@ -406,6 +406,7 @@ body {
 .calendar-r3,
 .calendar-r4,
 .calendar-r5,
+.calendar-r6,
 .calendar-rh {
   height: 1.2rem;
   display: flex;

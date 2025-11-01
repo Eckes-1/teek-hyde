@@ -43,5 +43,11 @@ export const Status = {
       desc: " 网站分析 + 正常运行时间监控 + 服务器状态。不仅仅是另一个 GA 替代品",
       link: "https://tianji.msgbyte.com/",
     },
+    {
+      icon: "https://perf.51.la/favicon.ico",
+      title: "51LA · 灵雀应用监控平台",
+      desc: "为站长及企业用户提供专业、全面、精准的网站错误监控服务，准确追踪异常问题，帮助提升异常问题的感知及解决效率",
+      link: "https://perf.51.la/",
+    },
   ],
 };

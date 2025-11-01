@@ -56,24 +56,21 @@ export const HeadData = [
       src: "//sdk.51.la/js-sdk-pro.min.js",
     },
   ],
-  // 初始化统计脚本
+  // 灵雀应用监控平台 
+  [
+    "script",
+    {
+      src: "https://sdk.51.la/perf/js-sdk-perf.min.js",
+      crossorigin: "anonymous",
+    },
+  ],
+  // 初始化灵雀监控脚本
   [
     "script",
     {},
     `
-        // 等待页面加载完成后初始化
-        window.addEventListener('DOMContentLoaded', () => {
-          if (typeof LA !== 'undefined') {
-            LA.init({
-              id: '3MQCwI1AgSSiVg37', // 您应用的统计掩码
-              ck: '3MQCwI1AgSSiVg37', // 您应用的固定key值
-              autoTrack: true, //开启事件分析功能
-              hashMode: true, // 开启单页面应用模式
-              screenRecord: true, //开启屏幕录制功能,默认为false
-            });
-          }
-        });
-      `,
+      new LingQue.Monitor().init({id:"3NwCrFSvL11gZEK6",sendSpaPv:true});
+    `,
   ],
   ["meta", { name: "referrer", content: "no-referrer-when-downgrade" }], //不蒜子统计
   [

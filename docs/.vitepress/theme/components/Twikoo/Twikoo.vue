@@ -6,16 +6,16 @@ const envId = 'https://twikoo.seasir.top'
 const twikooJs = ref(null)
 const router = useRouter()
 
-function initTwikoo () {
+function initTwikoo() {
   try {
     twikoo.init({
       envId,
       onCommentLoaded: initLightGallery
     })
-  } catch (e) {}
+  } catch (e) { }
 }
 
-function initLightGallery () {
+function initLightGallery() {
   var commentContents = [
     ...document.getElementsByClassName('vp-doc'),
     ...document.getElementsByClassName('tk-content')
@@ -43,14 +43,14 @@ function initLightGallery () {
   }
 }
 
-function initJs () {
+function initJs() {
   if (twikooJs.value) {
     twikooJs.value.onload = initTwikoo
     router.onAfterRouteChanged = onRoute
   }
 }
 
-function onRoute (to) {
+function onRoute(to) {
   if (to) setTimeout(initTwikoo, 1000)
 }
 
@@ -64,10 +64,16 @@ onMounted(() => {
   <div class="comment-container vp-raw">
     <!-- Twikoo -->
     <div id="twikoo"></div>
-    <component :is="'script'" src="https://s4.zstatic.net/npm/twikoo@1.6.44/dist/twikoo.nocss.js" crossorigin="anonymous" ref="twikooJs"></component>
+    <component :is="'script'" src="https://s4.zstatic.net/npm/twikoo@1.6.44/dist/twikoo.nocss.js"
+      crossorigin="anonymous" ref="twikooJs"></component>
   </div>
 </template>
 
 
-<style lang="scss" src="./twikoo.scss">
+<style>
+@import "./comment.scss";
+/*评论区样式 */
+
+@import "./twikoo.scss";
+/*Twikoo官方本地样式 */
 </style>
