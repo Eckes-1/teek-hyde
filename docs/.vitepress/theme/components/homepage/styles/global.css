@@ -208,7 +208,8 @@ a:hover {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  /* 此处代码影响teek移动端nav导航栏更多展开菜单样式 */
+  /* padding: 0 20px;  */
 }
 
 .flex {
