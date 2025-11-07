@@ -50,9 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
     z-index: 2;
     border-radius: inherit;
     transform-origin: center;
@@ -95,6 +93,14 @@
     color: var(--vp-badge-tip-text);
     /* 文字单独做闪烁动画 */
     animation: textTwinkle 3s ease-in-out infinite 0.3s;
+    /* 允许文本自动换行 */
+    white-space: normal;
+    overflow-wrap: break-word;
+    display: inline-block;
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 600;
 }
 
 /* 深色模式下使用白色文字，确保可见性 */

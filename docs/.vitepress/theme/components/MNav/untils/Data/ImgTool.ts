@@ -24,5 +24,11 @@ export const ImgTool = {
         desc: "一款开源的文件转换工具，完全本地化，无文件大小限制，支持多种文件格式，无广告",
         link: "https://vert.sh/",
       },
+      {
+        icon: "https://img.ops-coffee.com/assets/favicon-azQxiEPO.ico",
+        title: "好拼",
+        desc: "免费在线拼图工具，释放无限创意",
+        link: "https://img.ops-coffee.com/",
+      },
     ],
 };

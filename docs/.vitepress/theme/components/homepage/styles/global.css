@@ -62,7 +62,7 @@ body {
 }
 
 /* 滚动条样式 */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -79,7 +79,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--anzhiyu-main-op-deep);
-}
+} */
 
 /* 选中文本样式 */
 ::selection {

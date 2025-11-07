@@ -12,5 +12,11 @@ export const Music = {
       desc: "一款开源的基于网易云音乐api的在线音乐播放器。具有音乐搜索、播放、歌词同步显示、个人音乐播放列表同步等功能。",
       link: "https://blog.hzyo.cn/music/",
     },
+    {
+      icon: "https://music.naday.com/img/icons/favicon-32x32.png",
+      title: "YesPlayMusic",
+      desc: "高颜值的第三方网易云播放器，支持 Windows / macOS / Linux",
+      link: "https://music.naday.com/",
+    },
   ],
 };

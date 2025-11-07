@@ -55,23 +55,23 @@ main:
           script: |
             npm config set registry https://registry.npmmirror.com
         - name: 🖨️ 打印环境
-          if: |
-            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           script: |
             npm install -g pnpm && node -v && npm -v && yarn -v && pnpm -v
         - name: 💡 安装依赖 
-          if: |
-            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           script: |
             pnpm install
         - name: 📦️ 编译项目
-          if: |
-            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           script: |
             pnpm docs:build   # VitePress 专用命令    
         - name: 🚚 部署到Pages
-          if: |
-            [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
+          # if: |
+          #   [ "$CNB_COMMIT_MESSAGE_TITLE" = "BUILD" ]
           image: node:22
           script: npx edgeone pages deploy ./docs/.vitepress/dist --name teek-hyde --token $EDGEONE_PAGES_API_TOKEN
 

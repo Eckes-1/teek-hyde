@@ -67,12 +67,6 @@ export const Other = {
       link: "https://github.com/SeaYJ/MouseClick",
     },
     {
-      icon: "https://www.spacedrive.com/favicon.ico",
-      title: "spacedrive",
-      desc: "一个资源管理器，所有文件",
-      link: "https://www.spacedrive.com/",
-    },
-    {
       icon: "https://relationship.ohevan.com/icon.png",
       title: "一个自以为是的情感指南",
       desc: "一个由 Evan 亲自撰写，收集，总结的情感指南，希望能帮助你解决一些情感问题。",
@@ -121,16 +115,34 @@ export const Other = {
       link: "https://mycolor.space/",
     },
     {
-      icon: "https://v.png.pub/imgs/2024/06/08/495e6235c59ead29.png",
-      title: "Zdir Pro",
-      desc: "一款集文件索引、在线预览与分享于一体的多功能私有存储程序，支持WebDAV和离线下载。",
-      link: "https://www.zdir.pro/zh/",
-    },
-    {
       icon: "https://resume.whitemeta.cn/favicon.svg",
       title: "Resumaker",
       desc: "Resumaker - 简历编辑器",
       link: "https://resume.whitemeta.cn/",
+    },
+    {
+      icon: "https://www.saduck.top/favicon.png",
+      title: "SaDuck",
+      desc: "公考知识库",
+      link: "https://www.saduck.top/",
+    },
+    {
+      icon: "https://assets.cdn.ifixit.com/static/icons/ifixit/apple-touch-icon-60x60.png",
+      title: "iFixit",
+      desc: "iFixit 是一个以维修为主题的全球性互助社区",
+      link: "https://zh.ifixit.com/",
+    },
+    {
+      icon: "https://gitee.com/static/images/logo-black.svg?t=158106664",
+      title: "烟花模拟器",
+      desc: "一个模拟放烟花的网页",
+      link: "https://gitee.com/nianbroken/Firework_Simulator",
+    },
+    {
+      icon: "https://xb.iqxrj.top/wp-content/themes/baolog-main/component/fangzhen/favicon.ico",
+      title: "证明文件生成工具",
+      desc: "免费在线生成在职证明|工资证明|离职证明|公章制作",
+      link: "https://gitee.com/nianbroken/Firework_Simulator",
     },
   ],
 };
