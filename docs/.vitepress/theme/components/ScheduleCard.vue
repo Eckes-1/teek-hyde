@@ -379,18 +379,14 @@ progress::-webkit-progress-value {
   min-width: 220px;
   border-radius: 10px;
   padding: 6px;
-  border: 1px solid var(--vp-c-brand-1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(57, 90, 227, 0.08);
 }
 
 #schedule-area-left:hover {
-  border-color: var(--vp-c-yellow-2);
-  box-shadow: 0 4px 16px rgba(57, 90, 227, 0.12);
   transform: translateY(-2px);
 }
 

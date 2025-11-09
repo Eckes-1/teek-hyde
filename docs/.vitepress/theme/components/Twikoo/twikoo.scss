@@ -495,7 +495,8 @@
 }
 
 .tk-pagination {
-    width: 100%;
+    // 与teek分页冲突，注释掉
+    // width: 100%;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
