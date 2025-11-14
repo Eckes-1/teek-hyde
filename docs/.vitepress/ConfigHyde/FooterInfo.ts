@@ -41,7 +41,7 @@ export const FooterInfo = {
   ],
   copyright: {
     createYear: 2021,
-    suffix: "Hyde Blog",
+    suffix: "Eckes·栗辉",
   },
   icpRecord: {
     name: "桂ICP备2021009994号",

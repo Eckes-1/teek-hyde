@@ -11,9 +11,9 @@ import inspect from "vite-plugin-inspect";
 
 const baseUrl = "https://teek.seasir.top";
 const RSS: RSSOptions = {
-  title: "Hyde Blog",
+  title: "Eckes·栗辉",
   baseUrl,
-  copyright: "Copyright 2021-2025 Hyde Blog",
+  copyright: "Copyright 2021-2025 Eckes·栗辉",
 };
 
 // 检查是否有 --inspect 参数

@@ -41,7 +41,7 @@ const teekBlogCommonConfig: TeekConfig = {
   banner: {
     features: Features, //用于在首页展示一些功能介绍,也就是首页三个功能块
     enabled: true, // Banner 标题，默认读取 vitepress 的 title 属性
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Eckes·栗辉 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg", // Banner 背景风格：pure 为纯色背景，partImg 为局部图片背景，fullImg 为全屏图片背景
     imgInterval: 8000, // 轮播时间
     imgShuffle: true, // 当多张大图时（imgSrc 为数组），设置切换时间，单位：毫秒
@@ -98,7 +98,7 @@ const teekBlogCommonConfig: TeekConfig = {
 export const teekBlogConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Eckes·栗辉 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     pureBgColor: "#28282d", // Banner 背景色。bgStyle 为 pure 时生效
     imgSrc: Wallpaper,
     descStyle: "types",
@@ -111,7 +111,7 @@ export const teekBlogConfig: TeekConfig = {
 export const teekBlogParkConfig: TeekConfig = {
   ...teekBlogCommonConfig,
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Eckes·栗辉 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "partImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
@@ -126,7 +126,7 @@ export const teekBlogFullConfig: TeekConfig = {
     coverImgMode: "full",
   },
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Eckes·栗辉 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,
@@ -147,7 +147,7 @@ export const teekBlogBodyConfig: TeekConfig = {
     },
   },
   banner: {
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Eckes·栗辉 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     description: HitokotoDate, // 打字机描述信息,
     descStyle: "types",
@@ -167,7 +167,7 @@ export const teekBlogCardConfig: TeekConfig = {
   homeCardListPosition: "left", //卡片模式下的标题标签位置
   banner: {
     enabled: true, // 是否启用 banner
-    name: "Hyde Blog 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
+    name: "Eckes·栗辉 🎉", // Banner 标题，默认读取 vitepress 的 title 属性
     bgStyle: "fullImg",
     imgSrc: Wallpaper,
     description: HitokotoDate, // 打字机描述信息,

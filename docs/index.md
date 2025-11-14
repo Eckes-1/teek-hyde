@@ -1,7 +1,7 @@
 ---
 layout: home
 
-title: Hyde Blog
+title: Eckes·栗辉
 titleTemplate: 人心中的成见是一座大山
 
 tk:

@@ -16,8 +16,8 @@ import { Build } from "./build";
 import { createRewrites } from "vitepress-theme-teek/config";
 
 const description = [
-  "欢迎来到 Hyde Blog 🎉",
-  "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
+  "欢迎来到 Eckes·栗辉 🎉",
+  "Eckes·栗辉 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
   "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
 ].toString();
 
@@ -425,7 +425,7 @@ export default defineConfig({
   }),
   base: "/",
   extends: teekConfig,
-  title: "Hyde Blog", //左上角网站名称
+  title: "Eckes·栗辉", //左上角网站名称
   description: description,
 
   cleanUrls: true, //设置为true就是让链接后不默认添加.html

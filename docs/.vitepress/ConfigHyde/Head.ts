@@ -1,14 +1,14 @@
 import { HeadConfig } from "vitepress";
 
 const description = [
-  "欢迎来到 Hyde Blog 🎉",
-  "Hyde Blog 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
+  "欢迎来到 Eckes·栗辉 🎉",
+  "Eckes·栗辉 是一个基于 VitePress框架Teek构建的主题，一个简洁、高效、易用的文档和博客写作工具",
   "轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
 ].toString();
 
 const share: HeadConfig[] = [
   // 页面标题（分享时显示的标题）
-  ["meta", { property: "og:title", content: "Hyde Blog" }],
+  ["meta", { property: "og:title", content: "Eckes·栗辉" }],
   // 页面类型（网站类型，如 article、website）
   ["meta", { property: "og:type", content: "website" }],
   // 页面 URL（分享的原始链接，建议使用绝对地址）
@@ -102,11 +102,11 @@ export const HeadData = [
   // 作者信息
   ["meta", { name: "author", content: "Hyde" }],
    // 版权声明
-  ["meta", { name: "copyright", content: "© 2025 Hyde Blog. All Rights Reserved." }],
+  ["meta", { name: "copyright", content: "© 2025 Eckes·栗辉. All Rights Reserved." }],
   // 规范网址，告诉搜索引擎站点的首选域名
   ["link", { rel: "canonical", href: "https://teek.seasir.top/" }],
   // Android 添加到主屏幕
-  ["meta", { name: "application-name", content: "Hyde Blog" }],
+  ["meta", { name: "application-name", content: "Eckes·栗辉" }],
   // 站点的索引策略，index:允许索引；follow:允许跟踪链接
   ["meta", { name: "robots", content: "index, follow" }],
   // 移动设备适配声明，向搜索引擎明确站点对移动设备友好
@@ -161,7 +161,7 @@ export const HeadData = [
     JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Blog",
-      name: "Hyde Blog",
+      name: "Eckes·栗辉",
       url: "https://teek.seasir.top/",
       author: {
         "@type": "Person",
