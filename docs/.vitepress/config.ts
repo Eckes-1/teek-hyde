@@ -423,7 +423,7 @@ export default defineConfig({
   rewrites: createRewrites({
     srcDir: "docs",
   }),
-  base: "/teek-hyde/",
+  base: "/",
   extends: teekConfig,
   title: "Eckes·栗辉", //左上角网站名称
   description: description,
