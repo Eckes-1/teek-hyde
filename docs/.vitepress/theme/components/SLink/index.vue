@@ -121,7 +121,7 @@
 网站名称: Eckes·栗辉
 网站链接: https://teek.seasir.top/
 网站头像: https://teek.seasir.top/avatar/avatar.webp
-网站描述: 人心中的成见是一座大山~</pre>
+网站描述: 要像路飞一样，永远对自己喜欢的事保持热爱！</pre>
         <!-- 评论区插槽 -->
         <!-- 默认为Twikoo评论组件，可通过插槽自定义其他评论系统 -->
         <slot name="comments">

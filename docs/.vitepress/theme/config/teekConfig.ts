@@ -25,8 +25,8 @@ const teekBlogCommonConfig: TeekConfig = {
     // 博主信息，显示在首页侧边栏
     avatar: "/avatar/avatar.webp",  //侧边栏个人头像
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转
-    name: "Hyde", // 侧边栏个人昵称
-    slogan: "人心中的成见是一座大山~", // 侧边栏个人座右铭
+    name: "Eckes", // 侧边栏个人昵称
+    slogan: "要像路飞一样，永远对自己喜欢的事保持热爱！", // 侧边栏个人座右铭
     circleBgImg: "/avatar/circleBgImg.webp", // 侧边栏个人头像圆形背景图
     circleBgMask: false, // 头像圆形背景图是否显示遮罩层
     color: "#fff",
@@ -90,7 +90,7 @@ const teekBlogCommonConfig: TeekConfig = {
         show: true,
       },
     ],
-    appendInfo: [{ key: "index", label: "序号", value: "Hyde" }],
+    appendInfo: [{ key: "index", label: "序号", value: "Eckes" }],
   },
 };
 

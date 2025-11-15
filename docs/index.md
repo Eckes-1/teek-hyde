@@ -2,7 +2,7 @@
 layout: home
 
 title: Eckes·栗辉
-titleTemplate: 人心中的成见是一座大山
+titleTemplate: 要像路飞一样，永远对自己喜欢的事保持热爱！
 
 tk:
   teekHome: false #是否启用 Teek 的首页风格，如果为 false，则还原到 Vitepress 的默认首页，其他功能不

@@ -32,7 +32,7 @@ import "vitepress-theme-teek/theme-chalk/tk-nav-blur.css"; // 导航栏毛玻璃
 // import "vitepress-theme-teek/theme-chalk/tk-container-flow.css"; // Markdown 容器流体样式
 import "vitepress-theme-teek/tk-plus/banner-full-img-scale.scss"; // Banner 全屏图片放大样式
 import "vitepress-theme-teek/tk-plus/fade-up-animation.scss"; // 首次进入页面添加渐显动画
-import "./styles/index.scss"; // 引入Hyde全局自定义样式
+import "./styles/index.scss"; // 引入Eckes全局自定义样式
 import "vitepress-theme-teek/theme-chalk/tk-home-card-hover.css"; // 首页卡片悬停效果
 import "virtual:group-icons.css"; //代码组图标样式
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式

@@ -40,7 +40,7 @@ import {
 
 export const profile = {
   title: "你好👋我是",
-  name: "Hyde",
+  name: "Eckes",
   desc: "探索Web边界，记录成长的点滴",
   avatar: "/avatar/avatar.webp",
   buttons: [
@@ -180,7 +180,7 @@ export const ossProjects = [
     Star: '35.0k',
     Fork: '12.6k',
     View: '32.6k',
-    github: "https://gitee.com/SeasirHyde/teek-hyde",
+    github: "https://gitee.com/SeasirEckes/teek-hyde",
   },
   {
     name: "VitePress 主题",

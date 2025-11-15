@@ -112,7 +112,7 @@
           <div id="footer-bar-tips">
             <div class="copyright">
               &copy;2025 By 
-              <a class="footer-bar-link" href="#" title="Hyde" target="_blank" @click.prevent>Hyde</a>
+              <a class="footer-bar-link" href="#" title="Eckes" target="_blank" @click.prevent>Eckes</a>
             </div>
           </div>
         </div>

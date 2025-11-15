@@ -100,7 +100,7 @@ export const HeadData = [
   // 图标
   ["link", { rel: "icon", href: "/favicon.ico", type: "image/x-icon" }],
   // 作者信息
-  ["meta", { name: "author", content: "Hyde" }],
+  ["meta", { name: "author", content: "Eckes" }],
    // 版权声明
   ["meta", { name: "copyright", content: "© 2025 Eckes·栗辉. All Rights Reserved." }],
   // 规范网址，告诉搜索引擎站点的首选域名
@@ -165,14 +165,14 @@ export const HeadData = [
       url: "https://teek.seasir.top/",
       author: {
         "@type": "Person",
-        name: "Hyde"
+        name: "Eckes"
       },
       keywords: ["博客", "前端", "后端", "vitepress"],
       description: "个人博客，全栈分享",
       image: "https://teek.seasir.top/avatar/avatar.webp",
       publisher: {
         "@type": "Person",
-        name: "Hyde"
+        name: "Eckes"
       }
     })
   ]

@@ -7,7 +7,7 @@ export const SocialDate: Social[] = [
     name: "Gitee",
     icon: gitee,
     iconType: "component", // 指定为组件类型
-    link: "https://gitee.com/SeasirHyde/teek-hyde",
+    link: "https://gitee.com/SeasirEckes/teek-hyde",
   },
   {
     name: "邮件",

@@ -37,7 +37,7 @@ export const FooterInfo = {
 
     <a href="https://analytics.google.com/" target="_blank" style="display:flex;align-items:center;justify-content:center;"> |<img src="//www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg" style="width:16px;height:16px;" alt="Google Analytics">Google Analytics 提供数据统计服务</a>`,
     `<span id="runtime"></span>(●'◡'●)`,
-    "人心中的成见是一座大山~",
+    "要像路飞一样，永远对自己喜欢的事保持热爱！",
   ],
   copyright: {
     createYear: 2021,

@@ -131,7 +131,7 @@ const teekConfig = defineTeekConfig({
     cardStyleTitleTagPosition: "left", // 卡片模式下的标题标签位置（postStyle 为 card）
     defaultCoverImg: [], // 默认封面图地址，如果不设置封面图则使用默认封面图地址
   },
-  author: { name: "Hyde", link: "https://gitee.com/SeasirHyde/teek-hyde" }, // 作者信息
+  author: { name: "Eckes", link: "https://gitee.com/SeasirEckes/teek-hyde" }, // 作者信息
   //文章信息分析配置，分别作用在首页和文章页
   articleAnalyze: {
     imageViewer: { hideOnClickModal: true }, // 图片预览是否点击遮罩层关闭}
@@ -393,7 +393,7 @@ const teekConfig = defineTeekConfig({
   //   const query = false;
   //   const { origin, pathname, search } = window.location;
   //   const url = `${origin}${frontmatter.permalink ?? pathname}${query ? search : ""}${hash ? location.hash : ""}`;
-  //   const author = "Hyde";
+  //   const author = "Eckes";
 
   //   return {
   //     type: "tip",
@@ -539,7 +539,7 @@ export default defineConfig({
 
     editLink: {
       text: "在 GitHub 上编辑此页",
-      pattern: "https://gitee.com/SeasirHyde/teek-hyde/edit/main/docs/:path",
+      pattern: "https://gitee.com/SeasirEckes/teek-hyde/edit/main/docs/:path",
     },
   },
 

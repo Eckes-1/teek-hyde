@@ -116,7 +116,7 @@ const distance = ref<string>("");
 // 公告内容
 const noticeContent: NoticeContent = {
   title: "📢 欢迎来访者",
-  subtitle: "👋🏻 Hi，我是Hyde，欢迎您！",
+  subtitle: "👋🏻 Hi，我是Eckes，欢迎您！",
   content: "❓ 如有问题欢迎评论区交流！",
   error: "😫 页面异常？尝试Ctrl+F5",
   email:

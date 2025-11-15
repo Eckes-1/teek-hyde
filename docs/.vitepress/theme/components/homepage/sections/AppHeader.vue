@@ -5,7 +5,7 @@
         <!-- 网站名称 -->
         <span id="blog_name">
           <a id="site-name" href="/" accesskey="h" @click.prevent>
-            <div class="title">Hyde</div>
+            <div class="title">Eckes</div>
             <i class="anzhiyufont anzhiyu-icon-house-chimney"></i>
           </a>
         </span>

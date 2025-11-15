@@ -25,6 +25,7 @@ import Twikoo from "./Twikoo/Twikoo.vue";
 import ScrollToComment from "./ScrollToComment.vue";
 import CalendarCard from "./CalendarCard.vue";
 import ScheduleCard from "./ScheduleCard.vue";
+import BloggerInfoCard from "./BloggerInfoCard.vue"; // 博主信息卡片
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -129,6 +130,11 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <BannerImgArrow />
     </template>
 
+    <!-- 替换默认的博主信息卡片 -->
+    <template #teek-home-card-my>
+      <BloggerInfoCard />
+    </template>
+
     <!-- 自定义卡片 -->
     <template #teek-home-card-my-after>
       <WechatCard />
@@ -174,17 +180,3 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
     </template>
   </Teek.Layout>
 </template>
-
-<style lang="scss">
-.tk-my.is-circle-bg {
-  // margin-bottom: 15px;
-
-  .tk-my__avatar.circle-rotate {
-    // margin-top: 90px;
-
-    .tk-avatar:not(.avatar-sticker) {
-      border: 5px solid var(--vp-c-bg-elv);
-    }
-  }
-}
-</style>

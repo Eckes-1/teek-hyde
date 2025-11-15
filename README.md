@@ -7,7 +7,7 @@
 项目拉取
 
 ```bash
-git clone https://gitee.com/SeasirHyde/teek-hyde.git
+git clone https://gitee.com/SeasirEckes/teek-hyde.git
 ```
 
 依赖安装（只能用 pnpm 安装依赖）

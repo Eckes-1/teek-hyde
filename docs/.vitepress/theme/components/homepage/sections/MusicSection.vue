@@ -5,7 +5,7 @@
       <div class="author-content-item-tips">音乐偏好</div>
       <span class="author-content-item-title">周杰伦、孙燕姿、华语流行</span>
       <div class="content-bottom">
-        <div class="tips">跟 Hyde 一起欣赏更多音乐</div>
+        <div class="tips">跟 Eckes 一起欣赏更多音乐</div>
       </div>
       <div class="banner-button-group">
         <a class="banner-button" onclick="pjax.loadUrl('/music')">

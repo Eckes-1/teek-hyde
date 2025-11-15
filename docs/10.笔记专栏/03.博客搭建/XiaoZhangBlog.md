@@ -96,9 +96,9 @@ npm i
 
 去左侧安全开放后端 8888 端口，否则后端服务无法访问
 
-![7ae3f796628b89c1fc0342e703ba3241](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730569962_0.png)
+![7ae3f796628b89c1fc0342e703ba3241](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730569962_0.png)
 
-![7ae3f796628b89c1fc0342e703ba3241](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730569962_0.png)
+![7ae3f796628b89c1fc0342e703ba3241](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730569962_0.png)
 
 ## 7.mysql 数据配置
 
@@ -106,17 +106,17 @@ npm i
 
 数据库名：online_blog，数据库用户和数据库密码，然后点击确定
 
-![77b7f87c256815ef8ce56aa2352f504e](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730569983_0.png)
+![77b7f87c256815ef8ce56aa2352f504e](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730569983_0.png)
 
 ### 7.2 导入数据库
 
 导入 blog-server\db 下面的 online_blog.sql
 
-![93f3b2e69fba7a993e090fb8527cc128](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570008_0.png)
+![93f3b2e69fba7a993e090fb8527cc128](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570008_0.png)
 
 (有一次导入是上传文件，上传完成后还会显示上传成功的 sql 文件，还需要在那个文件右侧点击一次导入才算是导入成功)，导入过后可以重启一下 mysql，有可能会出现导入了但是数据库没重启就没生效的情况。
 
-![5d6dab8f9b1d3ee817519e5e6864fe71](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570034_0.png)
+![5d6dab8f9b1d3ee817519e5e6864fe71](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570034_0.png)
 
 ## 8.后端基础配置
 
@@ -197,15 +197,15 @@ minio/minio server /data \
 
 运行好以后 查看 docker 面板 会看到运行的 minio 然后打开服务器和宝塔的 9999、9000 端口进行放行 使用服务器 ip/域名 + :9999 登录
 
-![510c2dfc863e6b72a2657bd62e20f95b](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570107_0.png)
+![510c2dfc863e6b72a2657bd62e20f95b](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570107_0.png)
 
 登录 minio
 
-![14492b01c28ff87ba488c79f56af683b](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570164_0.png)
+![14492b01c28ff87ba488c79f56af683b](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570164_0.png)
 
 创建桶，输入桶的名称：blog-images，桶的名称务必和我的一致 方便代理 后续熟悉了项目自己可以再修改
 
-![37981ea233fe07637b5ef2d2640e370c](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570170_0.png)
+![37981ea233fe07637b5ef2d2640e370c](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570170_0.png)
 
 ![img](http://mrzym.top/blog-images/GpoBaNhKRrSx)
 
@@ -215,7 +215,7 @@ minio/minio server /data \
 
 创建 Access Key 好后，把 Access Key、Secret Key、桶的名称填入 .env 配置里 就可以上传了
 
-![e4172c6e0bbeab0e288859d37cc887f6](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570199_0.png)
+![e4172c6e0bbeab0e288859d37cc887f6](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570199_0.png)
 
 其他配置看下博主的：http://mrzym.top/#/article?id=6
 
@@ -223,7 +223,7 @@ minio/minio server /data \
 
 ### 10.1 点击宝塔-网站-Node 项目-添加 Node 项目
 
-![606659e6091bd2db214d5ad9e4ce8518](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570226_0.png)
+![606659e6091bd2db214d5ad9e4ce8518](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570226_0.png)
 
 ### 10.2 配置 node 项目的基本信息，如图：![img](http://mrzym.top/blog-images/bPfmRfIXxjej)
 
@@ -233,7 +233,7 @@ minio/minio server /data \
 
 开放后端 3306 端口，成功启动后可以看一下项目日志，如果日志如下图
 
-![8735d0523c06286da7df77bab18a07b2](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570279_0.png)
+![8735d0523c06286da7df77bab18a07b2](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570279_0.png)
 
 则表明后端服务运行成功了，可以在浏览器输入服务器地址+ :端口号访问。若是出现数据库连接失败，就说明数据库账户、密码这些不对，可以去/www/wwwroot/blog/blog-server 下面的.env 配置里面检查
 
@@ -243,13 +243,13 @@ minio/minio server /data \
 
 11.2 打包前端，使用 vscode 分别打开 admin 和 blog，**前端打包前需要安装 Node.js**，没有安装先去百度怎么安装。打包成功后会有 dist 文件夹，使用 Xftp 7 将 dist 整个文件夹放在/www/wwwroot/blog/blogV3/blog 和/www/wwwroot/blog/blogV3/admin 目录下，
 
-![171cfcbd36272c3c4f7feae8735e47af](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570291_0.png)
+![171cfcbd36272c3c4f7feae8735e47af](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570291_0.png)
 
 ## 12.宝塔配置 NGINX
 
 在软件商店找到安装 nginx 好后(有小伙伴遇到了 nginx 下载后，启动了，但是 nginx 并没有生效的情况，可以在安装时选择编译安装就解决了)，点击配置，将我的配置复制进去就行
 
-![a1d1b2b2ecd3a271a555ba851a866f92](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570301_0.png)
+![a1d1b2b2ecd3a271a555ba851a866f92](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570301_0.png)
 
 记得把服务器 ip 改成你自己的！
 
@@ -515,7 +515,7 @@ const initWebsocket = async (isReconnect = false) => {
 
 ## 1.数据库名称和密码都是对是，报错找不到 ws 模块解决
 
-![f4c1ac492763ccc791578284f2086671](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570436_0.png)
+![f4c1ac492763ccc791578284f2086671](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570436_0.png)
 
 解决 linux 下安装 node 报错： command not found：https://cloud.tencent.com/developer/article/1979850
 
@@ -527,25 +527,25 @@ sudo yum install nodejs
 node --version
 ```
 
-![460a3f7903ddfc2439aa7acc23adcb1a](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570443_0.png)
+![460a3f7903ddfc2439aa7acc23adcb1a](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570443_0.png)
 
 cd 进入/www/wwwroot/blog/blog-server 输入：npm i
 
-![0ad736bea60a83b91f0727b5c44f3e6a](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570449_0.png)
+![0ad736bea60a83b91f0727b5c44f3e6a](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570449_0.png)
 
-![f29d750ad80f48039d82aef826e7026d](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570455_0.png)
+![f29d750ad80f48039d82aef826e7026d](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570455_0.png)
 
-![c2275e8166cb053c2eaccdfc6f639a94](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570461_0.png)
+![c2275e8166cb053c2eaccdfc6f639a94](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570461_0.png)
 
 ## 2.admin 后台提示报错 502 原因以及解决方案
 
-![6a640ea2c2df99bffbf3aa92098f1f52](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570504_0.png)
+![6a640ea2c2df99bffbf3aa92098f1f52](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570504_0.png)
 
 原因：nginx 后端服务代理端口配置错误，改成正确的端口号，改完重启 nginx 服务！
 
-![6d0b59ab53f2959d2efc29ee3bea0b45](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570510_0.png)
+![6d0b59ab53f2959d2efc29ee3bea0b45](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570510_0.png)
 
-![516cae106ae592e5fbd8512a2b01aaa1](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570515_0.png)
+![516cae106ae592e5fbd8512a2b01aaa1](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570515_0.png)
 
 ## 3.注册好的账号登录后台前端无限循环返回 404
 
@@ -558,30 +558,30 @@ location /gitee/ {
 }
 ```
 
-![c1a0ba9b4628ffa17454b3802e08d133](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570552_0.png)
+![c1a0ba9b4628ffa17454b3802e08d133](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570552_0.png)
 
 ## 4.解决 minio 上传图片时报 404
 
 原因是后端.env 加上了端口，去掉即可，改成重启 node 后端服务
 
-![b071b407c6183a46ed407a6b3b8c2761](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570615_0.png)
+![b071b407c6183a46ed407a6b3b8c2761](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570615_0.png)
 
-![cc65ff7f6f0ad18e3d6c96a95027c86f](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570621_0.png)
+![cc65ff7f6f0ad18e3d6c96a95027c86f](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570621_0.png)
 
-![f5b00ef202daa81c77e3e9eb5719d8b0](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570626_0.png)
+![f5b00ef202daa81c77e3e9eb5719d8b0](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570626_0.png)
 
 ## 5.图片上传成功，但是图片是加载失败的，如图：
 
 原因是 nginx 端口配置错误，访问 minio 页面是 9999 端口 访问它的图片服务是 9000，改完重启后端服务
 
-![d77fa2c277ef2735370db9a4ecbbf55c](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570677_0.png)
+![d77fa2c277ef2735370db9a4ecbbf55c](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570677_0.png)
 
-![8d2212fa9685e324c769efe86c356b98](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570684_0.png)
+![8d2212fa9685e324c769efe86c356b98](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570684_0.png)
 
 ## 6.解决即时聊天获取 getChatlist 接口报错 500 问题
 
-![3107e50b95b333cb2b2b5d20a3ed5a46](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570692_0.png)
+![3107e50b95b333cb2b2b5d20a3ed5a46](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570692_0.png)
 
 原因是找不到这个用户 id,去注册一个用户就行，或者给这个用户管理员权限；还不行的话清除聊天记录和下线，刷新网页再试试
 
-![0abb7b0e79bcce69058493fd49a004ff](https://raw.githubusercontent.com/Seasir-Hyde/typora_image_uploader/main/image/1730570700_0.png)
+![0abb7b0e79bcce69058493fd49a004ff](https://raw.githubusercontent.com/Seasir-Eckes/typora_image_uploader/main/image/1730570700_0.png)

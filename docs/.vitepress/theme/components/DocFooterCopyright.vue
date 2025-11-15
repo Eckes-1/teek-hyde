@@ -48,7 +48,7 @@ import { TkIcon } from "vitepress-theme-teek";
 
 // ========================= 配置常量 =========================
 // 作者信息（非响应式，常量直接定义）
-const author = "Hyde";
+const author = "Eckes";
 const authorLink = "https://teek.seasir.top/";
 
 // 路径映射表：长路径 -> 简洁显示路径（配置型数据前置）

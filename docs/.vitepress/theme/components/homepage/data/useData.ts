@@ -19,7 +19,7 @@ import type {
  */
 export function usePersonalData() {
   const personalInfo = reactive<PersonalInfo>({
-    name: 'Hyde',
+    name: 'Eckes',
     title: '探索Web边界，记录成长的点滴',
     description: '生活明朗，万物可爱✨',
     birthYear: 2002,
