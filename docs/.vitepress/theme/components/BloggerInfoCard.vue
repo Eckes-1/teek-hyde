@@ -1,15 +1,23 @@
 <template>
-  <TkPageCard title="👨‍💻 关于博主">
-    <div class="blogger-info-card">
+  <div class="tk-page-card blogger-info-card">
       <!-- 头像区域 -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
+          <!-- 外层光晕效果 -->
+          <div class="avatar-glow"></div>
+          <!-- 旋转渐变背景圆环 -->
           <div class="avatar-bg-ring"></div>
+          <!-- 粒子环绕效果 -->
+          <div class="particle-ring">
+            <span class="particle" v-for="i in 8" :key="i" :style="{ '--i': i }"></span>
+          </div>
+          <!-- 头像图片 -->
           <img 
             :src="blogger.avatar" 
             :alt="blogger.name"
             class="avatar-img"
           >
+          <!-- 在线状态徽章 -->
           <div class="status-badge">
             <span class="status-dot"></span>
             <span class="status-text">在线</span>
@@ -45,12 +53,10 @@
           <span v-html="social.icon"></span>
         </a>
       </div>
-    </div>
-  </TkPageCard>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { TkPageCard } from "vitepress-theme-teek";
 import { ref, computed } from "vue";
 import { useData } from "vitepress";
 
@@ -91,9 +97,13 @@ const socialLinks = ref([
 
 <style scoped>
 .blogger-info-card {
-  padding: 8px;
+  padding: 20px !important;
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  width: 280px;
+  height: 465px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* 背景图片层 */
@@ -108,11 +118,10 @@ const socialLinks = ref([
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.5;
   z-index: 0;
 }
 
-/* 渐变遮罩层 - 轻微柔化 */
+/* 渐变遮罩层 - 提升文字可读性 */
 .blogger-info-card::after {
   content: '';
   position: absolute;
@@ -120,38 +129,77 @@ const socialLinks = ref([
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.45) 0%, 
-    rgba(255, 255, 255, 0.35) 100%);
-  z-index: 0;
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
   pointer-events: none;
 }
 
 /* 确保内容在背景之上 */
 .blogger-info-card > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* 头像区域 */
 .avatar-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  padding-top: 8px;
 }
 
 .avatar-wrapper {
   position: relative;
   width: 120px;
   height: 120px;
+  filter: drop-shadow(0 0 20px var(--vp-c-brand-lighter));
+  animation: bounce 2s ease-in-out infinite;
 }
 
+/* 弹跳动画 */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 外层光晕效果 */
+.avatar-glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, var(--vp-c-brand-light) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: breathe 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* 旋转渐变背景圆环 */
 .avatar-bg-ring {
   position: absolute;
   inset: -4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, 
+    var(--vp-c-brand-1) 0%, 
+    var(--vp-c-brand-2) 50%, 
+    var(--vp-c-brand-3) 100%);
   border-radius: 50%;
-  animation: rotate 3s linear infinite;
+  animation: rotate 4s linear infinite;
   opacity: 0.8;
 }
 
@@ -161,6 +209,35 @@ const socialLinks = ref([
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* 粒子环绕效果 */
+.particle-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  animation: orbit 8s linear infinite;
+  animation-delay: calc(var(--i) * -1s);
+  box-shadow: 0 0 10px var(--vp-c-brand-light);
+}
+
+@keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(70px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(70px) rotate(-360deg);
   }
 }
 
@@ -175,23 +252,58 @@ const socialLinks = ref([
   cursor: pointer;
 }
 
-.avatar-img:hover {
-  transform: scale(1.05);
+/* Hover效果 */
+.avatar-wrapper:hover {
+  animation: bounceHover 1.2s ease-in-out infinite;
+}
+
+@keyframes bounceHover {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 0 30px var(--vp-c-brand-light);
+}
+
+.avatar-wrapper:hover .avatar-glow {
+  animation: breathe 1.5s ease-in-out infinite;
+  opacity: 1;
+}
+
+.avatar-wrapper:hover .avatar-bg-ring {
+  animation: rotate 2s linear infinite;
+  opacity: 1;
+  box-shadow: 0 0 25px var(--vp-c-brand-light);
+}
+
+.avatar-wrapper:hover .particle {
+  animation: orbit 4s linear infinite;
+  box-shadow: 0 0 15px var(--vp-c-brand-1);
+  width: 8px;
+  height: 8px;
 }
 
 .status-badge {
   position: absolute;
   bottom: 5px;
   right: 5px;
-  background: var(--vp-c-bg);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   padding: 4px 8px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   font-size: 12px;
   font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .status-dot {
@@ -212,27 +324,28 @@ const socialLinks = ref([
 }
 
 .status-text {
-  color: #22c55e;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* 信息区域 */
 .info-section {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .blogger-name {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  margin: 0 0 8px 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.5px;
 }
 
 .wave-emoji {
@@ -256,17 +369,22 @@ const socialLinks = ref([
 /* 座右铭 */
 .motto-section {
   position: relative;
-  padding: 16px 20px;
+  padding: 18px 20px;
   border-radius: 12px;
-  margin-bottom: 20px;
-  border-left: 3px solid var(--vp-c-brand-1);
-  background: var(--vp-c-bg-soft);
+  margin-bottom: 24px;
+  border-left: 4px solid var(--vp-c-brand-1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .motto-section:hover {
   border-left-color: var(--vp-c-brand-2);
-  background: var(--vp-c-bg-mute);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .motto-icon {
@@ -274,82 +392,166 @@ const socialLinks = ref([
   top: -8px;
   left: 12px;
   font-size: 16px;
-  background: var(--vp-c-bg);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
   padding: 0 4px;
+  border-radius: 4px;
 }
 
 .motto-text {
   margin: 0;
   font-size: 14px;
-  line-height: 1.7;
-  color: var(--vp-c-text-1);
+  line-height: 1.8;
+  color: #fff;
   font-style: italic;
   text-align: left;
   padding-left: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.3px;
 }
 
 /* 社交链接 */
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--vp-c-divider);
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .social-link {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--vp-c-bg-soft);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
   border-radius: 50%;
-  color: var(--vp-c-text-1);
+  color: #fff;
   transition: all 0.3s ease;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .social-link:hover {
   background: var(--vp-c-brand-1);
   color: #fff;
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px var(--vp-c-brand-lighter);
 }
 
-/* 暗色模式优化 */
+/* 暗色模式优化 - 头像特效 */
+html.dark .avatar-wrapper {
+  filter: drop-shadow(0 0 25px var(--vp-c-brand-lighter));
+}
+
+html.dark .avatar-glow {
+  background: radial-gradient(circle, var(--vp-c-brand-light) 0%, transparent 70%);
+  opacity: 0.7;
+}
+
 html.dark .avatar-bg-ring {
-  opacity: 0.6;
+  opacity: 0.9;
+}
+
+html.dark .particle {
+  box-shadow: 0 0 15px var(--vp-c-brand-1);
+}
+
+html.dark .avatar-wrapper:hover .avatar-img {
+  box-shadow: 0 0 40px var(--vp-c-brand-light);
+}
+
+html.dark .blogger-info-card::after {
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.8) 100%);
+}
+
+html.dark .motto-section {
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .motto-section:hover {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .social-link {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 html.dark .status-badge {
-  background: var(--vp-c-bg-soft);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 暗色模式下的背景遮罩 */
-html.dark .blogger-info-card::after {
-  background: linear-gradient(135deg, 
-    rgba(0, 0, 0, 0.45) 0%, 
-    rgba(0, 0, 0, 0.35) 100%);
+html.dark .social-links {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+html.dark .blogger-info-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .blogger-info-card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 380px;
+    padding: 16px !important;
+  }
+  
   .avatar-wrapper {
     width: 100px;
     height: 100px;
   }
+  
+  .particle {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .avatar-wrapper:hover .particle {
+    width: 6px;
+    height: 6px;
+  }
+
+  .avatar-section {
+    margin-bottom: 20px;
+    padding-top: 4px;
+  }
 
   .blogger-name {
-    font-size: 20px;
+    font-size: 22px;
+  }
+  
+  .info-section {
+    margin-bottom: 16px;
   }
 
   .motto-section {
-    padding: 14px 16px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
   }
 
   .motto-text {
     font-size: 13px;
+    line-height: 1.7;
+  }
+  
+  .social-links {
+    gap: 14px;
+    padding-top: 18px;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
   }
 }
 </style>
