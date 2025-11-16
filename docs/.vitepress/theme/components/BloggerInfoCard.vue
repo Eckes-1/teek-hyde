@@ -1,5 +1,6 @@
 <template>
   <div class="tk-page-card blogger-info-card">
+      <div class="card-content-wrapper">
       <!-- 头像区域 -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
@@ -50,6 +51,7 @@
           <span v-html="social.icon"></span>
         </a>
       </div>
+      </div>
   </div>
 </template>
 
@@ -94,7 +96,7 @@ const socialLinks = ref([
 
 <style scoped>
 .blogger-info-card {
-  padding: 20px !important;
+  padding: 0 !important;
   position: relative;
   overflow: hidden;
   border-radius: 16px;
@@ -118,7 +120,7 @@ const socialLinks = ref([
   z-index: 0;
 }
 
-/* 渐变遮罩层 - 提升文字可读性 */
+/* 渐变遮罩层 */
 .blogger-info-card::after {
   content: '';
   position: absolute;
@@ -134,10 +136,13 @@ const socialLinks = ref([
   pointer-events: none;
 }
 
-/* 确保内容在背景之上 */
-.blogger-info-card > * {
+/* 内容包装器 */
+.card-content-wrapper {
   position: relative;
   z-index: 2;
+  padding: 20px;
+  height: 100%;
+  overflow: visible;
 }
 
 /* 头像区域 */
@@ -145,7 +150,7 @@ const socialLinks = ref([
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
-  padding-top: 8px;
+  padding: 12px;
 }
 
 .avatar-wrapper {
@@ -187,9 +192,11 @@ const socialLinks = ref([
 
 /* 头像容器 */
 .avatar-container {
-  position: relative;
-  width: calc(100% - 6px);
-  height: calc(100% - 6px);
+  position: absolute;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  top: 2px;
+  left: 2px;
   border-radius: 50%;
   overflow: hidden;
   z-index: 2;
