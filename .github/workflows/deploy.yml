@@ -1,34 +1,75 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Pages
 
+# 触发条件：推送到main分支时自动部署
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  # 允许手动触发
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: pnpm/action-setup@v2
+      # 检出代码
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 设置 Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 安装 pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
-      
-      - uses: actions/setup-node@v4
+          run_install: false
+
+      # 获取 pnpm store 路径
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      # 缓存 pnpm 依赖
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
         with:
-          node-version: 18
-          cache: pnpm
-      
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # 安装依赖
       - name: Install dependencies
         run: pnpm install
-      
-      - name: Build
-        run: pnpm docs:build
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+
+      # 构建项目
+      - name: Build project
+        run: pnpm run docs:build
+
+      # 部署到 Cloudflare Pages (eckes)
+      - name: Deploy to Cloudflare Pages - eckes
+        uses: cloudflare/pages-action@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
-          cname: teek.seasir.top  # 如果您有自定义域名
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: eckes
+          directory: ./docs/.vitepress/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      # 部署到 Cloudflare Pages (eckes-blog) - 可选
+      - name: Deploy to Cloudflare Pages - eckes-blog
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: eckes-blog
+          directory: ./docs/.vitepress/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
