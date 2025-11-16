@@ -3,24 +3,32 @@
       <!-- 头像区域 -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
-          <!-- 外层光晕效果 -->
-          <div class="avatar-glow"></div>
-          <!-- 旋转渐变背景圆环 -->
-          <div class="avatar-bg-ring"></div>
-          <!-- 粒子环绕效果 -->
-          <div class="particle-ring">
-            <span class="particle" v-for="i in 8" :key="i" :style="{ '--i': i }"></span>
-          </div>
+          <!-- 抖音直播风格动态头像框 -->
+          <!-- 外层彩色渐变旋转圈 -->
+          <div class="live-ring-outer"></div>
+          <!-- 中层波纹扩散效果 -->
+          <div class="pulse-wave pulse-wave-1"></div>
+          <div class="pulse-wave pulse-wave-2"></div>
+          <div class="pulse-wave pulse-wave-3"></div>
+          <!-- 内层呼吸光晕 -->
+          <div class="breath-glow"></div>
+          <!-- 炫彩流光效果 -->
+          <div class="rainbow-flow"></div>
           <!-- 头像图片 -->
           <img 
             :src="blogger.avatar" 
             :alt="blogger.name"
             class="avatar-img"
           >
-          <!-- 在线状态徽章 -->
-          <div class="status-badge">
-            <span class="status-dot"></span>
-            <span class="status-text">在线</span>
+          <!-- 直播中标识 -->
+          <div class="live-badge">
+            <div class="live-icon">
+              <span class="live-dot"></span>
+              <span class="live-bar live-bar-1"></span>
+              <span class="live-bar live-bar-2"></span>
+              <span class="live-bar live-bar-3"></span>
+            </div>
+            <span class="live-text">LIVE</span>
           </div>
         </div>
       </div>
@@ -153,91 +161,133 @@ const socialLinks = ref([
 
 .avatar-wrapper {
   position: relative;
-  width: 120px;
-  height: 120px;
-  filter: drop-shadow(0 0 20px var(--vp-c-brand-lighter));
-  animation: bounce 2s ease-in-out infinite;
+  width: 140px;
+  height: 140px;
 }
 
-/* 弹跳动画 */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* 外层光晕效果 */
-.avatar-glow {
-  position: absolute;
-  inset: -15px;
-  background: radial-gradient(circle, var(--vp-c-brand-light) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: breathe 3s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes breathe {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.9;
-  }
-}
-
-/* 旋转渐变背景圆环 */
-.avatar-bg-ring {
-  position: absolute;
-  inset: -4px;
-  background: linear-gradient(135deg, 
-    var(--vp-c-brand-1) 0%, 
-    var(--vp-c-brand-2) 50%, 
-    var(--vp-c-brand-3) 100%);
-  border-radius: 50%;
-  animation: rotate 4s linear infinite;
-  opacity: 0.8;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* 粒子环绕效果 */
-.particle-ring {
+/* 抖音直播风格-外层彩色渐变旋转圈 */
+.live-ring-outer {
   position: absolute;
   inset: -8px;
   border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #ff0080,
+    #ff8000,
+    #ffff00,
+    #00ff00,
+    #00ffff,
+    #0080ff,
+    #8000ff,
+    #ff0080
+  );
+  animation: spin 3s linear infinite;
+  opacity: 0.9;
 }
 
-.particle {
+.live-ring-outer::before {
+  content: '';
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  inset: 4px;
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  animation: orbit 8s linear infinite;
-  animation-delay: calc(var(--i) * -1s);
+  background: var(--vp-c-bg);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 波纹扩散效果 */
+.pulse-wave {
+  position: absolute;
+  inset: -6px;
+  border: 2px solid;
+  border-radius: 50%;
+  animation: pulseWave 2s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pulse-wave-1 {
+  border-color: #ff0080;
+  animation-delay: 0s;
+}
+
+.pulse-wave-2 {
+  border-color: #00ffff;
+  animation-delay: 0.7s;
+}
+
+.pulse-wave-3 {
+  border-color: #ffff00;
+  animation-delay: 1.4s;
+}
+
+@keyframes pulseWave {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* 呼吸光晕效果 */
+.breath-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 0, 128, 0.3) 0%,
+    rgba(0, 255, 255, 0.2) 50%,
+    transparent 70%
+  );
+  animation: breathGlow 2s ease-in-out infinite;
+}
+
+@keyframes breathGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* 炫彩流光效果 */
+.rainbow-flow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  overflow: hidden;
   box-shadow: 0 0 10px var(--vp-c-brand-light);
 }
 
-@keyframes orbit {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(70px) rotate(0deg);
+.rainbow-flow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  animation: flowLight 2s linear infinite;
+}
+
+@keyframes flowLight {
+  from {
+    transform: translateX(-100%);
   }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) translateX(70px) rotate(-360deg);
+  to {
+    transform: translateX(100%);
   }
 }
 
@@ -253,50 +303,33 @@ const socialLinks = ref([
 }
 
 /* Hover效果 */
-.avatar-wrapper:hover {
-  animation: bounceHover 1.2s ease-in-out infinite;
-}
-
-@keyframes bounceHover {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
 .avatar-wrapper:hover .avatar-img {
-  transform: scale(1.08) rotate(5deg);
-  box-shadow: 0 0 30px var(--vp-c-brand-light);
+  transform: scale(1.05);
 }
 
-.avatar-wrapper:hover .avatar-glow {
-  animation: breathe 1.5s ease-in-out infinite;
+.avatar-wrapper:hover .live-ring-outer {
+  animation-duration: 2s;
+  opacity: 1;
+  box-shadow: 0 0 30px rgba(255, 0, 128, 0.6);
+}
+
+.avatar-wrapper:hover .pulse-wave {
+  animation-duration: 1.5s;
+}
+
+.avatar-wrapper:hover .breath-glow {
+  animation-duration: 1.5s;
   opacity: 1;
 }
 
-.avatar-wrapper:hover .avatar-bg-ring {
-  animation: rotate 2s linear infinite;
-  opacity: 1;
-  box-shadow: 0 0 25px var(--vp-c-brand-light);
-}
-
-.avatar-wrapper:hover .particle {
-  animation: orbit 4s linear infinite;
-  box-shadow: 0 0 15px var(--vp-c-brand-1);
-  width: 8px;
-  height: 8px;
-}
-
-.status-badge {
+/* 直播中徽章 */
+.live-badge {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  padding: 4px 8px;
-  border-radius: 12px;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(135deg, #ff0080, #ff4080);
+  padding: 4px 10px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -304,28 +337,78 @@ const socialLinks = ref([
   font-size: 12px;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
-  border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
-    opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.5;
+    transform: scale(1.05);
   }
 }
 
-.status-text {
-  color: #fff;
+/* 直播动画图标 */
+.live-icon {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 12px;
+}
+
+.live-dot {
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.live-bar {
+  width: 2px;
+  background: white;
+  border-radius: 1px;
+  animation: liveWave 1s linear infinite;
+}
+
+.live-bar-1 {
+  height: 6px;
+  animation-delay: 0s;
+}
+
+.live-bar-2 {
+  height: 10px;
+  animation-delay: 0.3s;
+}
+
+.live-bar-3 {
+  height: 4px;
+  animation-delay: 0.6s;
+}
+
+@keyframes liveWave {
+  0% { height: 4px; }
+  25% { height: 10px; }
+  50% { height: 6px; }
+  75% { height: 8px; }
+  100% { height: 4px; }
+}
+
+.live-text {
+  color: white;
+  font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
 }
 
 /* 信息区域 */
@@ -484,9 +567,9 @@ html.dark .social-link {
   background: rgba(0, 0, 0, 0.3);
 }
 
-html.dark .status-badge {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+html.dark .live-badge {
+  background: linear-gradient(135deg, #ff0080, #ff2080);
+  box-shadow: 0 2px 10px rgba(255, 0, 128, 0.3);
 }
 
 html.dark .social-links {
@@ -511,14 +594,33 @@ html.dark .blogger-info-card {
     height: 100px;
   }
   
-  .particle {
-    width: 4px;
-    height: 4px;
+  .live-ring-outer {
+    inset: -6px;
   }
   
-  .avatar-wrapper:hover .particle {
-    width: 6px;
-    height: 6px;
+  .pulse-wave {
+    inset: -4px;
+  }
+  
+  .breath-glow {
+    inset: -8px;
+  }
+  
+  .live-badge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  
+  .live-icon {
+    height: 10px;
+  }
+  
+  .live-bar {
+    width: 1.5px;
+  }
+  
+  .live-text {
+    font-size: 10px;
   }
 
   .avatar-section {
