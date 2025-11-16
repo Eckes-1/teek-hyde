@@ -486,58 +486,85 @@ const socialLinks = ref([
 
 .social-link {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
-  );
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
-  color: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .social-link::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #ff0050, #ff6090);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    #ff0080,
+    #7928ca,
+    #ff0080
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   z-index: -1;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
 }
 
 .social-link:hover {
-  transform: translateY(-3px) scale(1.05);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px) scale(1.08);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
   box-shadow: 
-    0 10px 30px rgba(255, 0, 80, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 15px 35px rgba(255, 0, 128, 0.2),
+    0 5px 15px rgba(0, 0, 0, 0.1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
 .social-link:hover::before {
-  opacity: 0.9;
+  opacity: 1;
 }
 
-/* 暗色模式优化 */
-html.dark .live-border-rotate {
-  filter: brightness(1.2);
-  box-shadow: 0 0 15px rgba(255, 0, 80, 0.3);
+.social-link:hover::after {
+  opacity: 0.6;
+  animation-play-state: running;
 }
 
-html.dark .blogger-info-card::after {
-  background: linear-gradient(180deg, 
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
-    rgba(0, 0, 0, 0.8) 100%);
+.social-link svg {
+  width: 22px;
+  height: 22px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.social-link:hover svg {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
 }
 
 html.dark .motto-section {
