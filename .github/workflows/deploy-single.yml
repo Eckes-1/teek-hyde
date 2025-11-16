@@ -39,7 +39,7 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: f3785603513c15eb70465410887f13fb
           projectName: eckes
           directory: ./docs/.vitepress/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
