@@ -491,80 +491,70 @@ const socialLinks = ref([
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   border-radius: 50%;
-  color: rgba(255, 255, 255, 0.85);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.social-link::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 0;
+/* GitHub - 深灰色 */
+.social-link:nth-child(1) {
+  background: linear-gradient(135deg, #24292e, #1a1e22);
 }
 
-.social-link::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: conic-gradient(
-    from 0deg,
-    #ff0080,
-    #7928ca,
-    #ff0080
-  );
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  animation: rotate 3s linear infinite;
-  animation-play-state: paused;
+.social-link:nth-child(1):hover {
+  background: linear-gradient(135deg, #2d333b, #24292e);
+  box-shadow: 0 6px 20px rgba(36, 41, 46, 0.4);
+}
+
+/* Email - 红色 */
+.social-link:nth-child(2) {
+  background: linear-gradient(135deg, #ea4335, #c5221f);
+}
+
+.social-link:nth-child(2):hover {
+  background: linear-gradient(135deg, #ff4f3d, #ea4335);
+  box-shadow: 0 6px 20px rgba(234, 67, 53, 0.5);
+}
+
+/* Twitter - 蓝色 */
+.social-link:nth-child(3) {
+  background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+}
+
+.social-link:nth-child(3):hover {
+  background: linear-gradient(135deg, #33b0ff, #1da1f2);
+  box-shadow: 0 6px 20px rgba(29, 161, 242, 0.5);
+}
+
+/* Bilibili - 粉色 */
+.social-link:nth-child(4) {
+  background: linear-gradient(135deg, #fb7299, #e85d88);
+}
+
+.social-link:nth-child(4):hover {
+  background: linear-gradient(135deg, #ff85a8, #fb7299);
+  box-shadow: 0 6px 20px rgba(251, 114, 153, 0.5);
 }
 
 .social-link:hover {
-  transform: translateY(-5px) scale(1.08);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 15px 35px rgba(255, 0, 128, 0.2),
-    0 5px 15px rgba(0, 0, 0, 0.1),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2);
-  color: #fff;
+  transform: translateY(-4px) scale(1.1);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
-.social-link:hover::before {
-  opacity: 1;
+/* 暗色模式优化 */
+html.dark .live-border-rotate {
+  filter: brightness(1.2);
+  box-shadow: 0 0 15px rgba(255, 0, 80, 0.3);
 }
 
-.social-link:hover::after {
-  opacity: 0.6;
-  animation-play-state: running;
-}
-
-.social-link svg {
-  width: 22px;
-  height: 22px;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.social-link:hover svg {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+html.dark .blogger-info-card::after {
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.8) 100%);
 }
 
 html.dark .motto-section {
@@ -578,7 +568,7 @@ html.dark .motto-section:hover {
 }
 
 html.dark .social-link {
-  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 html.dark .live-badge {
@@ -657,13 +647,13 @@ html.dark .blogger-info-card {
   }
   
   .social-links {
-    gap: 14px;
-    padding-top: 18px;
+    gap: 10px;
+    padding-top: 16px;
   }
   
   .social-link {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
 }
 </style>
