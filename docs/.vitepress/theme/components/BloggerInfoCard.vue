@@ -1,5 +1,8 @@
 <template>
   <div class="tk-page-card blogger-info-card">
+      <!-- 装饰性光效 -->
+      <div class="glow-effect glow-1"></div>
+      <div class="glow-effect glow-2"></div>
       <div class="card-content-wrapper">
       <!-- 头像区域 -->
       <div class="avatar-section">
@@ -99,10 +102,69 @@ const socialLinks = ref([
   padding: 0 !important;
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 20px;
   width: 280px;
   height: 465px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.blogger-info-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* 装饰性光效 */
+.glow-effect {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-1 {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: -50px;
+  background: radial-gradient(circle, rgba(255, 0, 128, 0.3), transparent);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.glow-2 {
+  width: 150px;
+  height: 150px;
+  bottom: -30px;
+  right: -30px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent);
+  animation: pulse 4s ease-in-out infinite 2s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
 }
 
 /* 背景图片层 */
@@ -118,9 +180,10 @@ const socialLinks = ref([
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
+  filter: brightness(0.8) contrast(1.1);
 }
 
-/* 渐变遮罩层 */
+/* 渐变遮罩层 - 增强对比度 */
 .blogger-info-card::after {
   content: '';
   position: absolute;
@@ -129,9 +192,10 @@ const socialLinks = ref([
   right: 0;
   bottom: 0;
   background: linear-gradient(180deg, 
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.7) 100%);
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 30%,
+    rgba(0, 0, 0, 0.6) 70%,
+    rgba(0, 0, 0, 0.8) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -165,38 +229,43 @@ const socialLinks = ref([
 /* 抖音直播风格 - 旋转渐变边框 */
 .live-border-rotate {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 128px;
+  height: 128px;
+  top: -4px;
+  left: -4px;
   border-radius: 50%;
   background: conic-gradient(
     from 0deg,
-    #ff1744 0deg,
-    #ff6090 90deg,
-    #ff1744 180deg,
-    #ff6090 270deg,
-    #ff1744 360deg
+    #ff0050 0deg,
+    #ff6b6b 60deg,
+    #ffd700 120deg,
+    #00ff00 180deg,
+    #00bfff 240deg,
+    #ff00ff 300deg,
+    #ff0050 360deg
   );
   animation: rotate 2s linear infinite;
+  filter: brightness(1.2) contrast(1.2);
 }
 
 .live-border-rotate::before {
   content: '';
   position: absolute;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  top: 2px;
-  left: 2px;
+  width: 120px;
+  height: 120px;
+  top: 4px;
+  left: 4px;
   border-radius: 50%;
-  background: var(--vp-c-bg);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* 头像容器 */
 .avatar-container {
   position: absolute;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  top: 2px;
-  left: 2px;
+  width: 120px;
+  height: 120px;
+  top: 0;
+  left: 0;
   border-radius: 50%;
   overflow: hidden;
   z-index: 2;
@@ -216,29 +285,38 @@ const socialLinks = ref([
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
 }
 
 /* Hover效果 */
 .avatar-wrapper:hover .live-border-rotate {
-  animation-duration: 1.5s;
-  box-shadow: 0 0 20px rgba(255, 0, 80, 0.5);
+  animation-duration: 1s;
+  filter: brightness(1.4) contrast(1.3);
+  box-shadow: 
+    0 0 30px rgba(255, 0, 80, 0.6),
+    0 0 60px rgba(255, 0, 80, 0.3);
+}
+
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.05);
 }
 
 /* 直播中徽章 */
 .live-badge {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
+  bottom: -5px;
+  right: -5px;
   background: linear-gradient(135deg, #ff0050, #ff4080);
-  padding: 2px 6px;
-  border-radius: 10px;
+  padding: 3px 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  gap: 3px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  font-size: 10px;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  font-size: 11px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  z-index: 10;
 }
 
 .live-dot {
@@ -260,9 +338,12 @@ const socialLinks = ref([
 
 .live-text {
   color: white;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 1px 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1.5px;
+  font-size: 10px;
 }
 
 /* 信息区域 */
@@ -272,17 +353,26 @@ const socialLinks = ref([
 }
 
 .blogger-name {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: #fff;
+  background: linear-gradient(135deg, #fff, #ffd6d6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-align: center;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  letter-spacing: 0.5px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.blogger-name:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 12px rgba(255, 0, 80, 0.3));
 }
 
 .wave-emoji {
@@ -303,36 +393,56 @@ const socialLinks = ref([
 }
 
 
-/* 座右铭 */
+/* 座右铭 - Glassmorphism风格 */
 .motto-section {
   position: relative;
-  padding: 18px 20px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 16px;
   margin-bottom: 24px;
-  border-left: 4px solid var(--vp-c-brand-1);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .motto-section:hover {
-  border-left-color: var(--vp-c-brand-2);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.08)
+  );
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .motto-icon {
   position: absolute;
-  top: -8px;
-  left: 12px;
-  font-size: 16px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
-  padding: 0 4px;
-  border-radius: 4px;
+  top: -10px;
+  left: 16px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #ff0050, #ff6090);
+  padding: 2px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 0, 80, 0.3);
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
 }
 
 .motto-text {
@@ -347,35 +457,56 @@ const socialLinks = ref([
   letter-spacing: 0.3px;
 }
 
-/* 社交链接 */
+/* 社交链接 - 现代化设计 */
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .social-link {
-  width: 44px;
-  height: 44px;
+  position: relative;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   backdrop-filter: blur(10px);
-  border-radius: 50%;
-  color: #fff;
-  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ff0050, #ff6090);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .social-link:hover {
-  background: var(--vp-c-brand-1);
-  color: #fff;
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 4px 12px var(--vp-c-brand-lighter);
+  transform: translateY(-3px) scale(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 10px 30px rgba(255, 0, 80, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.social-link:hover::before {
+  opacity: 0.9;
 }
 
 /* 暗色模式优化 */
