@@ -306,65 +306,61 @@ const socialLinks = ref([
 /* 直播中徽章 */
 .live-badge {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: #ff0050;
+  bottom: 5px;
+  right: 5px;
   background: linear-gradient(135deg, #ff0050, #ff3070);
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 2px 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 2px;
   box-shadow: 
-    0 8px 24px rgba(255, 0, 80, 0.7),
-    0 4px 12px rgba(0, 0, 0, 0.6),
-    inset 0 2px 0 rgba(255, 255, 255, 0.4);
-  font-size: 13px;
-  font-weight: 900;
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 0 2px #fff;
+  font-size: 8px;
+  font-weight: 700;
   z-index: 1000;
-  border: 4px solid #fff;
-  min-width: 60px;
-  animation: badge-pulse 2s ease-in-out infinite;
+  animation: badge-glow 2s ease-in-out infinite;
 }
 
-@keyframes badge-pulse {
+@keyframes badge-glow {
   0%, 100% {
-    transform: scale(1);
+    box-shadow: 
+      0 2px 6px rgba(0, 0, 0, 0.4),
+      0 0 0 2px #fff;
   }
   50% {
-    transform: scale(1.05);
+    box-shadow: 
+      0 2px 10px rgba(255, 0, 80, 0.6),
+      0 0 0 2px #fff,
+      0 0 20px rgba(255, 0, 80, 0.3);
   }
 }
 
 .live-dot {
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
   background: white;
   border-radius: 50%;
   animation: blink 1.5s ease-in-out infinite;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes blink {
   0%, 100% {
     opacity: 1;
-    transform: scale(1);
   }
   50% {
-    opacity: 0.4;
-    transform: scale(0.9);
+    opacity: 0.3;
   }
 }
 
 .live-text {
   color: white;
-  font-weight: 800;
-  text-shadow: 
-    0 0 10px rgba(255, 255, 255, 1),
-    0 2px 4px rgba(0, 0, 0, 0.8);
-  letter-spacing: 2px;
-  font-size: 11px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  font-size: 8px;
   text-transform: uppercase;
 }
 
@@ -593,17 +589,21 @@ html.dark .blogger-info-card {
   }
   
   .live-badge {
+    bottom: 3px;
+    right: 3px;
     padding: 2px 5px;
-    font-size: 9px;
+    font-size: 7px;
+    gap: 2px;
   }
   
   .live-dot {
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
   }
   
   .live-text {
-    font-size: 9px;
+    font-size: 7px;
+    letter-spacing: 0.5px;
   }
 
   .avatar-section {
