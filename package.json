@@ -9,7 +9,8 @@
     "docs:build": "node --max-old-space-size=131072 node_modules/vitepress/bin/vitepress.js build docs",
     "docs:preview": "vitepress preview docs",
     "deploy": "pnpm run docs:build && wrangler pages deploy ./docs/.vitepress/dist --project-name=eckes-blog --commit-dirty=true",
-    "deploy:eckes": "pnpm run docs:build && wrangler pages deploy ./docs/.vitepress/dist --project-name=eckes --commit-dirty=true"
+    "deploy:eckes": "pnpm run docs:build && wrangler pages deploy ./docs/.vitepress/dist --project-name=eckes --commit-dirty=true",
+    "deploy:local": "powershell ./deploy-with-token.ps1"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
