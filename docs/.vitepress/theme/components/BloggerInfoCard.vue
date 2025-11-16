@@ -17,11 +17,11 @@
               :alt="blogger.name"
               class="avatar-img"
             >
-            <!-- 直播中标识 -->
-            <div class="live-badge">
-              <span class="live-dot"></span>
-              <span class="live-text">LIVE</span>
-            </div>
+          </div>
+          <!-- 直播中标识 -->
+          <div class="live-badge">
+            <span class="live-dot"></span>
+            <span class="live-text">LIVE</span>
           </div>
         </div>
       </div>
@@ -224,6 +224,7 @@ const socialLinks = ref([
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 /* 抖音直播风格 - 旋转渐变边框 */
@@ -286,6 +287,7 @@ const socialLinks = ref([
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+  border-radius: 50%;
 }
 
 /* Hover效果 */
@@ -304,46 +306,66 @@ const socialLinks = ref([
 /* 直播中徽章 */
 .live-badge {
   position: absolute;
-  bottom: -5px;
-  right: -5px;
-  background: linear-gradient(135deg, #ff0050, #ff4080);
-  padding: 3px 8px;
-  border-radius: 12px;
+  bottom: 10px;
+  right: 10px;
+  background: #ff0050;
+  background: linear-gradient(135deg, #ff0050, #ff3070);
+  padding: 6px 14px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  font-size: 11px;
-  font-weight: 700;
-  border: 2px solid #fff;
-  z-index: 10;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 
+    0 8px 24px rgba(255, 0, 80, 0.7),
+    0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  font-weight: 900;
+  z-index: 1000;
+  border: 4px solid #fff;
+  min-width: 60px;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .live-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   background: white;
   border-radius: 50%;
   animation: blink 1.5s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes blink {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.3;
+    opacity: 0.4;
+    transform: scale(0.9);
   }
 }
 
 .live-text {
   color: white;
-  font-weight: 700;
+  font-weight: 800;
   text-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.8),
-    0 1px 3px rgba(0, 0, 0, 0.5);
-  letter-spacing: 1.5px;
-  font-size: 10px;
+    0 0 10px rgba(255, 255, 255, 1),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 
 /* 信息区域 */
