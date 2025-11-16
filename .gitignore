@@ -34,3 +34,7 @@ coverage
 Shell
 
 stats.html
+
+# 环境变量文件
+.env
+.env.local
