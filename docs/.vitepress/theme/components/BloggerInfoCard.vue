@@ -484,25 +484,29 @@ const socialLinks = ref([
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* 社交链接 - 直接使用软件真实logo */
+/* 社交链接 - 添加背景色 */
 .social-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
-  opacity: 0.85;
 }
 
 .social-logo:hover {
-  opacity: 1;
-  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* logo图标自适应 */
 .social-logo svg {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: block;
 }
 
@@ -530,11 +534,11 @@ html.dark .motto-section:hover {
 }
 
 html.dark .social-logo {
-  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 html.dark .social-logo:hover {
-  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 html.dark .live-badge {
@@ -617,9 +621,14 @@ html.dark .blogger-info-card {
     padding-top: 16px;
   }
   
+  .social-logo {
+    width: 44px;
+    height: 44px;
+  }
+  
   .social-logo svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 }
 </style>
