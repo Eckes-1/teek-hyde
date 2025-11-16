@@ -3,32 +3,21 @@
       <!-- 头像区域 -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
-          <!-- 抖音直播风格动态头像框 -->
-          <!-- 外层彩色渐变旋转圈 -->
-          <div class="live-ring-outer"></div>
-          <!-- 中层波纹扩散效果 -->
-          <div class="pulse-wave pulse-wave-1"></div>
-          <div class="pulse-wave pulse-wave-2"></div>
-          <div class="pulse-wave pulse-wave-3"></div>
-          <!-- 内层呼吸光晕 -->
-          <div class="breath-glow"></div>
-          <!-- 炫彩流光效果 -->
-          <div class="rainbow-flow"></div>
-          <!-- 头像图片 -->
-          <img 
-            :src="blogger.avatar" 
-            :alt="blogger.name"
-            class="avatar-img"
-          >
-          <!-- 直播中标识 -->
-          <div class="live-badge">
-            <div class="live-icon">
+          <!-- 抖音直播风格旋转渐变边框 -->
+          <div class="live-border-rotate"></div>
+          <!-- 头像容器 -->
+          <div class="avatar-container">
+            <!-- 头像图片 -->
+            <img 
+              :src="blogger.avatar" 
+              :alt="blogger.name"
+              class="avatar-img"
+            >
+            <!-- 直播中标识 -->
+            <div class="live-badge">
               <span class="live-dot"></span>
-              <span class="live-bar live-bar-1"></span>
-              <span class="live-bar live-bar-2"></span>
-              <span class="live-bar live-bar-3"></span>
+              <span class="live-text">LIVE</span>
             </div>
-            <span class="live-text">LIVE</span>
           </div>
         </div>
       </div>
@@ -161,208 +150,96 @@ const socialLinks = ref([
 
 .avatar-wrapper {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 抖音直播风格-外层彩色渐变旋转圈 */
-.live-ring-outer {
+/* 抖音直播风格 - 旋转渐变边框 */
+.live-border-rotate {
   position: absolute;
-  inset: -8px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: conic-gradient(
     from 0deg,
-    #ff0080,
-    #ff8000,
-    #ffff00,
-    #00ff00,
-    #00ffff,
-    #0080ff,
-    #8000ff,
-    #ff0080
+    #ff1744 0deg,
+    #ff6090 90deg,
+    #ff1744 180deg,
+    #ff6090 270deg,
+    #ff1744 360deg
   );
-  animation: spin 3s linear infinite;
-  opacity: 0.9;
+  animation: rotate 2s linear infinite;
 }
 
-.live-ring-outer::before {
+.live-border-rotate::before {
   content: '';
   position: absolute;
-  inset: 4px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  top: 2px;
+  left: 2px;
   border-radius: 50%;
   background: var(--vp-c-bg);
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 波纹扩散效果 */
-.pulse-wave {
-  position: absolute;
-  inset: -6px;
-  border: 2px solid;
-  border-radius: 50%;
-  animation: pulseWave 2s linear infinite;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.pulse-wave-1 {
-  border-color: #ff0080;
-  animation-delay: 0s;
-}
-
-.pulse-wave-2 {
-  border-color: #00ffff;
-  animation-delay: 0.7s;
-}
-
-.pulse-wave-3 {
-  border-color: #ffff00;
-  animation-delay: 1.4s;
-}
-
-@keyframes pulseWave {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-/* 呼吸光晕效果 */
-.breath-glow {
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 0, 128, 0.3) 0%,
-    rgba(0, 255, 255, 0.2) 50%,
-    transparent 70%
-  );
-  animation: breathGlow 2s ease-in-out infinite;
-}
-
-@keyframes breathGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-}
-
-/* 炫彩流光效果 */
-.rainbow-flow {
-  position: absolute;
-  inset: -4px;
+/* 头像容器 */
+.avatar-container {
+  position: relative;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 10px var(--vp-c-brand-light);
+  z-index: 2;
 }
 
-.rainbow-flow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.5),
-    transparent
-  );
-  animation: flowLight 2s linear infinite;
-}
-
-@keyframes flowLight {
+@keyframes rotate {
   from {
-    transform: translateX(-100%);
+    transform: rotate(0deg);
   }
   to {
-    transform: translateX(100%);
+    transform: rotate(360deg);
   }
 }
 
 .avatar-img {
-  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--vp-c-bg);
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  display: block;
 }
 
 /* Hover效果 */
-.avatar-wrapper:hover .avatar-img {
-  transform: scale(1.05);
-}
-
-.avatar-wrapper:hover .live-ring-outer {
-  animation-duration: 2s;
-  opacity: 1;
-  box-shadow: 0 0 30px rgba(255, 0, 128, 0.6);
-}
-
-.avatar-wrapper:hover .pulse-wave {
+.avatar-wrapper:hover .live-border-rotate {
   animation-duration: 1.5s;
-}
-
-.avatar-wrapper:hover .breath-glow {
-  animation-duration: 1.5s;
-  opacity: 1;
+  box-shadow: 0 0 20px rgba(255, 0, 80, 0.5);
 }
 
 /* 直播中徽章 */
 .live-badge {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(135deg, #ff0080, #ff4080);
-  padding: 4px 10px;
-  border-radius: 20px;
+  bottom: 2px;
+  right: 2px;
+  background: linear-gradient(135deg, #ff0050, #ff4080);
+  padding: 2px 6px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  font-size: 12px;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-/* 直播动画图标 */
-.live-icon {
-  display: flex;
-  align-items: flex-end;
-  gap: 1px;
-  height: 12px;
+  gap: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .live-dot {
-  width: 3px;
-  height: 3px;
+  width: 6px;
+  height: 6px;
   background: white;
   border-radius: 50%;
-  animation: blink 1s ease-in-out infinite;
+  animation: blink 1.5s ease-in-out infinite;
 }
 
 @keyframes blink {
@@ -372,36 +249,6 @@ const socialLinks = ref([
   50% {
     opacity: 0.3;
   }
-}
-
-.live-bar {
-  width: 2px;
-  background: white;
-  border-radius: 1px;
-  animation: liveWave 1s linear infinite;
-}
-
-.live-bar-1 {
-  height: 6px;
-  animation-delay: 0s;
-}
-
-.live-bar-2 {
-  height: 10px;
-  animation-delay: 0.3s;
-}
-
-.live-bar-3 {
-  height: 4px;
-  animation-delay: 0.6s;
-}
-
-@keyframes liveWave {
-  0% { height: 4px; }
-  25% { height: 10px; }
-  50% { height: 6px; }
-  75% { height: 8px; }
-  100% { height: 4px; }
 }
 
 .live-text {
@@ -524,26 +371,10 @@ const socialLinks = ref([
   box-shadow: 0 4px 12px var(--vp-c-brand-lighter);
 }
 
-/* 暗色模式优化 - 头像特效 */
-html.dark .avatar-wrapper {
-  filter: drop-shadow(0 0 25px var(--vp-c-brand-lighter));
-}
-
-html.dark .avatar-glow {
-  background: radial-gradient(circle, var(--vp-c-brand-light) 0%, transparent 70%);
-  opacity: 0.7;
-}
-
-html.dark .avatar-bg-ring {
-  opacity: 0.9;
-}
-
-html.dark .particle {
-  box-shadow: 0 0 15px var(--vp-c-brand-1);
-}
-
-html.dark .avatar-wrapper:hover .avatar-img {
-  box-shadow: 0 0 40px var(--vp-c-brand-light);
+/* 暗色模式优化 */
+html.dark .live-border-rotate {
+  filter: brightness(1.2);
+  box-shadow: 0 0 15px rgba(255, 0, 80, 0.3);
 }
 
 html.dark .blogger-info-card::after {
@@ -594,33 +425,25 @@ html.dark .blogger-info-card {
     height: 100px;
   }
   
-  .live-ring-outer {
-    inset: -6px;
-  }
-  
-  .pulse-wave {
-    inset: -4px;
-  }
-  
-  .breath-glow {
-    inset: -8px;
+  .live-border-rotate::before {
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    top: 1.5px;
+    left: 1.5px;
   }
   
   .live-badge {
-    padding: 3px 8px;
-    font-size: 10px;
+    padding: 2px 5px;
+    font-size: 9px;
   }
   
-  .live-icon {
-    height: 10px;
-  }
-  
-  .live-bar {
-    width: 1.5px;
+  .live-dot {
+    width: 5px;
+    height: 5px;
   }
   
   .live-text {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .avatar-section {
