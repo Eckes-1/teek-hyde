@@ -34,6 +34,15 @@ pnpm docs:build
 pnpm add vitepress-theme-teek@latest -D
 ```
 
+## 自动部署
+
+- **生产环境**: https://eckes.pages.dev
+- **备用地址**: https://eckes-blog.pages.dev
+- **自动部署**: 每次推送到main分支自动更新
+
+## 测试时间戳
+Last updated: 2025-11-16 21:47h
+
 ## 效果
 
 访问：[https://teek.seasir.top/](https://teek.seasir.top/)
