@@ -401,48 +401,52 @@ const socialLinks = ref([
 }
 
 
-/* 座右铭 - 真实渐变卡片风格 */
+/* 座右铭 - 高对比度实心卡片 */
 .motto-section {
   position: relative;
-  padding: 18px 20px;
-  border-radius: 14px;
+  padding: 20px 24px;
+  padding-left: 50px;
+  border-radius: 16px;
   margin-bottom: 24px;
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.88) 50%,
-    rgba(245, 245, 250, 0.92) 100%
+    #ffffff 0%,
+    #f8f9fa 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid #e9ecef;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    0 2px 4px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+    0 6px 16px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .motto-section:hover {
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.92) 50%,
-    rgba(250, 250, 255, 0.95) 100%
+    #ffffff 0%,
+    #f0f2f5 100%
   );
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.12),
-    0 4px 8px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+    0 12px 28px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  border-color: #dee2e6;
 }
 
 .motto-icon {
   position: absolute;
-  top: -10px;
-  left: 16px;
-  font-size: 18px;
-  background: linear-gradient(135deg, #ff0050, #ff6090);
-  padding: 2px 8px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(255, 0, 80, 0.3);
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  box-shadow: 
+    0 4px 12px rgba(102, 126, 234, 0.4),
+    0 2px 6px rgba(102, 126, 234, 0.2);
   animation: sparkle 2s ease-in-out infinite;
 }
 
@@ -457,14 +461,11 @@ const socialLinks = ref([
 
 .motto-text {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.8;
-  color: #fff;
-  font-style: italic;
-  text-align: left;
-  padding-left: 8px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.3px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2c3e50;
+  font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
 /* 社交链接 - 现代化设计 */
@@ -511,28 +512,28 @@ html.dark .live-border-rotate {
 
 html.dark .motto-section {
   background: linear-gradient(135deg, 
-    rgba(30, 30, 35, 0.95) 0%,
-    rgba(25, 25, 30, 0.92) 50%,
-    rgba(20, 20, 28, 0.96) 100%
+    #1e1e24 0%,
+    #252530 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid #3a3a45;
   box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.4),
-    0 2px 6px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 6px 20px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 html.dark .motto-section:hover {
   background: linear-gradient(135deg, 
-    rgba(35, 35, 42, 0.98) 0%,
-    rgba(30, 30, 38, 0.95) 50%,
-    rgba(28, 28, 35, 0.98) 100%
+    #242430 0%,
+    #2a2a38 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-color: #4a4a55;
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.5),
-    0 4px 10px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 12px 32px rgba(0, 0, 0, 0.7),
+    0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .motto-text {
+  color: #e8eaed;
 }
 
 html.dark .social-app-icon {
