@@ -9,6 +9,9 @@
         <div class="avatar-wrapper">
           <!-- 粉色发光边框效果 -->
           <div class="live-glow-border"></div>
+          <!-- 动态波纹效果 -->
+          <div class="wave-ripple wave-1"></div>
+          <div class="wave-ripple wave-2"></div>
           <!-- 头像容器 -->
           <div class="avatar-container">
             <!-- 头像图片 -->
@@ -225,6 +228,46 @@ const socialLinks = ref([
     0 0 10px rgba(255, 105, 180, 0.5),
     0 0 20px rgba(255, 105, 180, 0.3),
     inset 0 0 10px rgba(255, 105, 180, 0.2);
+  z-index: 2;
+}
+
+/* 动态波纹效果 */
+.wave-ripple {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 2px solid #ff69b4;
+  opacity: 0;
+  z-index: 1;
+}
+
+.wave-1 {
+  animation: ripple 3s linear infinite;
+}
+
+.wave-2 {
+  animation: ripple 3s linear infinite 1.5s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+    border-width: 3px;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.3;
+    border-width: 2px;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+    border-width: 1px;
+  }
 }
 
 /* 头像容器 */
@@ -264,6 +307,10 @@ const socialLinks = ref([
     0 0 15px rgba(255, 20, 147, 0.6),
     0 0 25px rgba(255, 20, 147, 0.4),
     inset 0 0 10px rgba(255, 20, 147, 0.3);
+}
+
+.avatar-wrapper:hover .wave-ripple {
+  animation-duration: 2s;
 }
 
 .avatar-wrapper:hover .avatar-img {
@@ -409,6 +456,11 @@ html.dark .live-glow-border {
     0 0 12px rgba(255, 105, 180, 0.6),
     0 0 22px rgba(255, 105, 180, 0.4),
     inset 0 0 10px rgba(255, 105, 180, 0.25);
+}
+
+html.dark .wave-ripple {
+  border-color: #ff69b4;
+  filter: brightness(1.2);
 }
 
 
