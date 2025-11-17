@@ -9,9 +9,14 @@
         <div class="avatar-wrapper">
           <!-- 粉色发光边框效果 -->
           <div class="live-glow-border"></div>
-          <!-- 动态波纹效果 -->
-          <div class="wave-ripple wave-1"></div>
-          <div class="wave-ripple wave-2"></div>
+          <!-- 声波动效 -->
+          <div class="sound-wave">
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+            <span class="wave-bar"></span>
+          </div>
           <!-- 头像容器 -->
           <div class="avatar-container">
             <!-- 头像图片 -->
@@ -231,42 +236,66 @@ const socialLinks = ref([
   z-index: 2;
 }
 
-/* 动态波纹效果 - 适中版 */
-.wave-ripple {
+/* 声波动效 */
+.sound-wave {
   position: absolute;
-  width: 124px;
-  height: 124px;
-  top: -2px;
-  left: -2px;
+  width: 140px;
+  height: 140px;
+  top: -10px;
+  left: -10px;
   border-radius: 50%;
-  border: 3px solid #ff69b4;
-  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
   z-index: 1;
+  pointer-events: none;
 }
 
-.wave-1 {
-  animation: ripple 2.5s linear infinite;
+.wave-bar {
+  display: inline-block;
+  width: 3px;
+  height: 20px;
+  background: linear-gradient(to top, #ff69b4, #ff8fc7);
+  border-radius: 2px;
+  opacity: 0.8;
+  animation: soundWave 1s ease-in-out infinite;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
 }
 
-.wave-2 {
-  animation: ripple 2.5s linear infinite 1.25s;
+.wave-bar:nth-child(1) {
+  animation-delay: 0s;
+  height: 25px;
 }
 
-@keyframes ripple {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-    border-width: 3px;
+.wave-bar:nth-child(2) {
+  animation-delay: 0.2s;
+  height: 30px;
+}
+
+.wave-bar:nth-child(3) {
+  animation-delay: 0.4s;
+  height: 35px;
+}
+
+.wave-bar:nth-child(4) {
+  animation-delay: 0.6s;
+  height: 30px;
+}
+
+.wave-bar:nth-child(5) {
+  animation-delay: 0.8s;
+  height: 25px;
+}
+
+@keyframes soundWave {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.8;
   }
   50% {
-    transform: scale(1.2);
-    opacity: 0.4;
-    border-width: 2px;
-  }
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-    border-width: 1px;
+    transform: scaleY(1.5);
+    opacity: 1;
   }
 }
 
@@ -309,9 +338,9 @@ const socialLinks = ref([
     inset 0 0 10px rgba(255, 20, 147, 0.3);
 }
 
-.avatar-wrapper:hover .wave-ripple {
-  animation-duration: 2s;
-  opacity: 1;
+.avatar-wrapper:hover .wave-bar {
+  animation-duration: 0.8s;
+  background: linear-gradient(to top, #ff1493, #ff69b4);
 }
 
 .avatar-wrapper:hover .avatar-img {
@@ -461,9 +490,9 @@ html.dark .live-glow-border {
     inset 0 0 10px rgba(255, 105, 180, 0.25);
 }
 
-html.dark .wave-ripple {
-  border-color: #ff69b4;
-  filter: brightness(1.2);
+html.dark .wave-bar {
+  background: linear-gradient(to top, #ff69b4, #ffb6d9);
+  filter: brightness(1.1);
 }
 
 
