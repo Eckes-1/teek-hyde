@@ -7,8 +7,8 @@
       <!-- 头像区域 -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
-          <!-- 抖音直播风格旋转渐变边框 -->
-          <div class="live-border-rotate"></div>
+          <!-- 粉色发光边框效果 -->
+          <div class="live-glow-border"></div>
           <!-- 头像容器 -->
           <div class="avatar-container">
             <!-- 头像图片 -->
@@ -213,37 +213,47 @@ const socialLinks = ref([
   z-index: 10;
 }
 
-/* 抖音直播风格 - 旋转渐变边框 */
-.live-border-rotate {
+/* 粉色发光边框效果 */
+.live-glow-border {
   position: absolute;
-  width: 128px;
-  height: 128px;
-  top: -4px;
-  left: -4px;
+  width: 124px;
+  height: 124px;
+  top: -2px;
+  left: -2px;
   border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    #ff0050 0deg,
-    #ff6b6b 60deg,
-    #ffd700 120deg,
-    #00ff00 180deg,
-    #00bfff 240deg,
-    #ff00ff 300deg,
-    #ff0050 360deg
-  );
-  animation: rotate 2s linear infinite;
-  filter: brightness(1.2) contrast(1.2);
+  background: linear-gradient(135deg, #ff6ec4, #ff93e1, #ffb6d9);
+  box-shadow: 
+    0 0 20px rgba(255, 110, 196, 0.6),
+    0 0 40px rgba(255, 147, 225, 0.4),
+    0 0 60px rgba(255, 182, 217, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.2);
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
-.live-border-rotate::before {
+.live-glow-border::before {
   content: '';
   position: absolute;
   width: 120px;
   height: 120px;
-  top: 4px;
-  left: 4px;
+  top: 2px;
+  left: 2px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(255, 110, 196, 0.6),
+      0 0 40px rgba(255, 147, 225, 0.4),
+      0 0 60px rgba(255, 182, 217, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(255, 110, 196, 0.8),
+      0 0 50px rgba(255, 147, 225, 0.6),
+      0 0 70px rgba(255, 182, 217, 0.4);
+  }
 }
 
 /* 头像容器 */
@@ -277,12 +287,13 @@ const socialLinks = ref([
 }
 
 /* Hover效果 */
-.avatar-wrapper:hover .live-border-rotate {
-  animation-duration: 1s;
-  filter: brightness(1.4) contrast(1.3);
+.avatar-wrapper:hover .live-glow-border {
+  background: linear-gradient(135deg, #ff5eb3, #ff8ad5, #ffadd6);
   box-shadow: 
-    0 0 30px rgba(255, 0, 80, 0.6),
-    0 0 60px rgba(255, 0, 80, 0.3);
+    0 0 30px rgba(255, 110, 196, 0.9),
+    0 0 50px rgba(255, 147, 225, 0.7),
+    0 0 80px rgba(255, 182, 217, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .avatar-wrapper:hover .avatar-img {
@@ -455,9 +466,12 @@ const socialLinks = ref([
 }
 
 /* 暗色模式优化 */
-html.dark .live-border-rotate {
-  filter: brightness(1.2);
-  box-shadow: 0 0 15px rgba(255, 0, 80, 0.3);
+html.dark .live-glow-border {
+  filter: brightness(0.9);
+  box-shadow: 
+    0 0 25px rgba(255, 110, 196, 0.7),
+    0 0 45px rgba(255, 147, 225, 0.5),
+    0 0 65px rgba(255, 182, 217, 0.4);
 }
 
 
@@ -522,11 +536,16 @@ html.dark .blogger-info-card {
     height: 100px;
   }
   
-  .live-border-rotate::before {
-    width: calc(100% - 3px);
-    height: calc(100% - 3px);
-    top: 1.5px;
-    left: 1.5px;
+  .live-glow-border {
+    width: 104px;
+    height: 104px;
+  }
+  
+  .live-glow-border::before {
+    width: 100px;
+    height: 100px;
+    top: 2px;
+    left: 2px;
   }
   
   .live-badge {
