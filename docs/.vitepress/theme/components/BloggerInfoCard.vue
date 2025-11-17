@@ -357,13 +357,16 @@ const socialLinks = ref([
 .info-section {
   text-align: center;
   margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .blogger-name {
   font-size: 28px;
   font-weight: 800;
-  margin: 0;
-  display: flex;
+  margin: 0 auto;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -371,7 +374,6 @@ const socialLinks = ref([
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-align: center;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
   letter-spacing: 1px;
   transition: all 0.3s ease;
