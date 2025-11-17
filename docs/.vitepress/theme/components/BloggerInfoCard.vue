@@ -29,7 +29,6 @@
       <!-- 名字区域 - 重新构建 -->
       <div class="name-container">
         <div class="name-text">{{ blogger.name }}</div>
-        <div class="name-emoji">👋</div>
       </div>
 
       <!-- 座右铭/个性签名 -->
@@ -358,7 +357,6 @@ const socialLinks = ref([
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 }
 
 .name-text {
@@ -375,23 +373,7 @@ const socialLinks = ref([
 
 .name-text:hover {
   transform: scale(1.05);
-}
-
-.name-emoji {
-  font-size: 24px;
-  animation: wave 2s ease-in-out infinite;
-}
-
-@keyframes wave {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(20deg);
-  }
-  75% {
-    transform: rotate(-10deg);
-  }
+  filter: drop-shadow(0 4px 12px rgba(255, 0, 80, 0.3));
 }
 
 
