@@ -401,82 +401,70 @@ const socialLinks = ref([
 }
 
 
-/* 座右铭 - 现代化渐变卡片 */
+/* 座右铭 - 真实渐变卡片风格 */
 .motto-section {
   position: relative;
-  padding: 20px 18px;
-  border-radius: 20px;
+  padding: 18px 20px;
+  border-radius: 14px;
   margin-bottom: 24px;
   background: linear-gradient(135deg, 
-    rgba(139, 92, 246, 0.15) 0%,
-    rgba(236, 72, 153, 0.12) 50%,
-    rgba(250, 204, 21, 0.1) 100%
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.88) 50%,
+    rgba(245, 245, 250, 0.92) 100%
   );
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.15),
-    0 4px 16px rgba(236, 72, 153, 0.1),
-    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .motto-section:hover {
   background: linear-gradient(135deg, 
-    rgba(139, 92, 246, 0.2) 0%,
-    rgba(236, 72, 153, 0.18) 50%,
-    rgba(250, 204, 21, 0.15) 100%
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(250, 250, 255, 0.95) 100%
   );
-  transform: translateY(-3px) scale(1.01);
+  transform: translateY(-3px);
   box-shadow: 
-    0 12px 48px rgba(139, 92, 246, 0.2),
-    0 6px 24px rgba(236, 72, 153, 0.15),
-    inset 0 1px 3px rgba(255, 255, 255, 0.4);
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
+    0 8px 20px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .motto-icon {
   position: absolute;
-  top: -12px;
-  left: 18px;
-  font-size: 20px;
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  padding: 4px 10px;
-  border-radius: 12px;
-  box-shadow: 
-    0 4px 12px rgba(139, 92, 246, 0.4),
-    0 2px 6px rgba(236, 72, 153, 0.3);
-  animation: sparkle 3s ease-in-out infinite;
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  top: -10px;
+  left: 16px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #ff0050, #ff6090);
+  padding: 2px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 0, 80, 0.3);
+  animation: sparkle 2s ease-in-out infinite;
 }
 
 @keyframes sparkle {
   0%, 100% {
     transform: scale(1) rotate(0deg);
-    filter: brightness(1);
   }
   50% {
-    transform: scale(1.08) rotate(-3deg);
-    filter: brightness(1.2);
+    transform: scale(1.1) rotate(5deg);
   }
 }
 
 .motto-text {
   margin: 0;
-  padding: 8px 0 0 0;
-  font-size: 14.5px;
-  line-height: 1.9;
-  color: rgba(255, 255, 255, 0.98);
-  text-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    0 1px 2px rgba(139, 92, 246, 0.3);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #fff;
+  font-style: italic;
+  text-align: left;
+  padding-left: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.3px;
 }
 
 /* 社交链接 - 现代化设计 */
@@ -523,26 +511,28 @@ html.dark .live-border-rotate {
 
 html.dark .motto-section {
   background: linear-gradient(135deg, 
-    rgba(139, 92, 246, 0.12) 0%,
-    rgba(236, 72, 153, 0.1) 50%,
-    rgba(250, 204, 21, 0.08) 100%
+    rgba(30, 30, 35, 0.95) 0%,
+    rgba(25, 25, 30, 0.92) 50%,
+    rgba(20, 20, 28, 0.96) 100%
   );
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 4px 16px rgba(139, 92, 246, 0.2);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html.dark .motto-section:hover {
   background: linear-gradient(135deg, 
-    rgba(139, 92, 246, 0.18) 0%,
-    rgba(236, 72, 153, 0.15) 50%,
-    rgba(250, 204, 21, 0.12) 100%
+    rgba(35, 35, 42, 0.98) 0%,
+    rgba(30, 30, 38, 0.95) 50%,
+    rgba(28, 28, 35, 0.98) 100%
   );
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
-    0 12px 48px rgba(0, 0, 0, 0.5),
-    0 6px 24px rgba(139, 92, 246, 0.3);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 html.dark .social-app-icon {
