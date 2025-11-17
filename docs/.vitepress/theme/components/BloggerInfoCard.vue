@@ -85,9 +85,9 @@ const socialLinks = ref([
     icon: "https://cdn.simpleicons.org/gmail",
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com",
-    icon: "https://cdn.simpleicons.org/twitter",
+    name: "Linux.do",
+    url: "https://linux.do/u/eckes",
+    icon: "https://cdn.simpleicons.org/linux/FCC624",
   },
   {
     name: "Bilibili",
