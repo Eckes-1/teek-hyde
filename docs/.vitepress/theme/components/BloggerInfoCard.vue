@@ -196,6 +196,9 @@ const socialLinks = ref([
   padding: 20px;
   height: 100%;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 头像区域 */
@@ -358,18 +361,13 @@ const socialLinks = ref([
   text-align: center;
   margin-bottom: 20px;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .blogger-name {
   font-size: 28px;
   font-weight: 800;
-  margin: 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  margin: 0;
+  display: inline-block;
   background: linear-gradient(135deg, #fff, #ffd6d6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -386,6 +384,7 @@ const socialLinks = ref([
 
 .wave-emoji {
   display: inline-block;
+  margin-left: 8px;
   animation: wave 2s ease-in-out infinite;
 }
 
@@ -408,6 +407,7 @@ const socialLinks = ref([
   padding: 18px 24px;
   border-radius: 16px;
   margin-bottom: 24px;
+  width: 100%;
   background: linear-gradient(135deg, 
     #ffffff 0%,
     #f8f9fa 100%
@@ -449,6 +449,7 @@ const socialLinks = ref([
   gap: 12px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
 }
 
 /* 社交链接 - 手机APP图标风格（实心背景）*/
