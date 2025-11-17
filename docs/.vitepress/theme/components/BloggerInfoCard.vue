@@ -78,8 +78,8 @@ const socialLinks = ref([
   {
     name: "GitHub",
     url: "https://github.com/Eckes-1",
-    icon: "https://cdn.simpleicons.org/github/white",
-    bg: "#181717", // GitHub黑色
+    icon: "https://cdn.simpleicons.org/github/181717",
+    bg: "#ffffff", // GitHub白色背景
   },
   {
     name: "Gmail",
@@ -494,9 +494,9 @@ const socialLinks = ref([
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 12px; /* 圆角矩形，像iOS图标 */
+  width: 46px;
+  height: 46px;
+  border-radius: 18px; /* 更圆润的圆角，像iOS超椭圆 */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -510,8 +510,8 @@ const socialLinks = ref([
 
 /* logo图标自适应 */
 .social-app-icon img {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   display: block;
 }
 
@@ -627,14 +627,14 @@ html.dark .blogger-info-card {
   }
   
   .social-app-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 11px;
+    width: 42px;
+    height: 42px;
+    border-radius: 16px;
   }
   
   .social-app-icon img {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
   }
 }
 </style>
