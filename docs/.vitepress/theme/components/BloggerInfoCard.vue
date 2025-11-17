@@ -196,9 +196,6 @@ const socialLinks = ref([
   padding: 20px;
   height: 100%;
   overflow: visible;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* 头像区域 */
@@ -358,16 +355,18 @@ const socialLinks = ref([
 
 /* 信息区域 */
 .info-section {
-  text-align: center;
-  margin-bottom: 20px;
   width: 100%;
+  margin-bottom: 20px;
+  display: block;
 }
 
 .blogger-name {
   font-size: 28px;
   font-weight: 800;
   margin: 0;
-  display: inline-block;
+  display: block;
+  text-align: center;
+  width: 100%;
   background: linear-gradient(135deg, #fff, #ffd6d6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -385,6 +384,7 @@ const socialLinks = ref([
 .wave-emoji {
   display: inline-block;
   margin-left: 8px;
+  vertical-align: middle;
   animation: wave 2s ease-in-out infinite;
 }
 
