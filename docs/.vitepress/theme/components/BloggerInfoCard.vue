@@ -20,8 +20,7 @@
           </div>
           <!-- 直播中标识 -->
           <div class="live-badge">
-            <span class="live-dot"></span>
-            <span class="live-text">LIVE</span>
+            <span class="live-text">🎙 直播中</span>
           </div>
         </div>
       </div>
@@ -213,47 +212,19 @@ const socialLinks = ref([
   z-index: 10;
 }
 
-/* 粉色发光边框效果 */
+/* 粉色发光边框效果 - 完全匹配图片样式 */
 .live-glow-border {
   position: absolute;
-  width: 124px;
-  height: 124px;
-  top: -2px;
-  left: -2px;
+  width: 126px;
+  height: 126px;
+  top: -3px;
+  left: -3px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff6ec4, #ff93e1, #ffb6d9);
+  border: 3px solid #ff69b4;
   box-shadow: 
-    0 0 20px rgba(255, 110, 196, 0.6),
-    0 0 40px rgba(255, 147, 225, 0.4),
-    0 0 60px rgba(255, 182, 217, 0.3),
-    inset 0 0 15px rgba(255, 255, 255, 0.2);
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-.live-glow-border::before {
-  content: '';
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  top: 2px;
-  left: 2px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.9);
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 
-      0 0 20px rgba(255, 110, 196, 0.6),
-      0 0 40px rgba(255, 147, 225, 0.4),
-      0 0 60px rgba(255, 182, 217, 0.3);
-  }
-  50% {
-    box-shadow: 
-      0 0 30px rgba(255, 110, 196, 0.8),
-      0 0 50px rgba(255, 147, 225, 0.6),
-      0 0 70px rgba(255, 182, 217, 0.4);
-  }
+    0 0 10px rgba(255, 105, 180, 0.5),
+    0 0 20px rgba(255, 105, 180, 0.3),
+    inset 0 0 10px rgba(255, 105, 180, 0.2);
 }
 
 /* 头像容器 */
@@ -288,77 +259,43 @@ const socialLinks = ref([
 
 /* Hover效果 */
 .avatar-wrapper:hover .live-glow-border {
-  background: linear-gradient(135deg, #ff5eb3, #ff8ad5, #ffadd6);
+  border-color: #ff1493;
   box-shadow: 
-    0 0 30px rgba(255, 110, 196, 0.9),
-    0 0 50px rgba(255, 147, 225, 0.7),
-    0 0 80px rgba(255, 182, 217, 0.5),
-    inset 0 0 20px rgba(255, 255, 255, 0.3);
+    0 0 15px rgba(255, 20, 147, 0.6),
+    0 0 25px rgba(255, 20, 147, 0.4),
+    inset 0 0 10px rgba(255, 20, 147, 0.3);
 }
 
 .avatar-wrapper:hover .avatar-img {
   transform: scale(1.05);
 }
 
-/* 直播中徽章 */
+/* 直播中徽章 - 粉色背景 */
 .live-badge {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: linear-gradient(135deg, #ff0050, #ff3070);
-  padding: 2px 6px;
-  border-radius: 8px;
+  bottom: -5px;
+  right: -5px;
+  background: #ff69b4;
+  padding: 4px 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
   box-shadow: 
-    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.2),
     0 0 0 2px #fff;
-  font-size: 8px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   z-index: 1000;
-  animation: badge-glow 2s ease-in-out infinite;
-}
-
-@keyframes badge-glow {
-  0%, 100% {
-    box-shadow: 
-      0 2px 6px rgba(0, 0, 0, 0.4),
-      0 0 0 2px #fff;
-  }
-  50% {
-    box-shadow: 
-      0 2px 10px rgba(255, 0, 80, 0.6),
-      0 0 0 2px #fff,
-      0 0 20px rgba(255, 0, 80, 0.3);
-  }
-}
-
-.live-dot {
-  width: 5px;
-  height: 5px;
-  background: white;
-  border-radius: 50%;
-  animation: blink 1.5s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
 }
 
 .live-text {
   color: white;
-  font-weight: 700;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  letter-spacing: 1px;
-  font-size: 8px;
-  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 /* 名字容器 - 全新布局 */
@@ -467,11 +404,11 @@ const socialLinks = ref([
 
 /* 暗色模式优化 */
 html.dark .live-glow-border {
-  filter: brightness(0.9);
+  border-color: #ff69b4;
   box-shadow: 
-    0 0 25px rgba(255, 110, 196, 0.7),
-    0 0 45px rgba(255, 147, 225, 0.5),
-    0 0 65px rgba(255, 182, 217, 0.4);
+    0 0 12px rgba(255, 105, 180, 0.6),
+    0 0 22px rgba(255, 105, 180, 0.4),
+    inset 0 0 10px rgba(255, 105, 180, 0.25);
 }
 
 
@@ -510,8 +447,10 @@ html.dark .social-app-icon:hover {
 }
 
 html.dark .live-badge {
-  background: linear-gradient(135deg, #ff0080, #ff2080);
-  box-shadow: 0 2px 10px rgba(255, 0, 128, 0.3);
+  background: #ff69b4;
+  box-shadow: 
+    0 2px 10px rgba(255, 105, 180, 0.4),
+    0 0 0 2px rgba(255, 255, 255, 0.9);
 }
 
 html.dark .social-links {
@@ -537,33 +476,20 @@ html.dark .blogger-info-card {
   }
   
   .live-glow-border {
-    width: 104px;
-    height: 104px;
-  }
-  
-  .live-glow-border::before {
-    width: 100px;
-    height: 100px;
-    top: 2px;
-    left: 2px;
+    width: 106px;
+    height: 106px;
+    border: 2.5px solid #ff69b4;
   }
   
   .live-badge {
-    bottom: 3px;
-    right: 3px;
-    padding: 2px 5px;
-    font-size: 7px;
-    gap: 2px;
-  }
-  
-  .live-dot {
-    width: 4px;
-    height: 4px;
+    bottom: -3px;
+    right: -3px;
+    padding: 3px 8px;
+    border-radius: 10px;
   }
   
   .live-text {
-    font-size: 7px;
-    letter-spacing: 0.5px;
+    font-size: 10px;
   }
 
   .avatar-section {
