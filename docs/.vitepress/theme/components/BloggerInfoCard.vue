@@ -188,22 +188,7 @@ const socialLinks = ref([
   filter: brightness(0.8) contrast(1.1);
 }
 
-/* 渐变遮罩层 - 增强对比度 */
-.blogger-info-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, 
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.3) 30%,
-    rgba(0, 0, 0, 0.6) 70%,
-    rgba(0, 0, 0, 0.8) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
+/* 遮罩层已移除 */
 
 /* 内容包装器 */
 .card-content-wrapper {
@@ -521,12 +506,6 @@ html.dark .live-border-rotate {
   box-shadow: 0 0 15px rgba(255, 0, 80, 0.3);
 }
 
-html.dark .blogger-info-card::after {
-  background: linear-gradient(180deg, 
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
-    rgba(0, 0, 0, 0.8) 100%);
-}
 
 html.dark .motto-section {
   background: rgba(0, 0, 0, 0.3);
