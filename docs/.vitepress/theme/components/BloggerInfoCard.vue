@@ -26,12 +26,10 @@
         </div>
       </div>
 
-      <!-- 名字 -->
-      <div class="info-section">
-        <h2 class="blogger-name">
-          {{ blogger.name }}
-          <span class="wave-emoji">👋</span>
-        </h2>
+      <!-- 名字区域 - 重新构建 -->
+      <div class="name-container">
+        <div class="name-text">{{ blogger.name }}</div>
+        <div class="name-emoji">👋</div>
       </div>
 
       <!-- 座右铭/个性签名 -->
@@ -353,38 +351,34 @@ const socialLinks = ref([
   text-transform: uppercase;
 }
 
-/* 信息区域 */
-.info-section {
+/* 名字容器 - 全新布局 */
+.name-container {
   width: 100%;
-  margin-bottom: 20px;
-  display: block;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-.blogger-name {
+.name-text {
   font-size: 28px;
   font-weight: 800;
-  margin: 0;
-  display: block;
-  text-align: center;
-  width: 100%;
   background: linear-gradient(135deg, #fff, #ffd6d6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
   letter-spacing: 1px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.blogger-name:hover {
+.name-text:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 4px 12px rgba(255, 0, 80, 0.3));
 }
 
-.wave-emoji {
-  display: inline-block;
-  margin-left: 8px;
-  vertical-align: middle;
+.name-emoji {
+  font-size: 24px;
   animation: wave 2s ease-in-out infinite;
 }
 
