@@ -36,7 +36,6 @@
 
       <!-- 座右铭/个性签名 -->
       <div class="motto-section">
-        <div class="motto-icon">✨</div>
         <p class="motto-text">{{ blogger.slogan }}</p>
       </div>
 
@@ -404,8 +403,7 @@ const socialLinks = ref([
 /* 座右铭 - 高对比度实心卡片 */
 .motto-section {
   position: relative;
-  padding: 20px 24px;
-  padding-left: 50px;
+  padding: 18px 24px;
   border-radius: 16px;
   margin-bottom: 24px;
   background: linear-gradient(135deg, 
@@ -431,33 +429,6 @@ const socialLinks = ref([
   border-color: #dee2e6;
 }
 
-.motto-icon {
-  position: absolute;
-  top: 50%;
-  left: 18px;
-  transform: translateY(-50%);
-  font-size: 24px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 10px;
-  box-shadow: 
-    0 4px 12px rgba(102, 126, 234, 0.4),
-    0 2px 6px rgba(102, 126, 234, 0.2);
-  animation: sparkle 2s ease-in-out infinite;
-}
-
-@keyframes sparkle {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(5deg);
-  }
-}
 
 .motto-text {
   margin: 0;
@@ -466,6 +437,7 @@ const socialLinks = ref([
   color: #2c3e50;
   font-weight: 500;
   letter-spacing: 0.2px;
+  text-align: center;
 }
 
 /* 社交链接 - 现代化设计 */
