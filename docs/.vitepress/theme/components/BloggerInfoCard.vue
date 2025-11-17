@@ -231,40 +231,40 @@ const socialLinks = ref([
   z-index: 2;
 }
 
-/* 动态波纹效果 */
+/* 动态波纹效果 - 增强版 */
 .wave-ripple {
   position: absolute;
-  width: 120px;
-  height: 120px;
-  top: 0;
-  left: 0;
+  width: 130px;
+  height: 130px;
+  top: -5px;
+  left: -5px;
   border-radius: 50%;
-  border: 2px solid #ff69b4;
+  border: 4px solid #ff69b4;
   opacity: 0;
   z-index: 1;
 }
 
 .wave-1 {
-  animation: ripple 3s linear infinite;
+  animation: ripple 2.5s linear infinite;
 }
 
 .wave-2 {
-  animation: ripple 3s linear infinite 1.5s;
+  animation: ripple 2.5s linear infinite 1.25s;
 }
 
 @keyframes ripple {
   0% {
     transform: scale(1);
-    opacity: 0.6;
+    opacity: 0.8;
+    border-width: 4px;
+  }
+  40% {
+    transform: scale(1.3);
+    opacity: 0.5;
     border-width: 3px;
   }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.3;
-    border-width: 2px;
-  }
   100% {
-    transform: scale(1.3);
+    transform: scale(1.6);
     opacity: 0;
     border-width: 1px;
   }
@@ -311,38 +311,41 @@ const socialLinks = ref([
 
 .avatar-wrapper:hover .wave-ripple {
   animation-duration: 2s;
+  opacity: 1;
 }
 
 .avatar-wrapper:hover .avatar-img {
   transform: scale(1.05);
 }
 
-/* 直播中徽章 - 粉色背景 */
+/* 直播中徽章 - 底部居中 */
 .live-badge {
   position: absolute;
-  bottom: -5px;
-  right: -5px;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #ff69b4;
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.2),
-    0 0 0 2px #fff;
-  font-size: 12px;
+    0 2px 6px rgba(0, 0, 0, 0.15),
+    0 0 0 1.5px #fff;
+  font-size: 10px;
   font-weight: 600;
   z-index: 1000;
+  white-space: nowrap;
 }
 
 .live-text {
   color: white;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 10px;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
 }
 
 /* 名字容器 - 全新布局 */
@@ -534,14 +537,14 @@ html.dark .blogger-info-card {
   }
   
   .live-badge {
-    bottom: -3px;
-    right: -3px;
-    padding: 3px 8px;
-    border-radius: 10px;
+    bottom: -10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 9px;
   }
   
   .live-text {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .avatar-section {
