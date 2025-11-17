@@ -40,14 +40,15 @@
         <p class="motto-text">{{ blogger.slogan }}</p>
       </div>
 
-      <!-- 社交链接 -->
+      <!-- 社交链接 - 手机APP图标风格 -->
       <div class="social-links">
         <a 
           v-for="social in socialLinks" 
           :key="social.name"
           :href="social.url"
           :title="social.name"
-          class="social-logo"
+          class="social-app-icon"
+          :style="{ background: social.bg }"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -72,27 +73,31 @@ const blogger = computed(() => ({
 }));
 
 
-// 社交链接 - 使用真实的品牌图标
+// 社交链接 - 手机APP图标风格（实心背景）
 const socialLinks = ref([
   {
     name: "GitHub",
     url: "https://github.com/Eckes-1",
     icon: "https://cdn.simpleicons.org/github/white",
+    bg: "#181717", // GitHub黑色
   },
   {
     name: "Gmail",
     url: "mailto:your-email@example.com",
-    icon: "https://cdn.simpleicons.org/gmail",
+    icon: "https://cdn.simpleicons.org/gmail/white",
+    bg: "linear-gradient(135deg, #EA4335 0%, #FBBC04 25%, #34A853 50%, #4285F4 75%)", // Gmail彩虹渐变
   },
   {
     name: "Linux.do",
     url: "https://linux.do/u/eckes",
-    icon: "https://cdn.simpleicons.org/linux/FCC624",
+    icon: "https://cdn.simpleicons.org/linux/000000",
+    bg: "#FCC624", // Linux黄色
   },
   {
     name: "Bilibili",
     url: "https://space.bilibili.com",
-    icon: "https://cdn.simpleicons.org/bilibili",
+    icon: "https://cdn.simpleicons.org/bilibili/white",
+    bg: "#00A1D6", // Bilibili粉蓝色
   },
 ]);
 </script>
@@ -484,29 +489,29 @@ const socialLinks = ref([
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* 社交链接 - 添加背景色 */
-.social-logo {
+/* 社交链接 - 手机APP图标风格（实心背景）*/
+.social-app-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px; /* 圆角矩形，像iOS图标 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.social-logo:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+.social-app-icon:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  filter: brightness(1.1);
 }
 
 /* logo图标自适应 */
-.social-logo img {
-  width: 28px;
-  height: 28px;
+.social-app-icon img {
+  width: 30px;
+  height: 30px;
   display: block;
 }
 
@@ -533,12 +538,12 @@ html.dark .motto-section:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-html.dark .social-logo {
-  background: rgba(255, 255, 255, 0.08);
+html.dark .social-app-icon {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-html.dark .social-logo:hover {
-  background: rgba(255, 255, 255, 0.12);
+html.dark .social-app-icon:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
 }
 
 html.dark .live-badge {
@@ -621,14 +626,15 @@ html.dark .blogger-info-card {
     padding-top: 16px;
   }
   
-  .social-logo {
-    width: 44px;
-    height: 44px;
+  .social-app-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 11px;
   }
   
-  .social-logo img {
-    width: 24px;
-    height: 24px;
+  .social-app-icon img {
+    width: 26px;
+    height: 26px;
   }
 }
 </style>
