@@ -231,15 +231,15 @@ const socialLinks = ref([
   z-index: 2;
 }
 
-/* 动态波纹效果 - 增强版 */
+/* 动态波纹效果 - 适中版 */
 .wave-ripple {
   position: absolute;
-  width: 130px;
-  height: 130px;
-  top: -5px;
-  left: -5px;
+  width: 124px;
+  height: 124px;
+  top: -2px;
+  left: -2px;
   border-radius: 50%;
-  border: 4px solid #ff69b4;
+  border: 3px solid #ff69b4;
   opacity: 0;
   z-index: 1;
 }
@@ -255,16 +255,16 @@ const socialLinks = ref([
 @keyframes ripple {
   0% {
     transform: scale(1);
-    opacity: 0.8;
-    border-width: 4px;
-  }
-  40% {
-    transform: scale(1.3);
-    opacity: 0.5;
+    opacity: 0.7;
     border-width: 3px;
   }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.4;
+    border-width: 2px;
+  }
   100% {
-    transform: scale(1.6);
+    transform: scale(1.4);
     opacity: 0;
     border-width: 1px;
   }
