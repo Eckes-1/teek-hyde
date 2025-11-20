@@ -290,9 +290,144 @@ const testScroll = () => {
 }
 
 .icon {
-  width: 32px;
-  height: 32px;
+  width: 50%;
+  height: 50%;
+  z-index: 2;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.demo-btn:hover .icon {
+  animation: iconBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 方案1特效：箭头下坠 */
+.demo-btn.style-1.active .icon {
+  animation: arrowDrop 1s ease-in-out;
+}
+
+@keyframes arrowDrop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(15px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 方案2特效：折叠效果 */
+.demo-btn.style-2.active .icon {
+  animation: foldDown 1s ease-in-out;
+}
+
+@keyframes foldDown {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+}
+
+/* 方案3特效：垂直对齐弹跳 */
+.demo-btn.style-3.active .icon {
+  animation: alignBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes alignBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-12px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+  75% {
+    transform: translateY(-4px);
+  }
+}
+
+/* 方案4特效：展开旋转 */
+.demo-btn.style-4.active .icon {
+  animation: expandRotate 1s ease-in-out;
+}
+
+@keyframes expandRotate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+  }
+}
+
+/* 方案5特效：火箭发射 */
+.demo-btn.style-5.active .icon {
+  animation: rocketLaunch 1s ease-in-out;
+}
+
+@keyframes rocketLaunch {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(20px) scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 火箭尾焰效果 */
+.demo-btn.style-5.active::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 0;
+  background: linear-gradient(to bottom, 
+    rgba(255, 200, 50, 0.8), 
+    rgba(255, 100, 50, 0));
+  border-radius: 50%;
+  animation: rocketTrail 1s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rocketTrail {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 25px;
+    opacity: 0.9;
+  }
+  100% {
+    height: 30px;
+    opacity: 0;
+  }
 }
 
 .demo-info {
