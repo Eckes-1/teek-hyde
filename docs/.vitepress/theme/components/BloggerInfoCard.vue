@@ -1,5 +1,18 @@
 <template>
-  <div class="tk-page-card blogger-info-card">
+  <div class="tk-page-card blogger-info-card" :class="{ 'has-bg': showBgImage }">
+      <!-- 背景图片切换按钮 -->
+      <button 
+        class="bg-toggle-btn"
+        @click="toggleBackground"
+        :title="showBgImage ? '隐藏背景' : '显示背景'"
+      >
+        <svg v-if="!showBgImage" viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor" d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"/>
+        </svg>
+        <svg v-else viewBox="0 0 24 24" width="18" height="18">
+          <path fill="currentColor" d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M18,11.5C18,10.12 16.88,9 15.5,9C14.12,9 13,10.12 13,11.5C13,12.88 14.12,14 15.5,14C16.88,14 18,12.88 18,11.5Z"/>
+        </svg>
+      </button>
       <!-- 装饰性光效 -->
       <div class="glow-effect glow-1"></div>
       <div class="glow-effect glow-2"></div>
@@ -53,6 +66,14 @@ import { ref, computed } from "vue";
 import { useData } from "vitepress";
 
 const { theme } = useData();
+
+// 背景图片显示状态 - 默认不显示
+const showBgImage = ref(false);
+
+// 切换背景图片
+const toggleBackground = () => {
+  showBgImage.value = !showBgImage.value;
+};
 
 // 博主基础信息
 const blogger = computed(() => ({
@@ -161,7 +182,50 @@ const socialLinks = ref([
   }
 }
 
-/* 背景图片层 */
+/* 背景图片切换按钮 */
+.bg-toggle-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bg-toggle-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.bg-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+html.dark .bg-toggle-btn {
+  background: rgba(40, 40, 45, 0.9);
+  color: #aaa;
+}
+
+html.dark .bg-toggle-btn:hover {
+  background: rgba(50, 50, 55, 1);
+  color: #fff;
+}
+
+/* 背景图片层 - 默认隐藏 */
 .blogger-info-card::before {
   content: '';
   position: absolute;
@@ -175,6 +239,13 @@ const socialLinks = ref([
   background-repeat: no-repeat;
   z-index: 0;
   filter: brightness(0.8) contrast(1.1);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* 显示背景图片 */
+.blogger-info-card.has-bg::before {
+  opacity: 1;
 }
 
 /* 遮罩层已移除 */
