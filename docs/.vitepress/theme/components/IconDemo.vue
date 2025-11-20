@@ -27,7 +27,7 @@
         </div>
         <div class="info-item action">
           <button class="test-btn" @click="testScroll">
-            🚀 点击测试效果
+            ✨ 点击体验滚动特效
           </button>
         </div>
       </div>
@@ -91,12 +91,26 @@ const testScroll = () => {
   isActive.value = true
   showMessage.value = true
   
+  // 模拟真实的滚动到底部效果
+  const scrollDistance = 500 // 向下滚动500px
+  const currentScroll = window.scrollY
+  
+  window.scrollTo({
+    top: currentScroll + scrollDistance,
+    behavior: 'smooth'
+  })
+  
   setTimeout(() => {
     isActive.value = false
   }, 1000)
   
   setTimeout(() => {
     showMessage.value = false
+    // 滚回原位
+    window.scrollTo({
+      top: currentScroll,
+      behavior: 'smooth'
+    })
   }, 3000)
 }
 </script>
@@ -182,17 +196,61 @@ const testScroll = () => {
 }
 
 @keyframes btnPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  0%, 100% { 
+    transform: scale(1) rotate(0deg); 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    transform: scale(1.15) rotate(-5deg);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+  }
+  50% { 
+    transform: scale(1.2) rotate(0deg); 
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+  }
+  75% {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+  }
 }
 
-/* 方案1：双V形 - 紫色渐变 */
+/* 涟漪特效 */
+.demo-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 1s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
+/* 方案1：双V形 - 红粉渐变 */
 .demo-btn.style-1 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  box-shadow: 0 8px 32px rgba(245, 87, 108, 0.4);
 }
 
 .demo-btn.style-1:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #6a3f91 100%);
+  background: linear-gradient(135deg, #e082ea 0%, #e4465b 100%);
+  box-shadow: 0 12px 40px rgba(245, 87, 108, 0.5);
 }
 
 /* 方案2：折叠箭头 - 蓝色渐变 */
@@ -279,7 +337,7 @@ const testScroll = () => {
 
 .test-btn {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -287,37 +345,68 @@ const testScroll = () => {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.test-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.test-btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .test-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
 }
 
 .test-btn:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 .demo-message {
   margin-top: 20px;
   padding: 15px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   text-align: center;
   font-weight: 600;
-  animation: slideDown 0.3s ease-out;
+  font-size: 16px;
+  animation: slideDown 0.3s ease-out, glow 1.5s ease-in-out infinite;
+  box-shadow: 0 8px 32px rgba(245, 87, 108, 0.4);
 }
 
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(245, 87, 108, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 48px rgba(245, 87, 108, 0.8);
   }
 }
 
