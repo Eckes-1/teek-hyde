@@ -4,19 +4,9 @@
       <div class="glow-effect glow-1"></div>
       <div class="glow-effect glow-2"></div>
       <div class="card-content-wrapper">
-      <!-- 头像区域 -->
+      <!-- 头像区域 - 简洁版 -->
       <div class="avatar-section">
         <div class="avatar-wrapper">
-          <!-- 粉色发光边框效果 -->
-          <div class="live-glow-border"></div>
-          <!-- 声波动效 -->
-          <div class="sound-wave">
-            <span class="wave-bar"></span>
-            <span class="wave-bar"></span>
-            <span class="wave-bar"></span>
-            <span class="wave-bar"></span>
-            <span class="wave-bar"></span>
-          </div>
           <!-- 头像容器 -->
           <div class="avatar-container">
             <!-- 头像图片 -->
@@ -25,10 +15,6 @@
               :alt="blogger.name"
               class="avatar-img"
             >
-          </div>
-          <!-- 直播中标识 -->
-          <div class="live-badge">
-            <span class="live-text">🎙 直播中</span>
           </div>
         </div>
       </div>
@@ -220,95 +206,14 @@ const socialLinks = ref([
   z-index: 10;
 }
 
-/* 粉色发光边框效果 - 完全匹配图片样式 */
-.live-glow-border {
-  position: absolute;
-  width: 126px;
-  height: 126px;
-  top: -3px;
-  left: -3px;
-  border-radius: 50%;
-  border: 3px solid #ff69b4;
-  box-shadow: 
-    0 0 10px rgba(255, 105, 180, 0.5),
-    0 0 20px rgba(255, 105, 180, 0.3),
-    inset 0 0 10px rgba(255, 105, 180, 0.2);
-  z-index: 2;
-}
+/* 头像特效已移除 - 保持简洁 */
 
-/* 声波动效 */
-.sound-wave {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  top: -10px;
-  left: -10px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.wave-bar {
-  display: inline-block;
-  width: 3px;
-  height: 20px;
-  background: linear-gradient(to top, #ff69b4, #ff8fc7);
-  border-radius: 2px;
-  opacity: 0.8;
-  animation: soundWave 1s ease-in-out infinite;
-  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
-}
-
-.wave-bar:nth-child(1) {
-  animation-delay: 0s;
-  height: 25px;
-}
-
-.wave-bar:nth-child(2) {
-  animation-delay: 0.2s;
-  height: 30px;
-}
-
-.wave-bar:nth-child(3) {
-  animation-delay: 0.4s;
-  height: 35px;
-}
-
-.wave-bar:nth-child(4) {
-  animation-delay: 0.6s;
-  height: 30px;
-}
-
-.wave-bar:nth-child(5) {
-  animation-delay: 0.8s;
-  height: 25px;
-}
-
-@keyframes soundWave {
-  0%, 100% {
-    transform: scaleY(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scaleY(1.5);
-    opacity: 1;
-  }
-}
-
-/* 头像容器 */
+/* 头像容器 - 简洁版 */
 .avatar-container {
-  position: absolute;
   width: 120px;
   height: 120px;
-  top: 0;
-  left: 0;
   border-radius: 50%;
   overflow: hidden;
-  z-index: 2;
 }
 
 @keyframes rotate {
@@ -329,52 +234,9 @@ const socialLinks = ref([
   border-radius: 50%;
 }
 
-/* Hover效果 */
-.avatar-wrapper:hover .live-glow-border {
-  border-color: #ff1493;
-  box-shadow: 
-    0 0 15px rgba(255, 20, 147, 0.6),
-    0 0 25px rgba(255, 20, 147, 0.4),
-    inset 0 0 10px rgba(255, 20, 147, 0.3);
-}
-
-.avatar-wrapper:hover .wave-bar {
-  animation-duration: 0.8s;
-  background: linear-gradient(to top, #ff1493, #ff69b4);
-}
-
+/* 头像Hover效果 - 简单放大 */
 .avatar-wrapper:hover .avatar-img {
   transform: scale(1.05);
-}
-
-/* 直播中徽章 - 底部居中 */
-.live-badge {
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ff69b4;
-  padding: 2px 8px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    0 2px 6px rgba(0, 0, 0, 0.15),
-    0 0 0 1.5px #fff;
-  font-size: 10px;
-  font-weight: 600;
-  z-index: 1000;
-  white-space: nowrap;
-}
-
-.live-text {
-  color: white;
-  font-weight: 600;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  gap: 2px;
 }
 
 /* 名字容器 - 全新布局 */
@@ -482,20 +344,6 @@ const socialLinks = ref([
 }
 
 /* 暗色模式优化 */
-html.dark .live-glow-border {
-  border-color: #ff69b4;
-  box-shadow: 
-    0 0 12px rgba(255, 105, 180, 0.6),
-    0 0 22px rgba(255, 105, 180, 0.4),
-    inset 0 0 10px rgba(255, 105, 180, 0.25);
-}
-
-html.dark .wave-bar {
-  background: linear-gradient(to top, #ff69b4, #ffb6d9);
-  filter: brightness(1.1);
-}
-
-
 html.dark .motto-section {
   background: linear-gradient(135deg, 
     #1e1e24 0%,
@@ -530,13 +378,6 @@ html.dark .social-app-icon:hover {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
 }
 
-html.dark .live-badge {
-  background: #ff69b4;
-  box-shadow: 
-    0 2px 10px rgba(255, 105, 180, 0.4),
-    0 0 0 2px rgba(255, 255, 255, 0.9);
-}
-
 html.dark .social-links {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -559,21 +400,9 @@ html.dark .blogger-info-card {
     height: 100px;
   }
   
-  .live-glow-border {
-    width: 106px;
-    height: 106px;
-    border: 2.5px solid #ff69b4;
-  }
-  
-  .live-badge {
-    bottom: -10px;
-    padding: 2px 6px;
-    border-radius: 8px;
-    font-size: 9px;
-  }
-  
-  .live-text {
-    font-size: 9px;
+  .avatar-container {
+    width: 100px;
+    height: 100px;
   }
 
   .avatar-section {
