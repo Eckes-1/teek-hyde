@@ -1,32 +1,5 @@
 <template>
   <div class="reading-navigation">
-    <!-- 回到底部按钮 -->
-    <Transition name="back">
-      <div
-        v-show="showButtons"
-        class="nav-btn to-bottom-btn"
-        :class="{ 'scrolling': isScrollingToBottom }"
-        @click="scrollToBottom"
-        title="回到底部"
-      >
-        <!-- 进度圆环 -->
-        <svg class="progress-circle" width="70" height="70" viewBox="0 0 70 70">
-          <circle class="progress-circle-bg" cx="35" cy="35" r="30" fill="none" 
-                  stroke="rgba(255, 255, 255, 0.2)" stroke-width="4" />
-          <circle class="progress-circle-bar" cx="35" cy="35" r="30" fill="none" 
-                  stroke="rgba(255, 255, 255, 0.9)" stroke-width="4" 
-                  :stroke-dasharray="progressCircumference" 
-                  :stroke-dashoffset="bottomProgressOffset"
-                  transform="rotate(-90 35 35)" />
-        </svg>
-        
-        <!-- 火箭向下图标 -->
-        <svg class="icon rocket-down-icon" viewBox="0 0 24 24" width="24" height="24">
-          <path fill="#FFF" d="M12,2C12,2 7,4 7,12L9.21,12C9.21,12 10,11 12,11C14,11 14.79,12 14.79,12L17,12C17,4 12,2 12,2M12,22L10,17H14L12,22M8,12V20H10V14.92C9.38,14.44 9,13.74 9,13A2,2 0 0,1 11,11V7.91C9.22,8.37 8,9.87 8,12M16,12C16,9.87 14.78,8.37 13,7.91V11A2,2 0 0,1 15,13C15,13.74 14.62,14.44 14,14.92V20H16V12Z"/>
-        </svg>
-      </div>
-    </Transition>
-
     <!-- 返回阅读位置按钮 -->
     <Transition name="back">
       <div
@@ -52,6 +25,33 @@
         <span class="particle particle-2"></span>
         <span class="particle particle-3"></span>
         <span class="particle particle-4"></span>
+      </div>
+    </Transition>
+
+    <!-- 回到底部按钮 -->
+    <Transition name="back">
+      <div
+        v-show="showButtons"
+        class="nav-btn to-bottom-btn"
+        :class="{ 'scrolling': isScrollingToBottom }"
+        @click="scrollToBottom"
+        title="回到底部"
+      >
+        <!-- 进度圆环 -->
+        <svg class="progress-circle" width="70" height="70" viewBox="0 0 70 70">
+          <circle class="progress-circle-bg" cx="35" cy="35" r="30" fill="none" 
+                  stroke="rgba(255, 255, 255, 0.2)" stroke-width="4" />
+          <circle class="progress-circle-bar" cx="35" cy="35" r="30" fill="none" 
+                  stroke="rgba(255, 255, 255, 0.9)" stroke-width="4" 
+                  :stroke-dasharray="progressCircumference" 
+                  :stroke-dashoffset="bottomProgressOffset"
+                  transform="rotate(-90 35 35)" />
+        </svg>
+        
+        <!-- 火箭向上图标 -->
+        <svg class="icon rocket-up-icon" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="#FFF" d="M12,22C12,22 17,20 17,12L14.79,12C14.79,12 14,13 12,13C10,13 9.21,12 9.21,12L7,12C7,20 12,22 12,22M12,2L14,7H10L12,2M16,12V4H14V9.08C14.62,9.56 15,10.26 15,11A2,2 0 0,1 13,13V16.09C14.78,15.63 16,14.13 16,12M8,12C8,14.13 9.22,15.63 11,16.09V13A2,2 0 0,1 9,11C9,10.26 9.38,9.56 10,9.08V4H8V12Z"/>
+        </svg>
       </div>
     </Transition>
   </div>
@@ -394,42 +394,42 @@ onBeforeUnmount(() => {
   }
 }
 
-/* 火箭发射动画 */
-.scrolling .rocket-down-icon {
-  animation: rocket-launch 1s ease-in-out forwards;
+/* 火箭向上发射动画 */
+.scrolling .rocket-up-icon {
+  animation: rocket-launch-up 1s ease-in-out forwards;
 }
 
-@keyframes rocket-launch {
+@keyframes rocket-launch-up {
   0% {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
   50% {
-    transform: translateY(10px) scale(0.95);
+    transform: translateY(-10px) scale(0.95);
     opacity: 0.8;
   }
   100% {
-    transform: translateY(20px) scale(0.9);
+    transform: translateY(-20px) scale(0.9);
     opacity: 0.6;
   }
 }
 
-/* 火箭尾焰效果 */
+/* 火箭尾焰效果（向上喷射） */
 .to-bottom-btn.scrolling::after {
   content: '';
   position: absolute;
-  bottom: 15px;
+  top: 15px;
   left: 50%;
   transform: translateX(-50%);
   width: 12px;
   height: 0;
-  background: linear-gradient(to bottom, rgba(255, 200, 50, 0.8), rgba(255, 100, 50, 0));
+  background: linear-gradient(to top, rgba(255, 200, 50, 0.8), rgba(255, 100, 50, 0));
   border-radius: 50%;
-  animation: rocket-trail 1s ease-out forwards;
+  animation: rocket-trail-up 1s ease-out forwards;
   z-index: 0;
 }
 
-@keyframes rocket-trail {
+@keyframes rocket-trail-up {
   0% {
     height: 0;
     opacity: 0;
