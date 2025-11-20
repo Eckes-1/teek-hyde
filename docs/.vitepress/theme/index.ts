@@ -9,6 +9,7 @@ import confetti from "./components/Confetti.vue"; //导入五彩纸屑组件
 import NavIcon from "./components/NavIcon.vue"; //导入导航栏图标
 import SLink from "./components/SLink/index.vue";
 import ReadingNavigation from "./components/ReadingNavigation.vue"; //导入阅读导航组件
+import IconDemo from "./components/IconDemo.vue"; //导入图标演示组件
 
 // 被动事件监听器修复工具 - 针对 vitepress-theme-teek 主题
 import "./fix-teek-passive-events.js";
@@ -55,6 +56,7 @@ export default {
       { name: "NavIcon", component: NavIcon }, // 注册导航栏图标
       { name: "friend-link", component: SLink }, // 注册友链组件
       { name: "ReadingNavigation", component: ReadingNavigation }, // 注册阅读导航组件
+      { name: "IconDemo", component: IconDemo }, // 注册图标演示组件
     ];
 
     globalComponents.forEach(({ name, component }) => {
