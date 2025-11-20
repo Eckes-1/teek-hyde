@@ -268,24 +268,71 @@ onBeforeUnmount(() => {
 .to-bottom-btn {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   box-shadow: 0 4px 20px rgba(250, 112, 154, 0.4);
+  overflow: hidden;
 }
 
 .to-bottom-btn:hover {
   background: linear-gradient(135deg, #f9608b 0%, #fdd030 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(250, 112, 154, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(250, 112, 154, 0.6);
+}
+
+/* 涟漪特效 */
+.to-bottom-btn.scrolling::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 1s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
 }
 
 /* 阅读位置按钮 - 蓝绿色渐变 */
 .reading-position-btn {
   background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
   box-shadow: 0 4px 20px rgba(48, 207, 208, 0.4);
+  overflow: hidden;
 }
 
 .reading-position-btn:hover {
   background: linear-gradient(135deg, #20bfbf 0%, #280757 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(48, 207, 208, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(48, 207, 208, 0.6);
+}
+
+/* 阅读位置按钮涟漪 */
+.reading-position-btn.jumping::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(48, 207, 208, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 0.8s ease-out;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* 进度圆环 */
@@ -335,7 +382,16 @@ onBeforeUnmount(() => {
 }
 
 .nav-btn:hover .icon {
-  transform: translateY(-3px);
+  animation: iconBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* 火箭发射动画 */
@@ -359,7 +415,7 @@ onBeforeUnmount(() => {
 }
 
 /* 火箭尾焰效果 */
-.scrolling::after {
+.to-bottom-btn.scrolling::after {
   content: '';
   position: absolute;
   bottom: 15px;
@@ -370,6 +426,7 @@ onBeforeUnmount(() => {
   background: linear-gradient(to bottom, rgba(255, 200, 50, 0.8), rgba(255, 100, 50, 0));
   border-radius: 50%;
   animation: rocket-trail 1s ease-out forwards;
+  z-index: 0;
 }
 
 @keyframes rocket-trail {
