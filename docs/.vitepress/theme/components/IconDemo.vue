@@ -10,7 +10,9 @@
           :class="[btnClass, { 'active': isActive }]"
           @click="handleClick"
         >
-          <svg class="icon" :viewBox="viewBox" width="24" height="24" v-html="iconPath"></svg>
+          <svg class="icon" :viewBox="viewBox" width="24" height="24">
+            <path fill="#FFF" :d="pathData" />
+          </svg>
         </button>
       </div>
       
@@ -49,7 +51,7 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  iconPath: {
+  pathData: {
     type: String,
     required: true
   },
