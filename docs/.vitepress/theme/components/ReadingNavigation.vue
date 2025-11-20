@@ -20,9 +20,9 @@
                   transform="rotate(-90 35 35)" />
         </svg>
         
-        <!-- 向下箭头图标 -->
-        <svg class="icon arrow-down-icon" viewBox="0 0 24 24" width="24" height="24">
-          <path fill="#FFF" d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z"/>
+        <!-- 火箭向下图标 -->
+        <svg class="icon rocket-down-icon" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="#FFF" d="M12,2C12,2 7,4 7,12L9.21,12C9.21,12 10,11 12,11C14,11 14.79,12 14.79,12L17,12C17,4 12,2 12,2M12,22L10,17H14L12,22M8,12V20H10V14.92C9.38,14.44 9,13.74 9,13A2,2 0 0,1 11,11V7.91C9.22,8.37 8,9.87 8,12M16,12C16,9.87 14.78,8.37 13,7.91V11A2,2 0 0,1 15,13C15,13.74 14.62,14.44 14,14.92V20H16V12Z"/>
         </svg>
       </div>
     </Transition>
@@ -42,9 +42,9 @@
                   stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" />
         </svg>
         
-        <!-- 历史/时钟图标 -->
-        <svg class="icon history-icon" viewBox="0 0 24 24" width="24" height="24">
-          <path fill="#FFF" d="M13.5,8H12V13L16.28,15.54L17,14.33L13.5,12.25V8M13,3A9,9 0 0,0 4,12H1L4.96,16.03L9,12H6A7,7 0 0,1 13,5A7,7 0 0,1 20,12A7,7 0 0,1 13,19C11.07,19 9.32,18.21 8.06,16.94L6.64,18.36C8.27,20 10.5,21 13,21A9,9 0 0,0 22,12A9,9 0 0,0 13,3"/>
+        <!-- 书签收藏图标 -->
+        <svg class="icon bookmark-icon" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="#FFF" d="M17,18L12,15.82L7,18V5H17M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z"/>
         </svg>
         
         <!-- 粒子特效 -->
@@ -264,28 +264,28 @@ onBeforeUnmount(() => {
   transition: all 0.3s ease;
 }
 
-/* 回到底部按钮 - 深紫色渐变 */
+/* 回到底部按钮 - 橙红色渐变 */
 .to-bottom-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 4px 20px rgba(118, 75, 162, 0.3);
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  box-shadow: 0 4px 20px rgba(250, 112, 154, 0.4);
 }
 
 .to-bottom-btn:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #6a3f91 100%);
+  background: linear-gradient(135deg, #f9608b 0%, #fdd030 100%);
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(118, 75, 162, 0.4);
+  box-shadow: 0 6px 25px rgba(250, 112, 154, 0.5);
 }
 
-/* 阅读位置按钮 - 紫蓝色渐变 */
+/* 阅读位置按钮 - 蓝绿色渐变 */
 .reading-position-btn {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  box-shadow: 0 4px 20px rgba(107, 70, 193, 0.3);
+  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+  box-shadow: 0 4px 20px rgba(48, 207, 208, 0.4);
 }
 
 .reading-position-btn:hover {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #20bfbf 0%, #280757 100%);
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(107, 70, 193, 0.4);
+  box-shadow: 0 6px 25px rgba(48, 207, 208, 0.5);
 }
 
 /* 进度圆环 */
@@ -338,70 +338,72 @@ onBeforeUnmount(() => {
   transform: translateY(-3px);
 }
 
-/* 箭头下沉动画 */
-.scrolling .arrow-down-icon {
-  animation: arrow-drop 1s ease-in-out forwards;
+/* 火箭发射动画 */
+.scrolling .rocket-down-icon {
+  animation: rocket-launch 1s ease-in-out forwards;
 }
 
-@keyframes arrow-drop {
+@keyframes rocket-launch {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
   50% {
-    transform: translateY(10px);
+    transform: translateY(10px) scale(0.95);
     opacity: 0.8;
   }
   100% {
-    transform: translateY(15px);
+    transform: translateY(20px) scale(0.9);
     opacity: 0.6;
   }
 }
 
-/* 箭头波纹效果 */
+/* 火箭尾焰效果 */
 .scrolling::after {
   content: '';
   position: absolute;
-  top: 50%;
+  bottom: 15px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 0;
+  background: linear-gradient(to bottom, rgba(255, 200, 50, 0.8), rgba(255, 100, 50, 0));
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  animation: arrow-ripple 1s ease-out forwards;
+  animation: rocket-trail 1s ease-out forwards;
 }
 
-@keyframes arrow-ripple {
+@keyframes rocket-trail {
   0% {
-    width: 20px;
-    height: 20px;
-    opacity: 0.6;
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 25px;
+    opacity: 0.9;
   }
   100% {
-    width: 60px;
-    height: 60px;
+    height: 30px;
     opacity: 0;
   }
 }
 
-/* 历史图标旋转动画 */
-.jumping .history-icon {
-  animation: history-rotate 0.8s ease-in-out;
+/* 书签飘动动画 */
+.jumping .bookmark-icon {
+  animation: bookmark-float 0.8s ease-in-out;
 }
 
-@keyframes history-rotate {
+@keyframes bookmark-float {
   0%, 100% {
-    transform: rotate(0deg);
+    transform: translateY(0) rotate(0deg);
   }
   25% {
-    transform: rotate(-15deg);
+    transform: translateY(-8px) rotate(-5deg);
   }
   50% {
-    transform: rotate(0deg);
+    transform: translateY(0) rotate(0deg);
   }
   75% {
-    transform: rotate(15deg);
+    transform: translateY(-4px) rotate(5deg);
   }
 }
 
