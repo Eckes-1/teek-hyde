@@ -433,10 +433,48 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-/* 移动端适配 - 完全隐藏以避免挡住内容 */
+/* 移动端适配 - 优化样式减少遮挡 */
 @media (max-width: 768px) {
   .nav-dock {
-    display: none; /* 移动端完全隐藏，因为移动设备有自带的滚动手势 */
+    bottom: 70px;
+    right: 10px;
+    padding: 6px 4px;
+    gap: 6px;
+    opacity: 0.7; /* 半透明，减少视觉干扰 */
+    background: rgba(255, 255, 255, 0.15); /* 更透明的背景 */
+  }
+  
+  .nav-dock:hover,
+  .nav-dock:active {
+    opacity: 1; /* 交互时完全显示 */
+  }
+  
+  .progress-indicator {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .progress-ring {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .progress-text {
+    font-size: 9px;
+  }
+  
+  .action-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .tooltip {
+    display: none; /* 移动端隐藏提示文字 */
   }
 }
 </style>
