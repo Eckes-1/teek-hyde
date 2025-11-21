@@ -94,11 +94,9 @@ const teekConfig = defineTeekConfig({
     readingTime: true,
   },
 
-  // //右下角回到顶部配置。
+  // 右下角回到顶部配置 - 已禁用
   backTop: {
-    enabled: true, // 是否启动回到顶部功能
-    content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
-    done: (TkMessage) => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
+    enabled: false, // 禁用回到顶部功能
   },
   toComment: {
     enabled: false, // 禁用滚动到评论区功能
