@@ -16,7 +16,7 @@ import GlobalGreet from "./GlobalGreet.vue"; //导入全局问候组件
 import TitleChange from "./TitleChange.vue"; //导入网页标题变化
 import ScrollProgressBar from "./ScrollProgressBar.vue"; //导入顶部滚动条组件
 import DocFooterCopyright from "./DocFooterCopyright.vue"; //导入文档页脚版权组件
-import BackTop from "./BackTop.vue"; //导入回到顶部组件
+// import BackTop from "./BackTop.vue"; //导入回到顶部组件 - 已隐藏
 import Clock from "./Clock.vue"; // 时钟组件
 import WelcomeCard from "./WelcomeCard.vue"; // 欢迎卡片
 import WechatCard from "./WechatCard.vue";
@@ -154,10 +154,10 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <DocFooterCopyright />
     </template>
 
-    <!-- 回到顶部组件插槽 -->
-    <template #teek-back-top>
+    <!-- 回到顶部组件插槽 - 已隐藏 -->
+    <!-- <template #teek-back-top>
       <BackTop />
-    </template>
+    </template> -->
 
     <!-- 右上角时钟组件 -->
     <template #nav-bar-content-after>
