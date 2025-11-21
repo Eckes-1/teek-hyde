@@ -100,10 +100,9 @@ const teekConfig = defineTeekConfig({
     content: "progress", // 回到顶部按钮的显示内容，可选配置 progress | icon
     done: (TkMessage) => TkMessage.success("已达到顶部🎉"), // 回到顶部后的回调
   },
-  // toComment: {
-  //   enabled: true, // 是否启动滚动到评论区功能
-  //   done: (TkMessage) => TkMessage.success("已抵达评论区✨"), // 滚动到评论区后的回调
-  // },
+  toComment: {
+    enabled: false, // 禁用滚动到评论区功能
+  },
   // 新版代码块配置
   codeBlock: {
     enabled: true, // 是否禁用新版代码块

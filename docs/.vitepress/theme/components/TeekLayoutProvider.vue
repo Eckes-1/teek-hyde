@@ -22,7 +22,7 @@ import WelcomeCard from "./WelcomeCard.vue"; // 欢迎卡片
 import WechatCard from "./WechatCard.vue";
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; // 过渡动画组件
 import Twikoo from "./Twikoo/Twikoo.vue";
-import ScrollToComment from "./ScrollToComment.vue";
+// import ScrollToComment from "./ScrollToComment.vue"; // 已删除
 import CalendarCard from "./CalendarCard.vue";
 import ScheduleCard from "./ScheduleCard.vue";
 import BloggerInfoCard from "./BloggerInfoCard.vue"; // 博主信息卡片

@@ -145,7 +145,7 @@ import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useStarBurst } from "./DiySlinkShiroki.ts";
 // 导入消息提示组件
 import { TkMessage } from "vitepress-theme-teek";
-import ScrollToComment from "../ScrollToComment.vue";
+// import ScrollToComment from "../ScrollToComment.vue"; // 已删除
 
 /**
  * 单个友链的数据结构定义
