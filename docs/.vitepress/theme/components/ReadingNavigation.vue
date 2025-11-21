@@ -1,99 +1,82 @@
 <template>
-  <div class="reading-navigation">
-    <!-- 返回阅读位置按钮 -->
-    <Transition name="back">
-      <div
-        v-show="hasReadingPosition && showButtons"
-        class="nav-btn reading-position-btn"
-        :class="{ 'jumping': isJumpingToPosition }"
-        @click="goToReadingPosition"
-        title="返回阅读位置"
-      >
-        <!-- 光环效果 -->
-        <svg class="progress-circle" width="70" height="70" viewBox="0 0 70 70">
-          <circle class="glow-ring" cx="35" cy="35" r="30" fill="none" 
-                  stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" />
+  <Transition name="dock-fade">
+    <div v-show="showButtons" class="nav-dock">
+      <!-- 顶部进度指示器 -->
+      <div class="dock-item progress-indicator" @click="scrollToTop" title="当前进度">
+        <svg class="progress-ring" width="40" height="40" viewBox="0 0 40 40">
+          <circle class="ring-bg" cx="20" cy="20" r="18" fill="none" stroke-width="3" />
+          <circle class="ring-bar" cx="20" cy="20" r="18" fill="none" stroke-width="3" 
+                  :stroke-dasharray="circumference" 
+                  :stroke-dashoffset="dashOffset"
+                  transform="rotate(-90 20 20)" />
         </svg>
-        
-        <!-- 书签收藏图标 -->
-        <svg class="icon bookmark-icon" viewBox="0 0 24 24" width="24" height="24">
-          <path fill="#FFF" d="M17,18L12,15.82L7,18V5H17M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z"/>
-        </svg>
-        
-        <!-- 粒子特效 -->
-        <span class="particle particle-1"></span>
-        <span class="particle particle-2"></span>
-        <span class="particle particle-3"></span>
-        <span class="particle particle-4"></span>
+        <span class="progress-text">{{ Math.round(scrollPercentage * 100) }}%</span>
       </div>
-    </Transition>
 
-    <!-- 回到底部按钮 -->
-    <Transition name="back">
-      <div
-        v-show="showButtons"
-        class="nav-btn to-bottom-btn"
-        :class="{ 'scrolling': isScrollingToBottom }"
-        @click="scrollToBottom"
-        title="回到底部"
-      >
-        <!-- 进度圆环 -->
-        <svg class="progress-circle" width="70" height="70" viewBox="0 0 70 70">
-          <circle class="progress-circle-bg" cx="35" cy="35" r="30" fill="none" 
-                  stroke="rgba(255, 255, 255, 0.2)" stroke-width="4" />
-          <circle class="progress-circle-bar" cx="35" cy="35" r="30" fill="none" 
-                  stroke="rgba(255, 255, 255, 0.9)" stroke-width="4" 
-                  :stroke-dasharray="progressCircumference" 
-                  :stroke-dashoffset="bottomProgressOffset"
-                  transform="rotate(-90 35 35)" />
+      <!-- 分隔线 -->
+      <div class="divider"></div>
+
+      <!-- 回到顶部按钮 -->
+      <div class="dock-item action-btn top-btn" @click="scrollToTop" title="回到顶部">
+        <svg class="icon rocket-up" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,22C12,22 17,20 17,12L14.79,12C14.79,12 14,13 12,13C10,13 9.21,12 9.21,12L7,12C7,20 12,22 12,22M12,2L14,7H10L12,2M16,12V4H14V9.08C14.62,9.56 15,10.26 15,11A2,2 0 0,1 13,13V16.09C14.78,15.63 16,14.13 16,12M8,12C8,14.13 9.22,15.63 11,16.09V13A2,2 0 0,1 9,11C9,10.26 9.38,9.56 10,9.08V4H8V12Z"/>
         </svg>
-        
-        <!-- 火箭向上图标 -->
-        <svg class="icon rocket-up-icon" viewBox="0 0 24 24" width="24" height="24">
-          <path fill="#FFF" d="M12,22C12,22 17,20 17,12L14.79,12C14.79,12 14,13 12,13C10,13 9.21,12 9.21,12L7,12C7,20 12,22 12,22M12,2L14,7H10L12,2M16,12V4H14V9.08C14.62,9.56 15,10.26 15,11A2,2 0 0,1 13,13V16.09C14.78,15.63 16,14.13 16,12M8,12C8,14.13 9.22,15.63 11,16.09V13A2,2 0 0,1 9,11C9,10.26 9.38,9.56 10,9.08V4H8V12Z"/>
-        </svg>
+        <div class="tooltip">顶部</div>
       </div>
-    </Transition>
-  </div>
+
+      <!-- 返回阅读位置按钮 (条件渲染) -->
+      <Transition name="scale-in">
+        <div v-if="hasReadingPosition" class="dock-item action-btn read-btn" 
+             :class="{ 'highlight': isJumpingToPosition }"
+             @click="goToReadingPosition" title="返回上次位置">
+          <svg class="icon bookmark" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M17,18L12,15.82L7,18V5H17M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z"/>
+          </svg>
+          <span v-if="isJumpingToPosition" class="particle-effect"></span>
+          <div class="tooltip">继续阅读</div>
+        </div>
+      </Transition>
+
+      <!-- 回到底部按钮 -->
+      <div class="dock-item action-btn bottom-btn" 
+           :class="{ 'active': isScrollingToBottom }"
+           @click="scrollToBottom" title="回到底部">
+        <svg class="icon rocket-down" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,2C12,2 7,4 7,12L9.21,12C9.21,12 10,11 12,11C14,11 14.79,12 14.79,12L17,12C17,4 12,2 12,2M12,22L10,17H14L12,22M8,12V20H10V14.92C9.38,14.44 9,13.74 9,13A2,2 0 0,1 11,11V7.91C9.22,8.37 8,9.87 8,12M16,12C16,9.87 14.78,8.37 13,7.91V11A2,2 0 0,1 15,13C15,13.74 14.62,14.44 14,14.92V20H16V12Z"/>
+        </svg>
+        <div class="tooltip">底部</div>
+      </div>
+    </div>
+  </Transition>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import { TkMessage } from 'vitepress-theme-teek'
 
 const route = useRoute()
 
-// 显示按钮
+// 状态管理
 const showButtons = ref(false)
-// 底部进度（0-1）
-const bottomProgress = ref(0)
-// 是否有保存的阅读位置
+const scrollPercentage = ref(0)
 const hasReadingPosition = ref(false)
-// 保存的阅读位置
 const savedScrollPosition = ref(0)
-// 是否正在滚动到底部
 const isScrollingToBottom = ref(false)
-// 是否正在跳转到阅读位置
 const isJumpingToPosition = ref(false)
 
-// 进度圆环周长
-const progressCircumference = 2 * Math.PI * 30
-// 底部进度偏移量
-const bottomProgressOffset = ref(progressCircumference)
+// 进度环配置
+const radius = 18
+const circumference = 2 * Math.PI * radius
+const dashOffset = computed(() => circumference * (1 - scrollPercentage.value))
 
-// 本地存储键名
 const STORAGE_KEY = 'reading-position-'
 
-// 获取当前页面的存储键
-const getCurrentStorageKey = () => {
-  return STORAGE_KEY + route.path
-}
+// 工具函数
+const getCurrentStorageKey = () => STORAGE_KEY + route.path
 
-// 保存阅读位置到localStorage
 const saveReadingPosition = () => {
   const scrollY = window.scrollY
-  // 只有滚动超过200px才保存
   if (scrollY > 200) {
     localStorage.setItem(getCurrentStorageKey(), scrollY.toString())
     savedScrollPosition.value = scrollY
@@ -101,7 +84,6 @@ const saveReadingPosition = () => {
   }
 }
 
-// 加载阅读位置
 const loadReadingPosition = () => {
   const saved = localStorage.getItem(getCurrentStorageKey())
   if (saved) {
@@ -112,447 +94,316 @@ const loadReadingPosition = () => {
   }
 }
 
-// 回到底部
+// 滚动动作
+const scrollToTop = () => {
+  saveReadingPosition()
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  TkMessage({ message: '已回到顶部 🚀', type: 'success' })
+}
+
 const scrollToBottom = () => {
   if (isScrollingToBottom.value) return
-  
-  // 先保存当前位置
   saveReadingPosition()
-  
-  // 设置动画状态
   isScrollingToBottom.value = true
   
   const totalHeight = document.documentElement.scrollHeight
-  window.scrollTo({
-    top: totalHeight,
-    behavior: 'smooth'
-  })
+  window.scrollTo({ top: totalHeight, behavior: 'smooth' })
   
-  // 监听滚动结束
   const checkScrollEnd = () => {
     const scrollY = window.scrollY
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-    
     if (scrollY >= maxScroll - 10) {
       setTimeout(() => {
         isScrollingToBottom.value = false
-        TkMessage({
-          message: '已到达底部 📍',
-          type: 'success'
-        })
+        TkMessage({ message: '已到达底部 📍', type: 'success' })
       }, 300)
       window.removeEventListener('scroll', checkScrollEnd)
     }
   }
-  
   window.addEventListener('scroll', checkScrollEnd)
 }
 
-// 返回阅读位置
 const goToReadingPosition = () => {
-  if (isJumpingToPosition.value) return
+  if (isJumpingToPosition.value || savedScrollPosition.value <= 0) return
+  isJumpingToPosition.value = true
   
-  if (savedScrollPosition.value > 0) {
-    // 设置动画状态
-    isJumpingToPosition.value = true
-    
-    window.scrollTo({
-      top: savedScrollPosition.value,
-      behavior: 'smooth'
-    })
-    
-    // 动画结束后重置状态
-    setTimeout(() => {
-      isJumpingToPosition.value = false
-      TkMessage({
-        message: '已返回阅读位置 📖',
-        type: 'success'
-      })
-    }, 800)
-  }
+  window.scrollTo({ top: savedScrollPosition.value, behavior: 'smooth' })
+  
+  setTimeout(() => {
+    isJumpingToPosition.value = false
+    TkMessage({ message: '已恢复阅读位置 📖', type: 'success' })
+  }, 800)
 }
 
-// 计算滚动进度
+// 滚动监听
 const updateScrollProgress = () => {
   const scrollY = window.scrollY
   const windowHeight = window.innerHeight
   const documentHeight = document.documentElement.scrollHeight
+  const maxScroll = documentHeight - windowHeight
   
-  // 显示按钮（滚动超过300px）
   showButtons.value = scrollY > 300
+  scrollPercentage.value = maxScroll > 0 ? Math.min(Math.max(scrollY / maxScroll, 0), 1) : 0
   
-  // 计算滚动百分比（0-1）
-  const totalScroll = documentHeight - windowHeight
-  if (totalScroll <= 0) {
-    bottomProgress.value = 0
-  } else {
-    bottomProgress.value = Math.min(Math.max(scrollY / totalScroll, 0), 1)
+  // 自动保存
+  if (scrollY > 200 && scrollY % 500 < 50) {
+    saveReadingPosition()
   }
-  
-  // 更新进度圆环偏移量（从100%到0%）
-  bottomProgressOffset.value = progressCircumference * (1 - bottomProgress.value)
 }
 
-// 滚动事件处理（带节流）
 let scrollTimer = null
 const handleScroll = () => {
   if (scrollTimer) return
-  
   scrollTimer = setTimeout(() => {
     updateScrollProgress()
     scrollTimer = null
   }, 100)
 }
 
-// 页面离开前保存阅读位置
-const handleBeforeUnload = () => {
-  saveReadingPosition()
-}
+const handleBeforeUnload = () => saveReadingPosition()
 
-// 监听路由变化
+// 生命周期
 watch(() => route.path, () => {
-  // 切换页面时加载新页面的阅读位置
   loadReadingPosition()
   updateScrollProgress()
 })
 
 onMounted(() => {
-  // 加载阅读位置
   loadReadingPosition()
-  
-  // 初始化进度
   updateScrollProgress()
-  
-  // 添加滚动监听
   window.addEventListener('scroll', handleScroll)
-  
-  // 页面离开前保存
   window.addEventListener('beforeunload', handleBeforeUnload)
 })
 
 onBeforeUnmount(() => {
-  // 保存当前位置
   saveReadingPosition()
-  
-  // 移除监听
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('beforeunload', handleBeforeUnload)
 })
 </script>
 
 <style scoped>
-.reading-navigation {
+/* 导航坞容器 */
+.nav-dock {
   position: fixed;
   bottom: 100px;
-  right: 30px;
+  right: 24px;
   z-index: 998;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 10px 30px -5px rgba(0, 0, 0, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* 导航按钮通用样式 */
-.nav-btn {
+.dark .nav-dock {
+  background: rgba(30, 30, 35, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 10px 30px -5px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.nav-dock:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 15px 35px -5px rgba(0, 0, 0, 0.15),
+    0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 分隔线 */
+.divider {
+  width: 20px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+.dark .divider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 进度指示器 */
+.progress-indicator {
   position: relative;
-  width: 44px; /* 增大尺寸 */
+  width: 44px;
   height: 44px;
-  border-radius: 50%;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* 更有弹性的过渡 */
-  border: 2px solid rgba(255, 255, 255, 0.15); /* 玻璃质感边框 */
-  backdrop-filter: blur(4px);
+  cursor: pointer;
 }
 
-/* 回到底部按钮 - 橙红色渐变 */
-.to-bottom-btn {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); /* 更柔和的粉红渐变 */
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); /* 保持原色但增加质感 */
-  box-shadow: 
-    0 8px 20px rgba(250, 112, 154, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+.progress-ring {
+  transform: rotate(0deg);
 }
 
-.to-bottom-btn:hover {
-  background: linear-gradient(135deg, #f9608b 0%, #fdd030 100%);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 
-    0 12px 25px rgba(250, 112, 154, 0.5),
-    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+.ring-bg {
+  stroke: rgba(0, 0, 0, 0.1);
+  .dark & { stroke: rgba(255, 255, 255, 0.1); }
 }
 
-/* 涟漪特效 */
-.to-bottom-btn.scrolling::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ripple 1s cubic-bezier(0, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0.8;
-  }
-  100% {
-    width: 250%;
-    height: 250%;
-    opacity: 0;
-  }
-}
-
-/* 阅读位置按钮 - 蓝绿色渐变 */
-.reading-position-btn {
-  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-  box-shadow: 
-    0 8px 20px rgba(48, 207, 208, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
-.reading-position-btn:hover {
-  background: linear-gradient(135deg, #20bfbf 0%, #280757 100%);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 
-    0 12px 25px rgba(48, 207, 208, 0.5),
-    inset 0 2px 4px rgba(255, 255, 255, 0.4);
-}
-
-/* 阅读位置按钮涟漪 */
-.reading-position-btn.jumping::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(48, 207, 208, 0.8) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ripple 0.8s cubic-bezier(0, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* 进度圆环 */
-.progress-circle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
-  transform: scale(1.1); /* 稍微放大圆环以适应新边框 */
-}
-
-.progress-circle-bg {
-  stroke-linecap: round;
-  stroke: rgba(255, 255, 255, 0.15);
-}
-
-.progress-circle-bar {
+.ring-bar {
+  stroke: #646cff;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.3s ease;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8)); /* 增强发光 */
+  filter: drop-shadow(0 0 2px rgba(100, 108, 255, 0.5));
 }
 
-/* 光环 */
-.glow-ring {
-  stroke-linecap: round;
-  animation: glow-pulse 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+.progress-text {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  font-family: var(--vp-font-family-mono);
+  .dark & { color: #eee; }
 }
 
-@keyframes glow-pulse {
-  0%, 100% {
-    opacity: 0.4;
-    stroke-width: 2;
+/* 按钮通用样式 */
+.dock-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: #666;
+  cursor: pointer;
+  background: transparent;
+  .dark & { color: #aaa; }
+}
+
+.action-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #646cff;
+  transform: scale(1.1);
+  .dark & { 
+    background: rgba(255, 255, 255, 0.1); 
+    color: #a8b1ff;
   }
-  50% {
-    opacity: 0.9;
-    stroke-width: 3;
-  }
 }
 
-/* 图标样式 */
 .icon {
-  width: 50%;
-  height: 50%;
-  z-index: 2;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); /* 增加图标投影 */
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 24px;
+  height: 24px;
+  transition: transform 0.4s ease;
 }
 
-.nav-btn:hover .icon {
-  animation: iconBounce 0.8s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
-}
-
-@keyframes iconBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-/* 火箭向上发射动画 */
-.scrolling .rocket-up-icon {
-  animation: rocket-launch-up 1s ease-in-out forwards;
-}
-
-@keyframes rocket-launch-up {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-10px) scale(0.95);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-20px) scale(0.9);
-    opacity: 0.6;
-  }
-}
-
-/* 火箭尾焰效果（向上喷射） */
-.to-bottom-btn.scrolling::after {
-  content: '';
+/* Tooltip */
+.tooltip {
   position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 0;
-  background: linear-gradient(to top, rgba(255, 200, 50, 0.8), rgba(255, 100, 50, 0));
-  border-radius: 50%;
-  animation: rocket-trail-up 1s ease-out forwards;
-  z-index: 0;
-}
-
-@keyframes rocket-trail-up {
-  0% {
-    height: 0;
-    opacity: 0;
-  }
-  50% {
-    height: 25px;
-    opacity: 0.9;
-  }
-  100% {
-    height: 30px;
-    opacity: 0;
-  }
-}
-
-/* 书签飘动动画 */
-.jumping .bookmark-icon {
-  animation: bookmark-float 0.8s ease-in-out;
-}
-
-@keyframes bookmark-float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-8px) rotate(-5deg);
-  }
-  50% {
-    transform: translateY(0) rotate(0deg);
-  }
-  75% {
-    transform: translateY(-4px) rotate(5deg);
-  }
-}
-
-/* 粒子特效 */
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.8);
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-right: 12px;
   pointer-events: none;
+}
+
+.action-btn:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* 各个按钮特效 */
+.top-btn:hover .rocket-up {
+  animation: rocket-fly-up 0.8s ease infinite;
+}
+
+.bottom-btn:hover .rocket-down {
+  animation: rocket-fly-down 0.8s ease infinite;
+}
+
+.read-btn {
+  color: #30cfd0;
+}
+.read-btn:hover .bookmark {
+  animation: bookmark-nod 0.6s ease infinite;
+}
+
+/* 动画定义 */
+@keyframes rocket-fly-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes rocket-fly-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes bookmark-nod {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* 容器进出动画 */
+.dock-fade-enter-active,
+.dock-fade-leave-active {
+  transition: all 0.5s ease;
+}
+.dock-fade-enter-from,
+.dock-fade-leave-to {
   opacity: 0;
+  transform: translateX(20px);
 }
 
-.jumping .particle {
-  animation: particle-burst 0.8s ease-out;
+.scale-in-enter-active,
+.scale-in-leave-active {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
-.particle-1 { top: 20%; left: 50%; animation-delay: 0s; }
-.particle-2 { top: 50%; left: 80%; animation-delay: 0.1s; }
-.particle-3 { top: 80%; left: 50%; animation-delay: 0.2s; }
-.particle-4 { top: 50%; left: 20%; animation-delay: 0.15s; }
-
-@keyframes particle-burst {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(1);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tx, 0), var(--ty, -20px)) scale(0);
-  }
-}
-
-.particle-1 { --tx: 0; --ty: -30px; }
-.particle-2 { --tx: 25px; --ty: 0; }
-.particle-3 { --tx: 0; --ty: 30px; }
-.particle-4 { --tx: -25px; --ty: 0; }
-
-/* 进入退出动画 */
-.back-enter-active,
-.back-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.back-enter-from,
-.back-leave-to {
+.scale-in-enter-from,
+.scale-in-leave-to {
   opacity: 0;
+  transform: scale(0.5);
+  height: 0;
+  margin: 0;
 }
 
 /* 移动端适配 */
 @media (max-width: 768px) {
-  .reading-navigation {
-    bottom: 140px;
-    right: 25px;
-    gap: 12px;
-  }
-  
-  .nav-btn {
-    width: 38px;
-    height: 38px;
-  }
-}
-
-@media (max-width: 720px) {
-  .reading-navigation {
-    bottom: 125px;
+  .nav-dock {
+    bottom: 80px;
     right: 16px;
+    padding: 8px 6px;
+    gap: 8px;
   }
   
-  .nav-btn {
+  .progress-indicator {
     width: 36px;
     height: 36px;
+  }
+  
+  .action-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .tooltip {
+    display: none;
   }
 }
 </style>
