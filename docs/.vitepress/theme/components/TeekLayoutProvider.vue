@@ -100,8 +100,8 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <!-- 路由切换遮罩动画组件 -->
       <RouteSwitchingLoading />
       
-      <!-- 阅读导航组件（回到底部+阅读位置记忆） -->
-      <ReadingNavigation />
+      <!-- 阅读导航组件（回到底部+阅读位置记忆） - 已删除 -->
+      <!-- <ReadingNavigation /> -->
     </template>
 
     <template #teek-theme-enhance-bottom>
