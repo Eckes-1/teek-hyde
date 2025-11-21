@@ -79,30 +79,32 @@ const scrollToComment = () => {
 /* 移动端适配（断点：768px 以下，覆盖主流手机/小平板） */
 @media (max-width: 768px) {
   .scroll-to-comment-btn {
-    /* 1. 增大点击区域：移动端触控最小建议 44x44px，避免误触 */
-    width: 40px;
-    height: 40px;
+    /* 1. 缩小尺寸以减少遮挡 */
+    width: 36px;
+    height: 36px;
 
-    /* 2. 调整位置：远离屏幕边缘，避免与系统导航栏（如底部手势区）冲突 */
-    right: 15px; /* 右侧距离缩小，适配窄屏 */
-    bottom: 24px; /* 底部距离增加，避开手机底部导航/手势区 */
+    /* 2. 调整位置和透明度 */
+    right: 12px;
+    bottom: 20px;
+    opacity: 0.7; /* 半透明，减少视觉干扰 */
 
-    /* 3. 轻量化阴影：移动端屏幕小，过浓阴影显压抑 */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    /* 3. 轻量化阴影 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .scroll-to-comment-btn:hover {
-    /* 移动端 hover 效果弱化（触摸反馈为主），避免过度动画 */
+  .scroll-to-comment-btn:hover,
+  .scroll-to-comment-btn:active {
+    opacity: 1; /* 点击时完全显示 */
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   }
 }
 
 /* 小屏手机额外适配（如 375px 以下，可选） */
 @media (max-width: 375px) {
   .scroll-to-comment-btn {
-    right: 12px;
-    bottom: 28px;
+    right: 10px;
+    bottom: 18px;
   }
 }
 </style>

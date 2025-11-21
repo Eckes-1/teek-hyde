@@ -433,27 +433,10 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-/* 移动端适配 */
+/* 移动端适配 - 完全隐藏以避免挡住内容 */
 @media (max-width: 768px) {
   .nav-dock {
-    bottom: 80px;
-    right: 16px;
-    padding: 8px 6px;
-    gap: 8px;
-  }
-  
-  .progress-indicator {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .action-btn {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .tooltip {
-    display: none;
+    display: none; /* 移动端完全隐藏，因为移动设备有自带的滚动手势 */
   }
 }
 </style>
