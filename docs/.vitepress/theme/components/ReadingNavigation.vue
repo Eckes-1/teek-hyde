@@ -4,6 +4,15 @@
       <!-- 顶部进度指示器 -->
       <div class="dock-item progress-indicator" @click="scrollToTop" title="当前进度">
         <svg class="progress-ring" width="40" height="40" viewBox="0 0 40 40">
+          <defs>
+            <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#646cff" />
+              <stop offset="100%" stop-color="#9e44eb" />
+            </linearGradient>
+            <filter id="glow-shadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(100, 108, 255, 0.4)"/>
+            </filter>
+          </defs>
           <circle class="ring-bg" cx="20" cy="20" r="18" fill="none" stroke-width="3" />
           <circle class="ring-bar" cx="20" cy="20" r="18" fill="none" stroke-width="3" 
                   :stroke-dasharray="circumference" 
@@ -19,8 +28,13 @@
       <!-- 回到顶部按钮 -->
       <div class="dock-item action-btn top-btn" @click="scrollToTop" title="回到顶部">
         <svg class="icon rocket-up" viewBox="0 0 24 24">
-          <!-- Remix Icon: Rocket-2-Line -->
-          <path fill="currentColor" d="M13,2.05C17.45,2.59 21,6.34 21,11C21,12.38 20.64,13.68 20,14.83V22H17L13,19V22H11V19L7,22H4V14.83C3.36,13.68 3,12.38 3,11C3,6.34 6.55,2.59 11,2.05V0H13V2.05M12,4C8.13,4 5,7.13 5,11C5,13.85 6.7,16.29 9.09,17.4L12,15.74L14.91,17.4C17.3,16.29 19,13.85 19,11C19,7.13 15.87,4 12,4M12,6C13.38,6 14.5,7.12 14.5,8.5C14.5,9.88 13.38,11 12,11C10.62,11 9.5,9.88 9.5,8.5C9.5,7.12 10.62,6 12,6Z"/>
+          <defs>
+            <linearGradient id="rocket-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff6b6b" />
+              <stop offset="100%" stop-color="#ff8e53" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#rocket-gradient)" d="M13,2.05C17.45,2.59 21,6.34 21,11C21,12.38 20.64,13.68 20,14.83V22H17L13,19V22H11V19L7,22H4V14.83C3.36,13.68 3,12.38 3,11C3,6.34 6.55,2.59 11,2.05V0H13V2.05M12,4C8.13,4 5,7.13 5,11C5,13.85 6.7,16.29 9.09,17.4L12,15.74L14.91,17.4C17.3,16.29 19,13.85 19,11C19,7.13 15.87,4 12,4M12,6C13.38,6 14.5,7.12 14.5,8.5C14.5,9.88 13.38,11 12,11C10.62,11 9.5,9.88 9.5,8.5C9.5,7.12 10.62,6 12,6Z"/>
         </svg>
         <div class="tooltip">顶部</div>
       </div>
@@ -31,7 +45,13 @@
              :class="{ 'highlight': isJumpingToPosition }"
              @click="goToReadingPosition" title="返回上次位置">
           <svg class="icon bookmark" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M17,18L12,15.82L7,18V5H17M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z"/>
+            <defs>
+              <linearGradient id="bookmark-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4facfe" />
+                <stop offset="100%" stop-color="#00f2fe" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#bookmark-gradient)" d="M17,18L12,15.82L7,18V5H17M17,3H7A2,2 0 0,0 5,5V21L12,18L19,21V5C19,3.89 18.1,3 17,3Z"/>
           </svg>
           <span v-if="isJumpingToPosition" class="particle-effect"></span>
           <div class="tooltip">继续阅读</div>
@@ -43,8 +63,8 @@
            :class="{ 'active': isScrollingToBottom }"
            @click="scrollToBottom" title="回到底部">
         <svg class="icon rocket-down" viewBox="0 0 24 24" style="transform: rotate(180deg)">
-          <!-- Remix Icon: Rocket-2-Line -->
-          <path fill="currentColor" d="M13,2.05C17.45,2.59 21,6.34 21,11C21,12.38 20.64,13.68 20,14.83V22H17L13,19V22H11V19L7,22H4V14.83C3.36,13.68 3,12.38 3,11C3,6.34 6.55,2.59 11,2.05V0H13V2.05M12,4C8.13,4 5,7.13 5,11C5,13.85 6.7,16.29 9.09,17.4L12,15.74L14.91,17.4C17.3,16.29 19,13.85 19,11C19,7.13 15.87,4 12,4M12,6C13.38,6 14.5,7.12 14.5,8.5C14.5,9.88 13.38,11 12,11C10.62,11 9.5,9.88 9.5,8.5C9.5,7.12 10.62,6 12,6Z"/>
+          <!-- 复用 rocket-gradient -->
+          <path fill="url(#rocket-gradient)" d="M13,2.05C17.45,2.59 21,6.34 21,11C21,12.38 20.64,13.68 20,14.83V22H17L13,19V22H11V19L7,22H4V14.83C3.36,13.68 3,12.38 3,11C3,6.34 6.55,2.59 11,2.05V0H13V2.05M12,4C8.13,4 5,7.13 5,11C5,13.85 6.7,16.29 9.09,17.4L12,15.74L14.91,17.4C17.3,16.29 19,13.85 19,11C19,7.13 15.87,4 12,4M12,6C13.38,6 14.5,7.12 14.5,8.5C14.5,9.88 13.38,11 12,11C10.62,11 9.5,9.88 9.5,8.5C9.5,7.12 10.62,6 12,6Z"/>
         </svg>
         <div class="tooltip">底部</div>
       </div>
@@ -292,7 +312,7 @@ onBeforeUnmount(() => {
 }
 
 .ring-bar {
-  stroke: #646cff;
+  stroke: url(#progress-gradient); /* 使用渐变 */
   stroke-linecap: round;
   transition: stroke-dashoffset 0.3s ease;
   filter: drop-shadow(0 0 2px rgba(100, 108, 255, 0.5));
@@ -302,9 +322,10 @@ onBeforeUnmount(() => {
   position: absolute;
   font-size: 12px;
   font-weight: 700;
-  color: #333;
+  color: #646cff; /* 文字颜色呼应进度环 */
   font-family: var(--vp-font-family-mono);
-  .dark & { color: #eee; }
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  .dark & { color: #a8b1ff; }
 }
 
 /* 按钮通用样式 */
@@ -328,8 +349,9 @@ onBeforeUnmount(() => {
 }
 
 .action-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px); /* 整体上浮 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   .dark & { 
     background: rgba(255, 255, 255, 0.1); 
   }
@@ -338,18 +360,25 @@ onBeforeUnmount(() => {
 .icon {
   width: 24px;
   height: 24px;
-  transition: all 0.4s ease;
-  /* 3D 效果核心 */
-  filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.1)) 
-          drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性过渡 */
+  /* 基础 3D 质感 */
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.2));
 }
 
 .action-btn:hover .icon {
-  color: #646cff;
-  filter: drop-shadow(2px 2px 0px #4a51c4) 
-          drop-shadow(4px 4px 2px rgba(0,0,0,0.2));
-  transform: translateZ(20px) scale(1.1); /* 3D 突起 */
-  .dark & { color: #a8b1ff; filter: drop-shadow(2px 2px 0px #3b4299) drop-shadow(4px 4px 2px rgba(0,0,0,0.3)); }
+  /* 悬停 3D 突起效果 */
+  transform: translateZ(20px) scale(1.15) rotateX(10deg); 
+  filter: drop-shadow(0px 8px 8px rgba(0,0,0,0.25)) 
+          drop-shadow(0px 15px 15px rgba(0,0,0,0.15));
+}
+
+/* 特定按钮微调 */
+.read-btn .icon {
+  /* 书签稍微倾斜一点更有感觉 */
+  transform: rotate(-5deg);
+}
+.read-btn:hover .icon {
+  transform: translateZ(20px) scale(1.15) rotate(-5deg);
 }
 
 /* Tooltip */
@@ -393,21 +422,20 @@ onBeforeUnmount(() => {
   animation: bookmark-nod 0.6s ease infinite;
 }
 
-/* 动画定义 */
+/* 动画定义 - 更新以兼容 3D 变换 */
 @keyframes rocket-fly-up {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%, 100% { transform: translateZ(20px) scale(1.15) rotateX(10deg) translateY(0); }
+  50% { transform: translateZ(20px) scale(1.15) rotateX(10deg) translateY(-4px); }
 }
 
 @keyframes rocket-fly-down {
-  0%, 100% { transform: translateY(0) rotate(180deg); }
-  50% { transform: translateY(6px) rotate(180deg); }
+  0%, 100% { transform: translateZ(20px) scale(1.15) rotateX(10deg) translateY(0) rotate(180deg); }
+  50% { transform: translateZ(20px) scale(1.15) rotateX(10deg) translateY(4px) rotate(180deg); }
 }
 
 @keyframes bookmark-nod {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-10deg); }
-  75% { transform: rotate(10deg); }
+  0%, 100% { transform: translateZ(20px) scale(1.15) rotate(-5deg); }
+  50% { transform: translateZ(20px) scale(1.15) rotate(5deg); }
 }
 
 /* 容器进出动画 */
