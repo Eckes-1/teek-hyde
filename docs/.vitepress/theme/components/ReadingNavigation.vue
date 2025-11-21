@@ -461,44 +461,53 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-/* 移动端适配 - 优化样式减少遮挡 */
+/* 移动端适配 - 优化清晰度 */
 @media (max-width: 768px) {
   .nav-dock {
     bottom: 70px;
     right: 10px;
-    padding: 6px 4px;
-    gap: 6px;
-    opacity: 0.7; /* 半透明，减少视觉干扰 */
-    background: rgba(255, 255, 255, 0.15); /* 更透明的背景 */
+    padding: 8px 6px;
+    gap: 8px;
+    opacity: 0.95; /* 提高不透明度，确保清晰 */
+    background: rgba(255, 255, 255, 0.9); /* 加深背景 */
+    backdrop-filter: blur(20px) saturate(180%); /* 增强模糊 */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* 增加阴影 */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+  
+  .dark .nav-dock {
+    background: rgba(30, 30, 35, 0.9); /* 暗色模式背景 */
+    border-color: rgba(255, 255, 255, 0.15);
   }
   
   .nav-dock:hover,
   .nav-dock:active {
-    opacity: 1; /* 交互时完全显示 */
+    opacity: 1;
+    transform: scale(1.02);
   }
   
   .progress-indicator {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
   }
   
   .progress-ring {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
   }
   
   .progress-text {
-    font-size: 9px;
+    font-size: 10px;
   }
   
   .action-btn {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
   }
   
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
   
   .tooltip {
