@@ -130,8 +130,8 @@
       </div>
     </div>
 
-    <!-- 滚动到评论区按钮 -->
-    <ScrollToComment v-if="shouldShow" :show="showScrollButton" :scroll-to-comment="scrollToComment" />
+    <!-- 滚动到评论区按钮 - 已隐藏 -->
+    <!-- <ScrollToComment v-if="shouldShow" :show="showScrollButton" :scroll-to-comment="scrollToComment" /> -->
   </div>
 </template>
 

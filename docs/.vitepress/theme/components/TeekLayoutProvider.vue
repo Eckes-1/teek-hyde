@@ -174,13 +174,13 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <Twikoo />
     </template>
 
-    <!-- 滚动到评论区按钮 -->
-    <template #teek-to-comment="{ show, icon, scrollToComment }">
+    <!-- 滚动到评论区按钮 - 已隐藏 -->
+    <!-- <template #teek-to-comment="{ show, icon, scrollToComment }">
       <ScrollToComment
         :show="show"
         :icon="icon"
         :scroll-to-comment="scrollToComment"
       />
-    </template>
+    </template> -->
   </Teek.Layout>
 </template>
