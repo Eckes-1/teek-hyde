@@ -1,8 +1,8 @@
 <template>
   <Transition name="dock-fade">
-    <div v-show="showButtons" class="nav-dock">
+    <div v-show="showButtons" class="nav-dock" :class="{ 'mobile-expanded': isMenuOpen }">
       <!-- 顶部进度指示器 -->
-      <div class="dock-item progress-indicator" @click="scrollToTop" title="当前进度">
+      <div class="dock-item progress-indicator" @click="handleProgressClick" title="当前进度/展开菜单">
         <svg class="progress-ring" width="40" height="40" viewBox="0 0 40 40">
           <defs>
             <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -86,6 +86,8 @@ const hasReadingPosition = ref(false)
 const savedScrollPosition = ref(0)
 const isScrollingToBottom = ref(false)
 const isJumpingToPosition = ref(false)
+const isMobile = ref(false)
+const isMenuOpen = ref(false)
 
 // 进度环配置
 const radius = 18
@@ -96,6 +98,17 @@ const STORAGE_KEY = 'reading-position-'
 
 // 工具函数
 const getCurrentStorageKey = () => STORAGE_KEY + route.path
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+const handleProgressClick = (e) => {
+  if (isMobile.value) {
+    isMenuOpen.value = !isMenuOpen.value
+  } else {
+    scrollToTop(e)
+  }
+}
 
 const saveReadingPosition = () => {
   const scrollY = window.scrollY
@@ -213,6 +226,9 @@ const updateScrollProgress = () => {
 
 let scrollTimer = null
 const handleScroll = () => {
+  if (isMenuOpen.value && isMobile.value) {
+    isMenuOpen.value = false // 滚动时自动收起菜单
+  }
   if (scrollTimer) return
   scrollTimer = setTimeout(() => {
     updateScrollProgress()
@@ -226,19 +242,23 @@ const handleBeforeUnload = () => saveReadingPosition()
 watch(() => route.path, () => {
   loadReadingPosition()
   updateScrollProgress()
+  isMenuOpen.value = false // 路由切换时收起菜单
 })
 
 onMounted(() => {
+  checkMobile()
   loadReadingPosition()
   updateScrollProgress()
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('beforeunload', handleBeforeUnload)
+  window.addEventListener('resize', checkMobile)
 })
 
 onBeforeUnmount(() => {
   saveReadingPosition()
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('beforeunload', handleBeforeUnload)
+  window.removeEventListener('resize', checkMobile)
 })
 </script>
 
@@ -461,22 +481,51 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-/* 移动端适配 - 优化清晰度 */
+/* 移动端适配 - 智能折叠 */
 @media (max-width: 768px) {
   .nav-dock {
     bottom: 70px;
     right: 10px;
-    padding: 8px 6px;
-    gap: 8px;
-    opacity: 0.95; /* 提高不透明度，确保清晰 */
-    background: rgba(255, 255, 255, 0.9); /* 加深背景 */
-    backdrop-filter: blur(20px) saturate(180%); /* 增强模糊 */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* 增加阴影 */
+    padding: 4px; /* 减小内边距 */
+    gap: 0; /* 初始无间距 */
+    opacity: 0.95;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.6);
+    /* 动画关键 */
+    max-height: 44px; /* 默认只显示一个按钮高度 (34px + 4px*2 padding) */
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  /* 展开状态 */
+  .nav-dock.mobile-expanded {
+    max-height: 300px; /* 足够显示所有按钮的高度 */
+    gap: 8px;
+    padding: 8px 6px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 折叠时隐藏其他元素 */
+  .nav-dock:not(.mobile-expanded) .divider,
+  .nav-dock:not(.mobile-expanded) .action-btn {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute; /* 移除文档流占用 */
+  }
+
+  /* 展开时的子元素动画 */
+  .nav-dock.mobile-expanded .divider,
+  .nav-dock.mobile-expanded .action-btn {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    transition: opacity 0.3s ease 0.1s; /* 稍晚于容器展开显示 */
   }
   
   .dark .nav-dock {
-    background: rgba(30, 30, 35, 0.9); /* 暗色模式背景 */
+    background: rgba(30, 30, 35, 0.9);
     border-color: rgba(255, 255, 255, 0.15);
   }
   
@@ -489,6 +538,8 @@ onBeforeUnmount(() => {
   .progress-indicator {
     width: 34px;
     height: 34px;
+    /* 确保进度球始终可见 */
+    z-index: 2;
   }
   
   .progress-ring {
@@ -511,7 +562,7 @@ onBeforeUnmount(() => {
   }
   
   .tooltip {
-    display: none; /* 移动端隐藏提示文字 */
+    display: none;
   }
 }
 </style>
