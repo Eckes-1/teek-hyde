@@ -22,7 +22,7 @@ import WelcomeCard from "./WelcomeCard.vue"; // 欢迎卡片
 import WechatCard from "./WechatCard.vue";
 import RouteSwitchingLoading from "./RouteSwitchingLoading.vue"; // 过渡动画组件
 import Twikoo from "./Twikoo/Twikoo.vue";
-// import ScrollToComment from "./ScrollToComment.vue"; // 已隐藏
+import ScrollToComment from "./ScrollToComment.vue";
 import CalendarCard from "./CalendarCard.vue";
 import ScheduleCard from "./ScheduleCard.vue";
 import BloggerInfoCard from "./BloggerInfoCard.vue"; // 博主信息卡片
@@ -174,13 +174,13 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <Twikoo />
     </template>
 
-    <!-- 已隐藏：滚动到评论区按钮 -->
-    <!-- <template #teek-to-comment="{ show, icon, scrollToComment }">
+    <!-- 滚动到评论区按钮 -->
+    <template #teek-to-comment="{ show, icon, scrollToComment }">
       <ScrollToComment
         :show="show"
         :icon="icon"
         :scroll-to-comment="scrollToComment"
       />
-    </template> -->
+    </template>
   </Teek.Layout>
 </template>
