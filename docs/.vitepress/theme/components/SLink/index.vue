@@ -130,8 +130,8 @@
       </div>
     </div>
 
-    <!-- 滚动到评论区按钮 -->
-    <ScrollToComment v-if="shouldShow" :show="showScrollButton" :scroll-to-comment="scrollToComment" />
+    <!-- 滚动到评论区按钮 - 已隐藏 -->
+    <!-- <ScrollToComment v-if="shouldShow" :show="showScrollButton" :scroll-to-comment="scrollToComment" /> -->
   </div>
 </template>
 
@@ -145,7 +145,7 @@ import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useStarBurst } from "./DiySlinkShiroki.ts";
 // 导入消息提示组件
 import { TkMessage } from "vitepress-theme-teek";
-import ScrollToComment from "../ScrollToComment.vue";
+// import ScrollToComment from "../ScrollToComment.vue"; // 已隐藏
 
 /**
  * 单个友链的数据结构定义

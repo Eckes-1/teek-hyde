@@ -40,7 +40,7 @@ const scrollToComment = () => {
 
 <template>
   <div
-    v-if="show"
+    v-if="false"
     title="滚动到评论区"
     class="scroll-to-comment-btn"
     @click="scrollToComment"

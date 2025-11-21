@@ -19,7 +19,8 @@
       <!-- 回到顶部按钮 -->
       <div class="dock-item action-btn top-btn" @click="scrollToTop" title="回到顶部">
         <svg class="icon rocket-up" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M12,2C12,2 7,4 7,12L9.21,12C9.21,12 10,11 12,11C14,11 14.79,12 14.79,12L17,12C17,4 12,2 12,2M12,22L10,17H14L12,22M8,12V20H10V14.92C9.38,14.44 9,13.74 9,13A2,2 0 0,1 11,11V7.91C9.22,8.37 8,9.87 8,12M16,12C16,9.87 14.78,8.37 13,7.91V11A2,2 0 0,1 15,13C15,13.74 14.62,14.44 14,14.92V20H16V12Z"/>
+          <!-- Remix Icon: Rocket-2-Line -->
+          <path fill="currentColor" d="M13,2.05C17.45,2.59 21,6.34 21,11C21,12.38 20.64,13.68 20,14.83V22H17L13,19V22H11V19L7,22H4V14.83C3.36,13.68 3,12.38 3,11C3,6.34 6.55,2.59 11,2.05V0H13V2.05M12,4C8.13,4 5,7.13 5,11C5,13.85 6.7,16.29 9.09,17.4L12,15.74L14.91,17.4C17.3,16.29 19,13.85 19,11C19,7.13 15.87,4 12,4M12,6C13.38,6 14.5,7.12 14.5,8.5C14.5,9.88 13.38,11 12,11C10.62,11 9.5,9.88 9.5,8.5C9.5,7.12 10.62,6 12,6Z"/>
         </svg>
         <div class="tooltip">顶部</div>
       </div>
@@ -41,8 +42,9 @@
       <div class="dock-item action-btn bottom-btn" 
            :class="{ 'active': isScrollingToBottom }"
            @click="scrollToBottom" title="回到底部">
-        <svg class="icon rocket-down" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M12,22C12,22 17,20 17,12L14.79,12C14.79,12 14,13 12,13C10,13 9.21,12 9.21,12L7,12C7,20 12,22 12,22M12,2L14,7H10L12,2M16,12V4H14V9.08C14.62,9.56 15,10.26 15,11A2,2 0 0,1 13,13V16.09C14.78,15.63 16,14.13 16,12M8,12C8,14.13 9.22,15.63 11,16.09V13A2,2 0 0,1 9,11C9,10.26 9.38,9.56 10,9.08V4H8V12Z"/>
+        <svg class="icon rocket-down" viewBox="0 0 24 24" style="transform: rotate(180deg)">
+          <!-- Remix Icon: Rocket-2-Line -->
+          <path fill="currentColor" d="M13,2.05C17.45,2.59 21,6.34 21,11C21,12.38 20.64,13.68 20,14.83V22H17L13,19V22H11V19L7,22H4V14.83C3.36,13.68 3,12.38 3,11C3,6.34 6.55,2.59 11,2.05V0H13V2.05M12,4C8.13,4 5,7.13 5,11C5,13.85 6.7,16.29 9.09,17.4L12,15.74L14.91,17.4C17.3,16.29 19,13.85 19,11C19,7.13 15.87,4 12,4M12,6C13.38,6 14.5,7.12 14.5,8.5C14.5,9.88 13.38,11 12,11C10.62,11 9.5,9.88 9.5,8.5C9.5,7.12 10.62,6 12,6Z"/>
         </svg>
         <div class="tooltip">底部</div>
       </div>
@@ -95,14 +97,52 @@ const loadReadingPosition = () => {
 }
 
 // 滚动动作
-const scrollToTop = () => {
+const scrollToTop = (e) => {
+  if (e) launchRocket(e, 'up')
   saveReadingPosition()
   window.scrollTo({ top: 0, behavior: 'smooth' })
   TkMessage({ message: '已回到顶部 🚀', type: 'success' })
 }
 
-const scrollToBottom = () => {
+const launchRocket = (event, direction) => {
+  // 获取点击的按钮元素
+  const button = event.currentTarget
+  const originalIcon = button.querySelector('svg')
+
+  // 如果图标已经飞出去了（不可见），则不再触发，防止重复点击
+  if (originalIcon.style.opacity === '0') return
+
+  const rect = button.getBoundingClientRect()
+  
+  // 克隆图标
+  const icon = originalIcon.cloneNode(true)
+  
+  // 隐藏原图标，制造"飞出去"的错觉
+  originalIcon.style.opacity = '0'
+  
+  // 创建飞行容器
+  const flyer = document.createElement('div')
+  flyer.className = `flying-rocket flying-${direction}`
+  
+  // 设置初始位置（与按钮图标重合）
+  // 按钮 padding 导致图标居中，这里直接利用 rect 定位
+  // 图标是 24x24，按钮是 40x40
+  flyer.style.left = `${rect.left + (rect.width - 24) / 2}px`
+  flyer.style.top = `${rect.top + (rect.height - 24) / 2}px`
+  
+  flyer.appendChild(icon)
+  document.body.appendChild(flyer)
+  
+  // 动画结束后清理并恢复原图标
+  setTimeout(() => {
+    flyer.remove()
+    originalIcon.style.opacity = ''
+  }, 1000)
+}
+
+const scrollToBottom = (e) => {
   if (isScrollingToBottom.value) return
+  if (e) launchRocket(e, 'down')
   saveReadingPosition()
   isScrollingToBottom.value = true
   
@@ -283,23 +323,33 @@ onBeforeUnmount(() => {
   color: #666;
   cursor: pointer;
   background: transparent;
+  perspective: 1000px; /* 为3D旋转做准备 */
   .dark & { color: #aaa; }
 }
 
 .action-btn:hover {
   background: rgba(0, 0, 0, 0.05);
-  color: #646cff;
-  transform: scale(1.1);
+  transform: translateY(-2px); /* 整体上浮 */
   .dark & { 
     background: rgba(255, 255, 255, 0.1); 
-    color: #a8b1ff;
   }
 }
 
 .icon {
   width: 24px;
   height: 24px;
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
+  /* 3D 效果核心 */
+  filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.1)) 
+          drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
+}
+
+.action-btn:hover .icon {
+  color: #646cff;
+  filter: drop-shadow(2px 2px 0px #4a51c4) 
+          drop-shadow(4px 4px 2px rgba(0,0,0,0.2));
+  transform: translateZ(20px) scale(1.1); /* 3D 突起 */
+  .dark & { color: #a8b1ff; filter: drop-shadow(2px 2px 0px #3b4299) drop-shadow(4px 4px 2px rgba(0,0,0,0.3)); }
 }
 
 /* Tooltip */
@@ -350,8 +400,8 @@ onBeforeUnmount(() => {
 }
 
 @keyframes rocket-fly-down {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
+  0%, 100% { transform: translateY(0) rotate(180deg); }
+  50% { transform: translateY(6px) rotate(180deg); }
 }
 
 @keyframes bookmark-nod {
@@ -404,6 +454,64 @@ onBeforeUnmount(() => {
   
   .tooltip {
     display: none;
+  }
+}
+</style>
+
+<style>
+/* 全局火箭飞行特效 - 动态插入body的元素需要全局样式 */
+.flying-rocket {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  width: 24px;
+  height: 24px;
+  color: #646cff; /* 默认主题色 */
+  filter: drop-shadow(0 0 8px rgba(100, 108, 255, 0.8));
+}
+
+.flying-rocket svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 向上发射 */
+.flying-rocket.flying-up {
+  animation: rocket-launch-up 1s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* 向下发射 */
+.flying-rocket.flying-down {
+  animation: rocket-launch-down 1s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes rocket-launch-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(10px) scale(0.8); /* 蓄力效果 */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.4); /* 限制高度为 100px */
+    opacity: 0;
+  }
+}
+
+@keyframes rocket-launch-down {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-10px) scale(0.8); /* 蓄力效果 */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) scale(0.4); /* 限制高度为 100px */
+    opacity: 0;
   }
 }
 </style>
