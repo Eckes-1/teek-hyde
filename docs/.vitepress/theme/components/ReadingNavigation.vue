@@ -254,27 +254,35 @@ onBeforeUnmount(() => {
 /* 导航按钮通用样式 */
 .nav-btn {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 44px; /* 增大尺寸 */
+  height: 44px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* 更有弹性的过渡 */
+  border: 2px solid rgba(255, 255, 255, 0.15); /* 玻璃质感边框 */
+  backdrop-filter: blur(4px);
 }
 
 /* 回到底部按钮 - 橙红色渐变 */
 .to-bottom-btn {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-  box-shadow: 0 4px 20px rgba(250, 112, 154, 0.4);
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); /* 更柔和的粉红渐变 */
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); /* 保持原色但增加质感 */
+  box-shadow: 
+    0 8px 20px rgba(250, 112, 154, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
 .to-bottom-btn:hover {
   background: linear-gradient(135deg, #f9608b 0%, #fdd030 100%);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(250, 112, 154, 0.6);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 12px 25px rgba(250, 112, 154, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 /* 涟漪特效 */
@@ -285,10 +293,10 @@ onBeforeUnmount(() => {
   left: 50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: ripple 1s ease-out;
+  animation: ripple 1s cubic-bezier(0, 0, 0.2, 1);
   pointer-events: none;
   z-index: 1;
 }
@@ -297,11 +305,11 @@ onBeforeUnmount(() => {
   0% {
     width: 0;
     height: 0;
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
-    width: 200%;
-    height: 200%;
+    width: 250%;
+    height: 250%;
     opacity: 0;
   }
 }
@@ -309,14 +317,19 @@ onBeforeUnmount(() => {
 /* 阅读位置按钮 - 蓝绿色渐变 */
 .reading-position-btn {
   background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-  box-shadow: 0 4px 20px rgba(48, 207, 208, 0.4);
+  box-shadow: 
+    0 8px 20px rgba(48, 207, 208, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
 .reading-position-btn:hover {
   background: linear-gradient(135deg, #20bfbf 0%, #280757 100%);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(48, 207, 208, 0.6);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 12px 25px rgba(48, 207, 208, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 /* 阅读位置按钮涟漪 */
@@ -327,10 +340,10 @@ onBeforeUnmount(() => {
   left: 50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(48, 207, 208, 0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(48, 207, 208, 0.8) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: ripple 0.8s ease-out;
+  animation: ripple 0.8s cubic-bezier(0, 0, 0.2, 1);
   pointer-events: none;
   z-index: 1;
 }
@@ -343,31 +356,34 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  transform: scale(1.1); /* 稍微放大圆环以适应新边框 */
 }
 
 .progress-circle-bg {
   stroke-linecap: round;
+  stroke: rgba(255, 255, 255, 0.15);
 }
 
 .progress-circle-bar {
   stroke-linecap: round;
   transition: stroke-dashoffset 0.3s ease;
-  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8)); /* 增强发光 */
 }
 
 /* 光环 */
 .glow-ring {
   stroke-linecap: round;
   animation: glow-pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
 }
 
 @keyframes glow-pulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.4;
     stroke-width: 2;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.9;
     stroke-width: 3;
   }
 }
@@ -377,12 +393,12 @@ onBeforeUnmount(() => {
   width: 50%;
   height: 50%;
   z-index: 2;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); /* 增加图标投影 */
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .nav-btn:hover .icon {
-  animation: iconBounce 0.6s ease-in-out infinite;
+  animation: iconBounce 0.8s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
 }
 
 @keyframes iconBounce {
@@ -390,7 +406,7 @@ onBeforeUnmount(() => {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
