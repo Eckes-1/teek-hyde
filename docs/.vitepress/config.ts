@@ -552,6 +552,13 @@ export default defineConfig({
     // 插件
     plugins: Plugins(), // vite 插件
   },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag === 'meting-js'
+      }
+    }
+  },
   //解决404 title方法
   transformHtml: (code, id, context) => {
     if (context.page !== "404.md") return code;

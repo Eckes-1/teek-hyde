@@ -109,8 +109,10 @@ const initPlayer = async () => {
         loop: 'all',
         order: 'list',
         preload: 'auto',
-        'list-max-height': '400px',
-        'lrc-type': '0'
+        'list-max-height': '500px',
+        'lrc-type': '3',  // 3 = 显示歌词（0=不显示，1=显示，3=显示带封面）
+        mutex: 'true',
+        volume: '0.7'
       }
 
       Object.entries(attrs).forEach(([key, value]) => {
