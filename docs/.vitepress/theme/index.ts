@@ -11,6 +11,7 @@ import SLink from "./components/SLink/index.vue";
 import ReadingNavigation from "./components/ReadingNavigation.vue"; //导入阅读导航组件
 import IconDemo from "./components/IconDemo.vue"; //导入图标演示组件
 import MusicPlayer from "./components/MusicPlayer.vue"; // 导入音乐播放器组件
+import MusicSpace from "./components/MusicSpace.vue"; // 导入音乐空间组件
 
 // 被动事件监听器修复工具 - 针对 vitepress-theme-teek 主题
 import "./fix-teek-passive-events.js";
@@ -59,6 +60,7 @@ export default {
       { name: "ReadingNavigation", component: ReadingNavigation }, // 注册阅读导航组件
       { name: "IconDemo", component: IconDemo }, // 注册图标演示组件
       { name: "MusicPlayer", component: MusicPlayer }, // 注册音乐播放器组件
+      { name: "MusicSpace", component: MusicSpace }, // 注册音乐空间组件
     ];
 
     globalComponents.forEach(({ name, component }) => {

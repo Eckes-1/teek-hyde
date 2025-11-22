@@ -1,26 +1,9 @@
 ---
 title: 音乐空间
 layout: page
+sidebar: false
+aside: false
 ---
 
-# 🎵 音乐空间
+<MusicSpace />
 
-> 这里的音乐列表来自于网易云音乐歌单，实时同步。
-
-<MusicPlayer id="7360465359" />
-
-::: tip 提示
-如果播放器没有加载，请尝试刷新页面。您也可以点击右下角的播放列表按钮查看更多歌曲。
-:::
-
----
-
-## 🎧 推荐歌单
-
-### 纯音乐精选
-
-<MusicPlayer id="26467411" />
-
-### 抖音热歌
-
-<MusicPlayer id="2031235299" />
